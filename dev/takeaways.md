@@ -81,3 +81,13 @@ candidates for bug reports, feature requests or pull requests.
   kept as a repository variable; the private key stays on the host.
 - `export-shard` refuses to write plaintext when `GITHUB_ACTIONS=true`, and the
   workflow's plan job fails before any runner starts if the key is missing.
+- The container can dispatch and watch workflows (`gh workflow run`, `gh run
+  view`), but artifacts and job logs are served from Azure blob storage
+  (`*.blob.core.windows.net`), which the proxy blocks: downloads and log reads
+  happen on the host.
+- Free-plan concurrency (20 jobs) queues the rest of a large matrix; the
+  harvest step that took about an hour through the container's proxy takes about 2 minutes on a
+  runner.
+- zsh does not word-split unquoted variables: `set -- $spec` in a loop passes
+  one argument (the dispatch failed with "Required input 'adapter' not
+  provided").
