@@ -91,4 +91,8 @@ def adapter(name: str, cfg: Config, conn: sqlite3.Connection):
         from .adapters.tarball import GitSvgAdapter, NpmSvgAdapter
 
         return (GitSvgAdapter if name == "git-svg" else NpmSvgAdapter)(cfg, conn)
+    if name == "font":
+        from .adapters.font import FontAdapter
+
+        return FontAdapter(cfg, conn)
     raise SystemExit(f"unknown adapter: {name}")

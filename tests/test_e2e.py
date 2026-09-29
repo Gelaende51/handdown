@@ -80,3 +80,24 @@ def test_pipeline_and_vault_roundtrip(env):
     again = vault.read_frontmatter(note)
     assert again["notes"] == "prefer the lid variant"
     assert "trash can" in note.read_text()
+
+
+def test_html_export(env):
+    import json
+
+    from handdown import site
+
+    cfg, conn = env
+    pipeline.harvest(conn, Fixture())
+    pipeline.process(conn, cfg, workers=1)
+    concepts.run(conn)
+    cluster.run(conn)
+    score.run(conn, log=lambda *_: None)
+    assert site.export(conn, cfg, min_sources=1, log=lambda *_: None) >= 2
+    index = json.loads((cfg.site / "data" / "concepts.json").read_text())
+    ashcan = next(c for c in index if c["label"] == "ashcan")
+    page = (cfg.site / "c" / f"{ashcan['f']}.html").read_text()
+    assert page.count('class="cluster"') == 2
+    assert "<script>alert" not in page
+    for c in index:
+        assert (cfg.site / "svg" / f"{c['r']}.svg").exists()

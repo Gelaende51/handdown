@@ -1,0 +1,256 @@
+"""AI passes over depiction clusters, run as headless ``claude -p`` jobs.
+
+Two calls per batch of clusters:
+
+1. **blind**: a numbered contact sheet (each cluster's representative at
+   48 px and 16 px) without any names. The model says what each cell depicts
+   and what it could mean. This measures recognizability without priming.
+2. **informed**: the same sheet plus the true concept and the blind answers.
+   The model grades the blind answers (meaning, depiction), names the
+   depiction, and records semantic metadata (concreteness, semantic distance,
+   familiarity, cultural risk, timelessness, anachronism, representation).
+
+Only ``meaning``, ``depiction`` and ``familiarity`` become ratings; the rest
+is metadata (``semantic_meta``), as the spec requires.
+
+The dev container cannot see the account's usage limits, so runs are
+explicit and bounded (``--limit``) and every run is logged in ``ai_run``
+with its token usage.
+"""
+
+from __future__ import annotations
+
+import base64
+import io
+import json
+import os
+import re
+import sqlite3
+import subprocess
+import uuid
+from pathlib import Path
+from typing import Any
+
+import numpy as np
+from PIL import Image, ImageDraw
+
+from . import db
+from .metrics import render
+
+MODEL = "sonnet"
+BATCH = 12
+CELL = 120
+METHOD_VERSION = "1"
+
+BLIND_PROMPT = """Each numbered cell shows one pictogram, large and at 16 px.
+Without guessing from context, say for each cell:
+- "depicts": what object/figure/shape is drawn (a few words)
+- "meanings": up to 3 things it could mean as a sign or UI icon, most likely first
+Reply with JSON only: {"1": {"depicts": "...", "meanings": ["..."]}, "2": ...}"""
+
+INFORMED_PROMPT = """Each numbered cell shows one pictogram. For each cell you get the intended
+meaning and a blind viewer's guesses (made without knowing the meaning).
+Grade and describe each cell. Reply with JSON only, keyed by cell number:
+{"1": {
+  "meaning": 0-100,        // how well the blind guesses match the intended meaning
+  "depiction": 0-100,      // how well the blind "depicts" matches what is actually drawn
+  "description": "...",    // short name of what is drawn, e.g. "trash can with lid"
+  "familiarity": 0-100,    // how commonly this drawing is used for this meaning
+  "concreteness": 1-5,     // 1 abstract .. 5 concrete object
+  "semantic_distance": 1-5,// 1 drawing is the meaning .. 5 many interpretive steps
+  "representation": "iconic|indexical|symbolic|metonymic",
+  "metaphor_chain": "...", // e.g. "floppy disk -> storage -> save", or ""
+  "alternatives": ["..."], // other plausible meanings (ambiguity)
+  "cultural_risk": "...",  // regions/cultures where it may be misread, or ""
+  "timelessness": 1-5,     // 1 soon obsolete .. 5 timeless
+  "anachronism": true|false// depicted object is obsolete
+}, ...}"""
+
+
+def sheet(svgs: list[str], cols: int = 4) -> bytes:
+    rows = (len(svgs) + cols - 1) // cols
+    img = Image.new("L", (cols * CELL, rows * CELL), 255)
+    d = ImageDraw.Draw(img)
+    for i, svg in enumerate(svgs):
+        x, y = (i % cols) * CELL, (i // cols) * CELL
+        big = render(svg, 72)
+        small = render(svg, 16)
+        img.paste(Image.fromarray(((1 - big) * 255).astype(np.uint8)), (x + 8, y + 24))
+        img.paste(Image.fromarray(((1 - (small > 0.5)) * 255).astype(np.uint8)), (x + 92, y + 80))
+        d.text((x + 4, y + 4), str(i + 1), fill=0)
+        d.rectangle((x, y, x + CELL - 1, y + CELL - 1), outline=200)
+    buf = io.BytesIO()
+    img.save(buf, "PNG")
+    return buf.getvalue()
+
+
+def ask(image: bytes, text: str, system: str, workdir: Path) -> tuple[dict[str, Any], dict[str, Any]]:
+    msg = {
+        "type": "user",
+        "message": {
+            "role": "user",
+            "content": [
+                {"type": "image", "source": {"type": "base64", "media_type": "image/png", "data": base64.b64encode(image).decode()}},
+                {"type": "text", "text": text},
+            ],
+        },
+    }
+    env = {**os.environ, "MAX_THINKING_TOKENS": "0"}
+    proc = subprocess.run(
+        [
+            "claude",
+            "-p",
+            "--model",
+            MODEL,
+            "--tools",
+            "",
+            "--setting-sources",
+            "",
+            "--strict-mcp-config",
+            "--no-session-persistence",
+            "--input-format",
+            "stream-json",
+            "--output-format",
+            "stream-json",
+            "--verbose",
+            "--system-prompt",
+            system,
+        ],
+        input=json.dumps(msg) + "\n",
+        capture_output=True,
+        text=True,
+        timeout=600,
+        cwd=workdir,
+        env=env,
+    )
+    result = None
+    for line in proc.stdout.splitlines():
+        try:
+            ev = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if ev.get("type") == "result":
+            result = ev
+    if result is None or result.get("is_error"):
+        raise RuntimeError(f"claude -p failed: {proc.stderr[-500:] or (result or {}).get('result')}")
+    text_out = result.get("result") or ""
+    m = re.search(r"\{.*\}", text_out, re.S)
+    if not m:
+        raise ValueError(f"no JSON in answer: {text_out[:200]}")
+    return json.loads(m.group(0)), result
+
+
+def _log_run(conn: sqlite3.Connection, job: str, result: dict[str, Any]) -> str:
+    u = result.get("usage") or {}
+    rid = result.get("session_id") or uuid.uuid4().hex
+    conn.execute(
+        "INSERT OR REPLACE INTO ai_run VALUES (?,?,?,?,?,?,?,?,?,?)",
+        (
+            rid,
+            job,
+            MODEL,
+            u.get("input_tokens"),
+            u.get("output_tokens"),
+            u.get("cache_read_input_tokens"),
+            u.get("cache_creation_input_tokens"),
+            result.get("total_cost_usd"),
+            None,
+            db.now(),
+        ),
+    )
+    return rid
+
+
+def pending_clusters(conn: sqlite3.Connection, limit: int, min_sources: int) -> list[sqlite3.Row]:
+    """Clusters of the most established concepts first, not yet assessed."""
+    return conn.execute(
+        """SELECT c.id, c.concept_id, k.label, k.definition, p.norm_path
+           FROM depiction_cluster c JOIN concept k ON k.id = c.concept_id
+           JOIN pictogram p ON p.id = c.representative_id
+           LEFT JOIN semantic_meta s ON s.cluster_id = c.id
+           WHERE s.cluster_id IS NULL AND c.source_count >= ?
+           ORDER BY (SELECT COUNT(DISTINCT source_id) FROM pictogram_concept pc JOIN pictogram pp ON pp.id = pc.pictogram_id
+                     WHERE pc.concept_id = c.concept_id) DESC, c.source_count DESC
+           LIMIT ?""",
+        (min_sources, limit),
+    ).fetchall()
+
+
+def run(conn: sqlite3.Connection, workdir: Path, limit: int = 48, min_sources: int = 2, log: Any = print) -> dict[str, Any]:
+    workdir.mkdir(parents=True, exist_ok=True)
+    clusters = pending_clusters(conn, limit, min_sources)
+    done = 0
+    cost = 0.0
+    for start in range(0, len(clusters), BATCH):
+        batch = clusters[start : start + BATCH]
+        svgs = [Path(c["norm_path"]).read_text() for c in batch]
+        img = sheet(svgs)
+        try:
+            blind, r1 = ask(img, BLIND_PROMPT, "You look at pictograms and report what you see. Reply with JSON only.", workdir)
+            rid1 = _log_run(conn, "blind", r1)
+            lines = []
+            for i, c in enumerate(batch, 1):
+                b = blind.get(str(i), {})
+                lines.append(
+                    f'{i}. intended meaning: "{c["label"]}"'
+                    + (f" ({c['definition']})" if c["definition"] else "")
+                    + f' | blind viewer: depicts "{b.get("depicts", "?")}", meanings {json.dumps(b.get("meanings", []))}'
+                )
+            informed, r2 = ask(img, INFORMED_PROMPT + "\n\n" + "\n".join(lines), "You are a pictogram design researcher. Reply with JSON only.", workdir)
+            rid2 = _log_run(conn, "informed", r2)
+        except (RuntimeError, ValueError, subprocess.TimeoutExpired, json.JSONDecodeError) as e:
+            log(f"  batch {start // BATCH + 1}: {e}")
+            continue
+        cost += (r1.get("total_cost_usd") or 0) + (r2.get("total_cost_usd") or 0)
+        now = db.now()
+        for i, c in enumerate(batch, 1):
+            a = informed.get(str(i))
+            if not isinstance(a, dict):
+                continue
+            b = blind.get(str(i), {})
+            conn.execute(
+                "UPDATE depiction_cluster SET description=COALESCE(description, ?), representation=?, metaphor_chain=? WHERE id=?",
+                (a.get("description"), a.get("representation"), a.get("metaphor_chain") or None, c["id"]),
+            )
+            conn.execute(
+                "INSERT OR REPLACE INTO semantic_meta VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                (
+                    c["id"],
+                    a.get("concreteness"),
+                    a.get("semantic_distance"),
+                    len(a.get("alternatives") or []),
+                    json.dumps({"blind": b, "alternatives": a.get("alternatives") or []}, ensure_ascii=False),
+                    json.dumps(a.get("cultural_risk") or "", ensure_ascii=False),
+                    a.get("timelessness"),
+                    int(bool(a.get("anachronism"))),
+                    MODEL,
+                    f"{rid1},{rid2}",
+                    now,
+                ),
+            )
+            members = [r[0] for r in conn.execute("SELECT pictogram_id FROM cluster_member WHERE cluster_id=?", (c["id"],))]
+            for metric in ("meaning", "depiction", "familiarity"):
+                v = a.get(metric)
+                if isinstance(v, (int, float)):
+                    conn.executemany(
+                        """INSERT OR REPLACE INTO rating (pictogram_id, metric, value, detail, method, method_version, model, run_id, computed_at, is_override)
+                           VALUES (?,?,?,?,?,?,?,?,?,0)""",
+                        [
+                            (
+                                pid,
+                                metric,
+                                float(v),
+                                json.dumps({"cluster": c["id"]}),
+                                "ai-blind" if metric != "familiarity" else "ai",
+                                METHOD_VERSION,
+                                MODEL,
+                                rid2,
+                                now,
+                            )
+                            for pid in members
+                        ],
+                    )
+            done += 1
+        conn.commit()
+        log(f"  batch {start // BATCH + 1}: {done} clusters assessed, ${cost:.3f} so far")
+    return {"clusters": done, "cost_usd": round(cost, 4)}

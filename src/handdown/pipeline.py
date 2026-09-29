@@ -58,6 +58,10 @@ def harvest(
     wanted = set(only) if only else None
     counts: dict[str, int] = {}
     infos = list(adapter.sources(statuses) if statuses else adapter.sources())  # type: ignore[call-arg]
+    if wanted:
+        infos = [i for i in infos if i.id in wanted or i.id.split(":", 1)[-1] in wanted]
+    if hasattr(adapter, "prefetch"):
+        adapter.prefetch(infos)
     for k, info in enumerate(infos):
         if wanted and info.id not in wanted and info.id.split(":", 1)[-1] not in wanted:
             continue

@@ -55,3 +55,20 @@ candidates for bug reports, feature requests or pull requests.
 - Deduplication must not drop duplicates from concept assignment: the same
   X shape named "close" in one set and "trash-can" in another is exactly the
   evidence for depiction clusters and convention strength.
+- Symbol, music and pictographic-script fonts place glyphs far outside the
+  hhea ascent/descent box (Noto Egyptian Hieroglyphs, Bravura). Framing a glyph
+  by its drawn bounds (fontTools `BoundsPen`) plus a margin is the only
+  reliable way to get a pictogram out of a font.
+- The monochrome Noto Emoji font is no longer in `googlefonts/noto-emoji`; it
+  lives in `google/fonts` under `ofl/notoemoji/`.
+
+## Discovery
+
+- Snowball discovery explodes without context filtering: mining the READMEs of
+  52 "awesome" lists once yielded 58,701 GitHub links (awesome lists link to
+  everything). Links are now kept only when their own line scores as
+  icon/pictogram-related, and that line is stored as the candidate's note so
+  triage can score it.
+- Harvesting is the cheapest reliable triage for GitHub repositories: the
+  median repository is < 1 MB, and "fewer than 10 SVG files" rejects tools,
+  wrappers and apps that keyword heuristics let through.

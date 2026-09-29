@@ -14,19 +14,86 @@ import sqlite3
 from typing import Any
 
 POSITIVE = {
-    "icon": 2, "icons": 3, "iconset": 3, "icon-set": 3, "pictogram": 4, "pictograms": 4, "piktogramm": 4,
-    "piktogramme": 4, "pictogramas": 4, "pictogrammes": 4, "symbol": 1, "symbols": 2, "glyph": 1, "glyphs": 2,
-    "svg": 1, "emoji": 1, "dingbat": 3, "dingbats": 3, "signage": 3, "wayfinding": 3, "signs": 1,
-    "icon-font": 3, "iconfont": 3, "aac": 1, "map-icons": 3, "ピクトグラム": 4, "アイコン": 3, "图标": 3,
-    "пиктограммы": 4, "иконки": 3, "픽토그램": 4, "아이콘": 3,
+    "icon": 2,
+    "icons": 3,
+    "iconset": 3,
+    "icon-set": 3,
+    "pictogram": 4,
+    "pictograms": 4,
+    "piktogramm": 4,
+    "piktogramme": 4,
+    "pictogramas": 4,
+    "pictogrammes": 4,
+    "symbol": 1,
+    "symbols": 2,
+    "glyph": 1,
+    "glyphs": 2,
+    "svg": 1,
+    "emoji": 1,
+    "dingbat": 3,
+    "dingbats": 3,
+    "signage": 3,
+    "wayfinding": 3,
+    "signs": 1,
+    "icon-font": 3,
+    "iconfont": 3,
+    "aac": 1,
+    "map-icons": 3,
+    "ピクトグラム": 4,
+    "アイコン": 3,
+    "图标": 3,
+    "пиктограммы": 4,
+    "иконки": 3,
+    "픽토그램": 4,
+    "아이콘": 3,
 }
 NEGATIVE = {
-    "react": 3, "vue": 3, "angular": 3, "svelte": 3, "flutter": 2, "component": 2, "components": 2, "cli": 2,
-    "picker": 3, "cheat": 3, "converter": 3, "plugin": 2, "extension": 2, "generator": 2, "editor": 2,
-    "framework": 3, "sdk": 3, "api": 1, "bot": 3, "dashboard": 1, "loader": 2, "loaders": 2, "animation": 1,
-    "animated": 2, "tool": 1, "tools": 1, "app": 1, "wrapper": 3, "parser": 3, "mvvm": 5, "architecture": 3,
-    "subscription": 5, "books": 5, "sensitive": 5, "terminal": 3, "ls": 3, "wallpaper": 3, "theme": 1,
-    "badges": 3, "shields": 3, "logo": 1, "logos": 1, "brand": 1, "brands": 1, "font-patcher": 5, "patcher": 4,
+    "react": 3,
+    "vue": 3,
+    "angular": 3,
+    "svelte": 3,
+    "flutter": 2,
+    "component": 2,
+    "components": 2,
+    "cli": 2,
+    "picker": 3,
+    "cheat": 3,
+    "converter": 3,
+    "plugin": 2,
+    "extension": 2,
+    "generator": 2,
+    "editor": 2,
+    "framework": 3,
+    "sdk": 3,
+    "api": 1,
+    "bot": 3,
+    "dashboard": 1,
+    "loader": 2,
+    "loaders": 2,
+    "animation": 1,
+    "animated": 2,
+    "tool": 1,
+    "tools": 1,
+    "app": 1,
+    "wrapper": 3,
+    "parser": 3,
+    "mvvm": 5,
+    "architecture": 3,
+    "subscription": 5,
+    "books": 5,
+    "sensitive": 5,
+    "terminal": 3,
+    "ls": 3,
+    "wallpaper": 3,
+    "theme": 1,
+    "badges": 3,
+    "shields": 3,
+    "logo": 1,
+    "logos": 1,
+    "brand": 1,
+    "brands": 1,
+    "font-patcher": 5,
+    "patcher": 4,
 }
 LINK_LIST = re.compile(r"\bawesome\b|curated list|list of|collection of links|resources", re.I)
 MAX_SIZE_KB = 300_000
@@ -34,6 +101,11 @@ MAX_SIZE_KB = 300_000
 
 def _words(text: str) -> list[str]:
     return re.findall(r"[\w\-ぁ-んァ-ン一-龯가-힣а-яё]+", text.lower())
+
+
+def line_score(text: str) -> int:
+    words = _words(text)
+    return sum(POSITIVE.get(w, 0) for w in words) - sum(NEGATIVE.get(w, 0) for w in words)
 
 
 def iconify_names(conn: sqlite3.Connection) -> dict[str, str]:
@@ -52,8 +124,7 @@ def decide(row: sqlite3.Row, iconify: dict[str, str]) -> tuple[str, str]:
     args = json.loads(row["adapter_args"] or "{}")
     pop = json.loads(row["popularity"] or "{}")
     text = " ".join(filter(None, [row["name"], row["notes"], row["id"]]))
-    words = _words(text)
-    score = sum(POSITIVE.get(w, 0) for w in words) - sum(NEGATIVE.get(w, 0) for w in words)
+    score = line_score(text)
     repo_sq = re.sub(r"[^a-z0-9]", "", (row["name"] or "").lower())
     for key in (repo_sq, repo_sq.removesuffix("icons"), repo_sq + "icons"):
         if key in iconify:
@@ -67,8 +138,6 @@ def decide(row: sqlite3.Row, iconify: dict[str, str]) -> tuple[str, str]:
     stars = pop.get("stars") or 0
     downloads = pop.get("monthly_downloads") or 0
     mined = "linked from README" in (row["notes"] or "")
-    if mined and score >= 0 and not args.get("size_kb"):
-        return "accepted", f"triage: README link, score {score} (harvest decides)"
     if score >= 3 and (stars >= 3 or downloads >= 100 or row["platform_id"] == "npm" or mined):
         return "accepted", f"triage: score {score}"
     return "rejected", f"triage: score {score}"

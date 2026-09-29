@@ -268,24 +268,33 @@ class Discoverer:
                 break
         sid = self.log_search("readme", query, f"source:{source_id}", 0)
         found = 0
-        for o, n in set(re.findall(r"https?://github\.com/([\w.-]+)/([\w.-]+)", text)):
-            n = n.removesuffix(".git")
-            if o.lower() in ("sponsors", "orgs", "topics", "features", "marketplace") or (o, n) == (owner, repo):
+        # Only follow links whose line talks about icons/pictograms, and keep
+        # that line so triage can score the candidate. Link lists ("awesome")
+        # otherwise pull in every repository they mention.
+        from .triage import line_score
+
+        for line in text.splitlines():
+            links = set(re.findall(r"https?://github\.com/([\w.-]+)/([\w.-]+)", line))
+            if not links or line_score(line) < 2:
                 continue
-            url = f"https://github.com/{o}/{n}"
-            found += record_candidate(
-                self.conn,
-                self.known,
-                id=f"gh:{o}/{n}".lower(),
-                platform_id="github",
-                name=n,
-                url=url,
-                author=o,
-                found_via=f"search:{sid}",
-                adapter="git-svg",
-                adapter_args={"repo": f"{o}/{n}"},
-                notes=f"linked from README of {source_id}",
-            )
+            for o, n in links:
+                n = n.removesuffix(".git")
+                if o.lower() in ("sponsors", "orgs", "topics", "features", "marketplace") or (o, n) == (owner, repo):
+                    continue
+                context = re.sub(r"\(https?://[^)]*\)|<[^>]+>|https?://\S+", "", line).strip(" -*|[]")[:300]
+                found += record_candidate(
+                    self.conn,
+                    self.known,
+                    id=f"gh:{o}/{n}".lower(),
+                    platform_id="github",
+                    name=n,
+                    url=f"https://github.com/{o}/{n}",
+                    author=o,
+                    found_via=f"search:{sid}",
+                    adapter="git-svg",
+                    adapter_args={"repo": f"{o}/{n}"},
+                    notes=f"linked from README of {source_id}: {context}",
+                )
         self.conn.execute("UPDATE search_log SET candidates_found=? WHERE id=?", (found, sid))
         self.conn.commit()
         return found
@@ -332,7 +341,9 @@ def run(conn: sqlite3.Connection, queries: Iterable[tuple[str, str]] | None = No
         if got:
             log(f"  [{n + 1}/{len(qs)}] {engine} '{q}': +{got}")
     if mine:
-        for (sid,) in conn.execute("SELECT id FROM source WHERE harvest_status='harvested' AND url LIKE '%github.com%'").fetchall():
+        for (sid,) in conn.execute(
+            "SELECT id FROM source WHERE (harvest_status='harvested' OR notes LIKE '%link list%') AND url LIKE '%github.com%'"
+        ).fetchall():
             try:
                 total += d.mine_readme(sid)
             except httpx.HTTPError as e:

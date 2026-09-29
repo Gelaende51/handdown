@@ -417,3 +417,19 @@ Each phase gets its own implementation plan.
 - Noun Project API key: optional, operator-provided.
 - README contents: the operator decides which features to showcase and
   which donation designations apply.
+
+## 11. Implementation notes (deviations from this design)
+
+Recorded while building phases 1–4 on 2026-09-28/29.
+
+| Design | Implemented | Why |
+|---|---|---|
+| SQLModel + Alembic | plain `sqlite3` + `schema.sql` (`CREATE … IF NOT EXISTS`) | fewer dependencies; the schema is small |
+| open_clip embeddings + HDBSCAN | 16×16 scale-normalized ink map + filled silhouette, average-linkage clustering (scipy) | no model weights reachable (Hugging Face blocked), ~750 MB free RAM; `cluster.prepare` is the swap point |
+| Wikidata QIDs for concepts | WordNet synsets (NLTK, OMW labels in ~30 languages); `term:` concepts for unknown phrases | wikidata.org blocked; `wikidata_qid` column kept for later |
+| picosvg stroke→fill conversion | not yet; `font_ready` flags pictograms without strokes, masks or text | phase for the font project |
+| potrace for raster sources | not yet | all raster sources found so far are on blocked hosts |
+| Jinja2 + MiniSearch | inline templates + vanilla JS filter | no CDN; 50k entries filter fast enough client-side |
+| Commons, ARASAAC, OpenSymbols, BCI adapters | sources recorded as `blocked-network` | proxy allowlist; GitHub mirrors used where they exist (ISO 7001/7010, GHS, road signs via karlnorling/*) |
+| Rating by blind AI test | `handdown ai --limit N`: blind call + informed call per batch of 12 clusters | usage limits are not visible from the container, so runs are bounded and logged in `ai_run` |
+| Harvest | tarball adapters also **triage by content** (reject < 10 SVGs) and delete the tarball after extraction | disk budget |

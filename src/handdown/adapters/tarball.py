@@ -8,6 +8,7 @@ import re
 import sqlite3
 import tarfile
 from collections.abc import Iterator
+from concurrent.futures import Future, ThreadPoolExecutor
 from pathlib import Path, PurePosixPath
 
 import httpx
@@ -78,6 +79,27 @@ class TarballAdapter:
         self.conn = conn
         self.client = httpx.Client(headers={"User-Agent": USER_AGENT}, timeout=300, follow_redirects=True)
         self.meta: dict[str, dict] = {}
+        self._pool: ThreadPoolExecutor | None = None
+        self._futures: dict[str, Future[Path]] = {}
+        self._queue: list[SourceInfo] = []
+        self._window = 0
+
+    def prefetch(self, infos: list[SourceInfo], workers: int = 6, window: int = 12) -> None:
+        """Download tarballs in the background, at most ``window`` ahead of
+        extraction so pending downloads cannot fill the disk."""
+        self._pool = ThreadPoolExecutor(workers)
+        self._queue = list(infos)
+        self._window = window
+        self._pump()
+
+    def _pump(self) -> None:
+        while self._pool and self._queue and len(self._futures) < self._window:
+            info = self._queue.pop(0)
+            try:
+                url = self.tarball_url(dict(info.extra))
+            except Exception:  # resolved again (and reported) in items()
+                continue
+            self._futures[info.id] = self._pool.submit(self._download, info.id, url)
 
     def tarball_url(self, args: dict) -> str:
         raise NotImplementedError
@@ -125,7 +147,9 @@ class TarballAdapter:
         row = self.conn.execute("SELECT adapter_args, url FROM source WHERE id=?", (source_id,)).fetchone()
         args = json.loads(row["adapter_args"] or "{}")
         include = [p.strip("/") for p in args.get("include", [])]
-        tgz = self._download(source_id, self.tarball_url(args))
+        fut = self._futures.pop(source_id, None)
+        self._pump()
+        tgz = fut.result() if fut else self._download(source_id, self.tarball_url(args))
         dest = self.cfg.raw / re.sub(r"[^\w.-]+", "_", source_id)
         license_text = ""
         found: list[Item] = []
