@@ -55,3 +55,7 @@ def test_ui_senses_and_labels(wn):
     assert folder.wordnet_synset == "folder.n.02"  # file folder, not booklet
     assert resolve(["plus"], wn).label == "plus"
     assert resolve(["arrow"], wn).wordnet_synset == "arrow.n.01"  # direction mark
+
+
+def test_star_is_the_shape_not_the_celestial_body(wn):
+    assert resolve(["star"], wn).wordnet_synset == "star.n.05"  # plane figure, emblem

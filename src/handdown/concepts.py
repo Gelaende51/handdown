@@ -79,6 +79,7 @@ SENSE_OVERRIDES = {
     "folder": "folder.n.02",  # file folder, not booklet
     "mouse": "mouse.n.04",  # computer mouse
     "cart": "handcart.n.01",  # shopping cart, not horse cart
+    "star": "star.n.05",  # plane figure with 5+ points, not the celestial body
 }
 NUMERIC_CONTEXT = {"number", "digit", "numeric", "hour", "hours", "calendar", "day", "num", "counter"}
 NEGATION = {"off", "slash", "disabled", "no", "not", "crossed", "none", "forbidden", "block", "ban"}

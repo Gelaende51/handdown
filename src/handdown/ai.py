@@ -53,7 +53,8 @@ INFORMED_PROMPT = """Each numbered cell shows one pictogram. For each cell you g
 meaning and a blind viewer's guesses (made without knowing the meaning).
 Grade and describe each cell. Reply with JSON only, keyed by cell number:
 {"1": {
-  "meaning": 0-100,        // how well the blind guesses match the intended meaning
+  "meaning": 0-100,        // how well the blind guesses match the intended meaning; conventional uses of
+                           // the drawn object count as a match (a star read as "favorite" matches "star")
   "depiction": 0-100,      // how well the blind "depicts" matches what is actually drawn
   "description": "...",    // short name of what is drawn, e.g. "trash can with lid"
   "familiarity": 0-100,    // how commonly this drawing is used for this meaning
