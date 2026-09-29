@@ -1,7 +1,7 @@
 # Composite pictograms: design
 
 Date: 2026-09-29
-Status: draft for review
+Status: approved 2026-09-29 (with relative sizing)
 Extends: [pictogram catalog design](2026-09-28-pictogram-catalog-design.md)
 
 ## Purpose
@@ -56,6 +56,28 @@ glyphs.
 gap into the base); `inside` / `surrounds`; `crossing`;
 `corner:{tl,tr,bl,br}`; `sequence` (A → B); `mirrored`, `rotated`.
 
+### Relative sizing
+
+Every part records its size relative to the base and to the whole glyph:
+
+- `area_ratio`: ink area of the part / ink area of the base;
+- `extent_ratio`: longest bounding-box side of the part / that of the base;
+- `glyph_share`: longest bounding-box side of the part / the glyph's ink box;
+- `px16`: the part's longest side in pixels at a 16 px render.
+
+Size classes derived from `extent_ratio`: **dominant** (> 1.25), **equal**
+(0.8–1.25), **minor** (0.4–0.8), **tiny** (< 0.4).
+
+Sizing carries meaning and legibility:
+
+- big + small of the same element reads as parent/child or before/after;
+  equal sizes read as peers (partners), which is why they compete at 16 px;
+- a modifier smaller than about 5 px at 16 px stops being recognizable; the
+  analysis measures the smallest recognizable modifier size per modifier;
+- frames are sized relative to their content (padding inside the frame);
+- repetitions record whether copies are equal (plural) or diminishing
+  (stack/depth).
+
 ### Generic vs unique
 
 - **generic**: every part is a standard element, joined by a standard
@@ -106,7 +128,8 @@ gap into the base); `inside` / `surrounds`; `crossing`;
 - `composition` (pictogram_id PK, kind generic|unique, font_type,
   confidence, method rules|ai|manual, conflict flag, notes)
 - `composition_part` (pictogram_id, part_no, role, concept_id nullable,
-  shape_label, position, scale, count)
+  shape_label, position, count, area_ratio, extent_ratio, glyph_share, px16,
+  size_class)
 - `composition_relation` (pictogram_id, part_a, part_b, relation)
 - `operator` vocabulary (id, role, names, unicode_mark, description)
 
@@ -129,7 +152,7 @@ Computed from the catalog (legibility of composites vs their base, per
 operator and part count) and summarized in the index note. Working
 hypotheses, to be confirmed or refuted by the data:
 
-- **Works at 16 px:** base + one corner modifier; base + negation; base in
+- **Works at 16 px:** base + one corner modifier of at least ~5 px; base + negation; base in
   a frame; 2–3 repetitions; big + small; base + motion lines.
 - **Degrades:** two equally weighted complex partners (8 px each at 16 px);
   three operators at once (frame + negation + badge); text inside the glyph.
@@ -146,7 +169,7 @@ The catalog records, per composite, which of these classes it falls into
 
 ## Testing
 
-- Hand-built composites with known structure: bell + slash, house in each
+- Hand-built composites with known structure (including known size ratios): bell + slash, house in each
   frame shape, 2x and 3x repetition, base + cutout corner badge, two
   partners side by side, merged strokes, text inside.
 - The name-vocabulary mapping is table-tested.
