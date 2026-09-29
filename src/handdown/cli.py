@@ -149,14 +149,19 @@ def export(target: str = typer.Argument(..., help="vault | html"), min_sources: 
 
 
 @app.command("export-sources")
-def export_sources_cmd(adapter: str, out: str, status: list[str] = typer.Option(None, "--status")) -> None:
+def export_sources_cmd(
+    adapter: str,
+    out: str,
+    status: list[str] = typer.Option(None, "--status"),
+    pending: bool = typer.Option(False, "--pending", help="only sources with unmeasured pictograms"),
+) -> None:
     """Write the job list for GitHub Actions (accepted sources of an adapter, JSONL)."""
     import json
     from pathlib import Path
 
     from . import shard
 
-    rows = shard.export_sources(_conn(Config()), adapter, tuple(status) if status else ("accepted",))
+    rows = shard.export_sources(_conn(Config()), adapter, tuple(status) if status else ("accepted",), pending)
     Path(out).parent.mkdir(parents=True, exist_ok=True)
     Path(out).write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows))
     typer.echo(f"{len(rows)} sources -> {out}")

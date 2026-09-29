@@ -23,6 +23,8 @@ Changes under `.github/workflows/` are pushed from the host with
 ```sh
 # 1. write a job list (metadata only) and commit it
 uv run handdown export-sources commons work/jobs/commons.jsonl --status blocked-network
+# processing backlog: re-harvest + process sources with unmeasured pictograms
+uv run handdown export-sources git-svg work/jobs/process-git-svg.jsonl --status harvested --pending
 
 # 2. start the workflow (it refuses to start without HANDDOWN_AGE_RECIPIENT)
 gh workflow run harvest -f jobs=work/jobs/commons.jsonl -f adapter=commons -f shards=8

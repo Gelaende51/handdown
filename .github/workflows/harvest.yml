@@ -55,7 +55,7 @@ jobs:
       - uses: astral-sh/setup-uv@v6
       - run: uv sync --frozen
       - run: uv run handdown import-sources "${{ inputs.jobs }}" --shard "${{ matrix.shard }}/${{ inputs.shards }}"
-      - run: uv run handdown harvest "${{ inputs.adapter }}" --status accepted --status blocked-network --status candidate --no-registry
+      - run: uv run handdown harvest "${{ inputs.adapter }}" --status accepted --status harvested --status blocked-network --status candidate --no-registry
       - run: uv run handdown process --workers 4
       - run: uv run handdown status
       # export-shard refuses to write an unencrypted shard on Actions

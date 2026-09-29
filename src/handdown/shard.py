@@ -18,11 +18,11 @@ decrypts with it.
 from __future__ import annotations
 
 import base64
+import gzip
 import io
 import json
 import sqlite3
 import tarfile
-import zlib
 from pathlib import Path
 from typing import Any
 
@@ -58,11 +58,14 @@ SOURCE_COLS = (
 SKIP_PICTO = {"id", "duplicate_of", "norm_path"}
 
 
-def export_sources(conn: sqlite3.Connection, adapter: str, statuses: tuple[str, ...] = ("accepted",)) -> list[dict[str, Any]]:
-    rows = conn.execute(
-        f"SELECT {', '.join(SOURCE_COLS)} FROM source WHERE adapter=? AND harvest_status IN ({','.join('?' * len(statuses))}) ORDER BY id",
-        (adapter, *statuses),
-    ).fetchall()
+def export_sources(conn: sqlite3.Connection, adapter: str, statuses: tuple[str, ...] = ("accepted",), pending: bool = False) -> list[dict[str, Any]]:
+    """Job list rows. ``pending``: only sources with pictograms not yet measured
+    (they are re-harvested and processed on a runner, which is faster than
+    shipping the raw files there)."""
+    sql = f"SELECT {', '.join(SOURCE_COLS)} FROM source WHERE adapter=? AND harvest_status IN ({','.join('?' * len(statuses))})"
+    if pending:
+        sql += " AND id IN (SELECT DISTINCT source_id FROM pictogram WHERE measured_at IS NULL)"
+    rows = conn.execute(sql + " ORDER BY id", (adapter, *statuses)).fetchall()
     return [dict(r) for r in rows]
 
 
@@ -129,38 +132,47 @@ def export_shard(conn: sqlite3.Connection, cfg: Config, out: Path, recipients: l
 
 
 def _write_shard(conn: sqlite3.Connection, cfg: Config, out: Path) -> int:
+    """Stream records to a gzip member so memory stays flat for large shards."""
     out.parent.mkdir(parents=True, exist_ok=True)
     sources = [dict(r) for r in conn.execute(f"SELECT {', '.join(SOURCE_COLS)} FROM source WHERE harvest_status != 'accepted'")]
     platforms = [dict(r) for r in conn.execute("SELECT * FROM platform")]
     picto_cols = [r[1] for r in conn.execute("PRAGMA table_info(pictogram)") if r[1] not in SKIP_PICTO]
-    lines = []
     shas: set[str] = set()
-    for p in conn.execute(f"SELECT id, {', '.join(picto_cols)} FROM pictogram"):
-        pid = p["id"]
-        rec = {k: p[k] for k in picto_cols}
-        raw = conn.execute("SELECT svg FROM raw_svg WHERE pictogram_id=?", (pid,)).fetchone()
-        feat = conn.execute("SELECT vec FROM feature WHERE pictogram_id=?", (pid,)).fetchone()
-        rec["_raw"] = raw[0] if raw else None
-        rec["_feature"] = base64.b64encode(feat[0]).decode() if feat else None
-        rec["_ratings"] = [
-            dict(r)
-            for r in conn.execute(
-                "SELECT metric, value, detail, method, method_version, model, run_id, computed_at FROM rating WHERE pictogram_id=? AND is_override=0", (pid,)
-            )
-        ]
-        if p["sha256"]:
-            shas.add(p["sha256"])
-        lines.append(json.dumps(rec, ensure_ascii=False))
+    n = 0
+    records = out.with_name(out.name + ".records.gz")
+    with gzip.open(records, "wt", encoding="utf-8", compresslevel=6) as f:
+        for p in conn.execute(f"SELECT id, {', '.join(picto_cols)} FROM pictogram"):
+            pid = p["id"]
+            rec = {k: p[k] for k in picto_cols}
+            raw = conn.execute("SELECT svg FROM raw_svg WHERE pictogram_id=?", (pid,)).fetchone()
+            feat = conn.execute("SELECT vec FROM feature WHERE pictogram_id=?", (pid,)).fetchone()
+            rec["_raw"] = raw[0] if raw else None
+            rec["_feature"] = base64.b64encode(feat[0]).decode() if feat else None
+            rec["_ratings"] = [
+                dict(r)
+                for r in conn.execute(
+                    "SELECT metric, value, detail, method, method_version, model, run_id, computed_at FROM rating WHERE pictogram_id=? AND is_override=0",
+                    (pid,),
+                )
+            ]
+            if p["sha256"]:
+                shas.add(p["sha256"])
+            f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+            n += 1
     errors = [dict(r) for r in conn.execute("SELECT source_id, item, stage, error, at FROM harvest_error")]
-    manifest = {"sources": sources, "platforms": platforms, "errors": errors, "count": len(lines), "exported_at": db.now()}
-    with tarfile.open(out, "w:gz") as tar:
-        _add(tar, "manifest.json", json.dumps(manifest, ensure_ascii=False).encode())
-        _add(tar, "pictograms.jsonl.z", zlib.compress("\n".join(lines).encode(), 6))
-        for sha in sorted(shas):
-            path = cfg.norm_path(sha)
-            if path.exists():
-                tar.add(path, arcname=f"norm/{sha[:2]}/{sha}.svg")
-    return len(lines)
+    manifest = {"format": 2, "sources": sources, "platforms": platforms, "errors": errors, "count": n, "exported_at": db.now()}
+    try:
+        with tarfile.open(out, "w:gz") as tar:
+            # Order matters for single-pass reading: manifest (sources) first.
+            _add(tar, "manifest.json", json.dumps(manifest, ensure_ascii=False).encode())
+            tar.add(records, arcname="pictograms.jsonl.gz")
+            for sha in sorted(shas):
+                path = cfg.norm_path(sha)
+                if path.exists():
+                    tar.add(path, arcname=f"norm/{sha[:2]}/{sha}.svg")
+    finally:
+        records.unlink(missing_ok=True)
+    return n
 
 
 def _add(tar: tarfile.TarFile, name: str, data: bytes) -> None:
@@ -189,53 +201,67 @@ def import_shard(conn: sqlite3.Connection, cfg: Config, path: Path, identity: Pa
 
 
 def _read_shard(conn: sqlite3.Connection, cfg: Config, path: Path) -> int:
-    with tarfile.open(path) as tar:
-        manifest = json.loads(tar.extractfile("manifest.json").read())  # type: ignore[union-attr]
-        for p in manifest["platforms"]:
-            conn.execute("INSERT OR IGNORE INTO platform (id, name, first_seen) VALUES (?, ?, ?)", (p["id"], p["name"], p.get("first_seen")))
-            db.upsert(conn, "platform", {k: v for k, v in p.items()}, ("id",))
-        for s in manifest["sources"]:
-            db.upsert(conn, "source", s, ("id",))
-        for m in tar.getmembers():
-            if m.isfile() and m.name.startswith("norm/") and ".." not in m.name and m.name.endswith(".svg"):
-                sha = Path(m.name).stem
-                dest = cfg.norm_path(sha)
+    """Single streaming pass over the tarball; nothing is held in memory."""
+    n = 0
+    manifest: dict[str, Any] | None = None
+    with tarfile.open(path, "r|gz") as tar:
+        for m in tar:
+            if not m.isfile() or ".." in m.name:
+                continue
+            f = tar.extractfile(m)
+            if f is None:
+                continue
+            if m.name == "manifest.json":
+                manifest = json.loads(f.read())
+                for p in manifest["platforms"]:
+                    db.upsert(conn, "platform", dict(p), ("id",))
+                for s in manifest["sources"]:
+                    db.upsert(conn, "source", s, ("id",))
+            elif m.name == "pictograms.jsonl.gz":
+                if manifest is None:
+                    raise ShardError("shard has no manifest before its records")
+                with gzip.open(f, "rt", encoding="utf-8") as lines:
+                    for line in lines:
+                        if line.strip():
+                            _import_record(conn, cfg, json.loads(line))
+                            n += 1
+                            if n % 2000 == 0:
+                                conn.commit()
+            elif m.name.startswith("norm/") and m.name.endswith(".svg"):
+                dest = cfg.norm_path(Path(m.name).stem)
                 if not dest.exists():
                     dest.parent.mkdir(parents=True, exist_ok=True)
-                    dest.write_bytes(tar.extractfile(m).read())  # type: ignore[union-attr]
-        data = zlib.decompress(tar.extractfile("pictograms.jsonl.z").read()).decode()  # type: ignore[union-attr]
-    n = 0
-    for line in data.splitlines():
-        if not line:
-            continue
-        rec = json.loads(line)
-        raw, feat, ratings = rec.pop("_raw"), rec.pop("_feature"), rec.pop("_ratings")
-        if rec.get("sha256"):
-            rec["norm_path"] = str(cfg.norm_path(rec["sha256"]))
-        cols = list(rec)
-        cur = conn.execute(
-            f"""INSERT INTO pictogram ({", ".join(cols)}) VALUES ({", ".join("?" * len(cols))})
-                ON CONFLICT (source_id, original_id) DO UPDATE SET {", ".join(f"{c}=excluded.{c}" for c in cols)}
-                RETURNING id""",
-            [rec[c] for c in cols],
-        )
-        pid = cur.fetchone()[0]
-        if raw is not None:
-            conn.execute("INSERT OR REPLACE INTO raw_svg VALUES (?, ?)", (pid, raw))
-        if feat is not None:
-            conn.execute("INSERT OR REPLACE INTO feature VALUES (?, ?)", (pid, base64.b64decode(feat)))
-        for r in ratings:
-            conn.execute(
-                """INSERT OR REPLACE INTO rating (pictogram_id, metric, value, detail, method, method_version, model, run_id, computed_at, is_override)
-                   VALUES (?,?,?,?,?,?,?,?,?,0)""",
-                (pid, r["metric"], r["value"], r["detail"], r["method"], r["method_version"], r["model"], r["run_id"], r["computed_at"]),
-            )
-        n += 1
-        if n % 2000 == 0:
-            conn.commit()
+                    dest.write_bytes(f.read())
+    if manifest is None:
+        raise ShardError(f"{path} is not a handdown shard")
     for e in manifest["errors"]:
         conn.execute(
-            "INSERT INTO harvest_error (source_id, item, stage, error, at) VALUES (?,?,?,?,?)", (e["source_id"], e["item"], e["stage"], e["error"], e["at"])
+            "INSERT INTO harvest_error (source_id, item, stage, error, at) VALUES (?,?,?,?,?)",
+            (e["source_id"], e["item"], e["stage"], e["error"], e["at"]),
         )
     conn.commit()
     return n
+
+
+def _import_record(conn: sqlite3.Connection, cfg: Config, rec: dict[str, Any]) -> None:
+    raw, feat, ratings = rec.pop("_raw"), rec.pop("_feature"), rec.pop("_ratings")
+    if rec.get("sha256"):
+        rec["norm_path"] = str(cfg.norm_path(rec["sha256"]))
+    cols = list(rec)
+    cur = conn.execute(
+        f"""INSERT INTO pictogram ({", ".join(cols)}) VALUES ({", ".join("?" * len(cols))})
+            ON CONFLICT (source_id, original_id) DO UPDATE SET {", ".join(f"{c}=excluded.{c}" for c in cols)}
+            RETURNING id""",
+        [rec[c] for c in cols],
+    )
+    pid = cur.fetchone()[0]
+    if raw is not None:
+        conn.execute("INSERT OR REPLACE INTO raw_svg VALUES (?, ?)", (pid, raw))
+    if feat is not None:
+        conn.execute("INSERT OR REPLACE INTO feature VALUES (?, ?)", (pid, base64.b64decode(feat)))
+    for r in ratings:
+        conn.execute(
+            """INSERT OR REPLACE INTO rating (pictogram_id, metric, value, detail, method, method_version, model, run_id, computed_at, is_override)
+               VALUES (?,?,?,?,?,?,?,?,?,0)""",
+            (pid, r["metric"], r["value"], r["detail"], r["method"], r["method_version"], r["model"], r["run_id"], r["computed_at"]),
+        )
