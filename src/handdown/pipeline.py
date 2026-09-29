@@ -210,7 +210,7 @@ def _store(conn: sqlite3.Connection, pid: int, res: dict[str, Any], now: str) ->
                normalized_at=?, measured_at=?
            WHERE id=?""",
         (
-            res["path"],
+            f"data/norm/{sha[:2]}/{sha}.svg",
             sha,
             m["phash"],
             r.color_class,

@@ -258,7 +258,7 @@ def _concept_body(
         rep = next((r for r in rows if r["id"] == c["representative_id"]), rows[0])
         for r in rows:
             if r["norm_path"] and r["sha256"]:
-                _link(r["norm_path"], cfg.site / "svg" / f"{r['sha256']}.svg")
+                _link(str(cfg.resolve(r["norm_path"])), cfg.site / "svg" / f"{r['sha256']}.svg")
         if (rep["comb"] is not None and (best is None or rep["comb"] > best)) or best_sha is None:
             best, best_sha = rep["comb"], rep["sha256"]
         menubar.append(f'<img src="../svg/{rep["sha256"]}.svg" alt="{esc(c["description"] or n)}">')

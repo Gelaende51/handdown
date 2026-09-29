@@ -63,18 +63,20 @@ class Exporter:
 
     # ---- helpers -------------------------------------------------------
     def media(self, norm_path: str | None) -> str | None:
-        if not norm_path:
+        path = self.cfg.resolve(norm_path)
+        if path is None:
             return None
-        return "_media/norm/" + os.path.relpath(norm_path, self.cfg.norm)
+        return "_media/norm/" + os.path.relpath(path, self.cfg.norm)
 
     def bitmap(self, pid: int, norm_path: str | None) -> str | None:
         """Pure 1-bit 16 px render, enlarged 3x with hard pixels."""
-        if not norm_path or not Path(norm_path).exists():
+        path = self.cfg.resolve(norm_path)
+        if path is None or not path.exists():
             return None
-        sha = Path(norm_path).stem
+        sha = path.stem
         out = self.cfg.png / "1bit16" / sha[:2] / f"{sha}.png"
         if not out.exists():
-            a = render(Path(norm_path).read_text(), 16)
+            a = render(path.read_text(), 16)
             img = Image.fromarray(np.where(a > 0.5, 0, 255).astype(np.uint8)).resize((48, 48), Image.Resampling.NEAREST)
             out.parent.mkdir(parents=True, exist_ok=True)
             buf = io.BytesIO()

@@ -69,8 +69,12 @@ def distinctiveness(conn: sqlite3.Connection, chunk: int = 512, dims: int = 48) 
     if len(reps) < 2:
         return 0
     cids = [r[0] for r in reps]
-    concept = np.array([r[1] for r in reps])
-    family = np.array([r[2] for r in reps])
+    # Integer codes: comparing concept ids as strings in a chunk x N matrix
+    # took hours on 250k clusters.
+    names = np.array([r[1] for r in reps] + [r[2] for r in reps])
+    _, codes = np.unique(names, return_inverse=True)
+    concept_code, family_code = codes[: len(reps)], codes[len(reps) :]
+    concept = np.array([r[1] for r in reps], dtype=object)
     x = prepare(np.stack([np.frombuffer(r[3], dtype=np.float16) for r in reps]))
     # PCA to keep the all-pairs search affordable in memory and time.
     mean = x.mean(axis=0)
@@ -85,10 +89,10 @@ def distinctiveness(conn: sqlite3.Connection, chunk: int = 512, dims: int = 48) 
         sim = p[start : start + chunk] @ p.T
         blk = slice(start, start + chunk)
         same = (
-            (concept[blk, None] == concept[None, :])
-            | (family[blk, None] == family[None, :])
-            | (family[blk, None] == concept[None, :])
-            | (concept[blk, None] == family[None, :])
+            (concept_code[blk, None] == concept_code[None, :])
+            | (family_code[blk, None] == family_code[None, :])
+            | (family_code[blk, None] == concept_code[None, :])
+            | (concept_code[blk, None] == family_code[None, :])
         )
         sim[same] = -np.inf
         j = sim.argmax(axis=1)

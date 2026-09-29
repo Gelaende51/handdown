@@ -248,7 +248,7 @@ def _read_shard(conn: sqlite3.Connection, cfg: Config, path: Path) -> int:
 def _import_record(conn: sqlite3.Connection, cfg: Config, rec: dict[str, Any]) -> None:
     raw, feat, ratings = rec.pop("_raw"), rec.pop("_feature"), rec.pop("_ratings")
     if rec.get("sha256"):
-        rec["norm_path"] = str(cfg.norm_path(rec["sha256"]))
+        rec["norm_path"] = cfg.rel_norm(rec["sha256"])
     cols = list(rec)
     cur = conn.execute(
         f"""INSERT INTO pictogram ({", ".join(cols)}) VALUES ({", ".join("?" * len(cols))})

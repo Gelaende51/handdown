@@ -63,3 +63,21 @@ class Config:
 
     def norm_path(self, sha: str) -> Path:
         return self.norm / sha[:2] / f"{sha}.svg"
+
+    def rel_norm(self, sha: str) -> str:
+        """How a normalized SVG is stored in the database: relative to the
+        project root, so the same catalog works on the host and in the container."""
+        return f"data/norm/{sha[:2]}/{sha}.svg"
+
+    def resolve(self, path: str | None) -> Path | None:
+        """Database path -> file. Accepts relative paths and absolute paths
+        written on another machine (resolved through their data/norm tail)."""
+        if not path:
+            return None
+        p = Path(path)
+        if not p.is_absolute():
+            return self.root / p
+        if p.exists():
+            return p
+        marker = "/data/norm/"
+        return self.norm / path.split(marker, 1)[1] if marker in path else p

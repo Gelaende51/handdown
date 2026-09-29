@@ -125,7 +125,8 @@ def test_shard_roundtrip(env, tmp_path, monkeypatch):
     assert q("SELECT COUNT(*) FROM rating WHERE metric='legibility'") == 7
     assert q("SELECT COUNT(*) FROM source WHERE harvest_status='harvested'") == 3
     for (path,) in conn2.execute("SELECT norm_path FROM pictogram"):
-        assert path.startswith(str(other)) and __import__("os").path.exists(path)
+        assert not path.startswith("/")  # portable between host and container
+        assert cfg2.resolve(path).exists()
 
 
 def test_encrypted_shard(env, tmp_path, monkeypatch):
@@ -182,3 +183,14 @@ def test_job_list_sources_are_accepted_on_runner(env):
     rows = [{"id": "commons:x", "platform_id": "commons", "name": "X", "adapter": "commons", "harvest_status": "failed"}]
     assert shard.import_sources(conn, rows) == 1
     assert conn.execute("SELECT harvest_status FROM source WHERE id='commons:x'").fetchone()[0] == "accepted"
+
+
+def test_resolve_accepts_foreign_absolute_paths(env):
+    cfg, _conn = env
+    target = cfg.norm_path("ab" + "0" * 62)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text("<svg/>")
+    foreign = "/srv/other-checkout/data/norm/ab/" + target.name
+    assert cfg.resolve(foreign) == target
+    assert cfg.resolve("data/norm/ab/" + target.name) == target
+    assert cfg.resolve(None) is None

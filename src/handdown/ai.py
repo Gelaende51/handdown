@@ -35,6 +35,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 from . import db
+from .config import Config
 from .metrics import render
 
 MODEL = "sonnet"
@@ -183,7 +184,7 @@ def run(conn: sqlite3.Connection, workdir: Path, limit: int = 48, min_sources: i
     cost = 0.0
     for start in range(0, len(clusters), BATCH):
         batch = clusters[start : start + BATCH]
-        svgs = [Path(c["norm_path"]).read_text() for c in batch]
+        svgs = [Config().resolve(c["norm_path"]).read_text() for c in batch]  # type: ignore[union-attr]
         img = sheet(svgs)
         try:
             blind, r1 = ask(img, BLIND_PROMPT, "You look at pictograms and report what you see. Reply with JSON only.", workdir)
