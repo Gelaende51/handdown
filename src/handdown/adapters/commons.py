@@ -106,6 +106,8 @@ class CommonsAdapter:
                 val = {k: _text((v or {}).get("value")) for k, v in meta.items()}.get
                 title = page["title"].removeprefix("File:")
                 yield Item(
+                    license=val("LicenseShortName"),
+                    author=val("Artist"),
                     original_id=title,
                     name=re.sub(r"\.svg$", "", title, flags=re.I),
                     svg=r.text,

@@ -39,6 +39,8 @@ class Item:
     description: str | None = None
     unicode_codepoint: str | None = None
     hidden: bool = False
+    license: str | None = None  # per-item license when it differs from the source's
+    author: str | None = None
 
 
 class Adapter(Protocol):

@@ -72,13 +72,15 @@ def harvest(
             for item in adapter.items(info.id):
                 cur = conn.execute(
                     """INSERT INTO pictogram (source_id, original_id, original_name, original_url, raw_path,
-                           format, raw_tags, raw_categories, raw_description, unicode_codepoint, harvested_at)
-                       VALUES (?,?,?,?,?,?,?,?,?,?,?)
+                           format, raw_tags, raw_categories, raw_description, unicode_codepoint,
+                           license_override, author_override, harvested_at)
+                       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
                        ON CONFLICT (source_id, original_id) DO UPDATE SET
                            original_name=excluded.original_name, original_url=excluded.original_url,
                            raw_path=excluded.raw_path, raw_tags=excluded.raw_tags,
-                           raw_categories=excluded.raw_categories, unicode_codepoint=excluded.unicode_codepoint,
-                           harvested_at=excluded.harvested_at
+                           raw_categories=excluded.raw_categories, raw_description=excluded.raw_description,
+                           unicode_codepoint=excluded.unicode_codepoint, license_override=excluded.license_override,
+                           author_override=excluded.author_override, harvested_at=excluded.harvested_at
                        RETURNING id""",
                     (
                         info.id,
@@ -91,6 +93,8 @@ def harvest(
                         db.encode(item.categories),
                         item.description,
                         item.unicode_codepoint,
+                        item.license,
+                        item.author,
                         db.now(),
                     ),
                 )

@@ -74,3 +74,58 @@ def test_triage_decisions():
     assert decide(tool, iconify)[0] == "rejected"
     big = _row(name="icons", notes="svg icons", adapter_args=json.dumps({"size_kb": 900_000}))
     assert "too large" in decide(big, iconify)[1]
+
+
+def test_commons_adapter_with_mock_api(tmp_path, monkeypatch):
+    import httpx
+
+    from handdown.adapters.commons import CommonsAdapter
+
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    cfg = Config()
+    conn = db.connect(cfg.db_path)
+    record_candidate(
+        conn,
+        None,
+        id="commons:x",
+        platform_id="commons",
+        name="X",
+        adapter="commons",
+        url="https://commons.wikimedia.org/wiki/Category:X_signs",
+        adapter_args={"depth": 1},
+        harvest_status="blocked-network",
+    )
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        p = dict(req.url.params)
+        if req.url.host == "upload.example":
+            return httpx.Response(200, text=SVG.decode())
+        if p.get("list") == "categorymembers":
+            if p["cmtitle"] == "Category:X signs":
+                return httpx.Response(200, json={"query": {"categorymembers": [{"title": "File:A.svg"}, {"title": "File:B.png"}, {"title": "Category:Sub"}]}})
+            return httpx.Response(200, json={"query": {"categorymembers": [{"title": "File:C.svg"}]}})
+        pages = [
+            {
+                "title": t,
+                "imageinfo": [
+                    {
+                        "mime": "image/svg+xml",
+                        "size": 100,
+                        "url": f"https://upload.example/{t}",
+                        "descriptionurl": f"https://commons/{t}",
+                        "extmetadata": {"LicenseShortName": {"value": "CC0"}, "Artist": {"value": "<a href='x'>Jane</a>"}},
+                    }
+                ],
+                "categories": [{"title": "Category:X signs"}],
+            }
+            for t in p["titles"].split("|")
+        ]
+        return httpx.Response(200, json={"query": {"pages": pages}})
+
+    ad = CommonsAdapter(cfg, conn, delay=0)
+    ad.client = httpx.Client(transport=httpx.MockTransport(handler))
+    items = list(ad.items("commons:x"))
+    assert sorted(i.name for i in items) == ["A", "C"]
+    meta = json.loads(items[0].description)
+    assert meta["license"] == "CC0" and meta["artist"] == "Jane"
+    assert items[0].categories == ["X signs"]

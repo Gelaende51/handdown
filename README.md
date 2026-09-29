@@ -86,4 +86,5 @@ recording it doesn't make a graphic redistributable.
   their own licenses)
 - Design: [docs/superpowers/specs](docs/superpowers/specs/2026-09-28-pictogram-catalog-design.md)
 - Notes on libraries and quirks: [dev/takeaways.md](dev/takeaways.md)
+- Parallel harvests on GitHub Actions: [docs/actions.md](docs/actions.md)
 - Issues: the project's GitHub issue tracker (once the repository is published)
