@@ -78,7 +78,9 @@ def import_sources(conn: sqlite3.Connection, rows: list[dict[str, Any]], shard: 
             "INSERT OR IGNORE INTO platform (id, name, first_seen) VALUES (?, ?, ?)",
             (row["platform_id"], row["platform_id"], db.now()[:10]),
         )
-        db.upsert(conn, "source", {k: row.get(k) for k in SOURCE_COLS}, ("id",))
+        # A job list is the work to do: whatever its status was locally
+        # (failed, rejected, harvested), the runner harvests it again.
+        db.upsert(conn, "source", {**{k: row.get(k) for k in SOURCE_COLS}, "harvest_status": "accepted"}, ("id",))
         n += 1
     conn.commit()
     return n

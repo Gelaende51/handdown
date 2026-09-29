@@ -110,3 +110,19 @@ def test_duotone_is_derivable():
     r = normalize(svg('<path fill="currentColor" opacity=".3" d="M0 0h20v20z"/><path fill="currentColor" d="M4 4h4v4z"/>'))
     assert r.color_class == "derivable"
     assert r.extra["duotone"]
+
+
+def test_illustrator_entities_resolved_but_dangerous_ones_refused():
+    ai = (
+        '<?xml version="1.0"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" ['
+        '<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/"><!ENTITY ns_svg "http://www.w3.org/2000/svg">]>'
+        '<svg xmlns="&ns_svg;" xmlns:x="&ns_flows;" viewBox="0 0 24 24"><path d="M0 0h9v9z"/></svg>'
+    )
+    assert normalize(ai).color_class == "native"
+    for bad in (
+        '<!DOCTYPE svg [<!ENTITY x SYSTEM "file:///etc/passwd">]><svg xmlns="http://www.w3.org/2000/svg">&x;</svg>',
+        '<!DOCTYPE svg [<!ENTITY a "aa"><!ENTITY b "&a;&a;">]><svg xmlns="http://www.w3.org/2000/svg">&b;</svg>',
+        '<!DOCTYPE svg [<!ENTITY % p "x">]><svg xmlns="http://www.w3.org/2000/svg"/>',
+    ):
+        with pytest.raises(ValueError):
+            normalize(bad)

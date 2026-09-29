@@ -196,9 +196,35 @@ def parse_css(css: str) -> dict[str, dict[str, str]]:
     return rules
 
 
+DOCTYPE = re.compile(r"<!DOCTYPE\s+svg[^\[>]*(\[(?P<subset>.*?)\])?\s*>", re.S | re.I)
+SIMPLE_ENTITY = re.compile(r"""<!ENTITY\s+(?P<name>[A-Za-z_][\w.-]*)\s+(?P<q>["'])(?P<value>[^"'&%<]*)(?P=q)\s*>""")
+
+
+def _inline_entities(text: str) -> str:
+    """Adobe Illustrator declares plain text entities (``<!ENTITY ns_flows
+    "http://ns.adobe.com/Flows/1.0/">``) and uses them in attributes. Resolve
+    those textually and drop the DOCTYPE; anything else (external, parameter
+    or nested entities) stays and is refused by the parser."""
+    m = DOCTYPE.search(text)
+    if not m:
+        return text
+    subset = m.group("subset") or ""
+    rest = SIMPLE_ENTITY.sub("", subset)
+    if re.sub(r"<!--.*?-->", "", rest, flags=re.S).strip():
+        return text  # something other than simple entities: leave it to defusedxml to refuse
+    entities = {e.group("name"): e.group("value") for e in SIMPLE_ENTITY.finditer(subset)}
+    if len(entities) > 64 or any(len(v) > 512 for v in entities.values()):
+        return text
+    body = text[: m.start()] + text[m.end() :]
+    for name, value in entities.items():
+        body = body.replace(f"&{name};", value)
+    return body
+
+
 def _parse(text: str) -> ET.Element:
     if len(text.encode()) > MAX_BYTES:
         raise ValueError("svg too large")
+    text = _inline_entities(text)
     try:
         root = DET.fromstring(text, forbid_dtd=False, forbid_entities=True, forbid_external=True)
     except (DefusedXmlException, ET.ParseError) as e:

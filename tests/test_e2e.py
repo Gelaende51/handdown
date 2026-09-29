@@ -173,3 +173,12 @@ def test_cli_refuses_plain_shard_on_actions(tmp_path, monkeypatch):
     r = CliRunner().invoke(app, ["export-shard", str(tmp_path / "s.tar.gz")])
     assert r.exit_code != 0 and "refusing" in r.output + str(r.exception)
     assert not (tmp_path / "s.tar.gz").exists()
+
+
+def test_job_list_sources_are_accepted_on_runner(env):
+    from handdown import shard
+
+    _cfg, conn = env
+    rows = [{"id": "commons:x", "platform_id": "commons", "name": "X", "adapter": "commons", "harvest_status": "failed"}]
+    assert shard.import_sources(conn, rows) == 1
+    assert conn.execute("SELECT harvest_status FROM source WHERE id='commons:x'").fetchone()[0] == "accepted"
