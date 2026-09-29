@@ -108,3 +108,15 @@ candidates for bug reports, feature requests or pull requests.
 - A correlated-subquery `UPDATE` (dedupe) ran > 12 min holding the write lock
   and blocked every other writer; `UPDATE … FROM (grouped subquery)` does the
   same in 2 min.
+
+## Long jobs in the dev container
+
+- The container has a 3 GB memory limit (`cradle.json`), and Claude Code stops
+  its background shells under memory pressure while the session is idle.
+  Long pipeline steps run detached instead (`setsid nohup data/finish.sh &`,
+  a script under the private `data/` directory) and set `oom_score_adj` to
+  1000, so that if memory really runs out the kernel kills the job rather
+  than the session. Progress is read from the log file.
+- `pkill -f`/`pgrep -f` with a pattern that also appears in the calling
+  shell's command line kills or finds that shell; use a bracket pattern
+  (`[f]inish.sh`).
