@@ -159,13 +159,9 @@ def export(conn: sqlite3.Connection, cfg: Config, min_sources: int = 2, log: Any
     (out / "c").mkdir(parents=True, exist_ok=True)
     (out / "data").mkdir(exist_ok=True)
     t = UI[lang]
-    concepts = conn.execute(
-        """SELECT k.*, COUNT(DISTINCT p.source_id) AS n_src, COUNT(DISTINCT p.id) AS n
-           FROM concept k JOIN depiction_cluster c ON c.concept_id = k.id
-           JOIN cluster_member m ON m.cluster_id = c.id JOIN pictogram p ON p.id = m.pictogram_id
-           GROUP BY k.id HAVING n_src >= ? ORDER BY n_src DESC""",
-        (min_sources,),
-    ).fetchall()
+    from .hierarchy.analysis import NOTE_CONCEPTS_SQL
+
+    concepts = conn.execute(NOTE_CONCEPTS_SQL, (min_sources,)).fetchall()
     domains = dict(
         conn.execute(
             """SELECT c.concept_id, s.domain FROM depiction_cluster c JOIN cluster_member m ON m.cluster_id=c.id
@@ -287,8 +283,36 @@ def _concept_body(
             + "</section>"
         )
     parts.insert(1, f'<p>{t["menubar"]}:</p><div class="menubar">{"".join(menubar)}</div>')
+    parts += _hierarchy_html(conn, cfg, k["id"], files)
     parts += _combinations_html(conn, cfg, k["id"])
     return "".join(parts), best, best_sha
+
+
+def _hierarchy_html(conn: sqlite3.Connection, cfg: Config, concept_id: str, files: dict[str, str]) -> list[str]:
+    from .hierarchy.analysis import drawn_as, used_to_mean
+
+    out: list[str] = []
+    objects = drawn_as(conn, concept_id)
+    if objects:
+        out.append("<h2>Drawn as</h2>")
+        for o in objects:
+            label = f'<a href="{files[o["object_id"]]}.html">{esc(o["label"])}</a>' if o["object_id"] in files else esc(o["label"])
+            out.append(f"<h3>{label}: {o['share']:.0%} ({o['sources']})</h3>")
+            for d in o["depictions"]:
+                tiles = []
+                for g in d["style_groups"][:24]:
+                    src = cfg.resolve(g["norm_path"])
+                    if src is None:
+                        continue
+                    _link(str(src), cfg.site / "svg" / f"{src.stem}.svg")
+                    tiles.append(f'<span class="tile"><img src="../svg/{src.stem}.svg" width="24" height="24" alt="" loading="lazy"></span>')
+                variety = ", ".join(d["varieties"]) or "plain"
+                out.append(f'<p>view {esc(d["view"])}, {esc(variety)}</p><div class="sheet">{"".join(tiles)}</div>')
+    means = [m for m in used_to_mean(conn, concept_id) if m[0] != concept_id]
+    if means:
+        links = [(f'<a href="{files[c]}.html">{esc(lbl)}</a>' if c in files else esc(lbl)) + f" ({n})" for c, lbl, n in means[:30]]
+        out.append("<h2>Used to mean</h2><p>" + ", ".join(links) + "</p>")
+    return out
 
 
 def _combinations_html(conn: sqlite3.Connection, cfg: Config, concept_id: str) -> list[str]:

@@ -14,7 +14,7 @@ from scipy.cluster.hierarchy import fcluster, linkage
 from scipy.ndimage import binary_fill_holes, gaussian_filter
 from scipy.spatial.distance import pdist
 
-from ..concepts import resolve
+from ..concepts import _ensure, resolve
 from .names import name_roles
 
 # Cut heights on the filled-silhouette tree. Measured on a cup: outline vs
@@ -51,16 +51,17 @@ def _clear_rules(conn: sqlite3.Connection) -> None:
 
 
 def _meanings(members: list[sqlite3.Row], roles: list[Any], object_id: str | None) -> dict[str, tuple[str, float]]:
+    """Meaning words (token -> (source, confidence)); the object itself when none."""
     meanings: dict[str, tuple[str, float]] = {}
     for r in roles:
         for t in r.meaning_tokens:
-            meanings.setdefault(resolve([t]).id, ("name", 0.8))
+            meanings.setdefault(t, ("name", 0.8))
     for m in members:
         for alias in json.loads(m["raw_tags"] or "[]"):
             for t in name_roles(alias).meaning_tokens:
-                meanings.setdefault(resolve([t]).id, ("alias", 0.6))
+                meanings.setdefault(t, ("alias", 0.6))
     if not meanings and object_id:
-        meanings[object_id] = ("name", 0.5)  # an object pictogram means the object itself
+        return {"": ("name", 0.5)}  # an object pictogram means the object itself (resolved by the caller)
     return meanings
 
 
@@ -70,6 +71,7 @@ def run(conn: sqlite3.Connection, log: Any = print) -> dict[str, int]:
     _clear_rules(conn)
     kept = {r[0] for r in conn.execute("SELECT pictogram_id FROM style_member")}
     counts: Counter[str] = Counter()
+    seen: set[str] = {r[0] for r in conn.execute("SELECT id FROM concept")}
     concepts = [r[0] for r in conn.execute("SELECT DISTINCT concept_id FROM pictogram_concept WHERE method IN ('dictionary', 'manual', 'ai')")]
     for i, cid in enumerate(concepts):
         rows = conn.execute(
@@ -88,7 +90,10 @@ def run(conn: sqlite3.Connection, log: Any = print) -> dict[str, int]:
             members = [rows[j] for j in idx]
             roles = [name_roles(m["original_name"] or "") for m in members]
             obj = Counter(" ".join(r.object_tokens) for r in roles if r.object_tokens).most_common(1)
-            object_id = resolve(obj[0][0].split()).id if obj else None
+            object_c = resolve(obj[0][0].split()) if obj else None
+            object_id = object_c.id if object_c else None
+            if object_c:
+                _ensure(conn, object_c, seen)
             view = Counter(r.view for r in roles).most_common(1)[0][0]
             varieties = sorted({v for r in roles for v in r.varieties})
             did = conn.execute(
@@ -111,8 +116,12 @@ def run(conn: sqlite3.Connection, log: Any = print) -> dict[str, int]:
                 ).fetchone()[0]
                 conn.executemany("INSERT INTO style_member VALUES (?,?)", [(gid, m["id"]) for m in smembers])
                 counts["style_groups"] += 1
-            for concept_id, (src, conf) in _meanings(members, roles, object_id).items():
-                conn.execute("INSERT OR IGNORE INTO meaning_link VALUES (?,?,?,?)", (did, concept_id, src, conf))
+            for token, (src, conf) in _meanings(members, roles, object_id).items():
+                meaning = object_c if token == "" else resolve([token])
+                if meaning is None:
+                    continue
+                _ensure(conn, meaning, seen)
+                conn.execute("INSERT OR IGNORE INTO meaning_link VALUES (?,?,?,?)", (did, meaning.id, src, conf))
                 counts["meaning_links"] += 1
         if i % 5000 == 0:
             conn.commit()

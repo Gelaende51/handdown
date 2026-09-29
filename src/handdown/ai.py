@@ -347,8 +347,10 @@ def run_hierarchy(conn: sqlite3.Connection, workdir: Path, limit: int = 48, log:
     """Blind object/view/features/meanings for style groups of rule depictions,
     established first. A style group whose view or features differ from its
     depiction's moves into its own depiction (method 'ai')."""
-    from .concepts import resolve, split_name
+    from .concepts import _ensure, resolve, split_name
     from .hierarchy.names import VIEWS
+
+    seen: set[str] = {r[0] for r in conn.execute("SELECT id FROM concept")}
 
     workdir.mkdir(parents=True, exist_ok=True)
     cfg = Config()
@@ -376,7 +378,9 @@ def run_hierarchy(conn: sqlite3.Connection, workdir: Path, limit: int = 48, log:
             view = a.get("view") if a.get("view") in VIEWS else None
             features = a.get("features")
             feats = sorted({f.strip().lower() for f in features if isinstance(f, str) and f.strip()}) if isinstance(features, list) else None
-            obj = resolve(split_name(a["object"])).id
+            obj_c = resolve(split_name(a["object"]))
+            _ensure(conn, obj_c, seen)
+            obj = obj_c.id
             dep = conn.execute("SELECT * FROM depiction WHERE id=?", (r["depiction_id"],)).fetchone()
             new_view = view or dep["view"]
             new_var = json.dumps(feats) if feats is not None else dep["varieties"]
@@ -396,7 +400,9 @@ def run_hierarchy(conn: sqlite3.Connection, workdir: Path, limit: int = 48, log:
                 )
             for m in (a.get("meanings") or [])[:3] if isinstance(a.get("meanings"), list) else []:
                 if isinstance(m, str) and split_name(m):
-                    conn.execute("INSERT OR IGNORE INTO meaning_link VALUES (?,?,?,?)", (target, resolve(split_name(m)).id, "ai", 0.7))
+                    mc = resolve(split_name(m))
+                    _ensure(conn, mc, seen)
+                    conn.execute("INSERT OR IGNORE INTO meaning_link VALUES (?,?,?,?)", (target, mc.id, "ai", 0.7))
             done += 1
         conn.commit()
         log(f"  batch {start // BATCH + 1}: {done} style groups, ${cost:.3f} ({now[:10]})")

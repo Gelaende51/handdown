@@ -78,3 +78,25 @@ def test_run_builds_levels_and_meanings(tmp_path, monkeypatch):
     ).fetchall()
     assert len(rows) == 2  # floppy disk and cloud both mean download
     assert conn.execute("SELECT COUNT(*) FROM depiction WHERE object_id IS NULL").fetchone()[0] >= 1
+
+
+def test_drawn_as_and_vault_sections(tmp_path, monkeypatch):
+    from handdown import cluster, score, site, vault
+    from handdown.hierarchy.analysis import drawn_as, used_to_mean
+
+    cfg, conn = _catalog(tmp_path, monkeypatch)
+    cluster.run(conn)
+    score.run(conn, log=lambda *_: None)
+    hg.run(conn, log=lambda *_: None)
+    meaning = conn.execute("SELECT concept_id FROM meaning_link WHERE concept_id LIKE '%download%'").fetchone()[0]
+    objects = drawn_as(conn, meaning)
+    assert len(objects) == 2 and abs(sum(o["share"] for o in objects) - 1.0) < 1e-6
+    cup = conn.execute("SELECT object_id FROM depiction WHERE object_id LIKE '%cup%'").fetchone()[0]
+    assert any(c == cup for c, _, _ in used_to_mean(conn, cup))
+    vault.Exporter(conn, cfg, min_sources=1).run(log=lambda *_: None)
+    texts = [p.read_text() for p in cfg.vault.rglob("concepts/**/*.md")]
+    assert any("## Drawn as" in t for t in texts)
+    meaning_note = [p for p in cfg.vault.rglob("concepts/**/*.md") if vault.read_frontmatter(p).get("concept") == meaning]
+    assert meaning_note and "## Drawn as" in meaning_note[0].read_text()  # a meaning gets its own note
+    site.export(conn, cfg, min_sources=1, log=lambda *_: None)
+    assert any("Drawn as" in p.read_text() for p in (cfg.site / "c").glob("*.html"))

@@ -95,13 +95,9 @@ class Exporter:
 
     # ---- export --------------------------------------------------------
     def concepts(self) -> list[sqlite3.Row]:
-        return self.conn.execute(
-            """SELECT k.*, COUNT(DISTINCT p.source_id) AS n_src, COUNT(DISTINCT p.id) AS n
-               FROM concept k JOIN depiction_cluster c ON c.concept_id = k.id
-               JOIN cluster_member m ON m.cluster_id = c.id JOIN pictogram p ON p.id = m.pictogram_id
-               GROUP BY k.id HAVING n_src >= ? ORDER BY n_src DESC""",
-            (self.min_sources,),
-        ).fetchall()
+        from .hierarchy.analysis import NOTE_CONCEPTS_SQL
+
+        return self.conn.execute(NOTE_CONCEPTS_SQL, (self.min_sources,)).fetchall()
 
     def plan_names(self, concepts: list[sqlite3.Row]) -> None:
         domains = dict(
@@ -192,8 +188,32 @@ class Exporter:
             if len(rows) > MAX_VARIANTS:
                 lines.append(f"\n…and {len(rows) - MAX_VARIANTS} more variants (see HTML export).")
             lines.append("")
+        lines += self.hierarchy_section(k["id"])
         lines += self.combinations_section(k["id"])
         write_note(path, front, "\n".join(lines))
+
+    def hierarchy_section(self, concept_id: str) -> list[str]:
+        """Meaning view (Drawn as) and object view (Used to mean)."""
+        from .hierarchy.analysis import drawn_as, used_to_mean
+
+        out: list[str] = []
+        objects = drawn_as(self.conn, concept_id)
+        if objects:
+            out += ["## Drawn as", ""]
+            for o in objects:
+                link = f"[[{self.names[o['object_id']]}\\|{o['label']}]]" if o["object_id"] in self.names else o["label"]
+                out.append(f"### {link}: {o['share']:.0%} of sources ({o['sources']})")
+                for d in o["depictions"]:
+                    variety = ", ".join(d["varieties"]) or "plain"
+                    sheet = " ".join(f"![[{self.media(g['norm_path'])}\\|24]]" for g in d["style_groups"][:12] if g["norm_path"])
+                    out.append(f"- view {d['view']}, {variety}: {sheet}")
+                out.append("")
+        means = [m for m in used_to_mean(self.conn, concept_id) if m[0] != concept_id]
+        if means:
+            out += ["## Used to mean", ""]
+            out += [f"- [[{self.names[c]}\\|{lbl}]] ({n} sources)" if c in self.names else f"- {lbl} ({n} sources)" for c, lbl, n in means[:30]]
+            out.append("")
+        return out
 
     def combinations_section(self, concept_id: str) -> list[str]:
         """Composites containing this element, grouped by operator."""
