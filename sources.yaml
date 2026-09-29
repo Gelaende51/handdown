@@ -34,6 +34,8 @@ searches:
   - {id: ws25, engine: websearch, query: "ISO 7001 public information symbols SVG github repository", run_at: 2026-09-29}
   - {id: ws26, engine: websearch, query: "accessibility symbols SVG set github deaf blind wheelchair audio description icons", run_at: 2026-09-29}
   - {id: ws27, engine: websearch, query: "hazard pictograms ADR dangerous goods placards SVG github", run_at: 2026-09-29}
+  - {id: ws28, engine: websearch, query: "commons.wikimedia.org Category ISO 7001 public information symbols svg", run_at: 2026-09-29, notes: "first-guess category names did not exist"}
+  - {id: ws29, engine: websearch, query: "commons.wikimedia.org Category pictograms railway OR airport OR hospital svg category name", run_at: 2026-09-29}
 
 platforms:
   - {id: iconify, name: Iconify, url: https://iconify.design, kind: aggregator, api_url: https://api.iconify.design, reachable: yes, found_via: seed, notes: "npm @iconify/json mirrors ~240 sets; API host blocked in the dev container, npm registry reachable"}
@@ -160,3 +162,10 @@ sources:
   - {id: "commons:aviation-pictograms", platform_id: commons, name: "Aviation pictograms", url: "https://commons.wikimedia.org/wiki/Category:Aviation_pictograms", domain: transport, found_via: "platform:commons", adapter: commons, adapter_args: {depth: 2, limit: 20000}, harvest_status: blocked-network}
   - {id: "commons:medical-pictograms", platform_id: commons, name: "Medical pictograms", url: "https://commons.wikimedia.org/wiki/Category:Medical_pictograms", domain: medical, found_via: "platform:commons", adapter: commons, adapter_args: {depth: 2, limit: 20000}, harvest_status: blocked-network}
   - {id: "commons:food-pictograms", platform_id: commons, name: "Food pictograms", url: "https://commons.wikimedia.org/wiki/Category:Food_pictograms", domain: food, found_via: "platform:commons", adapter: commons, adapter_args: {depth: 2, limit: 20000}, harvest_status: blocked-network}
+
+  - {id: "commons:iso-7001-icons", platform_id: commons, name: "ISO 7001 icons", url: "https://commons.wikimedia.org/wiki/Category:ISO_7001_icons", domain: public-information, system: "ISO 7001", found_via: "websearch:ws28", adapter: commons, adapter_args: {depth: 2, limit: 8000}, harvest_status: blocked-network}
+  - {id: "commons:iso-7000-symbols", platform_id: commons, name: "ISO 7000 symbols", url: "https://commons.wikimedia.org/wiki/Category:ISO_7000_symbols", domain: equipment, system: "ISO 7000", found_via: "websearch:ws28", adapter: commons, adapter_args: {depth: 2, limit: 8000}, harvest_status: blocked-network}
+  - {id: "commons:svg-hospital-icons", platform_id: commons, name: "SVG hospital icons", url: "https://commons.wikimedia.org/wiki/Category:SVG_hospital_icons", domain: medical, found_via: "websearch:ws29", adapter: commons, adapter_args: {depth: 2, limit: 8000}, harvest_status: blocked-network}
+  - {id: "commons:svg-transport-icons", platform_id: commons, name: "SVG transport icons", url: "https://commons.wikimedia.org/wiki/Category:SVG_transport_icons", domain: transport, found_via: "websearch:ws29", adapter: commons, adapter_args: {depth: 2, limit: 8000}, harvest_status: blocked-network}
+  - {id: "commons:train-icons", platform_id: commons, name: "Train icons", url: "https://commons.wikimedia.org/wiki/Category:Train_icons", domain: transport, found_via: "websearch:ws29", adapter: commons, adapter_args: {depth: 2, limit: 8000}, harvest_status: blocked-network}
+  - {id: "commons:transport-icons", platform_id: commons, name: "Transport icons", url: "https://commons.wikimedia.org/wiki/Category:Transport_icons", domain: transport, found_via: "websearch:ws29", adapter: commons, adapter_args: {depth: 2, limit: 8000}, harvest_status: blocked-network}
