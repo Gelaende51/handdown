@@ -91,3 +91,20 @@ candidates for bug reports, feature requests or pull requests.
 - zsh does not word-split unquoted variables: `set -- $spec` in a loop passes
   one argument (the dispatch failed with "Required input 'adapter' not
   provided").
+
+## Wikimedia Commons
+
+- `extmetadata` values are not always HTML strings: numbers (e.g. dates as
+  floats) and per-language dicts occur. Treating them as strings aborted every
+  category on its first page.
+- Eight runners at once got HTTP 429 from the Commons API. Wikimedia expects a
+  User-Agent with a contact URL, `maxlag`, and honouring `Retry-After`; four
+  runners with 0.5 s between requests is the current setting.
+- A category walk to depth 2 can reach tens of thousands of files (road
+  signs); cap per source so a runner stays inside the 6 h job limit.
+
+## SQLite at 1M rows
+
+- A correlated-subquery `UPDATE` (dedupe) ran > 12 min holding the write lock
+  and blocked every other writer; `UPDATE … FROM (grouped subquery)` does the
+  same in 2 min.
