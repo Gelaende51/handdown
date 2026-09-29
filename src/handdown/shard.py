@@ -7,6 +7,12 @@
   (sources, pictograms, raw SVG, normalized SVG, features, ratings, errors).
 - ``import_shard``: the local catalog merges a shard; pictograms are matched by
   (source_id, original_id), so re-importing is idempotent.
+
+Shards contain local copies of pictograms under many licenses, and artifacts
+of the public repository can be downloaded by any signed-in GitHub user. So
+shards leave a runner only encrypted with age (``*.tar.gz.age``) to the
+operator's public key; the private key stays on the host and ``import_shard``
+decrypts with it.
 """
 
 from __future__ import annotations
@@ -75,8 +81,54 @@ def import_sources(conn: sqlite3.Connection, rows: list[dict[str, Any]], shard: 
     return n
 
 
-def export_shard(conn: sqlite3.Connection, cfg: Config, out: Path) -> int:
-    """Pack all harvested sources of this (runner-local) catalog."""
+class ShardError(Exception):
+    pass
+
+
+def keygen(identity_path: Path) -> str:
+    """Create an age identity file (mode 0600) and return its public key."""
+    from pyrage import x25519
+
+    if identity_path.exists():
+        raise ShardError(f"{identity_path} exists; not overwriting a private key")
+    ident = x25519.Identity.generate()
+    identity_path.parent.mkdir(parents=True, exist_ok=True)
+    identity_path.touch(mode=0o600)
+    identity_path.write_text(f"# handdown shard key, public key: {ident.to_public()}\n{ident}\n")
+    return str(ident.to_public())
+
+
+def _load_identity(identity_path: Path):
+    from pyrage import x25519
+
+    keys = [line.strip() for line in identity_path.read_text().splitlines() if line.startswith("AGE-SECRET-KEY-")]
+    if not keys:
+        raise ShardError(f"no AGE-SECRET-KEY in {identity_path}")
+    return x25519.Identity.from_str(keys[0])
+
+
+def export_shard(conn: sqlite3.Connection, cfg: Config, out: Path, recipients: list[str] | None = None) -> int:
+    """Pack all harvested sources of this (runner-local) catalog; with
+    ``recipients`` the result is age-encrypted and ``out`` gets ``.age``."""
+    if recipients:
+        from pyrage import x25519
+
+        try:
+            keys = [x25519.Recipient.from_str(r.strip()) for r in recipients]
+        except Exception as e:
+            raise ShardError(f"invalid age recipient: {e}") from e
+        plain = out.with_name(out.name + ".plain")
+        n = _write_shard(conn, cfg, plain)
+        import pyrage
+
+        target = out if out.name.endswith(".age") else out.with_name(out.name + ".age")
+        pyrage.encrypt_file(str(plain), str(target), keys)
+        plain.unlink()
+        return n
+    return _write_shard(conn, cfg, out)
+
+
+def _write_shard(conn: sqlite3.Connection, cfg: Config, out: Path) -> int:
     out.parent.mkdir(parents=True, exist_ok=True)
     sources = [dict(r) for r in conn.execute(f"SELECT {', '.join(SOURCE_COLS)} FROM source WHERE harvest_status != 'accepted'")]
     platforms = [dict(r) for r in conn.execute("SELECT * FROM platform")]
@@ -117,7 +169,26 @@ def _add(tar: tarfile.TarFile, name: str, data: bytes) -> None:
     tar.addfile(info, io.BytesIO(data))
 
 
-def import_shard(conn: sqlite3.Connection, cfg: Config, path: Path) -> int:
+def import_shard(conn: sqlite3.Connection, cfg: Config, path: Path, identity: Path | None = None) -> int:
+    if path.name.endswith(".age"):
+        if identity is None:
+            raise ShardError(f"{path} is encrypted: pass the age identity file (--identity or HANDDOWN_AGE_IDENTITY)")
+        import pyrage
+
+        plain = cfg.cache / "shards" / path.name.removesuffix(".age")
+        plain.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            pyrage.decrypt_file(str(path), str(plain), [_load_identity(identity)])
+        except pyrage.DecryptError as e:
+            raise ShardError(f"cannot decrypt {path}: wrong key?") from e
+        try:
+            return _read_shard(conn, cfg, plain)
+        finally:
+            plain.unlink(missing_ok=True)
+    return _read_shard(conn, cfg, path)
+
+
+def _read_shard(conn: sqlite3.Connection, cfg: Config, path: Path) -> int:
     with tarfile.open(path) as tar:
         manifest = json.loads(tar.extractfile("manifest.json").read())  # type: ignore[union-attr]
         for p in manifest["platforms"]:

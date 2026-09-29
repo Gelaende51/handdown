@@ -176,27 +176,64 @@ def import_sources_cmd(path: str, shard_spec: str = typer.Option("0/1", "--shard
 
 
 @app.command("export-shard")
-def export_shard_cmd(out: str) -> None:
-    """Pack this catalog's harvested pictograms for merging elsewhere."""
+def export_shard_cmd(
+    out: str,
+    recipient: list[str] = typer.Option(None, "--recipient", help="age public key (or env HANDDOWN_AGE_RECIPIENT)"),
+) -> None:
+    """Pack this catalog's harvested pictograms, age-encrypted, for merging elsewhere."""
+    import os
     from pathlib import Path
 
     from . import shard
 
+    recipients = list(recipient or []) + [r for r in os.environ.get("HANDDOWN_AGE_RECIPIENT", "").split(",") if r.strip()]
+    if not recipients and os.environ.get("GITHUB_ACTIONS") == "true":
+        # Artifacts of a public repository are downloadable by anyone signed in.
+        raise SystemExit("refusing to export an unencrypted shard on GitHub Actions: set HANDDOWN_AGE_RECIPIENT")
     cfg = Config()
-    typer.echo(f"{shard.export_shard(_conn(cfg), cfg, Path(out))} pictograms -> {out}")
+    try:
+        n = shard.export_shard(_conn(cfg), cfg, Path(out), recipients or None)
+    except shard.ShardError as e:
+        raise SystemExit(str(e)) from e
+    typer.echo(f"{n} pictograms -> {out}{'.age' if recipients and not out.endswith('.age') else ''}")
 
 
 @app.command("import-shard")
-def import_shard_cmd(paths: list[str]) -> None:
+def import_shard_cmd(
+    paths: list[str],
+    identity: str = typer.Option(None, "--identity", help="age identity file (or env HANDDOWN_AGE_IDENTITY)"),
+) -> None:
     """Merge shards produced on other machines (e.g. GitHub Actions artifacts)."""
+    import os
     from pathlib import Path
 
     from . import shard
 
+    ident = identity or os.environ.get("HANDDOWN_AGE_IDENTITY")
     cfg = Config()
     conn = _conn(cfg)
     for p in paths:
-        typer.echo(f"{p}: {shard.import_shard(conn, cfg, Path(p))} pictograms merged")
+        try:
+            n = shard.import_shard(conn, cfg, Path(p), Path(ident).expanduser() if ident else None)
+        except shard.ShardError as e:
+            raise SystemExit(str(e)) from e
+        typer.echo(f"{p}: {n} pictograms merged")
+
+
+@app.command()
+def keygen(path: str = typer.Argument("~/.config/handdown/age.key")) -> None:
+    """Create the age key pair for shards (run on the host; keep the file private)."""
+    from pathlib import Path
+
+    from . import shard
+
+    try:
+        pub = shard.keygen(Path(path).expanduser())
+    except shard.ShardError as e:
+        raise SystemExit(str(e)) from e
+    typer.echo(f"private key: {path} (never commit or upload it)")
+    typer.echo(f"public key:  {pub}")
+    typer.echo("store the public key as repository variable HANDDOWN_AGE_RECIPIENT")
 
 
 @app.command()

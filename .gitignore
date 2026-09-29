@@ -27,3 +27,7 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
+# shards (encrypted or not) and downloaded artifacts never go into the public repo
+*.age
+*.plain
+/work/shards/

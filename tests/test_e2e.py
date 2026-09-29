@@ -61,7 +61,7 @@ def test_pipeline_and_vault_roundtrip(env):
 
     ex = vault.Exporter(conn, cfg, min_sources=1)
     assert ex.run(log=lambda *_: None) >= 2
-    note = next(cfg.vault.rglob("ashcan*.md"))
+    note = next(p for p in cfg.vault.rglob("concepts/**/*.md") if vault.read_frontmatter(p).get("concept") == "wn:ashcan.n.01")
     text = note.read_text()
     assert "## 1." in text and "## 2." in text
 
@@ -95,7 +95,7 @@ def test_html_export(env):
     score.run(conn, log=lambda *_: None)
     assert site.export(conn, cfg, min_sources=1, log=lambda *_: None) >= 2
     index = json.loads((cfg.site / "data" / "concepts.json").read_text())
-    ashcan = next(c for c in index if c["label"] == "ashcan")
+    ashcan = next(c for c in index if c["label"] in ("trash can", "ashcan"))
     page = (cfg.site / "c" / f"{ashcan['f']}.html").read_text()
     assert page.count('class="cluster"') == 2
     assert "<script>alert" not in page
@@ -126,3 +126,50 @@ def test_shard_roundtrip(env, tmp_path, monkeypatch):
     assert q("SELECT COUNT(*) FROM source WHERE harvest_status='harvested'") == 3
     for (path,) in conn2.execute("SELECT norm_path FROM pictogram"):
         assert path.startswith(str(other)) and __import__("os").path.exists(path)
+
+
+def test_encrypted_shard(env, tmp_path, monkeypatch):
+    import pytest as _pytest
+
+    from handdown import shard
+
+    cfg, conn = env
+    pipeline.harvest(conn, Fixture())
+    pipeline.process(conn, cfg, workers=1)
+    key = tmp_path / "keys" / "age.key"
+    pub = shard.keygen(key)
+    assert oct(key.stat().st_mode & 0o777) == "0o600"
+    with _pytest.raises(shard.ShardError):
+        shard.keygen(key)  # never overwrite a private key
+
+    out = tmp_path / "shard.tar.gz"
+    assert shard.export_shard(conn, cfg, out, [pub]) == 7
+    enc = tmp_path / "shard.tar.gz.age"
+    assert enc.exists() and not out.exists() and not (tmp_path / "shard.tar.gz.plain").exists()
+    assert b"<svg" not in enc.read_bytes()
+
+    other = tmp_path / "other"
+    monkeypatch.setenv("HANDDOWN_ROOT", str(other))
+    cfg2 = Config()
+    conn2 = db.connect(cfg2.db_path)
+    with _pytest.raises(shard.ShardError):
+        shard.import_shard(conn2, cfg2, enc)  # no key
+    wrong = tmp_path / "keys" / "wrong.key"
+    shard.keygen(wrong)
+    with _pytest.raises(shard.ShardError):
+        shard.import_shard(conn2, cfg2, enc, wrong)
+    assert shard.import_shard(conn2, cfg2, enc, key) == 7
+    assert not list((cfg2.cache / "shards").glob("*"))  # decrypted copy removed
+
+
+def test_cli_refuses_plain_shard_on_actions(tmp_path, monkeypatch):
+    from typer.testing import CliRunner
+
+    from handdown.cli import app
+
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    monkeypatch.setenv("GITHUB_ACTIONS", "true")
+    monkeypatch.delenv("HANDDOWN_AGE_RECIPIENT", raising=False)
+    r = CliRunner().invoke(app, ["export-shard", str(tmp_path / "s.tar.gz")])
+    assert r.exit_code != 0 and "refusing" in r.output + str(r.exception)
+    assert not (tmp_path / "s.tar.gz").exists()

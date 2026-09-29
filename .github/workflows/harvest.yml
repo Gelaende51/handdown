@@ -1,11 +1,11 @@
 # Harvest and process sources in parallel on GitHub-hosted runners.
 #
 # Runners can reach hosts the dev container cannot (Wikimedia Commons,
-# Wikidata, ...) and have more CPU. Each shard uploads an artifact that is
-# merged locally with:  uv run handdown import-shard shard-*.tar.gz
-#
-# The artifacts contain local copies of pictograms under many licenses:
-# run this only in a PRIVATE repository.
+# Wikidata, ...) and have more CPU. Each shard is age-encrypted to the
+# operator's public key (repository variable HANDDOWN_AGE_RECIPIENT) before
+# upload, because artifacts of this public repository can be downloaded by any
+# signed-in GitHub user. The private key stays on the host; merge with:
+#   uv run handdown import-shard --identity ~/.config/handdown/age.key shard-*.tar.gz.age
 name: harvest
 on:
   workflow_dispatch:
@@ -23,12 +23,21 @@ on:
 permissions:
   contents: read
 
+env:
+  HANDDOWN_AGE_RECIPIENT: ${{ vars.HANDDOWN_AGE_RECIPIENT }}
+
 jobs:
   plan:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.m.outputs.matrix }}
     steps:
+      - name: Require the encryption key before any work
+        run: |
+          if [ -z "$HANDDOWN_AGE_RECIPIENT" ]; then
+            echo "::error::repository variable HANDDOWN_AGE_RECIPIENT (age public key) is not set; shards must not be uploaded unencrypted"
+            exit 1
+          fi
       - id: m
         run: echo "matrix=$(python3 -c 'import json,sys; print(json.dumps(list(range(int(sys.argv[1])))))' '${{ inputs.shards }}')" >> "$GITHUB_OUTPUT"
 
@@ -49,10 +58,14 @@ jobs:
       - run: uv run handdown harvest "${{ inputs.adapter }}" --status accepted --status blocked-network --status candidate --no-registry
       - run: uv run handdown process --workers 4
       - run: uv run handdown status
+      # export-shard refuses to write an unencrypted shard on Actions
       - run: uv run handdown export-shard "shard-${{ inputs.adapter }}-${{ matrix.shard }}.tar.gz"
+      - name: Remove plaintext data before upload
+        run: rm -rf data && ls -la shard-*
       - uses: actions/upload-artifact@v4
         with:
           name: shard-${{ inputs.adapter }}-${{ matrix.shard }}
-          path: shard-${{ inputs.adapter }}-${{ matrix.shard }}.tar.gz
+          path: shard-${{ inputs.adapter }}-${{ matrix.shard }}.tar.gz.age
+          if-no-files-found: error
           retention-days: 14
           compression-level: 0

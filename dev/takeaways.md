@@ -72,3 +72,12 @@ candidates for bug reports, feature requests or pull requests.
 - Harvesting is the cheapest reliable triage for GitHub repositories: the
   median repository is < 1 MB, and "fewer than 10 SVG files" rejects tools,
   wrappers and apps that keyword heuristics let through.
+
+## Public repository
+
+- Actions artifacts of a public repository are downloadable by any signed-in
+  GitHub user, so shards are age-encrypted on the runner (pyrage: streaming
+  `encrypt_file`/`decrypt_file`, no system `age` binary needed) to a public key
+  kept as a repository variable; the private key stays on the host.
+- `export-shard` refuses to write plaintext when `GITHUB_ACTIONS=true`, and the
+  workflow's plan job fails before any runner starts if the key is missing.

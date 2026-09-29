@@ -7,6 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: No harvested assets in the public repository
+        run: |
+          bad=$(git ls-files | grep -iE '\.(svgz?|png|jpe?g|gif|webp|avif|bmp|ico|tiff?|eps|ai|pdf|psd|ttf|otf|woff2?|eot|pfb|pfa|tar|gz|tgz|zip|7z|xz|bz2|zst|rar|age|sqlite|db)$|^(data|vault|site)/' || true)
+          if [ -n "$bad" ]; then echo "::error::images, fonts, archives or data must not be committed:"; echo "$bad"; exit 1; fi
       - uses: astral-sh/setup-uv@v6
       - run: uv sync --frozen
       - run: uv run ruff check src tests
