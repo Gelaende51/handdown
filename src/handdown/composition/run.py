@@ -15,17 +15,19 @@ from .names import name_evidence
 from .shape import ShapeEvidence, shape_evidence
 
 CHUNK = 2000
+# Sources where frames are sign classes and names are codes (ISO 7010 P001 ...)
+SIGN_DOMAINS = {"safety", "hazard", "public-information", "traffic", "transport", "equipment", "accessibility", "humanitarian"}
 
 
-def _work(args: tuple[int, str | None, str | None, str | None, int]) -> tuple[int, Composition | None, list[str]]:
-    pid, name, tags, path, has_text = args
+def _work(args: tuple[int, str | None, str | None, str | None, int, str | None]) -> tuple[int, Composition | None, list[str]]:
+    pid, name, tags, path, has_text, domain = args
     ev_name = name_evidence(name or "", json.loads(tags or "[]"))
     expect_negation = any(p.role == "negation" for p in ev_name.parts)
     try:
         ev_shape = shape_evidence(Path(path).read_text(), expect_negation) if path else ShapeEvidence()
     except (OSError, ValueError):
         ev_shape = ShapeEvidence()
-    return pid, classify(ev_name, ev_shape, bool(has_text)), ev_name.base
+    return pid, classify(ev_name, ev_shape, bool(has_text), sign_domain=domain in SIGN_DOMAINS), ev_name.base
 
 
 def _clear(conn: sqlite3.Connection, pid: int) -> None:
@@ -81,14 +83,15 @@ def run(conn: sqlite3.Connection, cfg: Config, limit: int | None = None, workers
     try:
         while True:
             rows = conn.execute(
-                """SELECT id, original_name, raw_tags, norm_path, has_text FROM pictogram
-                   WHERE id > ? AND duplicate_of IS NULL AND svg_valid = 1 ORDER BY id LIMIT ?""",
+                """SELECT p.id, p.original_name, p.raw_tags, p.norm_path, p.has_text, s.domain
+                   FROM pictogram p JOIN source s ON s.id = p.source_id
+                   WHERE p.id > ? AND p.duplicate_of IS NULL AND p.svg_valid = 1 ORDER BY p.id LIMIT ?""",
                 (last, CHUNK),
             ).fetchall()
             if not rows:
                 break
             last = rows[-1][0]
-            tasks = [(r[0], r[1], r[2], str(cfg.resolve(r[3])) if r[3] else None, r[4]) for r in rows if r[0] not in kept]
+            tasks = [(r[0], r[1], r[2], str(cfg.resolve(r[3])) if r[3] else None, r[4], r[5]) for r in rows if r[0] not in kept]
             results = pool.imap_unordered(_work, tasks, chunksize=64) if pool else map(_work, tasks)
             for pid, comp, base in results:
                 counts["seen"] += 1

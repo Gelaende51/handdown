@@ -36,6 +36,8 @@ OPERATORS: dict[str, tuple[str, str]] = {
     "dot": ("modifier", "dot"),
     "notification": ("modifier", "dot"),
 }
+# Words that join two elements ("car-to-house"); they are not elements themselves.
+CONNECTORS = {"and", "with", "to", "vs", "versus", "or", "into", "from", "on", "in"}
 # Unicode precedents for operators a font could implement as combining marks
 UNICODE_MARKS = {"slash": "U+0338", "circle": "U+20DD", "square": "U+20DE", "diamond": "U+20DF", "prohibition": "U+20E0", "triangle": "U+20E4"}
 
@@ -52,16 +54,18 @@ class NameEvidence:
     base: list[str] = field(default_factory=list)
     parts: list[NamePart] = field(default_factory=list)
     frame: str | None = None
+    connector: bool = False
 
 
 def name_evidence(name: str, tags: list[str] | None = None) -> NameEvidence:
     tokens = [t for t in split_name(name) if t not in STYLE and t not in SIZES]
     ev = NameEvidence()
+    ev.connector = any(t in CONNECTORS for t in tokens)
+    tokens = [t for t in tokens if t not in CONNECTORS]
     ops = [t for t in tokens if t in OPERATORS]
     base = [t for t in tokens if t not in OPERATORS]
-    if not base:  # "circle", "plus": the operator word is itself the element
-        ev.base = tokens[:1]
-        return ev
+    if not base:  # "circle", "plus": the (first) operator word is itself the element
+        base, ops = tokens[:1], ops[1:]
     ev.base = base
     seen: set[tuple[str, str]] = set()
     for t in ops:

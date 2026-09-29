@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 
 from .names import NameEvidence
 from .shape import ShapeEvidence
@@ -21,15 +21,39 @@ class Composition:
     confidence: float = 0.5
 
 
-def classify(name: NameEvidence, shape: ShapeEvidence, has_text: bool) -> Composition | None:
+def classify(name: NameEvidence, shape: ShapeEvidence, has_text: bool, sign_domain: bool = False) -> Composition | None:
+    shape = replace(shape, parts=[replace(p) for p in shape.parts], relations=list(shape.relations))  # never mutate the caller's evidence
     name_roles = {(p.role, p.label) for p in name.parts}
+    named_modifier = any(r == "modifier" for r, _ in name_roles)
+    named_frame = any(r == "frame" for r, _ in name_roles)
+    # Multi-word names are mostly compounds or qualifiers ("music notes",
+    # "arrow up"); two elements need a connector word and a separate part.
+    wants_partners = len(name.base) >= 2 and name.connector
+    partners_by_name = wants_partners and any(p.role_hint == "partner" for p in shape.parts)
+    # Connected components are not elements (user = head + body, "i" = dot +
+    # stem), and an outline with interior detail is not a frame (donut, moon).
+    # Shape-only modifiers/partners need the name; shape-only frames need the
+    # name or a sign source (where frames are sign classes and names are codes).
+    for p in shape.parts:
+        if (
+            (p.role_hint == "modifier" and not named_modifier)
+            or (p.role_hint == "partner" and not (wants_partners or named_modifier))
+            or (p.role_hint == "frame" and not (named_frame or sign_domain))
+        ):
+            p.role_hint = "base"
+    if not any(p.role_hint == "frame" for p in shape.parts):
+        shape.frame = None
     shape_ops = [p.role_hint for p in shape.parts if p.role_hint != "base"]
-    partners_by_name = len(name.base) >= 2
     if not name_roles and not shape_ops and not partners_by_name and not has_text:
         return None  # a single element
     c = Composition()
-    for p in shape.parts:
+    index: dict[int, int] = {}  # shape part -> composition part (all base components share one entry)
+    for i, p in enumerate(shape.parts):
+        if p.role_hint == "base" and "base" in (e["role"] for e in c.parts):
+            index[i] = next(k for k, e in enumerate(c.parts) if e["role"] == "base")
+            continue
         label = shape.frame if p.role_hint == "frame" else "slash" if p.role_hint == "negation" else None
+        index[i] = len(c.parts)
         c.parts.append({"role": p.role_hint, "label": label, "size": p.size, "position": None, "count": 1})
     if shape.repetition > 1 and c.parts:
         c.parts[0]["count"] = shape.repetition
@@ -46,8 +70,8 @@ def classify(name: NameEvidence, shape: ShapeEvidence, has_text: bool) -> Compos
             name_only.append(entry)
     if has_text:
         c.parts.append({"role": "text", "label": "text", "size": {}, "position": None, "count": 1})
-    c.relations = list(shape.relations)
-    fused = len(shape.parts) <= 1
+    c.relations = sorted({(index[a], index[b], rel) for a, b, rel in shape.relations if a in index and b in index and index[a] != index[b]})
+    fused = not shape_ops  # the name announces operators the drawing does not separate
     # A negation the shape does not confirm is a conflict (the slash detector
     # misses about a third); other announced operators on one fused shape
     # mean the parts are merged into a unique drawing.
@@ -63,12 +87,16 @@ def classify(name: NameEvidence, shape: ShapeEvidence, has_text: bool) -> Compos
         c.font_type = "mark"
     else:
         c.font_type = "ligature"
-    c.fit = _fit(c, roles)
+    c.fit = _fit(c, roles, name.base)
     return c
 
 
-def _fit(c: Composition, roles: list[str]) -> str:
-    if roles.count("negation") > 1 or ("negation" in roles and "frame" in roles and "base" not in roles):
+FRAME_WORDS = {"circle", "square", "triangle", "octagon", "diamond", "shield", "hexagon", "box", "rectangle"}
+
+
+def _fit(c: Composition, roles: list[str], base_words: list[str] | None = None) -> str:
+    bare_frame = bool(base_words) and base_words[0] in FRAME_WORDS and len(base_words) == 1
+    if roles.count("negation") > 1 or ("negation" in roles and (bare_frame or ("frame" in roles and "base" not in roles))):
         return "contradictory"
     modifiers = [p for p in c.parts if p["role"] == "modifier"]
     labels = {p["label"] for p in modifiers}

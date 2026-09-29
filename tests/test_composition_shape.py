@@ -51,3 +51,11 @@ def test_merged_slash_needs_name_support():
     merged = svg(BELL + '<path d="M3 3L21 21" stroke="#000" stroke-width="2"/>')
     assert not shape_evidence(merged).slash  # alone, a merged diagonal is not enough
     assert shape_evidence(merged, expect_negation=True).slash
+
+
+def test_outline_with_touching_inner_parts_is_not_a_frame():
+    window = '<rect x="3" y="3" width="18" height="18" fill="none" stroke="#000" stroke-width="2"/><path d="M12 3v18M3 12h18" stroke="#000" stroke-width="2"/>'
+    assert shape_evidence(svg(window)).frame is None
+    # content floating inside with a gap is a frame
+    framed = '<rect x="2" y="2" width="20" height="20" fill="none" stroke="#000" stroke-width="2"/><rect x="8" y="8" width="8" height="8"/>'
+    assert shape_evidence(svg(framed)).frame == "square"
