@@ -194,3 +194,19 @@ def test_resolve_accepts_foreign_absolute_paths(env):
     assert cfg.resolve(foreign) == target
     assert cfg.resolve("data/norm/ab/" + target.name) == target
     assert cfg.resolve(None) is None
+
+
+def test_distinctiveness_chunked_equals_unchunked(env):
+    cfg, conn = env
+    pipeline.harvest(conn, Fixture())
+    pipeline.process(conn, cfg, workers=1)
+    concepts.run(conn)
+    cluster.run(conn)
+
+    def scores():
+        return dict(conn.execute("SELECT pictogram_id, value FROM rating WHERE metric='distinctiveness' ORDER BY 1").fetchall())
+
+    score.distinctiveness(conn, prep_chunk=10_000)
+    whole = scores()
+    score.distinctiveness(conn, prep_chunk=2, chunk=1)
+    assert scores() == whole and whole

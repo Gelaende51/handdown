@@ -57,7 +57,7 @@ def convention(conn: sqlite3.Connection) -> int:
     return len(rows)
 
 
-def distinctiveness(conn: sqlite3.Connection, chunk: int = 512, dims: int = 48) -> int:
+def distinctiveness(conn: sqlite3.Connection, chunk: int = 128, dims: int = 48, prep_chunk: int = 20_000) -> int:
     """Shape distance from each cluster representative to the nearest
     representative of an unrelated concept (not the same concept, not
     parent/child, not sharing a parent)."""
@@ -75,13 +75,22 @@ def distinctiveness(conn: sqlite3.Connection, chunk: int = 512, dims: int = 48) 
     _, codes = np.unique(names, return_inverse=True)
     concept_code, family_code = codes[: len(reps)], codes[len(reps) :]
     concept = np.array([r[1] for r in reps], dtype=object)
-    x = prepare(np.stack([np.frombuffer(r[3], dtype=np.float16) for r in reps]))
-    # PCA to keep the all-pairs search affordable in memory and time.
-    mean = x.mean(axis=0)
-    xc = x - mean
-    sample = xc[np.random.default_rng(0).choice(len(xc), min(len(xc), 20000), replace=False)]
-    _, _, vt = np.linalg.svd(sample, full_matrices=False)
-    p = (xc @ vt[:dims].T).astype(np.float32)
+
+    def feats(idx: np.ndarray | range) -> np.ndarray:
+        return prepare(np.stack([np.frombuffer(reps[i][3], dtype=np.float16) for i in idx]))
+
+    # PCA fitted on a sample, then features are prepared and projected in
+    # chunks: the full 512-dim matrix of 250k clusters does not fit in 3 GB.
+    sample_idx = np.sort(np.random.default_rng(0).choice(len(reps), min(len(reps), 20000), replace=False))
+    sample = feats(sample_idx)
+    mean = sample.mean(axis=0)
+    _, _, vt = np.linalg.svd(sample - mean, full_matrices=False)
+    basis = vt[:dims].T
+    del sample
+    p = np.empty((len(reps), basis.shape[1]), dtype=np.float32)
+    for start in range(0, len(reps), prep_chunk):
+        idx = range(start, min(start + prep_chunk, len(reps)))
+        p[start : idx.stop] = (feats(idx) - mean) @ basis
     p /= np.linalg.norm(p, axis=1, keepdims=True).clip(1e-6)
     nearest = np.zeros(len(p))
     partner = np.zeros(len(p), dtype=np.int64)
