@@ -255,3 +255,72 @@ def run(conn: sqlite3.Connection, workdir: Path, limit: int = 48, min_sources: i
         conn.commit()
         log(f"  batch {start // BATCH + 1}: {done} clusters assessed, ${cost:.3f} so far")
     return {"clusters": done, "cost_usd": round(cost, 4)}
+
+
+COMPOSITION_PROMPT = """Each numbered cell shows one pictogram; its file name is listed below.
+Decompose each into parts. Roles: base, negation, frame, modifier, repetition, partner, text, decoration.
+Relations between part indexes: above, below, left_of, right_of, over, under, touching, merged, cutout,
+surrounds, crossing, corner:tl|tr|bl|br, sequence.
+kind: generic (standard parts joined by a standard operator, separable) or unique (fused or artistic).
+font_type: mark | ligature | sequence | unique.  fit: glyph | degrades | contradictory | sequence.
+Reply with JSON only: {"1": {"parts": [{"role": "...", "label": "..."}], "relations": [[0, 1, "..."]],
+"kind": "...", "font_type": "...", "fit": "..."}, ...}"""
+
+
+def run_composition(conn: sqlite3.Connection, workdir: Path, limit: int = 48, sample: int = 0, log: Any = print) -> dict[str, Any]:
+    """AI check of name/shape conflicts first, then a random sample of
+    rule-classified composites (to measure rule precision)."""
+    workdir.mkdir(parents=True, exist_ok=True)
+    cfg = Config()
+    rows = conn.execute(
+        """SELECT c.pictogram_id, p.original_name, p.norm_path FROM composition c JOIN pictogram p ON p.id = c.pictogram_id
+           WHERE c.method = 'rules' AND c.conflict = 1 LIMIT ?""",
+        (limit,),
+    ).fetchall()
+    if sample:
+        rows += conn.execute(
+            """SELECT c.pictogram_id, p.original_name, p.norm_path FROM composition c JOIN pictogram p ON p.id = c.pictogram_id
+               WHERE c.method = 'rules' AND c.conflict = 0 ORDER BY random() LIMIT ?""",
+            (sample,),
+        ).fetchall()
+    done = 0
+    cost = 0.0
+    now = db.now()
+    for start in range(0, len(rows), BATCH):
+        batch = rows[start : start + BATCH]
+        img = sheet([cfg.resolve(r["norm_path"]).read_text() for r in batch])  # type: ignore[union-attr]
+        names = "\n".join(f"{i}. {r['original_name']}" for i, r in enumerate(batch, 1))
+        try:
+            answer, result = ask(img, COMPOSITION_PROMPT + "\n\n" + names, "You analyse pictogram composition. Reply with JSON only.", workdir)
+        except (RuntimeError, ValueError, subprocess.TimeoutExpired, json.JSONDecodeError) as e:
+            log(f"  batch {start // BATCH + 1}: {e}")
+            continue
+        rid = _log_run(conn, "composition", result)
+        cost += result.get("total_cost_usd") or 0
+        for i, r in enumerate(batch, 1):
+            a = answer.get(str(i))
+            parts = a.get("parts") if isinstance(a, dict) else None
+            if not isinstance(parts, list) or not all(isinstance(p, dict) for p in parts) or not parts:
+                continue
+            pid = r["pictogram_id"]
+            conn.execute("DELETE FROM composition_part WHERE pictogram_id=?", (pid,))
+            conn.execute("DELETE FROM composition_relation WHERE pictogram_id=?", (pid,))
+            conn.execute(
+                "UPDATE composition SET kind=?, font_type=?, fit=?, conflict=0, confidence=0.8, method='ai', computed_at=? WHERE pictogram_id=?",
+                (a.get("kind"), a.get("font_type"), a.get("fit"), now, pid),
+            )
+            for no, part in enumerate(parts):
+                conn.execute(
+                    "INSERT INTO composition_part (pictogram_id, part_no, role, label) VALUES (?,?,?,?)",
+                    (pid, no, str(part.get("role")), part.get("label")),
+                )
+            for rel in a.get("relations") or []:
+                if isinstance(rel, list) and len(rel) == 3 and all(isinstance(x, (int, str)) for x in rel):
+                    try:
+                        conn.execute("INSERT OR REPLACE INTO composition_relation VALUES (?,?,?,?)", (pid, int(rel[0]), int(rel[1]), str(rel[2])))
+                    except ValueError:
+                        continue
+            done += 1
+        conn.commit()
+        log(f"  batch {start // BATCH + 1}: {done} assessed, ${cost:.3f}, run {rid}")
+    return {"assessed": done, "cost_usd": round(cost, 4)}

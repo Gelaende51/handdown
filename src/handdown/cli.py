@@ -108,13 +108,21 @@ def score() -> None:
 
 
 @app.command()
-def ai(limit: int = typer.Option(48, help="max clusters to assess in this run"), min_sources: int = 2) -> None:
-    """Blind + informed AI assessment of depiction clusters (headless claude -p)."""
+def ai(
+    limit: int = typer.Option(48, help="max items to assess in this run"),
+    min_sources: int = 2,
+    job: str = typer.Option("rating", help="rating | composition"),
+    sample: int = typer.Option(0, help="composition: extra random sample size"),
+) -> None:
+    """Headless claude -p passes: blind cluster rating, or composition conflicts + sample."""
     from . import ai as a
     from . import score as sc
 
     cfg = Config()
     conn = _conn(cfg)
+    if job == "composition":
+        typer.echo(a.run_composition(conn, cfg.data / "ai-work", limit=limit, sample=sample, log=typer.echo))
+        return
     typer.echo(a.run(conn, cfg.data / "ai-work", limit=limit, min_sources=min_sources, log=typer.echo))
     sc.combined(conn)
 
