@@ -1,0 +1,27 @@
+# Fetch Wikidata items that carry a WordNet 3.1 synset id (P8814) with labels
+# in ~25 languages, and commit the result (Wikidata content is CC0).
+# Applied locally with: uv run handdown wikidata-apply
+name: wikidata
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --frozen
+      - run: uv run handdown wikidata-fetch work/wikidata/wordnet31.jsonl
+      - name: Commit the mapping
+        run: |
+          git config user.name "Vault51"
+          git config user.email "Gelaende51@users.noreply.github.com"
+          git add work/wikidata/wordnet31.jsonl
+          if git diff --cached --quiet; then echo "unchanged"; exit 0; fi
+          git commit -m "Wikidata: WordNet 3.1 synsets with QIDs and labels (CC0)"
+          git push

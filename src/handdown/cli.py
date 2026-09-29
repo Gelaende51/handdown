@@ -80,12 +80,12 @@ def triage() -> None:
 
 
 @app.command()
-def concepts() -> None:
+def concepts(only_missing: bool = typer.Option(False, "--only-missing", help="keep assignments, handle new pictograms only")) -> None:
     """Assign concepts (meanings) from names and aliases via WordNet."""
     from . import concepts as c
 
     conn = _conn(Config())
-    n, k = c.run(conn, progress=lambda i: typer.echo(f"  {i}", err=True))
+    n, k = c.run(conn, progress=lambda i: typer.echo(f"  {i}", err=True), only_missing=only_missing)
     typer.echo(f"{n} pictograms mapped to {k} concepts")
 
 
@@ -239,6 +239,40 @@ def keygen(path: str = typer.Argument("~/.config/handdown/age.key")) -> None:
     typer.echo(f"private key: {path} (never commit or upload it)")
     typer.echo(f"public key:  {pub}")
     typer.echo("store the public key as repository variable HANDDOWN_AGE_RECIPIENT")
+
+
+@app.command()
+def errors(annotate: bool = typer.Option(False, "--annotate", help="print as GitHub Actions warning annotations")) -> None:
+    """Harvest/process errors grouped by source and stage."""
+    conn = _conn(Config())
+    rows = conn.execute("SELECT source_id, stage, COUNT(*), MIN(error) FROM harvest_error GROUP BY 1, 2 ORDER BY 3 DESC LIMIT 40").fetchall()
+    failed = conn.execute("SELECT id, harvest_status, notes FROM source WHERE harvest_status IN ('failed', 'rejected')").fetchall()
+    for sid, stage, n, err in rows:
+        msg = f"{sid} [{stage}] {n}x: {err[:300]}".replace("\n", " ")
+        typer.echo(f"::warning title=harvest error::{msg}" if annotate else msg)
+    for sid, st, notes in failed:
+        msg = f"{sid}: {st} {(notes or '')[-200:]}".replace("\n", " ")
+        typer.echo(f"::notice title=source {st}::{msg}" if annotate else msg)
+
+
+@app.command("wikidata-fetch")
+def wikidata_fetch(out: str = "work/wikidata/wordnet31.jsonl") -> None:
+    """Items with a WordNet 3.1 id and their labels (needs wikidata.org; runs on Actions)."""
+    from pathlib import Path
+
+    from . import wikidata
+
+    typer.echo(f"{wikidata.fetch(Path(out), log=typer.echo)} records -> {out}")
+
+
+@app.command("wikidata-apply")
+def wikidata_apply(path: str = "work/wikidata/wordnet31.jsonl") -> None:
+    """Link WordNet concepts to Wikidata QIDs and add missing-language labels."""
+    from pathlib import Path
+
+    from . import wikidata
+
+    wikidata.apply(_conn(Config()), Path(path), log=typer.echo)
 
 
 @app.command()

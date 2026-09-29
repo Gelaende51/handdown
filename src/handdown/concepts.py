@@ -223,7 +223,7 @@ def _concept_from_synset(s: Any, phrase: str | None = None) -> Concept:
     )
 
 
-@lru_cache(maxsize=200_000)
+@lru_cache(maxsize=50_000)
 def _resolve_cached(phrase: str) -> Concept:
     wn = wordnet()
     s = _synset(phrase, wn)
@@ -256,33 +256,43 @@ def resolve(tokens: list[str], wn: Any = None) -> Concept:
     return _resolve_cached(" ".join(tokens))
 
 
-def run(conn: sqlite3.Connection, progress: Any = None) -> tuple[int, int]:
-    """(Re)assign dictionary concepts for all pictograms; manual/ai rows stay."""
+def run(conn: sqlite3.Connection, progress: Any = None, only_missing: bool = False, chunk: int = 20000) -> tuple[int, int]:
+    """Assign dictionary concepts from names and aliases; manual/ai rows stay.
+
+    ``only_missing`` keeps existing assignments and only handles pictograms
+    without any concept (e.g. after merging new shards). Rows are read in id
+    chunks so memory stays flat on catalogs with millions of pictograms.
+    """
     wordnet()
-    conn.execute("DELETE FROM pictogram_concept WHERE method IN ('dictionary', 'tag-match')")
+    if not only_missing:
+        conn.execute("DELETE FROM pictogram_concept WHERE method IN ('dictionary', 'tag-match')")
     seen: set[str] = set()
     n = 0
-    rows = conn.execute("SELECT id, original_name, raw_tags FROM pictogram").fetchall()
-    for pid, name, tags in rows:
-        tokens = split_name(name or "")
-        cleaned = clean_tokens(tokens)
-        if not cleaned:
-            continue
-        neg = negation(tokens)
-        conn.execute("UPDATE pictogram SET negation=? WHERE id=?", (neg, pid))
-        found = [(resolve(cleaned), 1.0, "dictionary")]
-        for alias in json.loads(tags or "[]"):
-            ct = clean_tokens(split_name(alias))
-            if ct and ct != cleaned:
-                found.append((resolve(ct), 0.6, "tag-match"))
-        for c, conf, method in found:
-            _ensure(conn, c, seen)
-            conn.execute("INSERT OR IGNORE INTO pictogram_concept VALUES (?,?,?,?)", (pid, c.id, conf, method))
-        n += 1
-        if progress and n % 20000 == 0:
+    last = 0
+    where = " AND id NOT IN (SELECT pictogram_id FROM pictogram_concept)" if only_missing else ""
+    while True:
+        rows = conn.execute(f"SELECT id, original_name, raw_tags FROM pictogram WHERE id > ?{where} ORDER BY id LIMIT ?", (last, chunk)).fetchall()
+        if not rows:
+            break
+        last = rows[-1][0]
+        for pid, name, tags in rows:
+            tokens = split_name(name or "")
+            cleaned = clean_tokens(tokens)
+            if not cleaned:
+                continue
+            conn.execute("UPDATE pictogram SET negation=? WHERE id=?", (negation(tokens), pid))
+            found = [(resolve(cleaned), 1.0, "dictionary")]
+            for alias in json.loads(tags or "[]"):
+                ct = clean_tokens(split_name(alias))
+                if ct and ct != cleaned:
+                    found.append((resolve(ct), 0.6, "tag-match"))
+            for c, conf, method in found:
+                _ensure(conn, c, seen)
+                conn.execute("INSERT OR IGNORE INTO pictogram_concept VALUES (?,?,?,?)", (pid, c.id, conf, method))
+            n += 1
+        conn.commit()
+        if progress:
             progress(n)
-            conn.commit()
-    conn.commit()
     return n, len(seen)
 
 

@@ -58,6 +58,9 @@ jobs:
       - run: uv run handdown harvest "${{ inputs.adapter }}" --status accepted --status harvested --status blocked-network --status candidate --no-registry
       - run: uv run handdown process --workers 4
       - run: uv run handdown status
+      # Errors as annotations: readable through the API without job logs.
+      - if: always()
+        run: uv run handdown errors --annotate
       # export-shard refuses to write an unencrypted shard on Actions
       - run: uv run handdown export-shard "shard-${{ inputs.adapter }}-${{ matrix.shard }}.tar.gz"
       - name: Remove plaintext data before upload
