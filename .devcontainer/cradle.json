@@ -1,0 +1,16 @@
+{
+  "languages": [],
+  "features": {},
+  "maskPaths": [
+    ".personal"
+  ],
+  "memory": "3g",
+  "allowedDomains": [],
+  "testJobs": [
+    {
+      "workflow": "ci.yml",
+      "job": "test",
+      "network": false
+    }
+  ]
+}

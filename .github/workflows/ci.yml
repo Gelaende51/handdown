@@ -1,0 +1,27 @@
+# Written by cradle init. Tier 2 runs the "test" job locally (cradle test test,
+# or cradle-request test in the container); GitHub runs everything.
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --frozen
+      - run: uv run ruff check src tests
+      - run: uv run ruff format --check src tests
+      # WordNet data for the concept tests (they skip without it)
+      - run: NLTK_ALLOW_PROXIED_URLOPEN=1 uv run python -c "import nltk; [nltk.download(p, download_dir='data/nltk', quiet=True) for p in ('wordnet', 'omw-2.0')]"
+      - run: uv run pytest -q
+  os-matrix:
+    needs: test
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --frozen
+      - run: uv run pytest -q tests/test_normalize.py tests/test_metrics.py tests/test_cluster.py

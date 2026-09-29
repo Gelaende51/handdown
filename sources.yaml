@@ -1,0 +1,97 @@
+# handdown source registry.
+# platforms: where pictograms are hosted; sources: individual sets/collections.
+# harvest_status: candidate | accepted | rejected | blocked-network | harvested | failed
+#   blocked-network = host not reachable from the dev container (proxy allowlist)
+# found_via: how the entry was discovered: seed, platform:<id>, source:<id>,
+#   websearch:<query-id> (see searches: below)
+# adapter: git-svg (GitHub repo tarball), npm-svg (npm tarball), font, commons, api, manual
+
+searches:
+  - {id: ws1, engine: websearch, query: "open source pictogram collection SVG free AAC symbols", run_at: 2026-09-28}
+  - {id: ws2, engine: websearch, query: "ISO 7010 safety signs SVG download public domain collection", run_at: 2026-09-28}
+  - {id: ws3, engine: websearch, query: "AIGA DOT symbol signs 50 pictograms public domain SVG", run_at: 2026-09-28}
+  - {id: ws4, engine: websearch, query: "free pictogram libraries list open license icon sets overview 2026", run_at: 2026-09-28}
+  - {id: ws5, engine: websearch, query: "Isotype Otto Neurath pictograms archive digital collection", run_at: 2026-09-28}
+  - {id: ws6, engine: websearch, query: "GHS hazard pictograms SVG official UNECE download", run_at: 2026-09-28}
+  - {id: ws7, engine: websearch, query: "JIS Z8210 pictograms download Japan public information symbols", run_at: 2026-09-28}
+  - {id: ws8, engine: websearch, query: "OpenStreetMap map icons SVG sets temaki maki osmic sjjb", run_at: 2026-09-28}
+  - {id: ws9, engine: websearch, query: "Blissymbolics SVG download BCI open license symbols", run_at: 2026-09-28}
+  - {id: ws10, engine: websearch, query: "monochrome emoji font SVG outline OpenMoji black Noto Emoji monochrome github", run_at: 2026-09-28}
+  - {id: ws11, engine: websearch, query: "Olympic pictograms history Otl Aicher 1972 archive collection all games", run_at: 2026-09-28}
+  - {id: ws12, engine: websearch, query: "pictograms.info pictogram systems database organizations", run_at: 2026-09-28}
+  - {id: ws13, engine: websearch, query: "OCHA humanitarian icons SVG github download", run_at: 2026-09-28}
+  - {id: ws14, engine: websearch, query: "road traffic signs SVG collection github Vienna convention all countries", run_at: 2026-09-28}
+  - {id: ws15, engine: websearch, query: "Egyptian hieroglyphs font Unicode SVG glyphs open license NewGardiner Noto Sans Egyptian", run_at: 2026-09-28}
+  - {id: ws16, engine: websearch, query: "laundry care symbols SVG set open source ISO 3758", run_at: 2026-09-28}
+  - {id: ws17, engine: websearch, query: "Openclipart pictogram public domain svg collection freesvg", run_at: 2026-09-28}
+  - {id: ws18, engine: websearch, query: "Chinese national standard GB/T 10001 public information pictograms SVG", run_at: 2026-09-28}
+
+platforms:
+  - {id: iconify, name: Iconify, url: https://iconify.design, kind: aggregator, api_url: https://api.iconify.design, reachable: yes, found_via: seed, notes: "npm @iconify/json mirrors ~240 sets; API host blocked in the dev container, npm registry reachable"}
+  - {id: github, name: GitHub, url: https://github.com, kind: code-host, api_url: https://api.github.com, reachable: yes, found_via: seed}
+  - {id: npm, name: npm registry, url: https://www.npmjs.com, kind: package-registry, api_url: https://registry.npmjs.org, reachable: yes, found_via: seed}
+  - {id: commons, name: Wikimedia Commons, url: https://commons.wikimedia.org, kind: wiki, api_url: https://commons.wikimedia.org/w/api.php, reachable: blocked-network, found_via: "websearch:ws2", notes: "Largest pool of standards/signage SVGs (ISO 7010, AIGA, road signs, GHS, JIS). Needs proxy allowlist for commons.wikimedia.org + upload.wikimedia.org."}
+  - {id: opensymbols, name: OpenSymbols, url: https://www.opensymbols.org, kind: aggregator, api_url: https://www.opensymbols.org/api/v2, reachable: blocked-network, found_via: "websearch:ws1", notes: "AAC symbol aggregator (~60k symbols, several libraries, API with token)"}
+  - {id: arasaac, name: ARASAAC, url: https://arasaac.org, kind: community, api_url: https://api.arasaac.org, reachable: blocked-network, found_via: "websearch:ws1", notes: "13k+ AAC pictograms, CC BY-NC-SA; colour, have b/w variants via API parameter"}
+  - {id: mulberry, name: Mulberry Symbols, url: https://mulberrysymbols.org, kind: community, reachable: unknown, found_via: "websearch:ws1", notes: "AAC SVG set for adults, CC BY-SA; source on GitHub (mulberrysymbols/mulberry-symbols)"}
+  - {id: sclera, name: Sclera, url: https://www.sclera.be, kind: community, reachable: blocked-network, found_via: "websearch:ws1", notes: "11k white-on-black AAC pictograms, CC BY-NC; raster (PNG) → trace"}
+  - {id: openaac, name: OpenAAC, url: https://www.openaac.org/symbols.html, kind: community, reachable: blocked-network, found_via: "websearch:ws1", notes: "Index of AAC symbol libraries"}
+  - {id: bci, name: Blissymbolics Communication International, url: https://www.blissymbolics.org, kind: standards-body, reachable: blocked-network, found_via: "websearch:ws9", notes: "BCI-AV: 6k+ Blissymbols as SVG, CC BY-SA"}
+  - {id: pictograms-info, name: pictograms.info, url: https://www.pictograms.info, kind: community, reachable: blocked-network, found_via: "websearch:ws3", notes: "Reference site on pictogram systems, standards and research; index of organisations (AIGA, ISO 7001, ...). Seed for further searches."}
+  - {id: aiga, name: AIGA, url: https://www.aiga.org/resources/symbol-signs, kind: company, reachable: blocked-network, found_via: "websearch:ws3", notes: "AIGA/DOT 50 symbol signs, public domain, EPS/GIF"}
+  - {id: unece, name: UNECE, url: https://unece.org/transport/dangerous-goods/ghs-pictograms, kind: standards-body, reachable: blocked-network, found_via: "websearch:ws6", notes: "Official GHS pictograms (EPS); PubChem hosts SVG"}
+  - {id: pubchem, name: PubChem, url: https://pubchem.ncbi.nlm.nih.gov/ghs/, kind: other, reachable: blocked-network, found_via: "websearch:ws6", notes: "GHS pictograms as SVG"}
+  - {id: ecomo, name: Eco-Mo Foundation, url: https://www.ecomo.or.jp/english/pictogram/, kind: standards-body, reachable: blocked-network, found_via: "websearch:ws7", notes: "JIS Z8210 public information symbols, free use, PDF vector"}
+  - {id: gerdarntz, name: Gerd Arntz web archive, url: https://www.gerdarntz.org, kind: museum, reachable: blocked-network, found_via: "websearch:ws5", notes: "4000+ Isotype pictograms by Gerd Arntz (Kunstmuseum Den Haag), raster, copyright → reference only"}
+  - {id: reading-isotype, name: Otto and Marie Neurath Isotype Collection, url: https://www.isotyperevisited.org/isotype-collection/, kind: museum, reachable: blocked-network, found_via: "websearch:ws5"}
+  - {id: peoplesgdarchive, name: People's Graphic Design Archive, url: https://peoplesgdarchive.org, kind: museum, reachable: blocked-network, found_via: "websearch:ws5", notes: "Isotype and Munich 1972 pictogram items"}
+  - {id: piktogramm-de, name: otl aicher pictograms (ERCO/piktogramm.de), url: https://www.piktogramm.de/en/, kind: company, reachable: blocked-network, found_via: "websearch:ws11", notes: "750+ Otl Aicher pictograms, commercial licence; reference only"}
+  - {id: olympic-museum-de, name: Olympic museum pictograms, url: https://www.olympic-museum.de/pictograms/, kind: museum, reachable: blocked-network, found_via: "websearch:ws11", notes: "Olympic pictograms of all games since 1964 (raster)"}
+  - {id: theolympicdesign, name: theolympicdesign, url: https://www.theolympicdesign.com/olympic-games/pictograms/, kind: community, reachable: blocked-network, found_via: "websearch:ws11"}
+  - {id: ibm-design, name: IBM Design Language, url: https://www.ibm.com/design/language/iconography/pictograms/library/, kind: company, reachable: blocked-network, found_via: "websearch:ws12", notes: "IBM pictograms, also on npm as @carbon/pictograms"}
+  - {id: openclipart, name: Openclipart, url: https://openclipart.org, kind: community, reachable: blocked-network, found_via: "websearch:ws17", notes: "180k+ CC0 SVG clipart incl. pictograms; mirrored on freesvg.org"}
+  - {id: freesvg, name: FreeSVG, url: https://freesvg.org, kind: community, reachable: blocked-network, found_via: "websearch:ws17", notes: "CC0 SVGs incl. ISO 7010 by MaxxL"}
+  - {id: svgrepo, name: SVG Repo, url: https://www.svgrepo.com, kind: aggregator, reachable: blocked-network, found_via: "websearch:ws1", notes: "500k+ open-licensed SVG icons in collections, per-collection license"}
+  - {id: iconbuddy, name: Iconbuddy, url: https://iconbuddy.com, kind: aggregator, reachable: blocked-network, found_via: "websearch:ws1", notes: "300k+ icons, mostly Iconify-backed"}
+  - {id: allsvgicons, name: All SVG Icons, url: https://allsvgicons.com, kind: aggregator, reachable: blocked-network, found_via: "websearch:ws1", notes: "370k+ icons, Iconify-backed"}
+  - {id: noun-project, name: The Noun Project, url: https://thenounproject.com, kind: community, api_url: https://api.thenounproject.com, reachable: blocked-network, found_via: seed, notes: "Millions of pictograms; API key needed; CC BY / royalty-free"}
+  - {id: google-fonts, name: Google Fonts, url: https://fonts.google.com, kind: foundry, reachable: blocked-network, found_via: seed, notes: "Material Symbols, Noto symbol/emoji/hieroglyph fonts; sources mirrored on GitHub"}
+  - {id: osm-wiki, name: OpenStreetMap Wiki, url: https://wiki.openstreetmap.org/wiki/Map_Icons, kind: wiki, reachable: blocked-network, found_via: "websearch:ws8", notes: "Index of map icon sets"}
+  - {id: toools, name: TOOOLS.design, url: https://www.toools.design/free-open-source-icon-libraries, kind: community, reachable: blocked-network, found_via: "websearch:ws1", notes: "Curated list of open-source icon libraries; seed for further searches"}
+  - {id: ginetex, name: GINETEX, url: https://www.ginetex.net/gb/labelling/care-symbols.asp, kind: standards-body, reachable: blocked-network, found_via: "websearch:ws16", notes: "Textile care symbols (ISO 3758), trademarked"}
+
+sources:
+  # --- reachable (GitHub/npm), queued for the git-svg / npm-svg adapters
+  - {id: "gh:un-ocha/humanitarian-icons", platform_id: github, name: OCHA Humanitarian Icons v2, url: https://github.com/UN-OCHA/humanitarian-icons, license_spdx: public-domain, author: UN OCHA, found_via: "websearch:ws13", adapter: git-svg, adapter_args: {repo: UN-OCHA/humanitarian-icons}, domain: humanitarian, harvest_status: accepted}
+  - {id: "gh:cat-in-136/jisz8210_symbols_svg", platform_id: github, name: JIS Z8210 Public Information Symbols SVG, url: https://github.com/cat-in-136/JISZ8210_Symbols_SVG, author: cat-in-136, found_via: "websearch:ws7", adapter: git-svg, adapter_args: {repo: cat-in-136/JISZ8210_Symbols_SVG}, system: JIS Z8210, region: JP, domain: public-information, harvest_status: accepted}
+  - {id: "gh:gmgeo/osmic", platform_id: github, name: Osmic, url: https://github.com/gmgeo/osmic, license_spdx: CC0-1.0, author: gmgeo, found_via: "websearch:ws8", adapter: git-svg, adapter_args: {repo: gmgeo/osmic}, domain: map, harvest_status: accepted}
+  - {id: "gh:mapbox/maki", platform_id: github, name: Maki, url: https://github.com/mapbox/maki, license_spdx: CC0-1.0, author: Mapbox, found_via: "websearch:ws8", adapter: git-svg, adapter_args: {repo: mapbox/maki}, domain: map, harvest_status: accepted}
+  - {id: "gh:rapideditor/temaki", platform_id: github, name: Temaki, url: https://github.com/rapideditor/temaki, license_spdx: CC0-1.0, found_via: "websearch:ws8", adapter: git-svg, adapter_args: {repo: rapideditor/temaki}, domain: map, harvest_status: accepted}
+  - {id: "gh:hfg-gmuend/openmoji", platform_id: github, name: OpenMoji, url: https://github.com/hfg-gmuend/openmoji, license_spdx: CC-BY-SA-4.0, author: HfG Schwäbisch Gmünd, found_via: "websearch:ws10", adapter: git-svg, adapter_args: {repo: hfg-gmuend/openmoji, include: ["black/svg/"]}, domain: emoji, harvest_status: accepted}
+  - {id: "gh:googlefonts/noto-emoji", platform_id: github, name: Noto Emoji (monochrome), url: https://github.com/googlefonts/noto-emoji, license_spdx: OFL-1.1, author: Google, found_via: "websearch:ws10", adapter: font, domain: emoji, harvest_status: candidate, notes: "monochrome variable font in fonts/; glyph extraction via font adapter"}
+  - {id: "gh:mulberrysymbols/mulberry-symbols", platform_id: github, name: Mulberry Symbols, url: https://github.com/mulberrysymbols/mulberry-symbols, license_spdx: CC-BY-SA-2.0-UK, author: Steve Lee, found_via: "websearch:ws1", adapter: git-svg, adapter_args: {repo: mulberrysymbols/mulberry-symbols}, domain: aac, harvest_status: accepted}
+  - {id: "gh:mapaction/ocha-humanitarian-icons-for-gis", platform_id: github, name: OCHA icons for GIS, url: https://github.com/mapaction/ocha-humanitarian-icons-for-gis, found_via: "websearch:ws13", adapter: git-svg, domain: humanitarian, harvest_status: rejected, notes: "repackaging of gh:un-ocha/humanitarian-icons"}
+  - {id: "gh:eu-driving/road-signs-eu", platform_id: github, name: road-signs-eu, url: https://github.com/EU-Driving/road-signs-eu, found_via: "websearch:ws14", adapter: git-svg, domain: traffic, harvest_status: candidate, notes: "indexes Commons road sign SVGs by Vienna Convention code; images live on Commons (blocked)"}
+  - {id: "gh:notofonts/egyptian-hieroglyphs", platform_id: github, name: Noto Sans Egyptian Hieroglyphs, url: https://github.com/notofonts/egyptian-hieroglyphs, license_spdx: OFL-1.1, author: Google, found_via: "websearch:ws15", adapter: font, domain: script-pictographic, harvest_status: candidate, notes: "1071 hieroglyphs (pictographic script)"}
+  - {id: "npm:@carbon/pictograms", platform_id: npm, name: IBM Carbon pictograms, url: https://www.npmjs.com/package/@carbon/pictograms, license_spdx: Apache-2.0, author: IBM, found_via: "websearch:ws12", adapter: npm-svg, adapter_args: {package: "@carbon/pictograms"}, domain: ui, harvest_status: accepted}
+  - {id: "gh:hieroglyphseverywhere/fonts", platform_id: github, name: Hieroglyphs Everywhere font list, url: https://github.com/HieroglyphsEverywhere/Fonts, found_via: "websearch:ws15", adapter: font, domain: script-pictographic, harvest_status: candidate}
+
+  # --- blocked hosts: recorded for the audit trail and future harvests
+  - {id: "commons:iso-7010", platform_id: commons, name: ISO 7010 safety signs (vector), url: "https://commons.wikimedia.org/wiki/Category:ISO_7010_safety_signs_(vector_drawings)", system: ISO 7010, domain: safety, found_via: "websearch:ws2", adapter: commons, harvest_status: blocked-network}
+  - {id: "commons:aiga", platform_id: commons, name: AIGA symbol signs, url: https://commons.wikimedia.org/wiki/Category:AIGA_symbol_signs, system: AIGA/DOT, license_spdx: public-domain, year: 1974, designer: "Cook and Shanosky Associates", domain: public-information, found_via: "websearch:ws3", adapter: commons, harvest_status: blocked-network}
+  - {id: "commons:road-signs-svg", platform_id: commons, name: SVG road signs, url: https://commons.wikimedia.org/wiki/Category:SVG_road_signs, system: Vienna Convention, domain: traffic, found_via: "websearch:ws14", adapter: commons, harvest_status: blocked-network}
+  - {id: "commons:jis-public-information", platform_id: commons, name: Japanese public information symbols, url: https://commons.wikimedia.org/wiki/Category:Japanese_public_information_symbols, system: JIS Z8210, region: JP, domain: public-information, found_via: "websearch:ws7", adapter: commons, harvest_status: blocked-network}
+  - {id: "commons:ghs", platform_id: commons, name: GHS pictograms, url: https://commons.wikimedia.org/wiki/Category:GHS_pictograms, system: GHS, domain: hazard, found_via: "websearch:ws6", adapter: commons, harvest_status: blocked-network}
+  - {id: "pubchem:ghs", platform_id: pubchem, name: PubChem GHS pictograms, url: https://pubchem.ncbi.nlm.nih.gov/ghs/, system: GHS, domain: hazard, found_via: "websearch:ws6", adapter: manual, harvest_status: blocked-network}
+  - {id: "arasaac:all", platform_id: arasaac, name: ARASAAC pictograms, url: https://arasaac.org, license_spdx: CC-BY-NC-SA-4.0, author: Sergio Palao / Gobierno de Aragón, domain: aac, found_via: "websearch:ws1", adapter: api, harvest_status: blocked-network}
+  - {id: "sclera:all", platform_id: sclera, name: Sclera pictograms, url: https://www.sclera.be, license_spdx: CC-BY-NC-2.0, domain: aac, found_via: "websearch:ws1", adapter: raster, harvest_status: blocked-network}
+  - {id: "bci:bci-av", platform_id: bci, name: BCI Authorized Vocabulary (Blissymbols), url: https://www.blissymbolics.org/index.php/symbol-files-2025, license_spdx: CC-BY-SA-3.0, domain: aac, system: Blissymbolics, found_via: "websearch:ws9", adapter: manual, harvest_status: blocked-network}
+  - {id: "opensymbols:all", platform_id: opensymbols, name: OpenSymbols, url: https://www.opensymbols.org, domain: aac, found_via: "websearch:ws1", adapter: api, harvest_status: blocked-network}
+  - {id: "freesvg:iso7010-maxxl", platform_id: freesvg, name: ISO 7010 signs by MaxxL, url: https://freesvg.org/fireextinguisher-iso-7010-f001, license_spdx: CC0-1.0, system: ISO 7010, domain: safety, found_via: "websearch:ws2", adapter: manual, harvest_status: blocked-network}
+  - {id: "ecomo:jis-z8210", platform_id: ecomo, name: JIS Z8210 symbols (Eco-Mo), url: https://www.ecomo.or.jp/english/pictogram/, system: JIS Z8210, region: JP, domain: public-information, found_via: "websearch:ws7", adapter: manual, harvest_status: blocked-network}
+  - {id: "gerdarntz:isotype", platform_id: gerdarntz, name: Gerd Arntz Isotype pictograms, url: https://www.gerdarntz.org, designer: Gerd Arntz, year: 1928, system: Isotype, domain: statistics, found_via: "websearch:ws5", adapter: raster, harvest_status: blocked-network}
+  - {id: "piktogramm-de:aicher", platform_id: piktogramm-de, name: Otl Aicher pictograms, url: https://www.piktogramm.de/en/, designer: Otl Aicher, year: 1972, system: Munich 1972, domain: public-information, license_spdx: proprietary, found_via: "websearch:ws11", adapter: manual, harvest_status: blocked-network}
+  - {id: "olympic-museum-de:all", platform_id: olympic-museum-de, name: Olympic pictograms 1964–today, url: https://www.olympic-museum.de/pictograms/, domain: sport, found_via: "websearch:ws11", adapter: raster, harvest_status: blocked-network}
+  - {id: "openclipart:pictograms", platform_id: openclipart, name: Openclipart pictograms, url: https://openclipart.org, license_spdx: CC0-1.0, found_via: "websearch:ws17", adapter: api, harvest_status: blocked-network}
+  - {id: "svgrepo:all", platform_id: svgrepo, name: SVG Repo collections, url: https://www.svgrepo.com, found_via: "websearch:ws1", adapter: manual, harvest_status: blocked-network}
+  - {id: "noun-project:all", platform_id: noun-project, name: The Noun Project, url: https://thenounproject.com, found_via: seed, adapter: api, harvest_status: blocked-network, notes: "needs API key from the operator"}

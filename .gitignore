@@ -1,0 +1,29 @@
+# >>> cradle
+.cradle/
+.devcontainer/.cradle-hash
+.devcontainer/devcontainer.json
+# <<< cradle
+
+# ethos runtime (never track) — DES-058 live zone + mission locks
+.punt-labs/**/local/**
+.punt-labs/ethos/missions/**/*.lock
+# ethos: machine-local files (.local.*) — may hold secrets, never track
+.punt-labs/**/*.local.*
+
+# Beads / Dolt files (added by bd init)
+.dolt/
+*.db
+.beads-credential-key
+.beads/proxieddb/
+*.gate.lock*
+
+# handdown: private catalog data (local copies of every license), generated outputs
+/data/
+/vault/
+/site/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
