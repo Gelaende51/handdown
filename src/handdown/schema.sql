@@ -231,3 +231,32 @@ CREATE TABLE IF NOT EXISTS feature (
     pictogram_id INTEGER PRIMARY KEY REFERENCES pictogram(id) ON DELETE CASCADE,
     vec BLOB NOT NULL
 );
+
+-- Composite pictograms (see docs/superpowers/specs/2026-09-29-composite-pictograms-design.md)
+CREATE TABLE IF NOT EXISTS composition (
+    pictogram_id INTEGER PRIMARY KEY REFERENCES pictogram(id) ON DELETE CASCADE,
+    kind TEXT,            -- generic | unique
+    font_type TEXT,       -- mark | ligature | sequence | unique
+    fit TEXT,             -- glyph | degrades | contradictory | sequence
+    conflict INTEGER DEFAULT 0,
+    confidence REAL,
+    method TEXT,          -- rules | ai | manual
+    computed_at TEXT
+);
+CREATE TABLE IF NOT EXISTS composition_part (
+    pictogram_id INTEGER NOT NULL REFERENCES pictogram(id) ON DELETE CASCADE,
+    part_no INTEGER NOT NULL,
+    role TEXT NOT NULL,
+    label TEXT,
+    concept_id TEXT,
+    position TEXT,
+    count INTEGER DEFAULT 1,
+    area_ratio REAL, extent_ratio REAL, glyph_share REAL, px16 REAL, size_class TEXT,
+    PRIMARY KEY (pictogram_id, part_no)
+);
+CREATE INDEX IF NOT EXISTS composition_part_concept ON composition_part(concept_id);
+CREATE TABLE IF NOT EXISTS composition_relation (
+    pictogram_id INTEGER NOT NULL REFERENCES pictogram(id) ON DELETE CASCADE,
+    part_a INTEGER NOT NULL, part_b INTEGER NOT NULL, relation TEXT NOT NULL,
+    PRIMARY KEY (pictogram_id, part_a, part_b)
+);
