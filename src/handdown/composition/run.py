@@ -75,6 +75,10 @@ def run(conn: sqlite3.Connection, cfg: Config, limit: int | None = None, workers
     """Classify every unique, valid pictogram. Rule rows are replaced; rows set
     by hand (method 'manual') or by the AI pass (method 'ai') are kept."""
     kept = {r[0] for r in conn.execute("SELECT pictogram_id FROM composition WHERE method IN ('manual', 'ai')")}
+    # Parts and relations go with their rule rows, so an interrupted or
+    # --limit run leaves no orphans behind.
+    for table in ("composition_part", "composition_relation"):
+        conn.execute(f"DELETE FROM {table} WHERE pictogram_id IN (SELECT pictogram_id FROM composition WHERE method='rules')")
     conn.execute("DELETE FROM composition WHERE method='rules'")
     counts = {"seen": 0, "composites": 0, "conflicts": 0}
     last = 0

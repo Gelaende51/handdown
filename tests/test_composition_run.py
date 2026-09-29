@@ -73,3 +73,12 @@ def test_combinations_listed_under_element_and_rules_index(tmp_path, monkeypatch
     assert (cfg.vault / "_index" / "composition-rules.md").exists()
     site.export(conn, cfg, min_sources=1, log=lambda *_: None)
     assert any("Combinations" in p.read_text() for p in (cfg.site / "c").glob("*.html"))
+
+
+def test_limited_rerun_leaves_no_orphan_parts(tmp_path, monkeypatch):
+    cfg, conn = _catalog(tmp_path, monkeypatch)
+    comp.run(conn, cfg, log=lambda *_: None)
+    monkeypatch.setattr(comp, "CHUNK", 1)
+    comp.run(conn, cfg, limit=1, log=lambda *_: None)  # stops before reaching every pictogram
+    orphans = conn.execute("SELECT COUNT(*) FROM composition_part WHERE pictogram_id NOT IN (SELECT pictogram_id FROM composition)").fetchone()[0]
+    assert orphans == 0
