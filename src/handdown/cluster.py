@@ -16,6 +16,7 @@ from typing import Any
 import numpy as np
 from scipy.cluster.hierarchy import fcluster, linkage
 from scipy.ndimage import binary_fill_holes, gaussian_filter
+from scipy.spatial.distance import pdist
 
 METHOD_VERSION = "1"
 THRESHOLD = 0.45  # average-linkage correlation distance
@@ -39,7 +40,7 @@ def group(vecs: np.ndarray, threshold: float = THRESHOLD) -> np.ndarray:
     if len(vecs) == 1:
         return np.array([1])
     x = prepare(vecs)
-    z = linkage(x, method="average", metric="cosine")
+    z = linkage(np.nan_to_num(pdist(x, "cosine"), nan=1.0), method="average")
     return fcluster(z, t=threshold, criterion="distance")
 
 
@@ -66,6 +67,8 @@ def run(conn: sqlite3.Connection, progress: Any = None, min_concept_size: int = 
                  AND p.color_class IN ('native', 'derivable', 'threshold')""",
             (cid,),
         ).fetchall()
+        # Empty renders (nothing visible after normalization) cannot be compared.
+        rows = [r for r in rows if any(np.frombuffer(r[2], dtype=np.float16))]
         if not rows:
             continue
         ids = np.array([r[0] for r in rows])

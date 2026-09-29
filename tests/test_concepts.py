@@ -48,3 +48,10 @@ def test_resolve_unknown_phrase_is_term_with_parent(wn):
 
 def test_resolve_verb(wn):
     assert resolve(["delete"], wn).referent_type == "action"
+
+
+def test_ui_senses_and_labels(wn):
+    folder = resolve(["folder"], wn)
+    assert folder.wordnet_synset == "folder.n.02"  # file folder, not booklet
+    assert resolve(["plus"], wn).label == "plus"
+    assert resolve(["arrow"], wn).wordnet_synset == "arrow.n.01"  # direction mark

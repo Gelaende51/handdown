@@ -1,0 +1,58 @@
+# Harvest and process sources in parallel on GitHub-hosted runners.
+#
+# Runners can reach hosts the dev container cannot (Wikimedia Commons,
+# Wikidata, ...) and have more CPU. Each shard uploads an artifact that is
+# merged locally with:  uv run handdown import-shard shard-*.tar.gz
+#
+# The artifacts contain local copies of pictograms under many licenses:
+# run this only in a PRIVATE repository.
+name: harvest
+on:
+  workflow_dispatch:
+    inputs:
+      jobs:
+        description: "Job list (JSONL from `handdown export-sources`), e.g. work/jobs/commons.jsonl"
+        required: true
+      adapter:
+        description: "Adapter: commons | git-svg | npm-svg | font"
+        required: true
+      shards:
+        description: "Number of parallel runners"
+        default: "8"
+
+permissions:
+  contents: read
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.m.outputs.matrix }}
+    steps:
+      - id: m
+        run: echo "matrix=$(python3 -c 'import json,sys; print(json.dumps(list(range(int(sys.argv[1])))))' '${{ inputs.shards }}')" >> "$GITHUB_OUTPUT"
+
+  harvest:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        shard: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --frozen
+      - run: uv run handdown import-sources "${{ inputs.jobs }}" --shard "${{ matrix.shard }}/${{ inputs.shards }}"
+      - run: uv run handdown harvest "${{ inputs.adapter }}" --status accepted --status blocked-network --status candidate --no-registry
+      - run: uv run handdown process --workers 4
+      - run: uv run handdown status
+      - run: uv run handdown export-shard "shard-${{ inputs.adapter }}-${{ matrix.shard }}.tar.gz"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shard-${{ inputs.adapter }}-${{ matrix.shard }}
+          path: shard-${{ inputs.adapter }}-${{ matrix.shard }}.tar.gz
+          retention-days: 14
+          compression-level: 0

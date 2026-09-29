@@ -101,3 +101,28 @@ def test_html_export(env):
     assert "<script>alert" not in page
     for c in index:
         assert (cfg.site / "svg" / f"{c['r']}.svg").exists()
+
+
+def test_shard_roundtrip(env, tmp_path, monkeypatch):
+    from handdown import shard
+
+    cfg, conn = env
+    pipeline.harvest(conn, Fixture())
+    pipeline.process(conn, cfg, workers=1)
+    out = tmp_path / "shard.tar.gz"
+    assert shard.export_shard(conn, cfg, out) == 7
+
+    other = tmp_path / "other"
+    monkeypatch.setenv("HANDDOWN_ROOT", str(other))
+    cfg2 = Config()
+    conn2 = db.connect(cfg2.db_path)
+    assert shard.import_shard(conn2, cfg2, out) == 7
+    assert shard.import_shard(conn2, cfg2, out) == 7  # idempotent
+    q = lambda sql: conn2.execute(sql).fetchone()[0]  # noqa: E731
+    assert q("SELECT COUNT(*) FROM pictogram") == 7
+    assert q("SELECT COUNT(*) FROM raw_svg") == 7
+    assert q("SELECT COUNT(*) FROM feature") == 7
+    assert q("SELECT COUNT(*) FROM rating WHERE metric='legibility'") == 7
+    assert q("SELECT COUNT(*) FROM source WHERE harvest_status='harvested'") == 3
+    for (path,) in conn2.execute("SELECT norm_path FROM pictogram"):
+        assert path.startswith(str(other)) and __import__("os").path.exists(path)

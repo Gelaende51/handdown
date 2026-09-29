@@ -72,6 +72,14 @@ STYLE = {
 }
 CONTAINER = {"circle", "square", "box", "rounded", "badge", "rect", "rectangle", "shield", "octagon", "triangle"}
 SIZES = {"8", "10", "12", "14", "16", "18", "20", "24", "28", "32", "36", "40", "48", "64", "96", "128"}
+# WordNet's most frequent sense is wrong for some pictogram vocabulary. No
+# general rule fixes this ("prefer artifacts" breaks arrow = direction mark),
+# so the exceptions are explicit.
+SENSE_OVERRIDES = {
+    "folder": "folder.n.02",  # file folder, not booklet
+    "mouse": "mouse.n.04",  # computer mouse
+    "cart": "handcart.n.01",  # shopping cart, not horse cart
+}
 NUMERIC_CONTEXT = {"number", "digit", "numeric", "hour", "hours", "calendar", "day", "num", "counter"}
 NEGATION = {"off", "slash", "disabled", "no", "not", "crossed", "none", "forbidden", "block", "ban"}
 LEXNAME_REFERENT = {
@@ -175,6 +183,8 @@ def _synset(phrase: str, wn: Any) -> Any:
     # Prefer an exact lemma match, nouns before verbs (pictograms mostly show things).
     exact = [s for s in syns if phrase.replace(" ", "_") in (name.lower() for name in s.lemma_names())]
     pool = exact or syns
+    if phrase in SENSE_OVERRIDES:
+        return wn.synset(SENSE_OVERRIDES[phrase])
     for pos in ("n", "v", "a", "s", "r"):
         for s in pool:
             if s.pos() == pos:
@@ -190,8 +200,12 @@ def _referent(s: Any) -> str:
     return LEXNAME_REFERENT.get(s.lexname(), "abstract")
 
 
-def _concept_from_synset(s: Any) -> Concept:
-    labels = {"en": s.lemma_names()[0].replace("_", " ")}
+def _concept_from_synset(s: Any, phrase: str | None = None) -> Concept:
+    # Label with the word the pictograms used when it names this synset
+    # ("plus", not WordNet's first lemma "asset").
+    lemmas = [n.lower() for n in s.lemma_names()]
+    en = phrase if phrase and phrase.replace(" ", "_") in lemmas else s.lemma_names()[0].replace("_", " ")
+    labels = {"en": en}
     for lang in LANGS:
         try:
             names = s.lemma_names(lang)
@@ -214,7 +228,7 @@ def _resolve_cached(phrase: str) -> Concept:
     wn = wordnet()
     s = _synset(phrase, wn)
     if s is not None:
-        return _concept_from_synset(s)
+        return _concept_from_synset(s, phrase)
     words = phrase.split()
     parent = None
     # Longest known sub-phrase from the left, then any single known word.
@@ -282,7 +296,7 @@ def _ensure(conn: sqlite3.Connection, c: Concept, seen: set[str]) -> None:
     conn.execute(
         """INSERT INTO concept (id, label, wordnet_synset, labels, definition, parent_id, referent_type)
            VALUES (?,?,?,?,?,?,?)
-           ON CONFLICT(id) DO UPDATE SET label=excluded.label, labels=excluded.labels,
+           ON CONFLICT(id) DO UPDATE SET labels=excluded.labels,
                definition=excluded.definition, parent_id=excluded.parent_id, referent_type=excluded.referent_type""",
         (c.id, c.label, c.wordnet_synset, json.dumps(c.labels, ensure_ascii=False), c.definition, c.parent_id, c.referent_type),
     )

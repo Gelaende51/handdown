@@ -28,11 +28,13 @@ def harvest(
     adapter: str,
     only: list[str] = typer.Option(None, "--only", help="source ids or set prefixes"),
     status: list[str] = typer.Option(None, "--status", help="source statuses to harvest (default: accepted)"),
+    no_registry: bool = typer.Option(False, "--no-registry", help="do not load sources.yaml (runners use a job list)"),
 ) -> None:
-    """Fetch sources through an adapter (iconify, git-svg, npm-svg)."""
+    """Fetch sources through an adapter (iconify, git-svg, npm-svg, font, commons)."""
     cfg = Config()
     conn = _conn(cfg)
-    registry.sync(conn, cfg.registry)
+    if not no_registry:
+        registry.sync(conn, cfg.registry)
     ad = registry.adapter(adapter, cfg, conn)
     if hasattr(ad, "fetch"):
         typer.echo(f"fetch: {ad.fetch()}")
@@ -144,6 +146,57 @@ def export(target: str = typer.Argument(..., help="vault | html"), min_sources: 
         typer.echo(f"html: {n} concept pages in {cfg.site}")
     else:
         raise typer.BadParameter("target must be vault or html")
+
+
+@app.command("export-sources")
+def export_sources_cmd(adapter: str, out: str, status: list[str] = typer.Option(None, "--status")) -> None:
+    """Write the job list for GitHub Actions (accepted sources of an adapter, JSONL)."""
+    import json
+    from pathlib import Path
+
+    from . import shard
+
+    rows = shard.export_sources(_conn(Config()), adapter, tuple(status) if status else ("accepted",))
+    Path(out).parent.mkdir(parents=True, exist_ok=True)
+    Path(out).write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows))
+    typer.echo(f"{len(rows)} sources -> {out}")
+
+
+@app.command("import-sources")
+def import_sources_cmd(path: str, shard_spec: str = typer.Option("0/1", "--shard", help="i/n: take every n-th source from i")) -> None:
+    """Load a job list (on a runner)."""
+    import json
+    from pathlib import Path
+
+    from . import shard
+
+    i, n = (int(x) for x in shard_spec.split("/"))
+    rows = [json.loads(line) for line in Path(path).read_text().splitlines() if line]
+    typer.echo(f"{shard.import_sources(_conn(Config()), rows, i, n)} sources loaded")
+
+
+@app.command("export-shard")
+def export_shard_cmd(out: str) -> None:
+    """Pack this catalog's harvested pictograms for merging elsewhere."""
+    from pathlib import Path
+
+    from . import shard
+
+    cfg = Config()
+    typer.echo(f"{shard.export_shard(_conn(cfg), cfg, Path(out))} pictograms -> {out}")
+
+
+@app.command("import-shard")
+def import_shard_cmd(paths: list[str]) -> None:
+    """Merge shards produced on other machines (e.g. GitHub Actions artifacts)."""
+    from pathlib import Path
+
+    from . import shard
+
+    cfg = Config()
+    conn = _conn(cfg)
+    for p in paths:
+        typer.echo(f"{p}: {shard.import_shard(conn, cfg, Path(p))} pictograms merged")
 
 
 @app.command()
