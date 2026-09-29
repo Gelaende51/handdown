@@ -287,7 +287,28 @@ def _concept_body(
             + "</section>"
         )
     parts.insert(1, f'<p>{t["menubar"]}:</p><div class="menubar">{"".join(menubar)}</div>')
+    parts += _combinations_html(conn, cfg, k["id"])
     return "".join(parts), best, best_sha
+
+
+def _combinations_html(conn: sqlite3.Connection, cfg: Config, concept_id: str) -> list[str]:
+    from .composition.analysis import combinations
+
+    groups = combinations(conn, concept_id)
+    if not groups:
+        return []
+    out = ["<h2>Combinations</h2>"]
+    for key in sorted(groups):
+        tiles = []
+        for m in groups[key][:48]:
+            src = cfg.resolve(m["norm_path"])
+            if src is None:
+                continue
+            _link(str(src), cfg.site / "svg" / f"{src.stem}.svg")
+            title = f"{m['original_name']} · {m['fit']} · {m['font_type']}"
+            tiles.append(f'<span class="tile" title="{esc(title)}"><img src="../svg/{src.stem}.svg" width="24" height="24" alt="" loading="lazy"></span>')
+        out.append(f'<h3>{esc(key)} ({len(groups[key])})</h3><div class="sheet">{"".join(tiles)}</div>')
+    return out
 
 
 def _page(title: str, body: str, js: str, root: str) -> str:

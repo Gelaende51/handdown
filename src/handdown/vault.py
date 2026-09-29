@@ -192,7 +192,24 @@ class Exporter:
             if len(rows) > MAX_VARIANTS:
                 lines.append(f"\n…and {len(rows) - MAX_VARIANTS} more variants (see HTML export).")
             lines.append("")
+        lines += self.combinations_section(k["id"])
         write_note(path, front, "\n".join(lines))
+
+    def combinations_section(self, concept_id: str) -> list[str]:
+        """Composites containing this element, grouped by operator."""
+        from .composition.analysis import combinations
+
+        groups = combinations(self.conn, concept_id)
+        if not groups:
+            return []
+        out = ["## Combinations", ""]
+        for key in sorted(groups):
+            members = groups[key]
+            out.append(f"### {key} ({len(members)})")
+            out.append(" ".join(f"![[{self.media(m['norm_path'])}\\|24]]" for m in members[:24] if m["norm_path"]))
+            out.append(", ".join(f"`{m['original_name']}` ({m['fit']}, {m['font_type']}{', unique' if m['kind'] == 'unique' else ''})" for m in members[:24]))
+            out.append("")
+        return out
 
     def source_notes(self) -> None:
         for s in self.conn.execute(
@@ -299,6 +316,26 @@ class Exporter:
         for s, st, n, e in q("SELECT source_id, stage, COUNT(*), MIN(error) FROM harvest_error GROUP BY 1, 2 ORDER BY 3 DESC"):
             errs.append(f"| {s} | {st} | {n} | {e[:120].replace('|', '/')} |")
         write_note(self.vault / "_index" / "errors.md", {"generated": db.now()}, "\n".join(errs) + "\n")
+        self.composition_rules()
+
+    def composition_rules(self) -> None:
+        from .composition.analysis import rules_summary
+
+        rs = rules_summary(self.conn)
+        doc = ["# Composition rules", "", "How composites are built, and which combinations work in one glyph.", ""]
+        sections = (
+            ("Fit", "fit"),
+            ("Font implementation", "font_type"),
+            ("Generic vs unique", "kind"),
+            ("Legibility by fit (mean)", "legibility_by_fit"),
+            ("Modifier size at 16 px (median px) by fit", "modifier_px16_median"),
+        )
+        for title, key in sections:
+            doc += [f"## {title}", ""] + [f"- {a}: {b}" for a, b in sorted(rs[key].items(), key=lambda x: str(x[0]))] + [""]
+        doc += ["## Operators", "", "| role | label | composites |", "|---|---|---|"]
+        doc += [f"| {r} | {lbl} | {n} |" for r, lbl, n in rs["operators"]]
+        doc += ["", f"Conflicts (name vs shape, queued for the AI pass): {rs['conflicts']}", ""]
+        write_note(self.vault / "_index" / "composition-rules.md", {"generated": db.now()}, "\n".join(doc) + "\n")
 
     def run(self, log: Any = print) -> int:
         self.vault.mkdir(parents=True, exist_ok=True)

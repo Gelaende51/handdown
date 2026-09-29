@@ -52,3 +52,24 @@ def test_manual_rows_survive_rerun(tmp_path, monkeypatch):
     conn.commit()
     comp.run(conn, cfg, log=lambda *_: None)
     assert tuple(conn.execute("SELECT method, fit FROM composition").fetchone()) == ("manual", "sequence")
+
+
+def test_combinations_listed_under_element_and_rules_index(tmp_path, monkeypatch):
+    from handdown import cluster, concepts, score, site, vault
+    from handdown.composition.analysis import combinations, rules_summary
+
+    cfg, conn = _catalog(tmp_path, monkeypatch)
+    concepts.run(conn)
+    cluster.run(conn)
+    score.run(conn, log=lambda *_: None)
+    comp.run(conn, cfg, log=lambda *_: None)
+    base = conn.execute("SELECT concept_id FROM composition_part WHERE role='base'").fetchone()[0]
+    groups = combinations(conn, base)
+    assert "negated" in groups and len(groups["negated"]) == 1
+    assert rules_summary(conn)["fit"]["glyph"] >= 1
+    vault.Exporter(conn, cfg, min_sources=1).run(log=lambda *_: None)
+    note = next(p for p in cfg.vault.rglob("concepts/**/*.md") if vault.read_frontmatter(p).get("concept") == base)
+    assert "## Combinations" in note.read_text()
+    assert (cfg.vault / "_index" / "composition-rules.md").exists()
+    site.export(conn, cfg, min_sources=1, log=lambda *_: None)
+    assert any("Combinations" in p.read_text() for p in (cfg.site / "c").glob("*.html"))
