@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 
 from ..concepts import SIZES, STYLE, split_name
@@ -32,7 +33,7 @@ OPERATORS: dict[str, tuple[str, str]] = {
     "history": ("modifier", "clock"),
     "pen": ("modifier", "edit"),
     "pencil": ("modifier", "edit"),
-    **{t: ("repetition", "plural") for t in ("multiple", "stack", "stacked", "group", "copy", "duplicate", "many")},
+    **{t: ("repetition", "plural") for t in ("multiple", "stack", "stacked", "group", "copy", "duplicate", "many", "double", "triple", "dual")},
     "dot": ("modifier", "dot"),
     "notification": ("modifier", "dot"),
 }
@@ -55,6 +56,7 @@ class NameEvidence:
     parts: list[NamePart] = field(default_factory=list)
     frame: str | None = None
     connector: bool = False
+    text: bool = False  # letters/digits drawn as part of the glyph ("1k", "4g", "counter-5")
 
 
 def name_evidence(name: str, tags: list[str] | None = None) -> NameEvidence:
@@ -67,6 +69,8 @@ def name_evidence(name: str, tags: list[str] | None = None) -> NameEvidence:
     if not base:  # "circle", "plus": the (first) operator word is itself the element
         base, ops = tokens[:1], ops[1:]
     ev.base = base
+    # Code-like tokens are text drawn as paths (renderers see no <text>).
+    ev.text = any(re.fullmatch(r"\d+[a-z]{0,2}|[a-z]\d+", t) for t in base)
     seen: set[tuple[str, str]] = set()
     for t in ops:
         role, label = OPERATORS[t]

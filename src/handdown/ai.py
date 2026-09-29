@@ -262,7 +262,14 @@ Decompose each into parts. Roles: base, negation, frame, modifier, repetition, p
 Relations between part indexes: above, below, left_of, right_of, over, under, touching, merged, cutout,
 surrounds, crossing, corner:tl|tr|bl|br, sequence.
 kind: generic (standard parts joined by a standard operator, separable) or unique (fused or artistic).
-font_type: mark | ligature | sequence | unique.  fit: glyph | degrades | contradictory | sequence.
+font_type, as a font would implement it:
+  mark     = only a negation (slash/cross-out) or an enclosing frame applied to a base, like a combining
+             character that works over any base (U+20E0, U+20DD, U+0338);
+  ligature = base + a specific small modifier (plus, check, clock, lock, ...) or a repetition of the base;
+  sequence = two or more independent elements that could be written one after the other;
+  unique   = parts fused so that they cannot be separated.
+fit: glyph (works at 16 px) | degrades (too many/small parts or text) | contradictory (e.g. double negation,
+check + x, two sign frames) | sequence (better written as separate glyphs).
 Reply with JSON only: {"1": {"parts": [{"role": "...", "label": "..."}], "relations": [[0, 1, "..."]],
 "kind": "...", "font_type": "...", "fit": "..."}, ...}"""
 

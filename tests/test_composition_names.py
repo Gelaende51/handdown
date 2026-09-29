@@ -32,3 +32,10 @@ def test_bare_frame_is_an_element_not_a_composite():
 def test_partners_two_elements():
     ev = name_evidence("car-house")
     assert ev.base == ["car", "house"]
+
+
+def test_code_tokens_are_text_evidence():
+    assert name_evidence("4g-plus-mobiledata").text
+    assert name_evidence("counter-5").text
+    assert not name_evidence("bell-off").text
+    assert name_evidence("double-arrow").parts[0].role == "repetition"

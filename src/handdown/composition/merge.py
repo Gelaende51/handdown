@@ -26,6 +26,8 @@ def classify(name: NameEvidence, shape: ShapeEvidence, has_text: bool, sign_doma
     name_roles = {(p.role, p.label) for p in name.parts}
     named_modifier = any(r == "modifier" for r, _ in name_roles)
     named_frame = any(r == "frame" for r, _ in name_roles)
+    named_repetition = any(r == "repetition" for r, _ in name_roles)
+    has_text = has_text or name.text
     # Multi-word names are mostly compounds or qualifiers ("music notes",
     # "arrow up"); two elements need a connector word and a separate part.
     wants_partners = len(name.base) >= 2 and name.connector
@@ -37,12 +39,15 @@ def classify(name: NameEvidence, shape: ShapeEvidence, has_text: bool, sign_doma
     for p in shape.parts:
         if (
             (p.role_hint == "modifier" and not named_modifier)
-            or (p.role_hint == "partner" and not (wants_partners or named_modifier))
+            or (p.role_hint == "partner" and not wants_partners)
             or (p.role_hint == "frame" and not (named_frame or sign_domain))
+            or (p.role_hint == "repetition" and not (named_repetition or sign_domain))
         ):
             p.role_hint = "base"
     if not any(p.role_hint == "frame" for p in shape.parts):
         shape.frame = None
+    if not any(p.role_hint == "repetition" for p in shape.parts):
+        shape.repetition = 1
     shape_ops = [p.role_hint for p in shape.parts if p.role_hint != "base"]
     if not name_roles and not shape_ops and not partners_by_name and not has_text:
         return None  # a single element

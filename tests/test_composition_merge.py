@@ -94,3 +94,20 @@ def test_classify_does_not_mutate_its_input():
     ev = shape(part("frame"), part("base"))
     classify(name_evidence("donut"), ev, False)
     assert ev.parts[0].role_hint == "frame"
+
+
+def test_named_modifier_does_not_keep_shape_partners():
+    c = classify(name_evidence("person-check"), shape(part("base"), part("partner"), part("modifier", 8, "minor", 6.0)), False)
+    assert "partner" not in [p["role"] for p in c.parts]
+
+
+def test_shape_repetition_needs_name_or_sign_source():
+    stripes = shape(part("base"), part("repetition"), repetition=2)
+    assert classify(name_evidence("delete"), stripes, False) is None
+    c = classify(name_evidence("file-multiple"), stripes, False)
+    assert c is not None and "repetition" in [p["role"] for p in c.parts]
+
+
+def test_code_tokens_in_name_are_text():
+    c = classify(name_evidence("1k-plus-outline"), shape(part("base")), False)
+    assert c is not None and "text" in [p["role"] for p in c.parts]
