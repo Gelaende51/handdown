@@ -280,6 +280,15 @@ def wikidata_apply(path: str = typer.Argument("work/wikidata/wordnet31.jsonl")) 
 
 
 @app.command()
+def compose(limit: int = typer.Option(None), workers: int = 1) -> None:
+    """Classify composite pictograms (elements, operators, relations, sizes)."""
+    from .composition import run as comp
+
+    cfg = Config()
+    typer.echo(comp.run(_conn(cfg), cfg, limit=limit, workers=workers, log=typer.echo))
+
+
+@app.command()
 def status() -> None:
     """Counts per stage and source status."""
     conn = _conn(Config())
