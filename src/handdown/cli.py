@@ -297,6 +297,14 @@ def compose(limit: int = typer.Option(None), workers: int = 1) -> None:
 
 
 @app.command()
+def hierarchy() -> None:
+    """Build style groups, depictions, objects and meanings."""
+    from .hierarchy import group as hg
+
+    typer.echo(hg.run(_conn(Config()), log=typer.echo))
+
+
+@app.command()
 def status() -> None:
     """Counts per stage and source status."""
     conn = _conn(Config())

@@ -260,3 +260,41 @@ CREATE TABLE IF NOT EXISTS composition_relation (
     part_a INTEGER NOT NULL, part_b INTEGER NOT NULL, relation TEXT NOT NULL,
     PRIMARY KEY (pictogram_id, part_a, part_b)
 );
+
+-- Depiction hierarchy (docs/superpowers/specs/2026-09-29-depiction-hierarchy-design.md)
+CREATE TABLE IF NOT EXISTS depiction (
+    id INTEGER PRIMARY KEY,
+    name_concept_id TEXT,
+    object_id TEXT,
+    view TEXT DEFAULT 'unknown',
+    varieties TEXT DEFAULT '[]',
+    description TEXT,
+    method TEXT DEFAULT 'rules',
+    representative_id INTEGER,
+    size INTEGER,
+    source_count INTEGER
+);
+CREATE INDEX IF NOT EXISTS depiction_object ON depiction(object_id);
+CREATE TABLE IF NOT EXISTS style_group (
+    id INTEGER PRIMARY KEY,
+    depiction_id INTEGER REFERENCES depiction(id) ON DELETE CASCADE,
+    representative_id INTEGER,
+    size INTEGER,
+    source_count INTEGER,
+    styles TEXT
+);
+CREATE INDEX IF NOT EXISTS style_group_depiction ON style_group(depiction_id);
+CREATE TABLE IF NOT EXISTS style_member (
+    style_group_id INTEGER NOT NULL REFERENCES style_group(id) ON DELETE CASCADE,
+    pictogram_id INTEGER NOT NULL,
+    PRIMARY KEY (style_group_id, pictogram_id)
+);
+CREATE INDEX IF NOT EXISTS style_member_pictogram ON style_member(pictogram_id);
+CREATE TABLE IF NOT EXISTS meaning_link (
+    depiction_id INTEGER NOT NULL REFERENCES depiction(id) ON DELETE CASCADE,
+    concept_id TEXT NOT NULL,
+    source TEXT NOT NULL,
+    confidence REAL,
+    PRIMARY KEY (depiction_id, concept_id, source)
+);
+CREATE INDEX IF NOT EXISTS meaning_link_concept ON meaning_link(concept_id);
