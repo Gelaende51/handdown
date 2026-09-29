@@ -18,7 +18,7 @@ DEFAULT_WEIGHTS: dict[str, float] = {
     "consistency": 2.5,
 }
 
-USER_AGENT = "handdown-pictogram-catalog/0.1 (research catalog; https://github.com/)"
+USER_AGENT = "handdown/0.1 (pictogram research catalog; https://github.com/Gelaende51/handdown)"
 
 
 @dataclass

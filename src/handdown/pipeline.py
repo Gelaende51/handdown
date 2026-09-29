@@ -269,13 +269,14 @@ def _store(conn: sqlite3.Connection, pid: int, res: dict[str, Any], now: str) ->
 
 
 def dedupe(conn: sqlite3.Connection) -> int:
-    """Link exact duplicates (same normalized sha256) to the lowest id."""
-    conn.execute("UPDATE pictogram SET duplicate_of=NULL")
+    """Link exact duplicates (same normalized sha256) to the lowest id.
+    One grouped pass (UPDATE ... FROM), not a correlated subquery per row."""
+    conn.execute("UPDATE pictogram SET duplicate_of=NULL WHERE duplicate_of IS NOT NULL")
     cur = conn.execute(
-        """UPDATE pictogram SET duplicate_of = (
-               SELECT MIN(p2.id) FROM pictogram p2 WHERE p2.sha256 = pictogram.sha256)
-           WHERE sha256 IS NOT NULL
-             AND id != (SELECT MIN(p2.id) FROM pictogram p2 WHERE p2.sha256 = pictogram.sha256)"""
+        """UPDATE pictogram SET duplicate_of = m.first
+           FROM (SELECT sha256, MIN(id) AS first FROM pictogram
+                 WHERE sha256 IS NOT NULL GROUP BY sha256 HAVING COUNT(*) > 1) AS m
+           WHERE pictogram.sha256 = m.sha256 AND pictogram.id != m.first"""
     )
     conn.commit()
     return cur.rowcount

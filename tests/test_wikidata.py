@@ -14,8 +14,10 @@ def test_apply_links_qid_and_fills_missing_labels(tmp_path, monkeypatch):
     monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
     conn = db.connect(Config().db_path)
     c = concepts.resolve(["ashcan"], wn)
-    conn.execute("INSERT INTO concept (id, label, wordnet_synset, labels) VALUES (?,?,?,?)",
-                 (c.id, c.label, c.wordnet_synset, json.dumps({"en": "ashcan", "fr": "poubelle"})))
+    conn.execute(
+        "INSERT INTO concept (id, label, wordnet_synset, labels) VALUES (?,?,?,?)",
+        (c.id, c.label, c.wordnet_synset, json.dumps({"en": "ashcan", "fr": "poubelle"})),
+    )
     s = wn.synset("ashcan.n.01")
     maps = {"pwn30": {f"{s.offset():08d}-n": "i1"}, "pwn31": {"99999999-n": "i1"}}
     monkeypatch.setattr(wikidata, "_cili", lambda version, client: maps[version])

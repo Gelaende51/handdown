@@ -17,6 +17,7 @@ from urllib.parse import unquote
 
 import httpx
 
+from .. import db
 from ..config import USER_AGENT, Config
 from .base import Item, SourceInfo
 
@@ -24,21 +25,26 @@ API = "https://commons.wikimedia.org/w/api.php"
 MAX_SVG = 2_000_000
 
 
-def _text(value: str | None) -> str | None:
-    if not value:
+def _text(value: object) -> str | None:
+    """extmetadata values are HTML strings, but also numbers or
+    per-language dicts ({"en": ..., "de": ...})."""
+    if isinstance(value, dict):
+        value = value.get("en") or next(iter(value.values()), None)
+    if value is None or value == "":
         return None
-    return html.unescape(re.sub(r"<[^>]+>", "", value)).strip() or None
+    return html.unescape(re.sub(r"<[^>]+>", "", str(value))).strip() or None
 
 
 class CommonsAdapter:
     name = "commons"
     min_items = 1
 
-    def __init__(self, cfg: Config, conn: sqlite3.Connection, delay: float = 0.2):
+    def __init__(self, cfg: Config, conn: sqlite3.Connection, delay: float = 0.5):
         self.cfg = cfg
         self.conn = conn
         self.delay = delay
-        self.client = httpx.Client(headers={"User-Agent": USER_AGENT + " contact via repository issues"}, timeout=120, follow_redirects=True)
+        # Wikimedia's User-Agent policy: identify the tool and a contact URL.
+        self.client = httpx.Client(headers={"User-Agent": USER_AGENT}, timeout=120, follow_redirects=True)
         self.meta: dict[str, dict] = {}
 
     def sources(self, statuses: tuple[str, ...] = ("accepted", "blocked-network")) -> Iterator[SourceInfo]:
@@ -46,18 +52,26 @@ class CommonsAdapter:
         for r in rows:
             yield SourceInfo(id=r["id"], name=r["name"], platform_id="commons", url=r["url"], domain=r["domain"], extra=json.loads(r["adapter_args"] or "{}"))
 
+    def _fetch(self, url: str, params: dict[str, str] | None = None) -> httpx.Response:
+        """GET with backoff on 429/503, honouring Retry-After."""
+        for attempt in range(8):
+            r = self.client.get(url, params=params)
+            if r.status_code not in (429, 503):
+                time.sleep(self.delay)
+                return r
+            retry = r.headers.get("retry-after", "")
+            time.sleep(float(retry) if retry.isdigit() else min(300, 5 * 2**attempt))
+        return r
+
     def _get(self, **params: str) -> dict:
-        params = {"format": "json", "formatversion": "2", **params}
-        for attempt in range(5):
-            r = self.client.get(API, params=params)
-            if r.status_code in (429, 503):
-                time.sleep(2**attempt * 5)
-                continue
-            r.raise_for_status()
-            time.sleep(self.delay)
-            return r.json()
+        # maxlag: back off when Wikimedia's replicas lag (API etiquette)
+        r = self._fetch(API, {"format": "json", "formatversion": "2", "maxlag": "5", **params})
         r.raise_for_status()
-        return {}
+        data = r.json()
+        if data.get("error", {}).get("code") == "maxlag":
+            time.sleep(10)
+            return self._get(**params)
+        return data
 
     def _members(self, category: str, depth: int, limit: int) -> list[str]:
         files: list[str] = []
@@ -98,9 +112,13 @@ class CommonsAdapter:
                 info = (page.get("imageinfo") or [{}])[0]
                 if info.get("mime") != "image/svg+xml" or info.get("size", 0) > MAX_SVG:
                     continue
-                r = self.client.get(info["url"])
-                time.sleep(self.delay)
+                try:
+                    r = self._fetch(info["url"])
+                except httpx.HTTPError as e:
+                    db.log_error(self.conn, source_id, page["title"], "harvest", repr(e))
+                    continue
                 if r.status_code != 200:
+                    db.log_error(self.conn, source_id, page["title"], "harvest", f"HTTP {r.status_code}")
                     continue
                 meta = info.get("extmetadata") or {}
                 val = {k: _text((v or {}).get("value")) for k, v in meta.items()}.get

@@ -129,3 +129,11 @@ def test_commons_adapter_with_mock_api(tmp_path, monkeypatch):
     meta = json.loads(items[0].description)
     assert meta["license"] == "CC0" and meta["artist"] == "Jane"
     assert items[0].categories == ["X signs"]
+
+
+def test_commons_text_handles_numbers_and_language_dicts():
+    from handdown.adapters.commons import _text
+
+    assert _text(2019.0) == "2019.0"
+    assert _text({"en": "<b>Sign</b>", "de": "Schild"}) == "Sign"
+    assert _text("") is None and _text(None) is None
