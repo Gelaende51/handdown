@@ -289,7 +289,7 @@ def _concept_body(
 
 
 def _hierarchy_html(conn: sqlite3.Connection, cfg: Config, concept_id: str, files: dict[str, str]) -> list[str]:
-    from .hierarchy.analysis import drawn_as, used_to_mean
+    from .hierarchy.analysis import applied_to, drawn_as, used_to_mean
 
     out: list[str] = []
     objects = drawn_as(conn, concept_id)
@@ -308,6 +308,13 @@ def _hierarchy_html(conn: sqlite3.Connection, cfg: Config, concept_id: str, file
                     tiles.append(f'<span class="tile"><img src="../svg/{src.stem}.svg" width="24" height="24" alt="" loading="lazy"></span>')
                 variety = ", ".join(d["varieties"]) or "plain"
                 out.append(f'<p>view {esc(d["view"])}, {esc(variety)}</p><div class="sheet">{"".join(tiles)}</div>')
+    targets = applied_to(conn, concept_id)
+    if targets:
+        items = [
+            (f'<a href="{files[o["object_id"]]}.html">{esc(o["label"])}</a>' if o["object_id"] in files else esc(o["label"])) + f" ({o['sources']})"
+            for o in targets[:40]
+        ]
+        out.append("<h2>Applied to</h2><p>" + ", ".join(items) + "</p>")
     means = [m for m in used_to_mean(conn, concept_id) if m[0] != concept_id]
     if means:
         links = [(f'<a href="{files[c]}.html">{esc(lbl)}</a>' if c in files else esc(lbl)) + f" ({n})" for c, lbl, n in means[:30]]

@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 SCHEMA_VERSION = "1"
+MIGRATIONS = [("style_group", "assessed_at", "TEXT")]
 
 
 def now() -> str:
@@ -30,6 +31,10 @@ def connect(path: Path) -> sqlite3.Connection:
 def init(conn: sqlite3.Connection) -> None:
     schema = resources.files("handdown").joinpath("schema.sql").read_text()
     conn.executescript(schema)
+    # Columns added after a table was first created (CREATE IF NOT EXISTS keeps old tables).
+    for table, column, decl in MIGRATIONS:
+        if column not in {r[1] for r in conn.execute(f"PRAGMA table_info({table})")}:
+            conn.execute(f"ALTER TABLE {table} ADD COLUMN {column} {decl}")
     conn.execute(
         "INSERT OR IGNORE INTO meta(key, value) VALUES ('schema_version', ?)",
         (SCHEMA_VERSION,),

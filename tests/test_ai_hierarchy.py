@@ -46,3 +46,23 @@ def test_hierarchy_ignores_bad_answers(tmp_path, monkeypatch):
     out = ai.run_hierarchy(conn, tmp_path / "w", limit=10, log=lambda *_: None)
     assert out["assessed"] == 1
     assert conn.execute("SELECT view FROM depiction WHERE id=1").fetchone()[0] == "unknown"
+
+
+def test_siblings_are_assessed_in_later_runs(tmp_path, monkeypatch):
+    conn = _setup(tmp_path, monkeypatch)
+    # same view and features as the depiction: updated in place, no split
+    answer = {"1": {"object": "mug", "view": "unknown", "features": [], "meanings": ["coffee"]}}
+    monkeypatch.setattr(ai, "ask", lambda *a, **k: (answer, {"usage": {}, "session_id": "h"}))
+    assert ai.run_hierarchy(conn, tmp_path / "w", limit=1, log=lambda *_: None)["assessed"] == 1
+    assert ai.run_hierarchy(conn, tmp_path / "w", limit=1, log=lambda *_: None)["assessed"] == 1  # the sibling
+    assert ai.run_hierarchy(conn, tmp_path / "w", limit=1, log=lambda *_: None)["assessed"] == 0  # nothing left
+
+
+def test_parallel_calls_give_the_same_result(tmp_path, monkeypatch):
+    conn = _setup(tmp_path, monkeypatch)
+    answer = {"1": {"object": "mug", "view": "side", "features": [], "meanings": ["coffee"]}}
+    monkeypatch.setattr(ai, "ask", lambda *a, **k: (answer, {"usage": {}, "session_id": "h"}))
+    monkeypatch.setattr(ai, "BATCH", 1)
+    out = ai.run_hierarchy(conn, tmp_path / "w", limit=10, workers=2, log=lambda *_: None)
+    assert out["assessed"] == 2
+    assert conn.execute("SELECT COUNT(*) FROM style_group WHERE assessed_at IS NULL").fetchone()[0] == 0

@@ -38,3 +38,8 @@ def test_view_and_variety():
 def test_unknown_tokens_do_not_crash():
     r = name_roles("ic-24")
     assert r.view == "unknown" and r.varieties == []
+
+
+def test_short_words_are_ignored():
+    r = name_roles("document-as-pdf")
+    assert "as" not in r.object_tokens + r.meaning_tokens

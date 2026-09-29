@@ -55,7 +55,11 @@ def _meanings(members: list[sqlite3.Row], roles: list[Any], object_id: str | Non
     meanings: dict[str, tuple[str, float]] = {}
     for r in roles:
         for t in r.meaning_tokens:
-            meanings.setdefault(t, ("name", 0.8))
+            # "folder-download": the action is applied to an object, which is
+            # not yet a way of drawing the meaning (the AI pass can promote it)
+            link = ("applied", 0.6) if r.object_tokens else ("name", 0.8)
+            if t not in meanings or meanings[t][0] == "applied":
+                meanings[t] = link
     for m in members:
         for alias in json.loads(m["raw_tags"] or "[]"):
             for t in name_roles(alias).meaning_tokens:

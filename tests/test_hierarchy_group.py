@@ -82,15 +82,21 @@ def test_run_builds_levels_and_meanings(tmp_path, monkeypatch):
 
 def test_drawn_as_and_vault_sections(tmp_path, monkeypatch):
     from handdown import cluster, score, site, vault
-    from handdown.hierarchy.analysis import drawn_as, used_to_mean
+    from handdown.hierarchy.analysis import applied_to, drawn_as, used_to_mean
 
     cfg, conn = _catalog(tmp_path, monkeypatch)
     cluster.run(conn)
     score.run(conn, log=lambda *_: None)
     hg.run(conn, log=lambda *_: None)
     meaning = conn.execute("SELECT concept_id FROM meaning_link WHERE concept_id LIKE '%download%'").fetchone()[0]
-    objects = drawn_as(conn, meaning)
-    assert len(objects) == 2 and abs(sum(o["share"] for o in objects) - 1.0) < 1e-6
+    # floppy-disk-download / cloud-download: the meaning is applied to an object,
+    # not (yet) a way of drawing it; the AI pass promotes such links
+    assert drawn_as(conn, meaning) == []
+    targets = applied_to(conn, meaning)
+    assert len(targets) == 2 and abs(sum(o["share"] for o in targets) - 1.0) < 1e-6
+    did = conn.execute("SELECT depiction_id FROM meaning_link WHERE concept_id=?", (meaning,)).fetchone()[0]
+    conn.execute("INSERT INTO meaning_link VALUES (?,?,'ai',0.7)", (did, meaning))
+    assert len(drawn_as(conn, meaning)) == 1
     cup = conn.execute("SELECT object_id FROM depiction WHERE object_id LIKE '%cup%'").fetchone()[0]
     assert any(c == cup for c, _, _ in used_to_mean(conn, cup))
     vault.Exporter(conn, cfg, min_sources=1).run(log=lambda *_: None)
@@ -98,5 +104,6 @@ def test_drawn_as_and_vault_sections(tmp_path, monkeypatch):
     assert any("## Drawn as" in t for t in texts)
     meaning_note = [p for p in cfg.vault.rglob("concepts/**/*.md") if vault.read_frontmatter(p).get("concept") == meaning]
     assert meaning_note and "## Drawn as" in meaning_note[0].read_text()  # a meaning gets its own note
+    assert "## Applied to" in meaning_note[0].read_text()
     site.export(conn, cfg, min_sources=1, log=lambda *_: None)
     assert any("Drawn as" in p.read_text() for p in (cfg.site / "c").glob("*.html"))

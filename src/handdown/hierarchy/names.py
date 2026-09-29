@@ -91,8 +91,10 @@ def name_roles(name: str) -> NameRoles:
             r.view = VIEW_WORDS[t]
         elif t in VARIETY_WORDS:
             varieties.add(VARIETY_WORDS[t])
-        elif OPERATORS.get(t, ("",))[0] in STRUCTURAL_ROLES or not _is_word(t):
-            continue  # negation/frame/repetition belong to the composite analysis; codes are not words
+        elif len(t) < 3 or OPERATORS.get(t, ("",))[0] in STRUCTURAL_ROLES or not _is_word(t):
+            # short words ("as" is arsenic in WordNet), structural operators
+            # (composite analysis) and codes are neither objects nor meanings
+            continue
         elif is_object_word(t):
             r.object_tokens.append(t)
         else:

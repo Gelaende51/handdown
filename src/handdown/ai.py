@@ -343,67 +343,84 @@ HIERARCHY_PROMPT = """Each numbered cell shows one pictogram (large and at 16 px
 Reply with JSON only: {"1": {"object": "...", "view": "...", "features": ["..."], "meanings": ["..."]}, ...}"""
 
 
-def run_hierarchy(conn: sqlite3.Connection, workdir: Path, limit: int = 48, log: Any = print) -> dict[str, Any]:
-    """Blind object/view/features/meanings for style groups of rule depictions,
-    established first. A style group whose view or features differ from its
-    depiction's moves into its own depiction (method 'ai')."""
-    from .concepts import _ensure, resolve, split_name
-    from .hierarchy.names import VIEWS
+def run_hierarchy(conn: sqlite3.Connection, workdir: Path, limit: int = 48, workers: int = 1, log: Any = print) -> dict[str, Any]:
+    """Blind object/view/features/meanings for style groups not yet assessed,
+    established depictions first. A style group whose view or features differ
+    from its depiction's moves into its own depiction (method 'ai'). Model
+    calls run ``workers`` at a time; database writes stay in this thread."""
+    from concurrent.futures import ThreadPoolExecutor, as_completed
 
-    seen: set[str] = {r[0] for r in conn.execute("SELECT id FROM concept")}
+    from .concepts import split_name
 
     workdir.mkdir(parents=True, exist_ok=True)
     cfg = Config()
+    seen: set[str] = {r[0] for r in conn.execute("SELECT id FROM concept")}
     rows = conn.execute(
         """SELECT g.id AS gid, g.depiction_id, p.norm_path FROM style_group g
            JOIN depiction d ON d.id = g.depiction_id JOIN pictogram p ON p.id = g.representative_id
-           WHERE d.method = 'rules' ORDER BY d.source_count DESC, g.source_count DESC LIMIT ?""",
+           WHERE g.assessed_at IS NULL ORDER BY d.source_count DESC, g.source_count DESC LIMIT ?""",
         (limit,),
     ).fetchall()
+    batches = [rows[i : i + BATCH] for i in range(0, len(rows), BATCH)]
     done, cost, now = 0, 0.0, db.now()
-    for start in range(0, len(rows), BATCH):
-        batch = rows[start : start + BATCH]
+
+    def call(batch: list[sqlite3.Row]) -> tuple[dict[str, Any], dict[str, Any]]:
         img = sheet([cfg.resolve(r["norm_path"]).read_text() for r in batch])  # type: ignore[union-attr]
-        try:
-            answer, result = ask(img, HIERARCHY_PROMPT, "You look at pictograms and report what you see. Reply with JSON only.", workdir)
-        except (RuntimeError, ValueError, subprocess.TimeoutExpired, json.JSONDecodeError) as e:
-            log(f"  batch {start // BATCH + 1}: {e}")
-            continue
-        _log_run(conn, "hierarchy", result)
-        cost += result.get("total_cost_usd") or 0
-        for i, r in enumerate(batch, 1):
-            a = answer.get(str(i))
-            if not isinstance(a, dict) or not isinstance(a.get("object"), str) or not split_name(a["object"]):
+        return ask(img, HIERARCHY_PROMPT, "You look at pictograms and report what you see. Reply with JSON only.", workdir)
+
+    with ThreadPoolExecutor(max(1, workers)) as pool:
+        futures = {pool.submit(call, b): b for b in batches}
+        for n, fut in enumerate(as_completed(futures), 1):
+            batch = futures[fut]
+            try:
+                answer, result = fut.result()
+            except (RuntimeError, ValueError, OSError, subprocess.TimeoutExpired, json.JSONDecodeError) as e:
+                log(f"  batch {n}: {e}")
                 continue
-            view = a.get("view") if a.get("view") in VIEWS else None
-            features = a.get("features")
-            feats = sorted({f.strip().lower() for f in features if isinstance(f, str) and f.strip()}) if isinstance(features, list) else None
-            obj_c = resolve(split_name(a["object"]))
-            _ensure(conn, obj_c, seen)
-            obj = obj_c.id
-            dep = conn.execute("SELECT * FROM depiction WHERE id=?", (r["depiction_id"],)).fetchone()
-            new_view = view or dep["view"]
-            new_var = json.dumps(feats) if feats is not None else dep["varieties"]
-            siblings = conn.execute("SELECT COUNT(*) FROM style_group WHERE depiction_id=?", (dep["id"],)).fetchone()[0]
-            if (new_view, new_var) != (dep["view"], dep["varieties"]) and siblings > 1:
-                target = conn.execute(
-                    """INSERT INTO depiction (name_concept_id, object_id, view, varieties, description, method, representative_id, size, source_count)
-                       SELECT name_concept_id, ?, ?, ?, ?, 'ai', representative_id, size, source_count FROM depiction WHERE id=? RETURNING id""",
-                    (obj, new_view, new_var, a["object"], dep["id"]),
-                ).fetchone()[0]
-                conn.execute("UPDATE style_group SET depiction_id=? WHERE id=?", (target, r["gid"]))
-            else:
-                target = dep["id"]
-                conn.execute(
-                    "UPDATE depiction SET object_id=?, view=?, varieties=?, description=?, method='ai' WHERE id=?",
-                    (obj, new_view, new_var, a["object"], target),
-                )
-            for m in (a.get("meanings") or [])[:3] if isinstance(a.get("meanings"), list) else []:
-                if isinstance(m, str) and split_name(m):
-                    mc = resolve(split_name(m))
-                    _ensure(conn, mc, seen)
-                    conn.execute("INSERT OR IGNORE INTO meaning_link VALUES (?,?,?,?)", (target, mc.id, "ai", 0.7))
-            done += 1
-        conn.commit()
-        log(f"  batch {start // BATCH + 1}: {done} style groups, ${cost:.3f} ({now[:10]})")
+            _log_run(conn, "hierarchy", result)
+            cost += result.get("total_cost_usd") or 0
+            for i, r in enumerate(batch, 1):
+                conn.execute("UPDATE style_group SET assessed_at=? WHERE id=?", (now, r["gid"]))
+                a = answer.get(str(i))
+                if not isinstance(a, dict) or not isinstance(a.get("object"), str) or not split_name(a["object"]):
+                    continue
+                _apply_hierarchy_answer(conn, r, a, seen)
+                done += 1
+            conn.commit()
+            if n % 10 == 0 or n == len(batches):
+                log(f"  {n}/{len(batches)} batches: {done} style groups, ${cost:.3f}")
     return {"assessed": done, "cost_usd": round(cost, 4)}
+
+
+def _apply_hierarchy_answer(conn: sqlite3.Connection, r: sqlite3.Row, a: dict[str, Any], seen: set[str]) -> None:
+    from .concepts import _ensure, resolve, split_name
+    from .hierarchy.names import VIEWS
+
+    view = a.get("view") if a.get("view") in VIEWS else None
+    features = a.get("features")
+    feats = sorted({f.strip().lower() for f in features if isinstance(f, str) and f.strip()}) if isinstance(features, list) else None
+    obj_c = resolve(split_name(a["object"]))
+    _ensure(conn, obj_c, seen)
+    dep = conn.execute("SELECT * FROM depiction WHERE id=?", (r["depiction_id"],)).fetchone()
+    new_view = view or dep["view"]
+    new_var = json.dumps(feats) if feats is not None else dep["varieties"]
+    siblings = conn.execute("SELECT COUNT(*) FROM style_group WHERE depiction_id=?", (dep["id"],)).fetchone()[0]
+    if (new_view, new_var) != (dep["view"], dep["varieties"]) and siblings > 1:
+        target = conn.execute(
+            """INSERT INTO depiction (name_concept_id, object_id, view, varieties, description, method, representative_id, size, source_count)
+               SELECT name_concept_id, ?, ?, ?, ?, 'ai', representative_id, size, source_count FROM depiction WHERE id=? RETURNING id""",
+            (obj_c.id, new_view, new_var, a["object"], dep["id"]),
+        ).fetchone()[0]
+        conn.execute("UPDATE style_group SET depiction_id=? WHERE id=?", (target, r["gid"]))
+    else:
+        target = dep["id"]
+        conn.execute(
+            "UPDATE depiction SET object_id=?, view=?, varieties=?, description=?, method='ai' WHERE id=?",
+            (obj_c.id, new_view, new_var, a["object"], target),
+        )
+    meanings = a.get("meanings") if isinstance(a.get("meanings"), list) else []
+    for m in meanings[:3]:
+        if isinstance(m, str) and split_name(m):
+            mc = resolve(split_name(m))
+            _ensure(conn, mc, seen)
+            conn.execute("INSERT OR IGNORE INTO meaning_link VALUES (?,?,?,?)", (target, mc.id, "ai", 0.7))

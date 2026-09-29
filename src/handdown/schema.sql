@@ -281,7 +281,8 @@ CREATE TABLE IF NOT EXISTS style_group (
     representative_id INTEGER,
     size INTEGER,
     source_count INTEGER,
-    styles TEXT
+    styles TEXT,
+    assessed_at TEXT
 );
 CREATE INDEX IF NOT EXISTS style_group_depiction ON style_group(depiction_id);
 CREATE TABLE IF NOT EXISTS style_member (

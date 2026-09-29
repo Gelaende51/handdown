@@ -194,7 +194,7 @@ class Exporter:
 
     def hierarchy_section(self, concept_id: str) -> list[str]:
         """Meaning view (Drawn as) and object view (Used to mean)."""
-        from .hierarchy.analysis import drawn_as, used_to_mean
+        from .hierarchy.analysis import applied_to, drawn_as, used_to_mean
 
         out: list[str] = []
         objects = drawn_as(self.conn, concept_id)
@@ -208,6 +208,14 @@ class Exporter:
                     sheet = " ".join(f"![[{self.media(g['norm_path'])}\\|24]]" for g in d["style_groups"][:12] if g["norm_path"])
                     out.append(f"- view {d['view']}, {variety}: {sheet}")
                 out.append("")
+        targets = applied_to(self.conn, concept_id)
+        if targets:
+            out += ["## Applied to", ""]
+            out += [
+                (f"- [[{self.names[o['object_id']]}\\|{o['label']}]]" if o["object_id"] in self.names else f"- {o['label']}") + f" ({o['sources']} sources)"
+                for o in targets[:40]
+            ]
+            out.append("")
         means = [m for m in used_to_mean(self.conn, concept_id) if m[0] != concept_id]
         if means:
             out += ["## Used to mean", ""]

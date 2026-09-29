@@ -23,14 +23,23 @@ GROUP BY k.id HAVING n_src >= ? ORDER BY n_src DESC
 
 
 def drawn_as(conn: sqlite3.Connection, meaning_id: str) -> list[dict[str, Any]]:
-    """Objects (with their depictions and style groups) used for a meaning,
-    and each object's share of the independent sources drawing the meaning."""
+    """Objects (with their depictions and style groups) used to draw a meaning,
+    and each object's share of the independent sources drawing it."""
+    return _objects(conn, meaning_id, applied=False)
+
+
+def applied_to(conn: sqlite3.Connection, meaning_id: str) -> list[dict[str, Any]]:
+    """Objects a meaning is applied to ("folder-download"), same shape as drawn_as."""
+    return _objects(conn, meaning_id, applied=True)
+
+
+def _objects(conn: sqlite3.Connection, meaning_id: str, applied: bool) -> list[dict[str, Any]]:
     rows = conn.execute(
-        """SELECT d.id, d.object_id, d.view, d.varieties, g.id AS gid, g.size, p.norm_path, p.source_id
+        f"""SELECT d.id, d.object_id, d.view, d.varieties, g.id AS gid, g.size, p.norm_path, p.source_id
            FROM meaning_link m JOIN depiction d ON d.id = m.depiction_id
            JOIN style_group g ON g.depiction_id = d.id JOIN style_member sm ON sm.style_group_id = g.id
            JOIN pictogram p ON p.id = sm.pictogram_id
-           WHERE m.concept_id = ?""",
+           WHERE m.concept_id = ? AND m.source {"=" if applied else "!="} 'applied'""",
         (meaning_id,),
     ).fetchall()
     objects: dict[str, dict[str, Any]] = {}

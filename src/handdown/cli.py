@@ -113,6 +113,7 @@ def ai(
     min_sources: int = 2,
     job: str = typer.Option("rating", help="rating | composition | hierarchy"),
     sample: int = typer.Option(0, help="composition: extra random sample size"),
+    workers: int = typer.Option(1, help="hierarchy: parallel model calls"),
 ) -> None:
     """Headless claude -p passes: blind cluster rating, or composition conflicts + sample."""
     from . import ai as a
@@ -124,7 +125,7 @@ def ai(
         typer.echo(a.run_composition(conn, cfg.data / "ai-work", limit=limit, sample=sample, log=typer.echo))
         return
     if job == "hierarchy":
-        typer.echo(a.run_hierarchy(conn, cfg.data / "ai-work", limit=limit, log=typer.echo))
+        typer.echo(a.run_hierarchy(conn, cfg.data / "ai-work", limit=limit, workers=workers, log=typer.echo))
         return
     typer.echo(a.run(conn, cfg.data / "ai-work", limit=limit, min_sources=min_sources, log=typer.echo))
     sc.combined(conn)
