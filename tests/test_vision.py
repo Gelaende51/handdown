@@ -157,3 +157,18 @@ def test_apply_leaves_low_scores_and_existing_objects(tmp_path, monkeypatch):
         _depiction_with_labels(c, score, existing)
         vision.apply(c)
         assert c.execute("SELECT object_id FROM depiction").fetchone()[0] == expected
+
+
+def test_pixels_normalization_without_torchvision():
+    import numpy as np
+    from PIL import Image
+
+    from handdown.vision import IMAGENET, SIGLIP_NORM, pixels
+
+    white = Image.new("RGB", (100, 80), (255, 255, 255))
+    black = Image.new("RGB", (224, 224), (0, 0, 0))
+    x = pixels([white, black], *SIGLIP_NORM)
+    assert x.shape == (2, 3, 224, 224) and x.dtype == np.float32
+    assert np.allclose(x[0], 1.0) and np.allclose(x[1], -1.0)  # (v - 0.5) / 0.5
+    d = pixels([black], *IMAGENET)
+    assert np.allclose(d[0, 0], -0.485 / 0.229, atol=1e-4)

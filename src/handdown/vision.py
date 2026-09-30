@@ -200,27 +200,40 @@ def import_vision(conn: sqlite3.Connection, cfg: Any, path: Any, identity: Any) 
     return stats
 
 
+IMAGENET = ((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))  # DINOv2
+SIGLIP_NORM = ((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+
+
+def pixels(images: list[Any], mean: tuple[float, ...], std: tuple[float, ...], size: int = 224) -> Any:
+    """Normalized NCHW float32 array. Done in numpy because transformers'
+    image processors now require torchvision, which the runners lack."""
+    import numpy as np
+    from PIL import Image
+
+    arr = np.stack([np.asarray(im.convert("RGB").resize((size, size), Image.Resampling.BICUBIC), dtype=np.float32) / 255.0 for im in images])
+    arr = (arr - np.array(mean, dtype=np.float32)) / np.array(std, dtype=np.float32)
+    return np.ascontiguousarray(arr.transpose(0, 3, 1, 2), dtype=np.float32)
+
+
 class TorchModels:
     """DINOv2-small and SigLIP on CPU (runners only: torch + transformers)."""
 
     def __init__(self, labels: list[dict[str, Any]], dinov2: str = "facebook/dinov2-small", siglip: str = "google/siglip-base-patch16-224"):
         import torch
-        from transformers import AutoImageProcessor, AutoModel, AutoProcessor
+        from transformers import AutoModel, AutoTokenizer
 
-        torch.set_num_threads(max(1, torch.get_num_threads()))
         self.torch = torch
-        self.dproc = AutoImageProcessor.from_pretrained(dinov2)
         self.dmodel = AutoModel.from_pretrained(dinov2).eval()
-        self.sproc = AutoProcessor.from_pretrained(siglip)
         self.smodel = AutoModel.from_pretrained(siglip).eval()
+        tokenizer = AutoTokenizer.from_pretrained(siglip)
         self.text: dict[str, Any] = {}
         for kind in ("object", "view", "feature"):
             texts = [lab["text"] for lab in labels if lab["kind"] == kind]
             chunks = []
             with torch.no_grad():
                 for i in range(0, len(texts), 256):
-                    t = self.sproc(text=texts[i : i + 256], padding="max_length", return_tensors="pt")
-                    e = self.smodel.get_text_features(**t)
+                    t = tokenizer(texts[i : i + 256], padding="max_length", max_length=64, truncation=True, return_tensors="pt")
+                    e = self.smodel.get_text_features(input_ids=t["input_ids"])
                     chunks.append(e / e.norm(dim=-1, keepdim=True))
             if chunks:
                 self.text[kind] = torch.cat(chunks)
@@ -228,8 +241,8 @@ class TorchModels:
     def image_features(self, images: list[Any]) -> dict[str, Any]:
         torch = self.torch
         with torch.no_grad():
-            d = self.dmodel(**self.dproc(images=images, return_tensors="pt")).last_hidden_state[:, 0]
-            s = self.smodel.get_image_features(**self.sproc(images=images, return_tensors="pt"))
+            d = self.dmodel(pixel_values=torch.from_numpy(pixels(images, *IMAGENET))).last_hidden_state[:, 0]
+            s = self.smodel.get_image_features(pixel_values=torch.from_numpy(pixels(images, *SIGLIP_NORM)))
         d = d / d.norm(dim=-1, keepdim=True)
         s = s / s.norm(dim=-1, keepdim=True)
         return {"dinov2": d.numpy(), "siglip": s.numpy()}
