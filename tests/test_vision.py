@@ -120,3 +120,38 @@ def test_blank_render_is_skipped(tmp_path, monkeypatch):
     labels = [{"id": "o", "kind": "object", "text": "t"}, {"id": "v", "kind": "view", "text": "v"}, {"id": "f", "kind": "feature", "text": "f"}]
     vision.embed(c, cfg, labels, FakeModels(labels))
     assert c.execute("SELECT COUNT(*) FROM embedding WHERE pictogram_id=?", (pid,)).fetchone()[0] == 0
+
+
+def _depiction_with_labels(c, score, object_id=None):
+    c.execute("INSERT INTO platform (id, name) VALUES ('p','p')")
+    c.execute("INSERT INTO source (id, platform_id, name) VALUES ('s','p','s')")
+    c.execute("INSERT INTO pictogram (id, source_id, original_id, svg_valid) VALUES (1,'s','a',1), (2,'s','b',1)")
+    c.execute("INSERT INTO concept (id, label) VALUES ('wn:cup.n.01','cup')")
+    c.execute(
+        "INSERT INTO depiction (id, object_id, view, varieties, method, size, source_count) VALUES (1,?, 'unknown', '[]', 'rules', 2, 1)",
+        (object_id,),
+    )
+    c.execute("INSERT INTO style_group (id, depiction_id, size) VALUES (1,1,2)")
+    c.execute("INSERT INTO style_member VALUES (1,1), (1,2)")
+    for pid in (1, 2):
+        c.execute("INSERT INTO vision_label VALUES (?, 'object', 'wn:cup.n.01', ?, 1)", (pid, score))
+        c.execute("INSERT INTO vision_label VALUES (?, 'view', 'view:side', ?, 1)", (pid, score))
+
+
+def test_apply_sets_confident_objects_and_views(conn):
+    from handdown import vision
+
+    _depiction_with_labels(conn, 0.8)
+    assert vision.apply(conn)["objects"] == 1
+    assert tuple(conn.execute("SELECT object_id, view FROM depiction").fetchone()) == ("wn:cup.n.01", "side")
+
+
+def test_apply_leaves_low_scores_and_existing_objects(tmp_path, monkeypatch):
+    from handdown import vision
+
+    for score, existing, expected in ((0.1, None, None), (0.9, "wn:mug.n.04", "wn:mug.n.04")):
+        monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path / str(score)))
+        c = db.connect(Config().db_path)
+        _depiction_with_labels(c, score, existing)
+        vision.apply(c)
+        assert c.execute("SELECT object_id FROM depiction").fetchone()[0] == expected

@@ -370,6 +370,14 @@ def import_vision_cmd(paths: list[str], identity: str = typer.Option(None, "--id
         typer.echo(f"{p}: {vision.import_vision(conn, cfg, p, os.path.expanduser(ident) if ident else None)}")
 
 
+@app.command("vision-apply")
+def vision_apply(min_score: float = 0.3) -> None:
+    """Fill missing objects and views of depictions from vision labels."""
+    from . import vision
+
+    typer.echo(vision.apply(_conn(Config()), min_score=min_score))
+
+
 @app.command()
 def status() -> None:
     """Counts per stage and source status."""

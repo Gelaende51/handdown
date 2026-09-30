@@ -238,3 +238,31 @@ class TorchModels:
         torch = self.torch
         logits = torch.from_numpy(siglip) @ self.text[kind].T * self.smodel.logit_scale.exp() + self.smodel.logit_bias
         return torch.sigmoid(logits).numpy()
+
+
+def apply(conn: sqlite3.Connection, min_score: float = 0.3) -> dict[str, int]:
+    """Fill depictions that have no object (or an unknown view) with the
+    majority top-1 vision label of their members, when its mean score is at
+    least ``min_score``. Existing objects and views are never overwritten."""
+    counts = {"objects": 0, "views": 0}
+    for kind, column, empty in (("object", "object_id", "object_id IS NULL"), ("view", "view", "view = 'unknown'")):
+        rows = conn.execute(
+            f"""SELECT d.id, v.label_id, COUNT(*) AS n, AVG(v.score) AS mean
+                FROM depiction d JOIN style_group g ON g.depiction_id = d.id
+                JOIN style_member sm ON sm.style_group_id = g.id
+                JOIN vision_label v ON v.pictogram_id = sm.pictogram_id AND v.kind = ? AND v.rank = 1
+                WHERE d.{empty}
+                GROUP BY d.id, v.label_id ORDER BY d.id, n DESC, mean DESC""",
+            (kind,),
+        ).fetchall()
+        best: dict[int, tuple[str, float]] = {}
+        for did, label, _n, mean in rows:
+            best.setdefault(did, (label, mean))  # first row per depiction = majority label
+        for did, (label, mean) in best.items():
+            if mean < min_score:
+                continue
+            value = label.removeprefix("view:") if kind == "view" else label
+            conn.execute(f"UPDATE depiction SET {column} = ? WHERE id = ? AND {empty}", (value, did))
+            counts["objects" if kind == "object" else "views"] += 1
+    conn.commit()
+    return counts
