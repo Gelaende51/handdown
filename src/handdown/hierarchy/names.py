@@ -55,6 +55,25 @@ VARIETY_WORDS = {
 }
 
 
+# Direction is orientation (a depiction feature, like mirroring), not an object:
+# WordNet reads "down" as feathers.
+DIRECTION_WORDS = {
+    "up": "points-up",
+    "down": "points-down",
+    "left": "points-left",
+    "right": "points-right",
+    "north": "points-up",
+    "south": "points-down",
+    "west": "points-left",
+    "east": "points-right",
+    "upward": "points-up",
+    "downward": "points-down",
+    "backward": "points-left",
+    "forward": "points-right",
+}
+# Words for "a pictogram" itself carry no object.
+GENERIC_WORDS = {"icon", "symbol", "glyph", "pictogram", "sign", "emoji", "image", "graphic", "shape"}
+
 # Composite operators that structure a glyph rather than carry meaning.
 # Modifier words (download, add, lock) stay: they name meanings or objects.
 STRUCTURAL_ROLES = {"negation", "frame", "repetition"}
@@ -89,6 +108,10 @@ def name_roles(name: str) -> NameRoles:
             continue
         if t in VIEW_WORDS:
             r.view = VIEW_WORDS[t]
+        elif t in DIRECTION_WORDS:
+            varieties.add(DIRECTION_WORDS[t])
+        elif t in GENERIC_WORDS:
+            continue
         elif t in VARIETY_WORDS:
             varieties.add(VARIETY_WORDS[t])
         elif len(t) < 3 or OPERATORS.get(t, ("",))[0] in STRUCTURAL_ROLES or not _is_word(t):
@@ -113,13 +136,13 @@ def object_head(phrase: str) -> tuple[list[str], list[str]]:
     word (with, in, on ...) is the head."""
     tokens = split_name(phrase)
     cut = next((i for i, t in enumerate(tokens) if t in PHRASE_BREAKS), len(tokens))
-    keep = lambda t: (len(t) >= 3 or t.isdigit()) and t not in PHRASE_BREAKS  # noqa: E731
+    keep = lambda t: (len(t) >= 3 or t.isdigit()) and t not in PHRASE_BREAKS and t not in GENERIC_WORDS  # noqa: E731
     main, extra = [t for t in tokens[:cut] if keep(t)], [t for t in tokens[cut:] if keep(t)]
     if not main:
         return [], sorted(set(extra))
     wn = wordnet()
     if len(main) > 1 and wn.synsets("_".join(main), "n"):
         return main, sorted(set(extra))
-    heads = [i for i, t in enumerate(main) if is_object_word(t)]
+    heads = [i for i, t in enumerate(main) if t not in DIRECTION_WORDS and is_object_word(t)]
     h = heads[-1] if heads else len(main) - 1
     return [main[h]], sorted(set(main[:h] + main[h + 1 :] + extra))

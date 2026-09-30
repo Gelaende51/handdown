@@ -50,6 +50,15 @@ def test_object_head_from_descriptive_phrase():
 
     assert object_head("down arrow in circle") == (["arrow"], ["circle", "down"])
     assert object_head("download arrow with tray") == (["arrow"], ["download", "tray"])
-    assert object_head("shield with person icon") == (["shield"], ["icon", "person"])
+    assert object_head("shield with person icon") == (["shield"], ["person"])  # generic "icon" dropped
     assert object_head("floppy disk")[0] == ["floppy", "disk"]  # a compound WordNet knows stays whole
     assert object_head("octopus cat mascot")[0] == ["mascot"]
+
+
+def test_directions_are_orientation_not_objects():
+    r = name_roles("arrow-down-circle")
+    assert r.object_tokens == ["arrow"] and "points-down" in r.varieties
+    from handdown.hierarchy.names import object_head
+
+    assert object_head("down arrow")[0] == ["arrow"]
+    assert object_head("app icon")[0] == ["app"]
