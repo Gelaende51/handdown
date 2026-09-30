@@ -179,11 +179,13 @@ class GitHubModels:
 
     URL = "https://models.github.ai/inference/chat/completions"
 
-    def __init__(self, model: str, token: str, retries: int = 8):
+    def __init__(self, model: str, token: str, retries: int = 8, transport: Any = None):
         import httpx
 
         self.model, self.retries = model, retries
-        self.client = httpx.Client(timeout=300, headers={"Authorization": f"Bearer {token}"})
+        headers = {"Authorization": f"Bearer {token}", "Accept": "application/json", "X-GitHub-Api-Version": "2022-11-28"}
+        # raise_for_status passes a 3xx, so an unfollowed redirect looks like an empty success
+        self.client = httpx.Client(timeout=300, headers=headers, follow_redirects=True, transport=transport)
 
     def __call__(self, images: list[Any]) -> list[str]:
         content: list[dict[str, Any]] = [{"type": "text", "text": BATCH_PROMPT.format(n=len(images))}]
@@ -198,7 +200,10 @@ class GitHubModels:
                 time.sleep(wait + 1)
                 continue
             r.raise_for_status()
-            return numbered(r.json()["choices"][0]["message"]["content"], len(images))
+            try:
+                return numbered(r.json()["choices"][0]["message"]["content"], len(images))
+            except (ValueError, KeyError, IndexError, TypeError) as e:
+                raise RuntimeError(f"GitHub Models answered {r.status_code} {r.headers.get('content-type')}: {r.text[:500] or 'empty'}") from e
         raise RuntimeError("GitHub Models kept answering 429")
 
 
