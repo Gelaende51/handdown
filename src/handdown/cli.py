@@ -444,6 +444,61 @@ def vision_apply(min_score: float = 0.3) -> None:
     typer.echo(vision.apply(_conn(Config()), min_score=min_score))
 
 
+def _jsonl(path: str) -> list[dict]:
+    import json
+    from pathlib import Path
+
+    return [json.loads(line) for line in Path(path).read_text().splitlines() if line.strip()]
+
+
+@app.command("bench-sample")
+def bench_sample(n: int = 500, per_source: int = 4, seed: int = 0, out: str = "work/bench") -> None:
+    """Draw the vision benchmark sample (sample.jsonl and the sources.jsonl job list)."""
+    import json
+    from pathlib import Path
+
+    from . import bench
+
+    sample, sources = bench.make_sample(_conn(Config()), n=n, per_source=per_source, seed=seed)
+    Path(out).mkdir(parents=True, exist_ok=True)
+    for name, rows in (("sample.jsonl", sample), ("sources.jsonl", sources)):
+        (Path(out) / name).write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows))
+    typer.echo(f"{len(sample)} pictograms from {len(sources)} sources -> {out}")
+
+
+@app.command("bench-prepare")
+def bench_prepare(sample: str) -> None:
+    """Runner: leave only the sample's pictograms for `process`."""
+    from . import bench
+
+    typer.echo(f"{bench.prepare(_conn(Config()), _jsonl(sample))} pictograms outside the sample skipped")
+
+
+@app.command("bench-run")
+def bench_run(sample: str, model: str = typer.Option(..., help="ollama:<tag> | github:<model> | florence:omniparser"), out: str = "bench.jsonl") -> None:
+    """Runner: ask one model to name the object of every sample pictogram."""
+    from pathlib import Path
+
+    from . import bench
+
+    cfg = Config()
+    ask, batch, size = bench.backend(model)
+    typer.echo(bench.run(_conn(cfg), cfg, _jsonl(sample), ask, model, Path(out), batch=batch, size=size))
+
+
+@app.command("bench-score")
+def bench_score(results: list[str]) -> None:
+    """Compare benchmark answers with Claude's objects, per model."""
+    from . import bench
+
+    rows = [r for path in results for r in _jsonl(path)]
+    report = bench.score(_conn(Config()), rows)
+    for model, m in sorted(report.items(), key=lambda kv: -(kv[1]["exact"] + kv[1]["near"])):
+        typer.echo(f"{model:36} n={m['n']:4}  exact {m['exact']:.0%}  +near {m['exact'] + m['near']:.0%}  {m['seconds']:.1f} s/image")
+    for model, m in report.items():
+        typer.echo(f"\n{model} misses: " + "; ".join(f"{g[3:]} <- {a!r}" for g, a in m["misses"]))
+
+
 @app.command()
 def serve(port: int = 8765) -> None:
     """Review app: browse the hierarchy and mark classification errors (http://127.0.0.1:PORT)."""
