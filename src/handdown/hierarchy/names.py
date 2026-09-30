@@ -101,3 +101,25 @@ def name_roles(name: str) -> NameRoles:
             r.meaning_tokens.append(t)
     r.varieties = sorted(varieties)
     return r
+
+
+PHRASE_BREAKS = {"with", "in", "on", "and", "inside", "over", "under", "of", "plus", "behind", "above", "below"}
+
+
+def object_head(phrase: str) -> tuple[list[str], list[str]]:
+    """The object of a descriptive phrase ("down arrow in circle" -> arrow)
+    plus the remaining words. A compound WordNet knows stays whole
+    ("floppy disk"); otherwise the rightmost object word before a break
+    word (with, in, on ...) is the head."""
+    tokens = split_name(phrase)
+    cut = next((i for i, t in enumerate(tokens) if t in PHRASE_BREAKS), len(tokens))
+    keep = lambda t: (len(t) >= 3 or t.isdigit()) and t not in PHRASE_BREAKS  # noqa: E731
+    main, extra = [t for t in tokens[:cut] if keep(t)], [t for t in tokens[cut:] if keep(t)]
+    if not main:
+        return [], sorted(set(extra))
+    wn = wordnet()
+    if len(main) > 1 and wn.synsets("_".join(main), "n"):
+        return main, sorted(set(extra))
+    heads = [i for i, t in enumerate(main) if is_object_word(t)]
+    h = heads[-1] if heads else len(main) - 1
+    return [main[h]], sorted(set(main[:h] + main[h + 1 :] + extra))

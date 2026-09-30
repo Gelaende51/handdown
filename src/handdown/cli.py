@@ -125,7 +125,10 @@ def ai(
         typer.echo(a.run_composition(conn, cfg.data / "ai-work", limit=limit, sample=sample, log=typer.echo))
         return
     if job == "hierarchy":
-        typer.echo(a.run_hierarchy(conn, cfg.data / "ai-work", limit=limit, workers=workers, log=typer.echo))
+        out = a.run_hierarchy(conn, cfg.data / "ai-work", limit=limit, workers=workers, log=typer.echo)
+        typer.echo(out)
+        if out.get("quota_hit"):
+            raise typer.Exit(75)  # EX_TEMPFAIL: the pacing loop waits for the reset
         return
     typer.echo(a.run(conn, cfg.data / "ai-work", limit=limit, min_sources=min_sources, log=typer.echo))
     sc.combined(conn)
@@ -301,11 +304,15 @@ def compose(limit: int = typer.Option(None), workers: int = 1) -> None:
 
 
 @app.command()
-def hierarchy() -> None:
+def hierarchy(reresolve: bool = typer.Option(False, "--reresolve", help="only re-derive AI objects from stored answers")) -> None:
     """Build style groups, depictions, objects and meanings."""
     from .hierarchy import group as hg
 
-    typer.echo(hg.run(_conn(Config()), log=typer.echo))
+    conn = _conn(Config())
+    if reresolve:
+        typer.echo(f"{hg.reresolve_ai_objects(conn)} AI objects re-resolved")
+        return
+    typer.echo(hg.run(conn, log=typer.echo))
 
 
 @app.command()

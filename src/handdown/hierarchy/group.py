@@ -132,3 +132,25 @@ def run(conn: sqlite3.Connection, log: Any = print) -> dict[str, int]:
             log(f"  {i}/{len(concepts)} {dict(counts)}")
     conn.commit()
     return dict(counts)
+
+
+def reresolve_ai_objects(conn: sqlite3.Connection) -> int:
+    """Re-derive objects of AI depictions from the stored answer (description)
+    with object_head: "down arrow in circle" -> arrow. No new model calls."""
+    from .names import object_head
+
+    seen: set[str] = {r[0] for r in conn.execute("SELECT id FROM concept")}
+    n = 0
+    for did, description, current in conn.execute(
+        "SELECT id, description, object_id FROM depiction WHERE method = 'ai' AND description IS NOT NULL"
+    ).fetchall():
+        head, _extra = object_head(description)
+        if not head:
+            continue
+        c = resolve(head)
+        if c.id != current:
+            _ensure(conn, c, seen)
+            conn.execute("UPDATE depiction SET object_id=? WHERE id=?", (c.id, did))
+            n += 1
+    conn.commit()
+    return n

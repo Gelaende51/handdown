@@ -62,7 +62,39 @@ def test_parallel_calls_give_the_same_result(tmp_path, monkeypatch):
     conn = _setup(tmp_path, monkeypatch)
     answer = {"1": {"object": "mug", "view": "side", "features": [], "meanings": ["coffee"]}}
     monkeypatch.setattr(ai, "ask", lambda *a, **k: (answer, {"usage": {}, "session_id": "h"}))
-    monkeypatch.setattr(ai, "BATCH", 1)
-    out = ai.run_hierarchy(conn, tmp_path / "w", limit=10, workers=2, log=lambda *_: None)
+    out = ai.run_hierarchy(conn, tmp_path / "w", limit=10, workers=2, batch_size=1, log=lambda *_: None)
     assert out["assessed"] == 2
     assert conn.execute("SELECT COUNT(*) FROM style_group WHERE assessed_at IS NULL").fetchone()[0] == 0
+
+
+def test_quota_limit_stops_the_run_without_marking(tmp_path, monkeypatch):
+    conn = _setup(tmp_path, monkeypatch)
+
+    def limited(*a, **k):
+        raise ai.QuotaExceeded("You've hit your session limit · resets 12:10am (UTC)")
+
+    monkeypatch.setattr(ai, "ask", limited)
+    out = ai.run_hierarchy(conn, tmp_path / "w", limit=10, log=lambda *_: None)
+    assert out["quota_hit"] and out["assessed"] == 0
+    assert conn.execute("SELECT COUNT(*) FROM style_group WHERE assessed_at IS NOT NULL").fetchone()[0] == 0
+
+
+def test_descriptive_object_resolves_to_its_head(tmp_path, monkeypatch):
+    conn = _setup(tmp_path, monkeypatch)
+    answer = {"1": {"object": "down arrow in circle", "view": "unknown", "features": [], "meanings": []}}
+    monkeypatch.setattr(ai, "ask", lambda *a, **k: (answer, {"usage": {}, "session_id": "h"}))
+    ai.run_hierarchy(conn, tmp_path / "w", limit=1, log=lambda *_: None)
+    from handdown.concepts import resolve
+
+    assert conn.execute("SELECT object_id FROM depiction WHERE id=1").fetchone()[0] == resolve(["arrow"]).id
+
+
+def test_reresolve_existing_ai_objects(tmp_path, monkeypatch):
+    from handdown.hierarchy.group import reresolve_ai_objects
+
+    conn = _setup(tmp_path, monkeypatch)
+    conn.execute("UPDATE depiction SET method='ai', description='shield with person icon', object_id='term:shield with person icon'")
+    assert reresolve_ai_objects(conn) == 1
+    from handdown.concepts import resolve
+
+    assert conn.execute("SELECT object_id FROM depiction WHERE id=1").fetchone()[0] == resolve(["shield"]).id

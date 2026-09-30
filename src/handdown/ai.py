@@ -69,6 +69,14 @@ Grade and describe each cell. Reply with JSON only, keyed by cell number:
 }, ...}"""
 
 
+class QuotaExceeded(RuntimeError):
+    """The account's usage limit was reached; stop and resume after the reset."""
+
+
+QUOTA_MARKERS = ("hit your session limit", "hit your usage limit", "usage limit reached", "rate limit")
+HIERARCHY_BATCH = 24  # cells per call: the instructions and overhead are paid once per 24 pictograms
+
+
 def sheet(svgs: list[str], cols: int = 4) -> bytes:
     rows = (len(svgs) + cols - 1) // cols
     img = Image.new("L", (cols * CELL, rows * CELL), 255)
@@ -134,7 +142,10 @@ def ask(image: bytes, text: str, system: str, workdir: Path) -> tuple[dict[str, 
         if ev.get("type") == "result":
             result = ev
     if result is None or result.get("is_error"):
-        raise RuntimeError(f"claude -p failed: {proc.stderr[-500:] or (result or {}).get('result')}")
+        message = f"{proc.stderr[-500:]} {(result or {}).get('result') or ''}"
+        if any(m in message.lower() for m in QUOTA_MARKERS):
+            raise QuotaExceeded(message.strip())
+        raise RuntimeError(f"claude -p failed: {message.strip()}")
     text_out = result.get("result") or ""
     m = re.search(r"\{.*\}", text_out, re.S)
     if not m:
@@ -335,7 +346,8 @@ def run_composition(conn: sqlite3.Connection, workdir: Path, limit: int = 48, sa
 
 
 HIERARCHY_PROMPT = """Each numbered cell shows one pictogram (large and at 16 px). For each cell say:
-- "object": what is drawn, as a short noun phrase ("coffee mug", "floppy disk", "cloud")
+- "object": the main thing drawn, as its plain name in 1-2 words ("mug", "floppy disk", "arrow", "shield");
+  frames, badges, arrows or other added elements go into "features", not into the object
 - "view": one of front, side, top, bottom, three-quarter, isometric, partial, full, unknown
 - "features": visible details that are PRESENT, as short nouns ("steam", "saucer", "lid"); say whether
   they are there, not how they are drawn
@@ -343,7 +355,9 @@ HIERARCHY_PROMPT = """Each numbered cell shows one pictogram (large and at 16 px
 Reply with JSON only: {"1": {"object": "...", "view": "...", "features": ["..."], "meanings": ["..."]}, ...}"""
 
 
-def run_hierarchy(conn: sqlite3.Connection, workdir: Path, limit: int = 48, workers: int = 1, log: Any = print) -> dict[str, Any]:
+def run_hierarchy(
+    conn: sqlite3.Connection, workdir: Path, limit: int = 48, workers: int = 1, log: Any = print, batch_size: int | None = None
+) -> dict[str, Any]:
     """Blind object/view/features/meanings for style groups not yet assessed,
     established depictions first. A style group whose view or features differ
     from its depiction's moves into its own depiction (method 'ai'). Model
@@ -361,11 +375,12 @@ def run_hierarchy(conn: sqlite3.Connection, workdir: Path, limit: int = 48, work
            WHERE g.assessed_at IS NULL ORDER BY d.source_count DESC, g.source_count DESC LIMIT ?""",
         (limit,),
     ).fetchall()
-    batches = [rows[i : i + BATCH] for i in range(0, len(rows), BATCH)]
-    done, cost, now = 0, 0.0, db.now()
+    size = batch_size or HIERARCHY_BATCH
+    batches = [rows[i : i + size] for i in range(0, len(rows), size)]
+    done, cost, now, quota_hit = 0, 0.0, db.now(), False
 
     def call(batch: list[sqlite3.Row]) -> tuple[dict[str, Any], dict[str, Any]]:
-        img = sheet([cfg.resolve(r["norm_path"]).read_text() for r in batch])  # type: ignore[union-attr]
+        img = sheet([cfg.resolve(r["norm_path"]).read_text() for r in batch], cols=6)  # type: ignore[union-attr]
         return ask(img, HIERARCHY_PROMPT, "You look at pictograms and report what you see. Reply with JSON only.", workdir)
 
     with ThreadPoolExecutor(max(1, workers)) as pool:
@@ -374,6 +389,12 @@ def run_hierarchy(conn: sqlite3.Connection, workdir: Path, limit: int = 48, work
             batch = futures[fut]
             try:
                 answer, result = fut.result()
+            except QuotaExceeded as e:
+                log(f"  usage limit reached, stopping: {e}")
+                quota_hit = True
+                for f in futures:
+                    f.cancel()
+                break
             except (RuntimeError, ValueError, OSError, subprocess.TimeoutExpired, json.JSONDecodeError) as e:
                 log(f"  batch {n}: {e}")
                 continue
@@ -389,17 +410,18 @@ def run_hierarchy(conn: sqlite3.Connection, workdir: Path, limit: int = 48, work
             conn.commit()
             if n % 10 == 0 or n == len(batches):
                 log(f"  {n}/{len(batches)} batches: {done} style groups, ${cost:.3f}")
-    return {"assessed": done, "cost_usd": round(cost, 4)}
+    return {"assessed": done, "cost_usd": round(cost, 4), "quota_hit": quota_hit}
 
 
 def _apply_hierarchy_answer(conn: sqlite3.Connection, r: sqlite3.Row, a: dict[str, Any], seen: set[str]) -> None:
     from .concepts import _ensure, resolve, split_name
-    from .hierarchy.names import VIEWS
+    from .hierarchy.names import VIEWS, object_head
 
     view = a.get("view") if a.get("view") in VIEWS else None
     features = a.get("features")
     feats = sorted({f.strip().lower() for f in features if isinstance(f, str) and f.strip()}) if isinstance(features, list) else None
-    obj_c = resolve(split_name(a["object"]))
+    head, _extra = object_head(a["object"])
+    obj_c = resolve(head or split_name(a["object"]))
     _ensure(conn, obj_c, seen)
     dep = conn.execute("SELECT * FROM depiction WHERE id=?", (r["depiction_id"],)).fetchone()
     new_view = view or dep["view"]

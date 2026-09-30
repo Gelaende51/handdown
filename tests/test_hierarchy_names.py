@@ -43,3 +43,13 @@ def test_unknown_tokens_do_not_crash():
 def test_short_words_are_ignored():
     r = name_roles("document-as-pdf")
     assert "as" not in r.object_tokens + r.meaning_tokens
+
+
+def test_object_head_from_descriptive_phrase():
+    from handdown.hierarchy.names import object_head
+
+    assert object_head("down arrow in circle") == (["arrow"], ["circle", "down"])
+    assert object_head("download arrow with tray") == (["arrow"], ["download", "tray"])
+    assert object_head("shield with person icon") == (["shield"], ["icon", "person"])
+    assert object_head("floppy disk")[0] == ["floppy", "disk"]  # a compound WordNet knows stays whole
+    assert object_head("octopus cat mascot")[0] == ["mascot"]
