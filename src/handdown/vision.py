@@ -255,8 +255,9 @@ class TorchModels:
 
     def label_scores(self, siglip: Any, kind: str) -> Any:
         torch = self.torch
-        logits = torch.from_numpy(siglip) @ self.text[kind].T * self.smodel.logit_scale.exp() + self.smodel.logit_bias
-        return torch.sigmoid(logits).numpy()
+        with torch.no_grad():  # logit_scale/bias are parameters that require grad
+            logits = torch.from_numpy(siglip) @ self.text[kind].T * self.smodel.logit_scale.exp() + self.smodel.logit_bias
+            return torch.sigmoid(logits).detach().numpy()
 
 
 def apply(conn: sqlite3.Connection, min_score: float = 0.3) -> dict[str, int]:
