@@ -127,3 +127,5 @@ candidates for bug reports, feature requests or pull requests.
 - DINOv2 nearest neighbour against Claude-labelled groups: 39–52 %. Visual neighbours share shape, not object.
 - A linear probe (softmax regression on concatenated unit SigLIP + DINOv2 features, numpy only) trained on 1,724 Claude-labelled depictions across 77 objects: 77 % in 5-fold cross-validation, 94 % above p ≥ 0.7, 98 % above p ≥ 0.9. The cheap path is Claude on a representative sample, probe on the rest.
 - SQLite lets `GROUP BY` take bare columns from the row that holds `MAX()`, which picks each depiction's largest style group without a window function.
+- At full scale (16,992 examples, 396 objects) the probe's overall CV accuracy drops to 58 %, but the confidence curve holds: 94 % at p ≥ 0.7 (25 % coverage), 98 % at p ≥ 0.9 (9 %). Errors left above 0.9 are mostly near-synonyms (file/document, hearts/heart, thumb/hand).
+- Coverage on groups Claude never saw is lower than CV predicts: p ≥ 0.9 set 4,843 of 134,855 unlabelled depictions (3.6 %), dominated by generic shapes (arrow, letter, face, bubble, cloud). The assessed sample is not representative of the long tail.
