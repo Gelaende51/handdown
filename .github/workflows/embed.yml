@@ -1,0 +1,78 @@
+# Vision models on GitHub-hosted runners: every runner re-harvests its share
+# of a job list, renders the pictograms and computes DINOv2 embeddings and
+# SigLIP zero-shot labels (docs/superpowers/specs/2026-09-30-vision-models-design.md).
+# Results are age-encrypted before upload (public repository); merge with:
+#   uv run handdown import-vision --identity ~/.config/handdown/age.key vision-*.jsonl.gz.age
+name: embed
+on:
+  workflow_dispatch:
+    inputs:
+      jobs:
+        description: "Job list (JSONL from `handdown export-sources`), e.g. work/jobs/vision-iconify.jsonl"
+        required: true
+      adapter:
+        description: "Adapter: iconify | git-svg | npm-svg | font | commons"
+        required: true
+      shards:
+        description: "Number of parallel runners"
+        default: "20"
+
+permissions:
+  contents: read
+
+env:
+  HANDDOWN_AGE_RECIPIENT: ${{ vars.HANDDOWN_AGE_RECIPIENT }}
+  HF_HUB_DISABLE_TELEMETRY: "1"
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.m.outputs.matrix }}
+    steps:
+      - name: Require the encryption key before any work
+        run: |
+          if [ -z "$HANDDOWN_AGE_RECIPIENT" ]; then
+            echo "::error::repository variable HANDDOWN_AGE_RECIPIENT (age public key) is not set"
+            exit 1
+          fi
+      - id: m
+        run: echo "matrix=$(python3 -c 'import json,sys; print(json.dumps(list(range(int(sys.argv[1])))))' '${{ inputs.shards }}')" >> "$GITHUB_OUTPUT"
+
+  embed:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        shard: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --frozen
+      # Vision dependencies only on runners (CPU torch, not in uv.lock)
+      - run: uv pip install torch --index-url https://download.pytorch.org/whl/cpu && uv pip install transformers sentencepiece protobuf
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-dinov2-small-siglip-base-224
+      - run: uv run handdown import-sources "${{ inputs.jobs }}" --shard "${{ matrix.shard }}/${{ inputs.shards }}"
+      - run: uv run handdown harvest "${{ inputs.adapter }}" --status accepted --status harvested --status blocked-network --status candidate --no-registry
+      - run: uv run handdown process --workers 4
+      - run: uv run handdown dedupe
+      - run: uv run handdown embed --labels work/vision/labels.jsonl
+      - if: always()
+        run: uv run handdown errors --annotate
+      # export-vision refuses to write unencrypted data on Actions
+      - run: uv run handdown export-vision "vision-${{ inputs.adapter }}-${{ matrix.shard }}.jsonl.gz"
+      - name: Remove plaintext data before upload
+        run: rm -rf data && ls -la vision-*
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vision-${{ inputs.adapter }}-${{ matrix.shard }}
+          path: vision-${{ inputs.adapter }}-${{ matrix.shard }}.jsonl.gz.age
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0

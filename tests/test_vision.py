@@ -28,10 +28,12 @@ def test_vocabulary_objects_views_features(conn):
         ("term:mug", "mug", None),
     ]
     conn.executemany("INSERT INTO concept (id, label, wordnet_synset) VALUES (?,?,?)", rows)
+    conn.execute("INSERT INTO concept (id, label, parent_id) VALUES ('term:cup arrow left', 'cup arrow left', 'wn:cup.n.01')")
     labels = vision.build_vocabulary(conn)
     objects = [lab for lab in labels if lab["kind"] == "object"]
     assert {lab["id"] for lab in objects} >= {"wn:cup.n.01"}
     assert not any(lab["id"] == "wn:download.v.01" for lab in objects)
+    assert not any(lab["id"].startswith("term:") for lab in objects)  # phrases dilute zero-shot
     assert len({lab["text"] for lab in labels}) == len(labels)  # deduplicated texts
     assert {lab["kind"] for lab in labels} == {"object", "view", "feature"}
     assert all(json.dumps(lab) for lab in labels)

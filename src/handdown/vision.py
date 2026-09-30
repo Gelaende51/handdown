@@ -69,9 +69,9 @@ def build_vocabulary(conn: sqlite3.Connection) -> list[dict[str, Any]]:
                 synset_lex[cid] = wn.synset(synset).lexname()
             except Exception:  # unknown synset id (older WordNet data)
                 continue
-    for cid, label, synset, parent in rows:
-        lex = synset_lex.get(cid) if synset else synset_lex.get(parent or "")
-        if lex in OBJECT_LEXNAMES:
+    for cid, label, synset, _parent in rows:
+        # WordNet objects only: term phrases ("arrow left circle") dilute zero-shot
+        if synset and synset_lex.get(cid) in OBJECT_LEXNAMES:
             add(cid, "object", f"a pictogram of a {label}")
     for view, text in VIEW_TEXTS.items():
         add(f"view:{view}", "view", f"a pictogram {text}")
