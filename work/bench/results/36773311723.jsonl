@@ -1,0 +1,1000 @@
+{"key": 251778, "model": "ollama:moondream", "answer": "", "seconds": 18.67}
+{"key": 280982, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 280986, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.93}
+{"key": 302608, "model": "ollama:moondream", "answer": "arrow", "seconds": 17.86}
+{"key": 303183, "model": "ollama:moondream", "answer": "", "seconds": 17.8}
+{"key": 314260, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 18.07}
+{"key": 316203, "model": "ollama:moondream", "answer": "", "seconds": 17.84}
+{"key": 331096, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 338484, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 339411, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 358214, "model": "ollama:moondream", "answer": "irt", "seconds": 17.79}
+{"key": 365318, "model": "ollama:moondream", "answer": "", "seconds": 17.81}
+{"key": 370249, "model": "ollama:moondream", "answer": "", "seconds": 17.83}
+{"key": 388650, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.95}
+{"key": 394341, "model": "ollama:moondream", "answer": "", "seconds": 17.89}
+{"key": 395810, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.97}
+{"key": 403949, "model": "ollama:moondream", "answer": "irc", "seconds": 17.88}
+{"key": 405977, "model": "ollama:moondream", "answer": "", "seconds": 17.82}
+{"key": 428891, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.99}
+{"key": 453952, "model": "ollama:moondream", "answer": "", "seconds": 17.81}
+{"key": 454056, "model": "ollama:moondream", "answer": "", "seconds": 17.78}
+{"key": 466611, "model": "ollama:moondream", "answer": "urn", "seconds": 17.96}
+{"key": 487308, "model": "ollama:moondream", "answer": "", "seconds": 17.91}
+{"key": 503345, "model": "ollama:moondream", "answer": "arrow", "seconds": 17.99}
+{"key": 515992, "model": "ollama:moondream", "answer": "v\u00a0\u00a0k", "seconds": 18.05}
+{"key": 521482, "model": "ollama:moondream", "answer": "urn", "seconds": 17.88}
+{"key": 526373, "model": "ollama:moondream", "answer": "?", "seconds": 17.87}
+{"key": 526554, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.95}
+{"key": 526803, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 528177, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 528939, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 530126, "model": "ollama:moondream", "answer": "", "seconds": 17.86}
+{"key": 530430, "model": "ollama:moondream", "answer": "urn", "seconds": 17.79}
+{"key": 530658, "model": "ollama:moondream", "answer": "", "seconds": 17.84}
+{"key": 530825, "model": "ollama:moondream", "answer": "", "seconds": 17.81}
+{"key": 533386, "model": "ollama:moondream", "answer": "", "seconds": 17.78}
+{"key": 534801, "model": "ollama:moondream", "answer": "", "seconds": 17.81}
+{"key": 535291, "model": "ollama:moondream", "answer": "", "seconds": 17.84}
+{"key": 536114, "model": "ollama:moondream", "answer": "", "seconds": 17.78}
+{"key": 536468, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 536729, "model": "ollama:moondream", "answer": "", "seconds": 17.84}
+{"key": 537468, "model": "ollama:moondream", "answer": "", "seconds": 17.73}
+{"key": 538538, "model": "ollama:moondream", "answer": "", "seconds": 17.82}
+{"key": 541206, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 541510, "model": "ollama:moondream", "answer": "", "seconds": 17.82}
+{"key": 542261, "model": "ollama:moondream", "answer": "", "seconds": 17.77}
+{"key": 544326, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 545729, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.91}
+{"key": 545903, "model": "ollama:moondream", "answer": "", "seconds": 17.8}
+{"key": 546262, "model": "ollama:moondream", "answer": "", "seconds": 17.78}
+{"key": 546541, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 547297, "model": "ollama:moondream", "answer": "", "seconds": 17.77}
+{"key": 549525, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 550114, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 550321, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 551140, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.91}
+{"key": 551334, "model": "ollama:moondream", "answer": "", "seconds": 17.82}
+{"key": 552300, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.92}
+{"key": 552749, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.95}
+{"key": 553743, "model": "ollama:moondream", "answer": "arrow", "seconds": 17.85}
+{"key": 553955, "model": "ollama:moondream", "answer": "", "seconds": 17.77}
+{"key": 553961, "model": "ollama:moondream", "answer": "", "seconds": 17.84}
+{"key": 554109, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 554220, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 556321, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 559885, "model": "ollama:moondream", "answer": "", "seconds": 17.71}
+{"key": 560965, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.89}
+{"key": 561468, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 562014, "model": "ollama:moondream", "answer": "", "seconds": 17.83}
+{"key": 562039, "model": "ollama:moondream", "answer": "urn", "seconds": 17.95}
+{"key": 562073, "model": "ollama:moondream", "answer": "", "seconds": 17.82}
+{"key": 562095, "model": "ollama:moondream", "answer": "", "seconds": 17.83}
+{"key": 562122, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 562123, "model": "ollama:moondream", "answer": "", "seconds": 17.77}
+{"key": 562124, "model": "ollama:moondream", "answer": "", "seconds": 17.75}
+{"key": 562126, "model": "ollama:moondream", "answer": "", "seconds": 17.7}
+{"key": 562128, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 562150, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 562153, "model": "ollama:moondream", "answer": "", "seconds": 17.67}
+{"key": 562194, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.88}
+{"key": 562221, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 562276, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.92}
+{"key": 562301, "model": "ollama:moondream", "answer": "", "seconds": 17.73}
+{"key": 562316, "model": "ollama:moondream", "answer": "", "seconds": 17.66}
+{"key": 562329, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.82}
+{"key": 562390, "model": "ollama:moondream", "answer": "", "seconds": 17.71}
+{"key": 562435, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 562455, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 562456, "model": "ollama:moondream", "answer": "", "seconds": 17.64}
+{"key": 562457, "model": "ollama:moondream", "answer": "", "seconds": 17.67}
+{"key": 562671, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 562717, "model": "ollama:moondream", "answer": "", "seconds": 17.7}
+{"key": 562726, "model": "ollama:moondream", "answer": "", "seconds": 17.7}
+{"key": 562805, "model": "ollama:moondream", "answer": "arrow", "seconds": 17.78}
+{"key": 562832, "model": "ollama:moondream", "answer": "", "seconds": 17.73}
+{"key": 562852, "model": "ollama:moondream", "answer": "", "seconds": 17.67}
+{"key": 562883, "model": "ollama:moondream", "answer": "", "seconds": 17.7}
+{"key": 562884, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.92}
+{"key": 562911, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 562917, "model": "ollama:moondream", "answer": "urn", "seconds": 17.77}
+{"key": 562942, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 562947, "model": "ollama:moondream", "answer": "", "seconds": 17.68}
+{"key": 562954, "model": "ollama:moondream", "answer": "e", "seconds": 17.8}
+{"key": 563057, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.83}
+{"key": 563149, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.87}
+{"key": 563184, "model": "ollama:moondream", "answer": "", "seconds": 17.75}
+{"key": 563230, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 563268, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.91}
+{"key": 563305, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 563307, "model": "ollama:moondream", "answer": "", "seconds": 17.71}
+{"key": 563346, "model": "ollama:moondream", "answer": "", "seconds": 17.7}
+{"key": 563393, "model": "ollama:moondream", "answer": "1. coffee cup", "seconds": 17.98}
+{"key": 563491, "model": "ollama:moondream", "answer": "", "seconds": 17.78}
+{"key": 563512, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 563515, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 18.03}
+{"key": 563520, "model": "ollama:moondream", "answer": "", "seconds": 17.81}
+{"key": 563523, "model": "ollama:moondream", "answer": "", "seconds": 17.8}
+{"key": 563689, "model": "ollama:moondream", "answer": "", "seconds": 17.8}
+{"key": 563690, "model": "ollama:moondream", "answer": "", "seconds": 17.73}
+{"key": 563844, "model": "ollama:moondream", "answer": "", "seconds": 17.73}
+{"key": 563850, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 563887, "model": "ollama:moondream", "answer": "", "seconds": 17.84}
+{"key": 563985, "model": "ollama:moondream", "answer": "", "seconds": 17.78}
+{"key": 564003, "model": "ollama:moondream", "answer": "", "seconds": 17.85}
+{"key": 564011, "model": "ollama:moondream", "answer": "", "seconds": 17.91}
+{"key": 564016, "model": "ollama:moondream", "answer": "", "seconds": 17.83}
+{"key": 564119, "model": "ollama:moondream", "answer": "m, m, e", "seconds": 18.2}
+{"key": 564126, "model": "ollama:moondream", "answer": "", "seconds": 17.75}
+{"key": 564156, "model": "ollama:moondream", "answer": "", "seconds": 17.77}
+{"key": 564174, "model": "ollama:moondream", "answer": "", "seconds": 17.82}
+{"key": 564191, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 564193, "model": "ollama:moondream", "answer": "", "seconds": 17.83}
+{"key": 564198, "model": "ollama:moondream", "answer": "urn", "seconds": 17.8}
+{"key": 564261, "model": "ollama:moondream", "answer": "", "seconds": 17.77}
+{"key": 564295, "model": "ollama:moondream", "answer": "", "seconds": 17.77}
+{"key": 564302, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 577322, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.92}
+{"key": 577404, "model": "ollama:moondream", "answer": "", "seconds": 17.8}
+{"key": 577450, "model": "ollama:moondream", "answer": "", "seconds": 17.85}
+{"key": 580859, "model": "ollama:moondream", "answer": "", "seconds": 17.75}
+{"key": 584208, "model": "ollama:moondream", "answer": "", "seconds": 17.68}
+{"key": 587416, "model": "ollama:moondream", "answer": "arrow", "seconds": 17.88}
+{"key": 588188, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.96}
+{"key": 589324, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 599607, "model": "ollama:moondream", "answer": "", "seconds": 17.77}
+{"key": 602660, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.88}
+{"key": 606730, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.88}
+{"key": 608469, "model": "ollama:moondream", "answer": "", "seconds": 17.73}
+{"key": 608721, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 608848, "model": "ollama:moondream", "answer": "", "seconds": 17.81}
+{"key": 613113, "model": "ollama:moondream", "answer": "", "seconds": 17.78}
+{"key": 620988, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 621898, "model": "ollama:moondream", "answer": "", "seconds": 17.84}
+{"key": 622242, "model": "ollama:moondream", "answer": "", "seconds": 17.83}
+{"key": 622262, "model": "ollama:moondream", "answer": "", "seconds": 17.7}
+{"key": 622366, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 625102, "model": "ollama:moondream", "answer": "", "seconds": 17.82}
+{"key": 626598, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 18.01}
+{"key": 628407, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 633627, "model": "ollama:moondream", "answer": "urn", "seconds": 17.79}
+{"key": 634883, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.93}
+{"key": 634899, "model": "ollama:moondream", "answer": "", "seconds": 17.75}
+{"key": 639987, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.84}
+{"key": 645733, "model": "ollama:moondream", "answer": "", "seconds": 17.78}
+{"key": 646985, "model": "ollama:moondream", "answer": "", "seconds": 17.73}
+{"key": 648006, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 648321, "model": "ollama:moondream", "answer": "", "seconds": 17.73}
+{"key": 648704, "model": "ollama:moondream", "answer": "", "seconds": 17.65}
+{"key": 650282, "model": "ollama:moondream", "answer": "", "seconds": 17.67}
+{"key": 651311, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 651936, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.86}
+{"key": 653305, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 653318, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 653573, "model": "ollama:moondream", "answer": "", "seconds": 17.7}
+{"key": 658317, "model": "ollama:moondream", "answer": "", "seconds": 17.68}
+{"key": 661098, "model": "ollama:moondream", "answer": "", "seconds": 17.63}
+{"key": 661745, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.84}
+{"key": 662099, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.82}
+{"key": 663693, "model": "ollama:moondream", "answer": "", "seconds": 17.67}
+{"key": 663695, "model": "ollama:moondream", "answer": "", "seconds": 17.68}
+{"key": 665445, "model": "ollama:moondream", "answer": "", "seconds": 17.64}
+{"key": 670597, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.86}
+{"key": 672736, "model": "ollama:moondream", "answer": "", "seconds": 17.66}
+{"key": 675214, "model": "ollama:moondream", "answer": "", "seconds": 17.66}
+{"key": 677054, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 677478, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 678302, "model": "ollama:moondream", "answer": "", "seconds": 17.65}
+{"key": 680506, "model": "ollama:moondream", "answer": "", "seconds": 17.67}
+{"key": 682098, "model": "ollama:moondream", "answer": "urn", "seconds": 17.76}
+{"key": 691444, "model": "ollama:moondream", "answer": "", "seconds": 17.71}
+{"key": 691448, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 692934, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 697519, "model": "ollama:moondream", "answer": "arrow", "seconds": 17.79}
+{"key": 701812, "model": "ollama:moondream", "answer": "irt", "seconds": 17.72}
+{"key": 702331, "model": "ollama:moondream", "answer": "1 - 1 cup of coffee", "seconds": 18.04}
+{"key": 703931, "model": "ollama:moondream", "answer": "", "seconds": 17.71}
+{"key": 703943, "model": "ollama:moondream", "answer": "", "seconds": 17.73}
+{"key": 704388, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 705189, "model": "ollama:moondream", "answer": "", "seconds": 17.75}
+{"key": 709393, "model": "ollama:moondream", "answer": "", "seconds": 17.68}
+{"key": 710102, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 710141, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 711402, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 717685, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 719670, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 719783, "model": "ollama:moondream", "answer": "", "seconds": 17.7}
+{"key": 720001, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.89}
+{"key": 720386, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.9}
+{"key": 720734, "model": "ollama:moondream", "answer": "", "seconds": 17.77}
+{"key": 726614, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.82}
+{"key": 737143, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 737459, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 738601, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.96}
+{"key": 738996, "model": "ollama:moondream", "answer": "", "seconds": 17.94}
+{"key": 739011, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.98}
+{"key": 739144, "model": "ollama:moondream", "answer": "\u0e21\u0e32\u0e23\u0e16\u0e32\u0e21\u0e32\u0e23\u0e16\u0e32\u0e21\u0e32\u0e23\u0e16\u0e32\u0e21", "seconds": 19.12}
+{"key": 741011, "model": "ollama:moondream", "answer": "", "seconds": 17.81}
+{"key": 741935, "model": "ollama:moondream", "answer": "", "seconds": 17.83}
+{"key": 745538, "model": "ollama:moondream", "answer": "0", "seconds": 17.91}
+{"key": 745597, "model": "ollama:moondream", "answer": "", "seconds": 17.86}
+{"key": 745600, "model": "ollama:moondream", "answer": "", "seconds": 17.86}
+{"key": 750423, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 18.07}
+{"key": 752254, "model": "ollama:moondream", "answer": "urn", "seconds": 17.84}
+{"key": 752276, "model": "ollama:moondream", "answer": "", "seconds": 17.87}
+{"key": 761181, "model": "ollama:moondream", "answer": "", "seconds": 17.83}
+{"key": 761431, "model": "ollama:moondream", "answer": "", "seconds": 17.77}
+{"key": 767727, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.94}
+{"key": 769593, "model": "ollama:moondream", "answer": "", "seconds": 17.73}
+{"key": 769675, "model": "ollama:moondream", "answer": "", "seconds": 17.82}
+{"key": 772441, "model": "ollama:moondream", "answer": "irt", "seconds": 17.8}
+{"key": 773560, "model": "ollama:moondream", "answer": "", "seconds": 17.7}
+{"key": 780230, "model": "ollama:moondream", "answer": "t", "seconds": 17.83}
+{"key": 783012, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 787085, "model": "ollama:moondream", "answer": "irt", "seconds": 17.82}
+{"key": 792947, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 797118, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 798959, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.86}
+{"key": 801508, "model": "ollama:moondream", "answer": "", "seconds": 17.71}
+{"key": 804645, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 809094, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 809379, "model": "ollama:moondream", "answer": "", "seconds": 17.73}
+{"key": 810748, "model": "ollama:moondream", "answer": "", "seconds": 17.91}
+{"key": 811891, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.91}
+{"key": 813116, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.93}
+{"key": 813238, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.92}
+{"key": 813328, "model": "ollama:moondream", "answer": "", "seconds": 17.88}
+{"key": 813362, "model": "ollama:moondream", "answer": "", "seconds": 17.8}
+{"key": 813479, "model": "ollama:moondream", "answer": "", "seconds": 17.83}
+{"key": 813524, "model": "ollama:moondream", "answer": "", "seconds": 17.68}
+{"key": 814172, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.8}
+{"key": 814338, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 815246, "model": "ollama:moondream", "answer": "", "seconds": 17.77}
+{"key": 815303, "model": "ollama:moondream", "answer": "urn", "seconds": 17.89}
+{"key": 815938, "model": "ollama:moondream", "answer": "", "seconds": 17.82}
+{"key": 817041, "model": "ollama:moondream", "answer": "", "seconds": 17.78}
+{"key": 817352, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.89}
+{"key": 817353, "model": "ollama:moondream", "answer": "c", "seconds": 17.83}
+{"key": 817478, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.87}
+{"key": 817737, "model": "ollama:moondream", "answer": "", "seconds": 17.78}
+{"key": 817799, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.97}
+{"key": 817915, "model": "ollama:moondream", "answer": "", "seconds": 17.75}
+{"key": 818042, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.95}
+{"key": 818146, "model": "ollama:moondream", "answer": "", "seconds": 17.82}
+{"key": 818158, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 818209, "model": "ollama:moondream", "answer": "", "seconds": 17.77}
+{"key": 818794, "model": "ollama:moondream", "answer": "", "seconds": 17.83}
+{"key": 819071, "model": "ollama:moondream", "answer": "urn", "seconds": 17.84}
+{"key": 819203, "model": "ollama:moondream", "answer": "", "seconds": 17.66}
+{"key": 819383, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 819637, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 819805, "model": "ollama:moondream", "answer": "", "seconds": 17.84}
+{"key": 820609, "model": "ollama:moondream", "answer": "", "seconds": 17.75}
+{"key": 821594, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 821887, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 821892, "model": "ollama:moondream", "answer": "urn", "seconds": 17.89}
+{"key": 822646, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.98}
+{"key": 822959, "model": "ollama:moondream", "answer": "", "seconds": 17.82}
+{"key": 823179, "model": "ollama:moondream", "answer": "", "seconds": 17.82}
+{"key": 823546, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 18.02}
+{"key": 824157, "model": "ollama:moondream", "answer": "", "seconds": 17.82}
+{"key": 824668, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 824834, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 18.03}
+{"key": 825198, "model": "ollama:moondream", "answer": "urn", "seconds": 17.92}
+{"key": 825771, "model": "ollama:moondream", "answer": "", "seconds": 17.85}
+{"key": 826158, "model": "ollama:moondream", "answer": "", "seconds": 17.83}
+{"key": 826261, "model": "ollama:moondream", "answer": "f", "seconds": 17.86}
+{"key": 826474, "model": "ollama:moondream", "answer": "", "seconds": 17.82}
+{"key": 826626, "model": "ollama:moondream", "answer": "", "seconds": 17.87}
+{"key": 826864, "model": "ollama:moondream", "answer": "", "seconds": 17.84}
+{"key": 826941, "model": "ollama:moondream", "answer": "", "seconds": 17.85}
+{"key": 827040, "model": "ollama:moondream", "answer": "", "seconds": 17.81}
+{"key": 827111, "model": "ollama:moondream", "answer": "", "seconds": 17.82}
+{"key": 827200, "model": "ollama:moondream", "answer": "1: coffee cup, 2: arrow, 3: letter a", "seconds": 18.5}
+{"key": 827658, "model": "ollama:moondream", "answer": "urn", "seconds": 17.89}
+{"key": 828188, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 828287, "model": "ollama:moondream", "answer": "m", "seconds": 17.97}
+{"key": 828404, "model": "ollama:moondream", "answer": "urn", "seconds": 17.89}
+{"key": 828479, "model": "ollama:moondream", "answer": "", "seconds": 17.75}
+{"key": 828973, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 829462, "model": "ollama:moondream", "answer": "urn", "seconds": 17.78}
+{"key": 829583, "model": "ollama:moondream", "answer": "urn", "seconds": 17.77}
+{"key": 829906, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 830958, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 831237, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 831499, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.97}
+{"key": 831611, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 832017, "model": "ollama:moondream", "answer": "", "seconds": 17.73}
+{"key": 832161, "model": "ollama:moondream", "answer": "arrow", "seconds": 17.78}
+{"key": 832546, "model": "ollama:moondream", "answer": "", "seconds": 17.68}
+{"key": 832588, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.87}
+{"key": 832767, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 832926, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.91}
+{"key": 833228, "model": "ollama:moondream", "answer": "", "seconds": 17.7}
+{"key": 834406, "model": "ollama:moondream", "answer": "urn", "seconds": 17.78}
+{"key": 834482, "model": "ollama:moondream", "answer": "", "seconds": 17.81}
+{"key": 834525, "model": "ollama:moondream", "answer": "irt", "seconds": 17.84}
+{"key": 834788, "model": "ollama:moondream", "answer": "", "seconds": 17.77}
+{"key": 834798, "model": "ollama:moondream", "answer": "", "seconds": 17.8}
+{"key": 835077, "model": "ollama:moondream", "answer": "", "seconds": 17.78}
+{"key": 835836, "model": "ollama:moondream", "answer": "", "seconds": 17.84}
+{"key": 836044, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 836531, "model": "ollama:moondream", "answer": "", "seconds": 17.78}
+{"key": 836532, "model": "ollama:moondream", "answer": "", "seconds": 17.71}
+{"key": 836750, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 837149, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 837633, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.91}
+{"key": 837999, "model": "ollama:moondream", "answer": "", "seconds": 17.77}
+{"key": 838555, "model": "ollama:moondream", "answer": "", "seconds": 17.8}
+{"key": 839297, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.89}
+{"key": 839728, "model": "ollama:moondream", "answer": "", "seconds": 17.7}
+{"key": 840185, "model": "ollama:moondream", "answer": "", "seconds": 17.82}
+{"key": 840592, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.9}
+{"key": 840857, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 841025, "model": "ollama:moondream", "answer": "", "seconds": 17.78}
+{"key": 841135, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.91}
+{"key": 841226, "model": "ollama:moondream", "answer": "repair", "seconds": 17.86}
+{"key": 842486, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 842670, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 843087, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 843106, "model": "ollama:moondream", "answer": "", "seconds": 17.71}
+{"key": 843428, "model": "ollama:moondream", "answer": "iced coffee cup", "seconds": 17.91}
+{"key": 844431, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 844432, "model": "ollama:moondream", "answer": "", "seconds": 17.77}
+{"key": 844437, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 844512, "model": "ollama:moondream", "answer": "", "seconds": 17.75}
+{"key": 844516, "model": "ollama:moondream", "answer": "", "seconds": 17.77}
+{"key": 844556, "model": "ollama:moondream", "answer": "", "seconds": 17.8}
+{"key": 844562, "model": "ollama:moondream", "answer": "", "seconds": 17.73}
+{"key": 844641, "model": "ollama:moondream", "answer": "", "seconds": 17.73}
+{"key": 844751, "model": "ollama:moondream", "answer": "", "seconds": 17.8}
+{"key": 844801, "model": "ollama:moondream", "answer": "", "seconds": 17.78}
+{"key": 844994, "model": "ollama:moondream", "answer": "irt", "seconds": 17.78}
+{"key": 845003, "model": "ollama:moondream", "answer": "", "seconds": 17.7}
+{"key": 845015, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.9}
+{"key": 845055, "model": "ollama:moondream", "answer": "arrow", "seconds": 17.82}
+{"key": 845153, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.88}
+{"key": 845160, "model": "ollama:moondream", "answer": "", "seconds": 17.8}
+{"key": 845162, "model": "ollama:moondream", "answer": "", "seconds": 17.77}
+{"key": 845656, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 845673, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.83}
+{"key": 845733, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 845831, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 845863, "model": "ollama:moondream", "answer": "", "seconds": 17.71}
+{"key": 845868, "model": "ollama:moondream", "answer": "", "seconds": 17.82}
+{"key": 845944, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.96}
+{"key": 846059, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.97}
+{"key": 846070, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 846139, "model": "ollama:moondream", "answer": "", "seconds": 17.75}
+{"key": 846271, "model": "ollama:moondream", "answer": "", "seconds": 17.78}
+{"key": 846285, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.91}
+{"key": 846289, "model": "ollama:moondream", "answer": "", "seconds": 17.7}
+{"key": 846335, "model": "ollama:moondream", "answer": "", "seconds": 17.8}
+{"key": 846474, "model": "ollama:moondream", "answer": "arrow", "seconds": 17.87}
+{"key": 846508, "model": "ollama:moondream", "answer": "irt", "seconds": 17.76}
+{"key": 846525, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 846561, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.99}
+{"key": 846801, "model": "ollama:moondream", "answer": "", "seconds": 17.77}
+{"key": 846887, "model": "ollama:moondream", "answer": "", "seconds": 17.81}
+{"key": 846888, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 846979, "model": "ollama:moondream", "answer": "", "seconds": 17.83}
+{"key": 846981, "model": "ollama:moondream", "answer": "", "seconds": 17.75}
+{"key": 847028, "model": "ollama:moondream", "answer": "", "seconds": 17.71}
+{"key": 847125, "model": "ollama:moondream", "answer": "", "seconds": 17.67}
+{"key": 847234, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 847314, "model": "ollama:moondream", "answer": "", "seconds": 17.7}
+{"key": 847325, "model": "ollama:moondream", "answer": "", "seconds": 17.86}
+{"key": 847364, "model": "ollama:moondream", "answer": "", "seconds": 17.82}
+{"key": 847371, "model": "ollama:moondream", "answer": "urn", "seconds": 17.95}
+{"key": 847462, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 847566, "model": "ollama:moondream", "answer": "", "seconds": 17.85}
+{"key": 847569, "model": "ollama:moondream", "answer": "", "seconds": 17.77}
+{"key": 847597, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.87}
+{"key": 847800, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 847805, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 847868, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 847896, "model": "ollama:moondream", "answer": "urn", "seconds": 17.86}
+{"key": 847924, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.96}
+{"key": 847975, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.98}
+{"key": 847987, "model": "ollama:moondream", "answer": "", "seconds": 17.82}
+{"key": 848052, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.99}
+{"key": 848069, "model": "ollama:moondream", "answer": "", "seconds": 17.83}
+{"key": 848129, "model": "ollama:moondream", "answer": "", "seconds": 17.88}
+{"key": 848195, "model": "ollama:moondream", "answer": "", "seconds": 17.91}
+{"key": 848197, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 18.01}
+{"key": 848206, "model": "ollama:moondream", "answer": "", "seconds": 17.82}
+{"key": 848213, "model": "ollama:moondream", "answer": "", "seconds": 17.75}
+{"key": 848216, "model": "ollama:moondream", "answer": "", "seconds": 17.81}
+{"key": 848224, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.93}
+{"key": 848243, "model": "ollama:moondream", "answer": "1 2 3", "seconds": 17.96}
+{"key": 848245, "model": "ollama:moondream", "answer": "", "seconds": 17.73}
+{"key": 848267, "model": "ollama:moondream", "answer": "", "seconds": 17.86}
+{"key": 848288, "model": "ollama:moondream", "answer": "urn", "seconds": 17.93}
+{"key": 848290, "model": "ollama:moondream", "answer": "urn", "seconds": 17.84}
+{"key": 848439, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.95}
+{"key": 848502, "model": "ollama:moondream", "answer": "", "seconds": 17.79}
+{"key": 848721, "model": "ollama:moondream", "answer": "", "seconds": 17.84}
+{"key": 848895, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.88}
+{"key": 848974, "model": "ollama:moondream", "answer": "", "seconds": 17.77}
+{"key": 849071, "model": "ollama:moondream", "answer": "", "seconds": 17.83}
+{"key": 849082, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 849133, "model": "ollama:moondream", "answer": "y", "seconds": 17.81}
+{"key": 849336, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 849423, "model": "ollama:moondream", "answer": "", "seconds": 17.7}
+{"key": 864039, "model": "ollama:moondream", "answer": "", "seconds": 17.73}
+{"key": 869115, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 879620, "model": "ollama:moondream", "answer": "", "seconds": 17.62}
+{"key": 882926, "model": "ollama:moondream", "answer": "be", "seconds": 17.81}
+{"key": 886836, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 887491, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 909322, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 929299, "model": "ollama:moondream", "answer": "", "seconds": 17.73}
+{"key": 934505, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.82}
+{"key": 937009, "model": "ollama:moondream", "answer": "urn", "seconds": 17.7}
+{"key": 938082, "model": "ollama:moondream", "answer": "", "seconds": 17.68}
+{"key": 942559, "model": "ollama:moondream", "answer": "", "seconds": 17.67}
+{"key": 945750, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 945803, "model": "ollama:moondream", "answer": "", "seconds": 17.67}
+{"key": 953703, "model": "ollama:moondream", "answer": "", "seconds": 17.68}
+{"key": 959245, "model": "ollama:moondream", "answer": "", "seconds": 17.68}
+{"key": 963358, "model": "ollama:moondream", "answer": "h2", "seconds": 17.81}
+{"key": 963377, "model": "ollama:moondream", "answer": "h3", "seconds": 17.85}
+{"key": 968881, "model": "ollama:moondream", "answer": "h", "seconds": 17.83}
+{"key": 970472, "model": "ollama:moondream", "answer": "", "seconds": 17.65}
+{"key": 1001110, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 1015237, "model": "ollama:moondream", "answer": "", "seconds": 17.71}
+{"key": 1022757, "model": "ollama:moondream", "answer": "", "seconds": 17.84}
+{"key": 1023950, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.92}
+{"key": 1026958, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.92}
+{"key": 1039715, "model": "ollama:moondream", "answer": "", "seconds": 17.8}
+{"key": 1063270, "model": "ollama:moondream", "answer": "", "seconds": 17.75}
+{"key": 1073086, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 1084994, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 1094154, "model": "ollama:moondream", "answer": "", "seconds": 17.83}
+{"key": 1097304, "model": "ollama:moondream", "answer": "", "seconds": 17.75}
+{"key": 1109555, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 1110832, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 1111422, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.86}
+{"key": 1111919, "model": "ollama:moondream", "answer": "", "seconds": 17.66}
+{"key": 1112248, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.87}
+{"key": 1115968, "model": "ollama:moondream", "answer": "", "seconds": 17.75}
+{"key": 1118232, "model": "ollama:moondream", "answer": "", "seconds": 17.73}
+{"key": 1119237, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 1119967, "model": "ollama:moondream", "answer": "", "seconds": 17.66}
+{"key": 1126539, "model": "ollama:moondream", "answer": "", "seconds": 17.71}
+{"key": 1127037, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.8}
+{"key": 1127650, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 1129271, "model": "ollama:moondream", "answer": "", "seconds": 17.68}
+{"key": 1130249, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 1132706, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 1133764, "model": "ollama:moondream", "answer": "", "seconds": 17.71}
+{"key": 1135364, "model": "ollama:moondream", "answer": "", "seconds": 17.68}
+{"key": 1135917, "model": "ollama:moondream", "answer": "", "seconds": 17.67}
+{"key": 1137573, "model": "ollama:moondream", "answer": "", "seconds": 17.76}
+{"key": 1140532, "model": "ollama:moondream", "answer": "", "seconds": 17.78}
+{"key": 1141216, "model": "ollama:moondream", "answer": "", "seconds": 17.74}
+{"key": 1142222, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.89}
+{"key": 1142263, "model": "ollama:moondream", "answer": "", "seconds": 17.7}
+{"key": 1142292, "model": "ollama:moondream", "answer": "", "seconds": 17.64}
+{"key": 1142421, "model": "ollama:moondream", "answer": "", "seconds": 17.64}
+{"key": 1142514, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.82}
+{"key": 1142564, "model": "ollama:moondream", "answer": "", "seconds": 17.68}
+{"key": 1142588, "model": "ollama:moondream", "answer": "", "seconds": 17.66}
+{"key": 1142647, "model": "ollama:moondream", "answer": "4", "seconds": 17.73}
+{"key": 1142652, "model": "ollama:moondream", "answer": "h2", "seconds": 17.8}
+{"key": 1142653, "model": "ollama:moondream", "answer": "h3", "seconds": 17.77}
+{"key": 1142682, "model": "ollama:moondream", "answer": "", "seconds": 17.67}
+{"key": 1142686, "model": "ollama:moondream", "answer": "urn", "seconds": 17.73}
+{"key": 1142745, "model": "ollama:moondream", "answer": "", "seconds": 17.69}
+{"key": 1142754, "model": "ollama:moondream", "answer": "", "seconds": 17.7}
+{"key": 1142776, "model": "ollama:moondream", "answer": "", "seconds": 17.73}
+{"key": 1142809, "model": "ollama:moondream", "answer": "", "seconds": 17.71}
+{"key": 1142817, "model": "ollama:moondream", "answer": "arrow", "seconds": 17.79}
+{"key": 1142829, "model": "ollama:moondream", "answer": "", "seconds": 17.68}
+{"key": 1142852, "model": "ollama:moondream", "answer": "coffee cup arrow letter a", "seconds": 17.92}
+{"key": 1142855, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 1142857, "model": "ollama:moondream", "answer": "", "seconds": 17.66}
+{"key": 1142860, "model": "ollama:moondream", "answer": "coffee cup", "seconds": 17.86}
+{"key": 1142874, "model": "ollama:moondream", "answer": "", "seconds": 17.68}
+{"key": 1142876, "model": "ollama:moondream", "answer": "", "seconds": 17.73}
+{"key": 1142922, "model": "ollama:moondream", "answer": "", "seconds": 17.72}
+{"key": 251778, "model": "florence:omniparser", "answer": "ticket", "seconds": 0.1}
+{"key": 280982, "model": "florence:omniparser", "answer": "garbage management", "seconds": 0.1}
+{"key": 280986, "model": "florence:omniparser", "answer": "toaster", "seconds": 0.1}
+{"key": 302608, "model": "florence:omniparser", "answer": "back", "seconds": 0.1}
+{"key": 303183, "model": "florence:omniparser", "answer": "perform", "seconds": 0.1}
+{"key": 314260, "model": "florence:omniparser", "answer": "garbage", "seconds": 0.1}
+{"key": 316203, "model": "florence:omniparser", "answer": "sandwich", "seconds": 0.1}
+{"key": 331096, "model": "florence:omniparser", "answer": "checkmark", "seconds": 0.1}
+{"key": 338484, "model": "florence:omniparser", "answer": "closed cc", "seconds": 0.12}
+{"key": 339411, "model": "florence:omniparser", "answer": "upward share", "seconds": 0.12}
+{"key": 358214, "model": "florence:omniparser", "answer": "birds", "seconds": 0.12}
+{"key": 365318, "model": "florence:omniparser", "answer": "elephant", "seconds": 0.12}
+{"key": 370249, "model": "florence:omniparser", "answer": "collapse", "seconds": 0.12}
+{"key": 388650, "model": "florence:omniparser", "answer": "jewelry or jewelry", "seconds": 0.12}
+{"key": 394341, "model": "florence:omniparser", "answer": "house", "seconds": 0.12}
+{"key": 395810, "model": "florence:omniparser", "answer": "trash bin/can storage", "seconds": 0.12}
+{"key": 403949, "model": "florence:omniparser", "answer": "instagram", "seconds": 0.1}
+{"key": 405977, "model": "florence:omniparser", "answer": "phone", "seconds": 0.1}
+{"key": 428891, "model": "florence:omniparser", "answer": "microphone", "seconds": 0.1}
+{"key": 453952, "model": "florence:omniparser", "answer": "telephone", "seconds": 0.1}
+{"key": 454056, "model": "florence:omniparser", "answer": "writing or writing", "seconds": 0.1}
+{"key": 466611, "model": "florence:omniparser", "answer": "back", "seconds": 0.1}
+{"key": 487308, "model": "florence:omniparser", "answer": "jet", "seconds": 0.1}
+{"key": 503345, "model": "florence:omniparser", "answer": "flamingo", "seconds": 0.1}
+{"key": 515992, "model": "florence:omniparser", "answer": "vk", "seconds": 0.1}
+{"key": 521482, "model": "florence:omniparser", "answer": "drink wine", "seconds": 0.1}
+{"key": 526373, "model": "florence:omniparser", "answer": "help or support", "seconds": 0.1}
+{"key": 526554, "model": "florence:omniparser", "answer": "alert", "seconds": 0.1}
+{"key": 526803, "model": "florence:omniparser", "answer": "androidandroid", "seconds": 0.1}
+{"key": 528177, "model": "florence:omniparser", "answer": "triangle", "seconds": 0.1}
+{"key": 528939, "model": "florence:omniparser", "answer": "bed", "seconds": 0.1}
+{"key": 530126, "model": "florence:omniparser", "answer": "tote", "seconds": 0.1}
+{"key": 530430, "model": "florence:omniparser", "answer": "horn", "seconds": 0.13}
+{"key": 530658, "model": "florence:omniparser", "answer": "power or energy feature", "seconds": 0.13}
+{"key": 530825, "model": "florence:omniparser", "answer": "board", "seconds": 0.13}
+{"key": 533386, "model": "florence:omniparser", "answer": "recycle or rotate the screen", "seconds": 0.13}
+{"key": 534801, "model": "florence:omniparser", "answer": "circular", "seconds": 0.13}
+{"key": 535291, "model": "florence:omniparser", "answer": "computer monitor", "seconds": 0.13}
+{"key": 536114, "model": "florence:omniparser", "answer": "folder for storage or storage purposes", "seconds": 0.13}
+{"key": 536468, "model": "florence:omniparser", "answer": "liquid flavor or fluid", "seconds": 0.13}
+{"key": 536729, "model": "florence:omniparser", "answer": "pencil", "seconds": 0.12}
+{"key": 537468, "model": "florence:omniparser", "answer": "hat", "seconds": 0.12}
+{"key": 538538, "model": "florence:omniparser", "answer": "watermelon", "seconds": 0.12}
+{"key": 541206, "model": "florence:omniparser", "answer": "heart", "seconds": 0.12}
+{"key": 541510, "model": "florence:omniparser", "answer": "recyclecycle", "seconds": 0.12}
+{"key": 542261, "model": "florence:omniparser", "answer": "image", "seconds": 0.12}
+{"key": 544326, "model": "florence:omniparser", "answer": "thumbs up or thumbs down", "seconds": 0.12}
+{"key": 545729, "model": "florence:omniparser", "answer": "list", "seconds": 0.12}
+{"key": 545903, "model": "florence:omniparser", "answer": "camera tripod", "seconds": 0.13}
+{"key": 546262, "model": "florence:omniparser", "answer": "loudspeaker", "seconds": 0.13}
+{"key": 546541, "model": "florence:omniparser", "answer": "traditionally", "seconds": 0.13}
+{"key": 547297, "model": "florence:omniparser", "answer": "insert picture", "seconds": 0.13}
+{"key": 549525, "model": "florence:omniparser", "answer": "chat or comment feature", "seconds": 0.13}
+{"key": 550114, "model": "florence:omniparser", "answer": "dessertesserts in a cupcake shop", "seconds": 0.13}
+{"key": 550321, "model": "florence:omniparser", "answer": "protected image", "seconds": 0.13}
+{"key": 551140, "model": "florence:omniparser", "answer": "facebook", "seconds": 0.13}
+{"key": 551334, "model": "florence:omniparser", "answer": "radar network", "seconds": 0.12}
+{"key": 552300, "model": "florence:omniparser", "answer": "groundground", "seconds": 0.12}
+{"key": 552749, "model": "florence:omniparser", "answer": "audioaudio sound", "seconds": 0.12}
+{"key": 553743, "model": "florence:omniparser", "answer": "sending a message or email", "seconds": 0.12}
+{"key": 553955, "model": "florence:omniparser", "answer": "bunch", "seconds": 0.12}
+{"key": 553961, "model": "florence:omniparser", "answer": "share or share function", "seconds": 0.12}
+{"key": 554109, "model": "florence:omniparser", "answer": "boats", "seconds": 0.12}
+{"key": 554220, "model": "florence:omniparser", "answer": "baby bath", "seconds": 0.12}
+{"key": 556321, "model": "florence:omniparser", "answer": "maximize", "seconds": 0.12}
+{"key": 559885, "model": "florence:omniparser", "answer": "security or lock", "seconds": 0.12}
+{"key": 560965, "model": "florence:omniparser", "answer": "glass", "seconds": 0.12}
+{"key": 561468, "model": "florence:omniparser", "answer": "windows", "seconds": 0.12}
+{"key": 562014, "model": "florence:omniparser", "answer": "business manager", "seconds": 0.12}
+{"key": 562039, "model": "florence:omniparser", "answer": "trash bin/can function", "seconds": 0.12}
+{"key": 562073, "model": "florence:omniparser", "answer": "sunlight", "seconds": 0.12}
+{"key": 562095, "model": "florence:omniparser", "answer": "laptop", "seconds": 0.12}
+{"key": 562122, "model": "florence:omniparser", "answer": "box", "seconds": 0.11}
+{"key": 562123, "model": "florence:omniparser", "answer": "settings", "seconds": 0.11}
+{"key": 562124, "model": "florence:omniparser", "answer": "antarctica", "seconds": 0.11}
+{"key": 562126, "model": "florence:omniparser", "answer": "basketball players uniform", "seconds": 0.11}
+{"key": 562128, "model": "florence:omniparser", "answer": "android bug application", "seconds": 0.11}
+{"key": 562150, "model": "florence:omniparser", "answer": "wifi network", "seconds": 0.11}
+{"key": 562153, "model": "florence:omniparser", "answer": "umbrella", "seconds": 0.11}
+{"key": 562194, "model": "florence:omniparser", "answer": "swift", "seconds": 0.11}
+{"key": 562221, "model": "florence:omniparser", "answer": "steam", "seconds": 0.09}
+{"key": 562276, "model": "florence:omniparser", "answer": "code", "seconds": 0.09}
+{"key": 562301, "model": "florence:omniparser", "answer": "mail", "seconds": 0.09}
+{"key": 562316, "model": "florence:omniparser", "answer": "thumbs up", "seconds": 0.09}
+{"key": 562329, "model": "florence:omniparser", "answer": "messages", "seconds": 0.09}
+{"key": 562390, "model": "florence:omniparser", "answer": "mic", "seconds": 0.09}
+{"key": 562435, "model": "florence:omniparser", "answer": "print", "seconds": 0.09}
+{"key": 562455, "model": "florence:omniparser", "answer": "scratch", "seconds": 0.09}
+{"key": 562456, "model": "florence:omniparser", "answer": "collapse", "seconds": 0.11}
+{"key": 562457, "model": "florence:omniparser", "answer": "text box", "seconds": 0.11}
+{"key": 562671, "model": "florence:omniparser", "answer": "basketball", "seconds": 0.11}
+{"key": 562717, "model": "florence:omniparser", "answer": "tv", "seconds": 0.11}
+{"key": 562726, "model": "florence:omniparser", "answer": "graduation cap", "seconds": 0.11}
+{"key": 562805, "model": "florence:omniparser", "answer": "left arrow", "seconds": 0.11}
+{"key": 562832, "model": "florence:omniparser", "answer": "grid or grid pattern", "seconds": 0.11}
+{"key": 562852, "model": "florence:omniparser", "answer": "reach", "seconds": 0.11}
+{"key": 562883, "model": "florence:omniparser", "answer": "document", "seconds": 0.1}
+{"key": 562884, "model": "florence:omniparser", "answer": "coffee bowl", "seconds": 0.1}
+{"key": 562911, "model": "florence:omniparser", "answer": "household", "seconds": 0.1}
+{"key": 562917, "model": "florence:omniparser", "answer": "creative choice", "seconds": 0.1}
+{"key": 562942, "model": "florence:omniparser", "answer": "ticket", "seconds": 0.1}
+{"key": 562947, "model": "florence:omniparser", "answer": "stage", "seconds": 0.1}
+{"key": 562954, "model": "florence:omniparser", "answer": "transparent mode", "seconds": 0.1}
+{"key": 563057, "model": "florence:omniparser", "answer": "flynet", "seconds": 0.1}
+{"key": 563149, "model": "florence:omniparser", "answer": "comment", "seconds": 0.13}
+{"key": 563184, "model": "florence:omniparser", "answer": "motorcycle", "seconds": 0.13}
+{"key": 563230, "model": "florence:omniparser", "answer": "creative subtract", "seconds": 0.13}
+{"key": 563268, "model": "florence:omniparser", "answer": "mascot or mascot for a game or application", "seconds": 0.13}
+{"key": 563305, "model": "florence:omniparser", "answer": "checkmark", "seconds": 0.13}
+{"key": 563307, "model": "florence:omniparser", "answer": "chair or chair icon", "seconds": 0.13}
+{"key": 563346, "model": "florence:omniparser", "answer": "boat", "seconds": 0.13}
+{"key": 563393, "model": "florence:omniparser", "answer": "korean text app", "seconds": 0.13}
+{"key": 563491, "model": "florence:omniparser", "answer": "chart", "seconds": 0.1}
+{"key": 563512, "model": "florence:omniparser", "answer": "telephone", "seconds": 0.1}
+{"key": 563515, "model": "florence:omniparser", "answer": "backward", "seconds": 0.1}
+{"key": 563520, "model": "florence:omniparser", "answer": "house", "seconds": 0.1}
+{"key": 563523, "model": "florence:omniparser", "answer": "pork", "seconds": 0.1}
+{"key": 563689, "model": "florence:omniparser", "answer": "stethoscope", "seconds": 0.1}
+{"key": 563690, "model": "florence:omniparser", "answer": "stethoscope", "seconds": 0.1}
+{"key": 563844, "model": "florence:omniparser", "answer": "next", "seconds": 0.1}
+{"key": 563850, "model": "florence:omniparser", "answer": "bulletini", "seconds": 0.12}
+{"key": 563887, "model": "florence:omniparser", "answer": "internet explorer", "seconds": 0.12}
+{"key": 563985, "model": "florence:omniparser", "answer": "mic", "seconds": 0.12}
+{"key": 564003, "model": "florence:omniparser", "answer": "resize", "seconds": 0.12}
+{"key": 564011, "model": "florence:omniparser", "answer": "book or paper binding function", "seconds": 0.12}
+{"key": 564016, "model": "florence:omniparser", "answer": "people", "seconds": 0.12}
+{"key": 564119, "model": "florence:omniparser", "answer": "mcdonalds", "seconds": 0.12}
+{"key": 564126, "model": "florence:omniparser", "answer": "dell", "seconds": 0.12}
+{"key": 564156, "model": "florence:omniparser", "answer": "pants", "seconds": 0.11}
+{"key": 564174, "model": "florence:omniparser", "answer": "connector", "seconds": 0.11}
+{"key": 564191, "model": "florence:omniparser", "answer": "group", "seconds": 0.11}
+{"key": 564193, "model": "florence:omniparser", "answer": "microscope", "seconds": 0.11}
+{"key": 564198, "model": "florence:omniparser", "answer": "swift", "seconds": 0.11}
+{"key": 564261, "model": "florence:omniparser", "answer": "clipboard", "seconds": 0.11}
+{"key": 564295, "model": "florence:omniparser", "answer": "mobile phone service", "seconds": 0.11}
+{"key": 564302, "model": "florence:omniparser", "answer": "models", "seconds": 0.11}
+{"key": 577322, "model": "florence:omniparser", "answer": "station", "seconds": 0.11}
+{"key": 577404, "model": "florence:omniparser", "answer": "babana", "seconds": 0.11}
+{"key": 577450, "model": "florence:omniparser", "answer": "home", "seconds": 0.11}
+{"key": 580859, "model": "florence:omniparser", "answer": "api", "seconds": 0.11}
+{"key": 584208, "model": "florence:omniparser", "answer": "wave", "seconds": 0.11}
+{"key": 587416, "model": "florence:omniparser", "answer": "up arrow", "seconds": 0.11}
+{"key": 588188, "model": "florence:omniparser", "answer": "up arrow pointing downward", "seconds": 0.11}
+{"key": 589324, "model": "florence:omniparser", "answer": "tetherspoon", "seconds": 0.11}
+{"key": 599607, "model": "florence:omniparser", "answer": "create", "seconds": 0.11}
+{"key": 602660, "model": "florence:omniparser", "answer": "board", "seconds": 0.11}
+{"key": 606730, "model": "florence:omniparser", "answer": "coffee cup", "seconds": 0.11}
+{"key": 608469, "model": "florence:omniparser", "answer": "micromax", "seconds": 0.11}
+{"key": 608721, "model": "florence:omniparser", "answer": "camera", "seconds": 0.11}
+{"key": 608848, "model": "florence:omniparser", "answer": "roundabout", "seconds": 0.11}
+{"key": 613113, "model": "florence:omniparser", "answer": "game or options menu", "seconds": 0.11}
+{"key": 620988, "model": "florence:omniparser", "answer": "backpack", "seconds": 0.11}
+{"key": 621898, "model": "florence:omniparser", "answer": "love", "seconds": 0.11}
+{"key": 622242, "model": "florence:omniparser", "answer": "thunderstorm", "seconds": 0.11}
+{"key": 622262, "model": "florence:omniparser", "answer": "security lock", "seconds": 0.11}
+{"key": 622366, "model": "florence:omniparser", "answer": "skateboard", "seconds": 0.11}
+{"key": 625102, "model": "florence:omniparser", "answer": "add & squash", "seconds": 0.11}
+{"key": 626598, "model": "florence:omniparser", "answer": "user profile or account", "seconds": 0.11}
+{"key": 628407, "model": "florence:omniparser", "answer": "travel box", "seconds": 0.11}
+{"key": 633627, "model": "florence:omniparser", "answer": "lamp", "seconds": 0.11}
+{"key": 634883, "model": "florence:omniparser", "answer": "warning", "seconds": 0.13}
+{"key": 634899, "model": "florence:omniparser", "answer": "grapes", "seconds": 0.13}
+{"key": 639987, "model": "florence:omniparser", "answer": "flower stem", "seconds": 0.13}
+{"key": 645733, "model": "florence:omniparser", "answer": "checkmark", "seconds": 0.13}
+{"key": 646985, "model": "florence:omniparser", "answer": "security lock", "seconds": 0.13}
+{"key": 648006, "model": "florence:omniparser", "answer": "sketchware", "seconds": 0.13}
+{"key": 648321, "model": "florence:omniparser", "answer": "electricity", "seconds": 0.13}
+{"key": 648704, "model": "florence:omniparser", "answer": "coupleoupleouple monitors hooked up to each other", "seconds": 0.13}
+{"key": 650282, "model": "florence:omniparser", "answer": "angry", "seconds": 0.1}
+{"key": 651311, "model": "florence:omniparser", "answer": "end field", "seconds": 0.1}
+{"key": 651936, "model": "florence:omniparser", "answer": "grass", "seconds": 0.1}
+{"key": 653305, "model": "florence:omniparser", "answer": "jpg", "seconds": 0.1}
+{"key": 653318, "model": "florence:omniparser", "answer": "json file", "seconds": 0.1}
+{"key": 653573, "model": "florence:omniparser", "answer": "pdf document", "seconds": 0.1}
+{"key": 658317, "model": "florence:omniparser", "answer": "powerpower", "seconds": 0.1}
+{"key": 661098, "model": "florence:omniparser", "answer": "file size", "seconds": 0.1}
+{"key": 661745, "model": "florence:omniparser", "answer": "clipboard inside", "seconds": 0.11}
+{"key": 662099, "model": "florence:omniparser", "answer": "searching or searching", "seconds": 0.11}
+{"key": 663693, "model": "florence:omniparser", "answer": "center", "seconds": 0.11}
+{"key": 663695, "model": "florence:omniparser", "answer": "center", "seconds": 0.11}
+{"key": 665445, "model": "florence:omniparser", "answer": "transparent wall wall", "seconds": 0.11}
+{"key": 670597, "model": "florence:omniparser", "answer": "classification", "seconds": 0.11}
+{"key": 672736, "model": "florence:omniparser", "answer": "marina", "seconds": 0.11}
+{"key": 675214, "model": "florence:omniparser", "answer": "phone", "seconds": 0.11}
+{"key": 677054, "model": "florence:omniparser", "answer": "building", "seconds": 0.11}
+{"key": 677478, "model": "florence:omniparser", "answer": "household", "seconds": 0.11}
+{"key": 678302, "model": "florence:omniparser", "answer": "plant", "seconds": 0.11}
+{"key": 680506, "model": "florence:omniparser", "answer": "flower or flower design", "seconds": 0.11}
+{"key": 682098, "model": "florence:omniparser", "answer": "download", "seconds": 0.11}
+{"key": 691444, "model": "florence:omniparser", "answer": "center", "seconds": 0.11}
+{"key": 691448, "model": "florence:omniparser", "answer": "center", "seconds": 0.11}
+{"key": 692934, "model": "florence:omniparser", "answer": "mic", "seconds": 0.11}
+{"key": 697519, "model": "florence:omniparser", "answer": "back", "seconds": 0.14}
+{"key": 701812, "model": "florence:omniparser", "answer": "instagram", "seconds": 0.14}
+{"key": 702331, "model": "florence:omniparser", "answer": "number 1", "seconds": 0.14}
+{"key": 703931, "model": "florence:omniparser", "answer": "forward or backward", "seconds": 0.14}
+{"key": 703943, "model": "florence:omniparser", "answer": "back", "seconds": 0.14}
+{"key": 704388, "model": "florence:omniparser", "answer": "right arrow", "seconds": 0.14}
+{"key": 705189, "model": "florence:omniparser", "answer": "settings or settings option", "seconds": 0.14}
+{"key": 709393, "model": "florence:omniparser", "answer": "tools for assisting with assisting in assisting with falling asleep asleep", "seconds": 0.14}
+{"key": 710102, "model": "florence:omniparser", "answer": "add", "seconds": 0.12}
+{"key": 710141, "model": "florence:omniparser", "answer": "castle", "seconds": 0.12}
+{"key": 711402, "model": "florence:omniparser", "answer": "black", "seconds": 0.12}
+{"key": 717685, "model": "florence:omniparser", "answer": "music", "seconds": 0.12}
+{"key": 719670, "model": "florence:omniparser", "answer": "reach dog", "seconds": 0.12}
+{"key": 719783, "model": "florence:omniparser", "answer": "web browser or web browser application", "seconds": 0.12}
+{"key": 720001, "model": "florence:omniparser", "answer": "chart", "seconds": 0.12}
+{"key": 720386, "model": "florence:omniparser", "answer": "code cook", "seconds": 0.12}
+{"key": 720734, "model": "florence:omniparser", "answer": "emotion", "seconds": 0.11}
+{"key": 726614, "model": "florence:omniparser", "answer": "dog", "seconds": 0.11}
+{"key": 737143, "model": "florence:omniparser", "answer": "close head", "seconds": 0.11}
+{"key": 737459, "model": "florence:omniparser", "answer": "resize tab", "seconds": 0.11}
+{"key": 738601, "model": "florence:omniparser", "answer": "formatting sticks", "seconds": 0.11}
+{"key": 738996, "model": "florence:omniparser", "answer": "refresh or refresh", "seconds": 0.11}
+{"key": 739011, "model": "florence:omniparser", "answer": "pinterest", "seconds": 0.11}
+{"key": 739144, "model": "florence:omniparser", "answer": "powerpoint presentation tool", "seconds": 0.11}
+{"key": 741011, "model": "florence:omniparser", "answer": "organization", "seconds": 0.11}
+{"key": 741935, "model": "florence:omniparser", "answer": "power on/off switch", "seconds": 0.11}
+{"key": 745538, "model": "florence:omniparser", "answer": "sanitizer installation", "seconds": 0.11}
+{"key": 745597, "model": "florence:omniparser", "answer": "qr code layout", "seconds": 0.11}
+{"key": 745600, "model": "florence:omniparser", "answer": "connecticut design company", "seconds": 0.11}
+{"key": 750423, "model": "florence:omniparser", "answer": "share", "seconds": 0.11}
+{"key": 752254, "model": "florence:omniparser", "answer": "undo", "seconds": 0.11}
+{"key": 752276, "model": "florence:omniparser", "answer": "refresh", "seconds": 0.11}
+{"key": 761181, "model": "florence:omniparser", "answer": "sidebar", "seconds": 0.13}
+{"key": 761431, "model": "florence:omniparser", "answer": "forward", "seconds": 0.13}
+{"key": 767727, "model": "florence:omniparser", "answer": "creative news", "seconds": 0.13}
+{"key": 769593, "model": "florence:omniparser", "answer": "handles", "seconds": 0.13}
+{"key": 769675, "model": "florence:omniparser", "answer": "step ladder", "seconds": 0.13}
+{"key": 772441, "model": "florence:omniparser", "answer": "sharpie cone or sharpie indicator", "seconds": 0.13}
+{"key": 773560, "model": "florence:omniparser", "answer": "flower or flower-shaped feature", "seconds": 0.13}
+{"key": 780230, "model": "florence:omniparser", "answer": "text box", "seconds": 0.13}
+{"key": 783012, "model": "florence:omniparser", "answer": "level", "seconds": 0.1}
+{"key": 787085, "model": "florence:omniparser", "answer": "vastafari", "seconds": 0.1}
+{"key": 792947, "model": "florence:omniparser", "answer": "trains", "seconds": 0.1}
+{"key": 797118, "model": "florence:omniparser", "answer": "next", "seconds": 0.1}
+{"key": 798959, "model": "florence:omniparser", "answer": "creative studio", "seconds": 0.1}
+{"key": 801508, "model": "florence:omniparser", "answer": "cotton cloud", "seconds": 0.1}
+{"key": 804645, "model": "florence:omniparser", "answer": "smiley", "seconds": 0.1}
+{"key": 809094, "model": "florence:omniparser", "answer": "accordion accordion", "seconds": 0.1}
+{"key": 809379, "model": "florence:omniparser", "answer": "calendar", "seconds": 0.11}
+{"key": 810748, "model": "florence:omniparser", "answer": "ugly duck", "seconds": 0.11}
+{"key": 811891, "model": "florence:omniparser", "answer": "notifications", "seconds": 0.11}
+{"key": 813116, "model": "florence:omniparser", "answer": "erikethrough", "seconds": 0.11}
+{"key": 813238, "model": "florence:omniparser", "answer": "whatsapp quotation", "seconds": 0.11}
+{"key": 813328, "model": "florence:omniparser", "answer": "home", "seconds": 0.11}
+{"key": 813362, "model": "florence:omniparser", "answer": "print", "seconds": 0.11}
+{"key": 813479, "model": "florence:omniparser", "answer": "bus or bus transportation", "seconds": 0.11}
+{"key": 813524, "model": "florence:omniparser", "answer": "empty", "seconds": 0.12}
+{"key": 814172, "model": "florence:omniparser", "answer": "cococo", "seconds": 0.12}
+{"key": 814338, "model": "florence:omniparser", "answer": "camera", "seconds": 0.12}
+{"key": 815246, "model": "florence:omniparser", "answer": "person profile", "seconds": 0.12}
+{"key": 815303, "model": "florence:omniparser", "answer": "sanitizer", "seconds": 0.12}
+{"key": 815938, "model": "florence:omniparser", "answer": "speedometer or track indicator", "seconds": 0.12}
+{"key": 817041, "model": "florence:omniparser", "answer": "trashtray", "seconds": 0.12}
+{"key": 817352, "model": "florence:omniparser", "answer": "winning glass", "seconds": 0.12}
+{"key": 817353, "model": "florence:omniparser", "answer": "horse", "seconds": 0.16}
+{"key": 817478, "model": "florence:omniparser", "answer": "bamboo", "seconds": 0.16}
+{"key": 817737, "model": "florence:omniparser", "answer": "increase", "seconds": 0.16}
+{"key": 817799, "model": "florence:omniparser", "answer": "radar view or radissonisson blu", "seconds": 0.16}
+{"key": 817915, "model": "florence:omniparser", "answer": "costumed character (c#) for creating a new item or product", "seconds": 0.16}
+{"key": 818042, "model": "florence:omniparser", "answer": "swift", "seconds": 0.16}
+{"key": 818146, "model": "florence:omniparser", "answer": "guest card", "seconds": 0.16}
+{"key": 818158, "model": "florence:omniparser", "answer": "table", "seconds": 0.16}
+{"key": 818209, "model": "florence:omniparser", "answer": "piscover", "seconds": 0.11}
+{"key": 818794, "model": "florence:omniparser", "answer": "ambulance", "seconds": 0.11}
+{"key": 819071, "model": "florence:omniparser", "answer": "download", "seconds": 0.11}
+{"key": 819203, "model": "florence:omniparser", "answer": "pencil", "seconds": 0.11}
+{"key": 819383, "model": "florence:omniparser", "answer": "pepperoni", "seconds": 0.11}
+{"key": 819637, "model": "florence:omniparser", "answer": "swimming pool cleaner", "seconds": 0.11}
+{"key": 819805, "model": "florence:omniparser", "answer": "books", "seconds": 0.11}
+{"key": 820609, "model": "florence:omniparser", "answer": "upward growth", "seconds": 0.11}
+{"key": 821594, "model": "florence:omniparser", "answer": "chess", "seconds": 0.11}
+{"key": 821887, "model": "florence:omniparser", "answer": "navigation bar", "seconds": 0.11}
+{"key": 821892, "model": "florence:omniparser", "answer": "next:", "seconds": 0.11}
+{"key": 822646, "model": "florence:omniparser", "answer": "hashtag or hash tag", "seconds": 0.11}
+{"key": 822959, "model": "florence:omniparser", "answer": "go", "seconds": 0.11}
+{"key": 823179, "model": "florence:omniparser", "answer": "pots", "seconds": 0.11}
+{"key": 823546, "model": "florence:omniparser", "answer": "flip flop", "seconds": 0.11}
+{"key": 824157, "model": "florence:omniparser", "answer": "skateboard", "seconds": 0.11}
+{"key": 824668, "model": "florence:omniparser", "answer": "fedora", "seconds": 0.09}
+{"key": 824834, "model": "florence:omniparser", "answer": "code", "seconds": 0.09}
+{"key": 825198, "model": "florence:omniparser", "answer": "download", "seconds": 0.09}
+{"key": 825771, "model": "florence:omniparser", "answer": "hockey stick", "seconds": 0.09}
+{"key": 826158, "model": "florence:omniparser", "answer": "key key", "seconds": 0.09}
+{"key": 826261, "model": "florence:omniparser", "answer": "increase", "seconds": 0.09}
+{"key": 826474, "model": "florence:omniparser", "answer": "cat", "seconds": 0.09}
+{"key": 826626, "model": "florence:omniparser", "answer": "camera", "seconds": 0.09}
+{"key": 826864, "model": "florence:omniparser", "answer": "tigger", "seconds": 0.1}
+{"key": 826941, "model": "florence:omniparser", "answer": "book", "seconds": 0.1}
+{"key": 827040, "model": "florence:omniparser", "answer": "heart", "seconds": 0.1}
+{"key": 827111, "model": "florence:omniparser", "answer": "twisted lovers", "seconds": 0.1}
+{"key": 827200, "model": "florence:omniparser", "answer": "level", "seconds": 0.1}
+{"key": 827658, "model": "florence:omniparser", "answer": "remote control", "seconds": 0.1}
+{"key": 828188, "model": "florence:omniparser", "answer": "l2", "seconds": 0.1}
+{"key": 828287, "model": "florence:omniparser", "answer": "meitra", "seconds": 0.1}
+{"key": 828404, "model": "florence:omniparser", "answer": "menorah", "seconds": 0.09}
+{"key": 828479, "model": "florence:omniparser", "answer": "black", "seconds": 0.09}
+{"key": 828973, "model": "florence:omniparser", "answer": "box", "seconds": 0.09}
+{"key": 829462, "model": "florence:omniparser", "answer": "music", "seconds": 0.09}
+{"key": 829583, "model": "florence:omniparser", "answer": "close", "seconds": 0.09}
+{"key": 829906, "model": "florence:omniparser", "answer": "add", "seconds": 0.09}
+{"key": 830958, "model": "florence:omniparser", "answer": "pagoda", "seconds": 0.09}
+{"key": 831237, "model": "florence:omniparser", "answer": "pinterest", "seconds": 0.09}
+{"key": 831499, "model": "florence:omniparser", "answer": "paintbrush", "seconds": 0.12}
+{"key": 831611, "model": "florence:omniparser", "answer": "toilet paper", "seconds": 0.12}
+{"key": 832017, "model": "florence:omniparser", "answer": "pickup truck", "seconds": 0.12}
+{"key": 832161, "model": "florence:omniparser", "answer": "handprints", "seconds": 0.12}
+{"key": 832546, "model": "florence:omniparser", "answer": "location", "seconds": 0.12}
+{"key": 832588, "model": "florence:omniparser", "answer": "airplane", "seconds": 0.12}
+{"key": 832767, "model": "florence:omniparser", "answer": "saturn", "seconds": 0.12}
+{"key": 832926, "model": "florence:omniparser", "answer": "lightning bolt or lightning bolt", "seconds": 0.12}
+{"key": 833228, "model": "florence:omniparser", "answer": "security lock", "seconds": 0.11}
+{"key": 834406, "model": "florence:omniparser", "answer": "forward", "seconds": 0.11}
+{"key": 834482, "model": "florence:omniparser", "answer": "abdominal", "seconds": 0.11}
+{"key": 834525, "model": "florence:omniparser", "answer": "pentagon", "seconds": 0.11}
+{"key": 834788, "model": "florence:omniparser", "answer": "refresh or recycle function", "seconds": 0.11}
+{"key": 834798, "model": "florence:omniparser", "answer": "refresh", "seconds": 0.11}
+{"key": 835077, "model": "florence:omniparser", "answer": "resize reusable rts", "seconds": 0.11}
+{"key": 835836, "model": "florence:omniparser", "answer": "campbell", "seconds": 0.11}
+{"key": 836044, "model": "florence:omniparser", "answer": "hashtag #1", "seconds": 0.11}
+{"key": 836531, "model": "florence:omniparser", "answer": "share", "seconds": 0.11}
+{"key": 836532, "model": "florence:omniparser", "answer": "up arrow", "seconds": 0.11}
+{"key": 836750, "model": "florence:omniparser", "answer": "shopping bag or basket", "seconds": 0.11}
+{"key": 837149, "model": "florence:omniparser", "answer": "boot", "seconds": 0.11}
+{"key": 837633, "model": "florence:omniparser", "answer": "notepad", "seconds": 0.11}
+{"key": 837999, "model": "florence:omniparser", "answer": "gauge or gauge gauge", "seconds": 0.11}
+{"key": 838555, "model": "florence:omniparser", "answer": "speaker", "seconds": 0.11}
+{"key": 839297, "model": "florence:omniparser", "answer": "minimize the window", "seconds": 0.13}
+{"key": 839728, "model": "florence:omniparser", "answer": "current", "seconds": 0.13}
+{"key": 840185, "model": "florence:omniparser", "answer": "teapot", "seconds": 0.13}
+{"key": 840592, "model": "florence:omniparser", "answer": "left", "seconds": 0.13}
+{"key": 840857, "model": "florence:omniparser", "answer": "add", "seconds": 0.13}
+{"key": 841025, "model": "florence:omniparser", "answer": "displaying or protecting a window or door", "seconds": 0.13}
+{"key": 841135, "model": "florence:omniparser", "answer": "social hub", "seconds": 0.13}
+{"key": 841226, "model": "florence:omniparser", "answer": "tools", "seconds": 0.13}
+{"key": 842486, "model": "florence:omniparser", "answer": "people", "seconds": 0.09}
+{"key": 842670, "model": "florence:omniparser", "answer": "australia", "seconds": 0.09}
+{"key": 843087, "model": "florence:omniparser", "answer": "power supply", "seconds": 0.09}
+{"key": 843106, "model": "florence:omniparser", "answer": "coin stacks", "seconds": 0.09}
+{"key": 843428, "model": "florence:omniparser", "answer": "watermelon", "seconds": 0.09}
+{"key": 844431, "model": "florence:omniparser", "answer": "galaxy", "seconds": 0.09}
+{"key": 844432, "model": "florence:omniparser", "answer": "business case", "seconds": 0.09}
+{"key": 844437, "model": "florence:omniparser", "answer": "level", "seconds": 0.09}
+{"key": 844512, "model": "florence:omniparser", "answer": "work", "seconds": 0.11}
+{"key": 844516, "model": "florence:omniparser", "answer": "scissors", "seconds": 0.11}
+{"key": 844556, "model": "florence:omniparser", "answer": "camera", "seconds": 0.11}
+{"key": 844562, "model": "florence:omniparser", "answer": "hard drive", "seconds": 0.11}
+{"key": 844641, "model": "florence:omniparser", "answer": "cross or horizontal symbol", "seconds": 0.11}
+{"key": 844751, "model": "florence:omniparser", "answer": "percent style", "seconds": 0.11}
+{"key": 844801, "model": "florence:omniparser", "answer": "elephant", "seconds": 0.11}
+{"key": 844994, "model": "florence:omniparser", "answer": "leaf", "seconds": 0.11}
+{"key": 845003, "model": "florence:omniparser", "answer": "sparkling or sharing a favorite item", "seconds": 0.13}
+{"key": 845015, "model": "florence:omniparser", "answer": "crown king", "seconds": 0.13}
+{"key": 845055, "model": "florence:omniparser", "answer": "back", "seconds": 0.13}
+{"key": 845153, "model": "florence:omniparser", "answer": "test tube", "seconds": 0.13}
+{"key": 845160, "model": "florence:omniparser", "answer": "gazebo", "seconds": 0.13}
+{"key": 845162, "model": "florence:omniparser", "answer": "watermelon", "seconds": 0.13}
+{"key": 845656, "model": "florence:omniparser", "answer": "sound", "seconds": 0.13}
+{"key": 845673, "model": "florence:omniparser", "answer": "chat", "seconds": 0.13}
+{"key": 845733, "model": "florence:omniparser", "answer": "paw", "seconds": 0.1}
+{"key": 845831, "model": "florence:omniparser", "answer": "document", "seconds": 0.1}
+{"key": 845863, "model": "florence:omniparser", "answer": "vitamins", "seconds": 0.1}
+{"key": 845868, "model": "florence:omniparser", "answer": "play", "seconds": 0.1}
+{"key": 845944, "model": "florence:omniparser", "answer": "wifi network", "seconds": 0.1}
+{"key": 846059, "model": "florence:omniparser", "answer": "center", "seconds": 0.1}
+{"key": 846070, "model": "florence:omniparser", "answer": "center", "seconds": 0.1}
+{"key": 846139, "model": "florence:omniparser", "answer": "plant bowl", "seconds": 0.1}
+{"key": 846271, "model": "florence:omniparser", "answer": "airplane or flight", "seconds": 0.12}
+{"key": 846285, "model": "florence:omniparser", "answer": "drawaser", "seconds": 0.12}
+{"key": 846289, "model": "florence:omniparser", "answer": "video", "seconds": 0.12}
+{"key": 846335, "model": "florence:omniparser", "answer": "refresh", "seconds": 0.12}
+{"key": 846474, "model": "florence:omniparser", "answer": "adding or attaching a new item", "seconds": 0.12}
+{"key": 846508, "model": "florence:omniparser", "answer": "flowers", "seconds": 0.12}
+{"key": 846525, "model": "florence:omniparser", "answer": "comment", "seconds": 0.12}
+{"key": 846561, "model": "florence:omniparser", "answer": "smoothie", "seconds": 0.12}
+{"key": 846801, "model": "florence:omniparser", "answer": "angry birds", "seconds": 0.1}
+{"key": 846887, "model": "florence:omniparser", "answer": "people", "seconds": 0.1}
+{"key": 846888, "model": "florence:omniparser", "answer": "center", "seconds": 0.1}
+{"key": 846979, "model": "florence:omniparser", "answer": "center", "seconds": 0.1}
+{"key": 846981, "model": "florence:omniparser", "answer": "rubber cube", "seconds": 0.1}
+{"key": 847028, "model": "florence:omniparser", "answer": "up arrow", "seconds": 0.1}
+{"key": 847125, "model": "florence:omniparser", "answer": "twitter", "seconds": 0.1}
+{"key": 847234, "model": "florence:omniparser", "answer": "telephone", "seconds": 0.1}
+{"key": 847314, "model": "florence:omniparser", "answer": "infinity", "seconds": 0.11}
+{"key": 847325, "model": "florence:omniparser", "answer": "diamond", "seconds": 0.11}
+{"key": 847364, "model": "florence:omniparser", "answer": "travel or travel information", "seconds": 0.11}
+{"key": 847371, "model": "florence:omniparser", "answer": "automatic scratch", "seconds": 0.11}
+{"key": 847462, "model": "florence:omniparser", "answer": "ant", "seconds": 0.11}
+{"key": 847566, "model": "florence:omniparser", "answer": "view as table", "seconds": 0.11}
+{"key": 847569, "model": "florence:omniparser", "answer": "reach", "seconds": 0.11}
+{"key": 847597, "model": "florence:omniparser", "answer": "3, october, 2014", "seconds": 0.11}
+{"key": 847800, "model": "florence:omniparser", "answer": "eye", "seconds": 0.12}
+{"key": 847805, "model": "florence:omniparser", "answer": "south america continent", "seconds": 0.12}
+{"key": 847868, "model": "florence:omniparser", "answer": "gun", "seconds": 0.12}
+{"key": 847896, "model": "florence:omniparser", "answer": "twp", "seconds": 0.12}
+{"key": 847924, "model": "florence:omniparser", "answer": "tapes", "seconds": 0.12}
+{"key": 847975, "model": "florence:omniparser", "answer": "stylized design or logo", "seconds": 0.12}
+{"key": 847987, "model": "florence:omniparser", "answer": "keyboard", "seconds": 0.12}
+{"key": 848052, "model": "florence:omniparser", "answer": "transmission test", "seconds": 0.12}
+{"key": 848069, "model": "florence:omniparser", "answer": "laptop", "seconds": 0.11}
+{"key": 848129, "model": "florence:omniparser", "answer": "musik", "seconds": 0.11}
+{"key": 848195, "model": "florence:omniparser", "answer": "receipt", "seconds": 0.11}
+{"key": 848197, "model": "florence:omniparser", "answer": "stickness", "seconds": 0.11}
+{"key": 848206, "model": "florence:omniparser", "answer": "clock or time indicator", "seconds": 0.11}
+{"key": 848213, "model": "florence:omniparser", "answer": "mountain", "seconds": 0.11}
+{"key": 848216, "model": "florence:omniparser", "answer": "train", "seconds": 0.11}
+{"key": 848224, "model": "florence:omniparser", "answer": "clover", "seconds": 0.11}
+{"key": 848243, "model": "florence:omniparser", "answer": "number 1, 2, and 3", "seconds": 0.12}
+{"key": 848245, "model": "florence:omniparser", "answer": "line", "seconds": 0.12}
+{"key": 848267, "model": "florence:omniparser", "answer": "crab", "seconds": 0.12}
+{"key": 848288, "model": "florence:omniparser", "answer": "ticket lock", "seconds": 0.12}
+{"key": 848290, "model": "florence:omniparser", "answer": "curve", "seconds": 0.12}
+{"key": 848439, "model": "florence:omniparser", "answer": "iamonds or diamonds", "seconds": 0.12}
+{"key": 848502, "model": "florence:omniparser", "answer": "compact control", "seconds": 0.12}
+{"key": 848721, "model": "florence:omniparser", "answer": "bed", "seconds": 0.12}
+{"key": 848895, "model": "florence:omniparser", "answer": "crown", "seconds": 0.1}
+{"key": 848974, "model": "florence:omniparser", "answer": "hand", "seconds": 0.1}
+{"key": 849071, "model": "florence:omniparser", "answer": "children", "seconds": 0.1}
+{"key": 849082, "model": "florence:omniparser", "answer": "music", "seconds": 0.1}
+{"key": 849133, "model": "florence:omniparser", "answer": "your name", "seconds": 0.1}
+{"key": 849336, "model": "florence:omniparser", "answer": "paintbrush", "seconds": 0.1}
+{"key": 849423, "model": "florence:omniparser", "answer": "next", "seconds": 0.1}
+{"key": 864039, "model": "florence:omniparser", "answer": "cat", "seconds": 0.1}
+{"key": 869115, "model": "florence:omniparser", "answer": "document or file", "seconds": 0.11}
+{"key": 879620, "model": "florence:omniparser", "answer": "slide", "seconds": 0.11}
+{"key": 882926, "model": "florence:omniparser", "answer": "bea", "seconds": 0.11}
+{"key": 886836, "model": "florence:omniparser", "answer": "airplane", "seconds": 0.11}
+{"key": 887491, "model": "florence:omniparser", "answer": "menu or list option", "seconds": 0.11}
+{"key": 909322, "model": "florence:omniparser", "answer": "recycle", "seconds": 0.11}
+{"key": 929299, "model": "florence:omniparser", "answer": "bunsen", "seconds": 0.11}
+{"key": 934505, "model": "florence:omniparser", "answer": "print", "seconds": 0.11}
+{"key": 937009, "model": "florence:omniparser", "answer": "dropdown menu or dropdown list option", "seconds": 0.14}
+{"key": 938082, "model": "florence:omniparser", "answer": "password lock", "seconds": 0.14}
+{"key": 942559, "model": "florence:omniparser", "answer": "photo gallery or photo gallery", "seconds": 0.14}
+{"key": 945750, "model": "florence:omniparser", "answer": "circular clock", "seconds": 0.14}
+{"key": 945803, "model": "florence:omniparser", "answer": "fish", "seconds": 0.14}
+{"key": 953703, "model": "florence:omniparser", "answer": "castle", "seconds": 0.14}
+{"key": 959245, "model": "florence:omniparser", "answer": "vibration", "seconds": 0.14}
+{"key": 963358, "model": "florence:omniparser", "answer": "h2", "seconds": 0.14}
+{"key": 963377, "model": "florence:omniparser", "answer": "h3", "seconds": 0.12}
+{"key": 968881, "model": "florence:omniparser", "answer": "engine", "seconds": 0.12}
+{"key": 970472, "model": "florence:omniparser", "answer": "bowling ball or bowling alley", "seconds": 0.12}
+{"key": 1001110, "model": "florence:omniparser", "answer": "triangle", "seconds": 0.12}
+{"key": 1015237, "model": "florence:omniparser", "answer": "computer monitor", "seconds": 0.12}
+{"key": 1022757, "model": "florence:omniparser", "answer": "1:1", "seconds": 0.12}
+{"key": 1023950, "model": "florence:omniparser", "answer": "magnet or magnet holder", "seconds": 0.12}
+{"key": 1026958, "model": "florence:omniparser", "answer": "search or identification", "seconds": 0.12}
+{"key": 1039715, "model": "florence:omniparser", "answer": "settings", "seconds": 0.12}
+{"key": 1063270, "model": "florence:omniparser", "answer": "round", "seconds": 0.12}
+{"key": 1073086, "model": "florence:omniparser", "answer": "snowflake", "seconds": 0.12}
+{"key": 1084994, "model": "florence:omniparser", "answer": "walk or walk mode feature", "seconds": 0.12}
+{"key": 1094154, "model": "florence:omniparser", "answer": "personperson", "seconds": 0.12}
+{"key": 1097304, "model": "florence:omniparser", "answer": "building kit", "seconds": 0.12}
+{"key": 1109555, "model": "florence:omniparser", "answer": "cat", "seconds": 0.12}
+{"key": 1110832, "model": "florence:omniparser", "answer": "sad face", "seconds": 0.12}
+{"key": 1111422, "model": "florence:omniparser", "answer": "bendable juice", "seconds": 0.12}
+{"key": 1111919, "model": "florence:omniparser", "answer": "system", "seconds": 0.12}
+{"key": 1112248, "model": "florence:omniparser", "answer": "weather weather cloud", "seconds": 0.12}
+{"key": 1115968, "model": "florence:omniparser", "answer": "ink", "seconds": 0.12}
+{"key": 1118232, "model": "florence:omniparser", "answer": "download", "seconds": 0.12}
+{"key": 1119237, "model": "florence:omniparser", "answer": "aeee cloud services website", "seconds": 0.12}
+{"key": 1119967, "model": "florence:omniparser", "answer": "food", "seconds": 0.12}
+{"key": 1126539, "model": "florence:omniparser", "answer": "location", "seconds": 0.12}
+{"key": 1127037, "model": "florence:omniparser", "answer": "pots", "seconds": 0.12}
+{"key": 1127650, "model": "florence:omniparser", "answer": "glasses", "seconds": 0.12}
+{"key": 1129271, "model": "florence:omniparser", "answer": "bull", "seconds": 0.12}
+{"key": 1130249, "model": "florence:omniparser", "answer": "clipboard", "seconds": 0.12}
+{"key": 1132706, "model": "florence:omniparser", "answer": "swimming pool", "seconds": 0.12}
+{"key": 1133764, "model": "florence:omniparser", "answer": "makeup brush or makeup tool", "seconds": 0.12}
+{"key": 1135364, "model": "florence:omniparser", "answer": "snuggles", "seconds": 0.12}
+{"key": 1135917, "model": "florence:omniparser", "answer": "paint star", "seconds": 0.12}
+{"key": 1137573, "model": "florence:omniparser", "answer": "bird service", "seconds": 0.12}
+{"key": 1140532, "model": "florence:omniparser", "answer": "valley check", "seconds": 0.12}
+{"key": 1141216, "model": "florence:omniparser", "answer": "weekly calendar", "seconds": 0.12}
+{"key": 1142222, "model": "florence:omniparser", "answer": "stack of stacked objects or materials", "seconds": 0.12}
+{"key": 1142263, "model": "florence:omniparser", "answer": "refresh", "seconds": 0.12}
+{"key": 1142292, "model": "florence:omniparser", "answer": "center", "seconds": 0.12}
+{"key": 1142421, "model": "florence:omniparser", "answer": "apple", "seconds": 0.12}
+{"key": 1142514, "model": "florence:omniparser", "answer": "recycle bin", "seconds": 0.12}
+{"key": 1142564, "model": "florence:omniparser", "answer": "bar", "seconds": 0.12}
+{"key": 1142588, "model": "florence:omniparser", "answer": "aaegegan (possibly)", "seconds": 0.12}
+{"key": 1142647, "model": "florence:omniparser", "answer": "u4", "seconds": 0.12}
+{"key": 1142652, "model": "florence:omniparser", "answer": "h2", "seconds": 0.12}
+{"key": 1142653, "model": "florence:omniparser", "answer": "h3", "seconds": 0.12}
+{"key": 1142682, "model": "florence:omniparser", "answer": "batchball", "seconds": 0.12}
+{"key": 1142686, "model": "florence:omniparser", "answer": "scratch art", "seconds": 0.12}
+{"key": 1142745, "model": "florence:omniparser", "answer": "refresh or recycle", "seconds": 0.12}
+{"key": 1142754, "model": "florence:omniparser", "answer": "fuzzuzzles", "seconds": 0.12}
+{"key": 1142776, "model": "florence:omniparser", "answer": "clipboard", "seconds": 0.12}
+{"key": 1142809, "model": "florence:omniparser", "answer": "center", "seconds": 0.12}
+{"key": 1142817, "model": "florence:omniparser", "answer": "grid layout or layout layout", "seconds": 0.12}
+{"key": 1142829, "model": "florence:omniparser", "answer": "facetime manager", "seconds": 0.12}
+{"key": 1142852, "model": "florence:omniparser", "answer": "tramon", "seconds": 0.12}
+{"key": 1142855, "model": "florence:omniparser", "answer": "atlantic airways", "seconds": 0.12}
+{"key": 1142857, "model": "florence:omniparser", "answer": "firefly", "seconds": 0.12}
+{"key": 1142860, "model": "florence:omniparser", "answer": "storm", "seconds": 0.12}
+{"key": 1142874, "model": "florence:omniparser", "answer": "basket", "seconds": 0.12}
+{"key": 1142876, "model": "florence:omniparser", "answer": "shopping cart", "seconds": 0.12}
+{"key": 1142922, "model": "florence:omniparser", "answer": "td", "seconds": 0.12}
