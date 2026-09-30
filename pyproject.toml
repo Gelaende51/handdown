@@ -45,3 +45,4 @@ testpaths = ["tests"]
 
 [tool.ruff.lint.per-file-ignores]
 "src/handdown/site.py" = ["E501"]  # embedded CSS/JS templates
+"src/handdown/review.py" = ["E501"]  # embedded HTML templates

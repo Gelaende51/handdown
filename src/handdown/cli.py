@@ -427,6 +427,27 @@ def vision_apply(min_score: float = 0.3) -> None:
 
 
 @app.command()
+def serve(port: int = 8765) -> None:
+    """Review app: browse the hierarchy and mark classification errors (http://127.0.0.1:PORT)."""
+    from . import review
+
+    server = review.make_server(Config(), port=port)
+    typer.echo(f"handdown review app on http://127.0.0.1:{server.server_address[1]}  (Ctrl-C to stop)")
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        pass
+
+
+@app.command()
+def feedback() -> None:
+    """Open classification error marks per level and per method."""
+    from . import review
+
+    typer.echo(review.feedback_summary(_conn(Config())))
+
+
+@app.command()
 def status() -> None:
     """Counts per stage and source status."""
     conn = _conn(Config())

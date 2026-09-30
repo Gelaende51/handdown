@@ -321,3 +321,16 @@ CREATE TABLE IF NOT EXISTS label_embedding (
     kind TEXT NOT NULL,
     vec BLOB NOT NULL
 );
+
+-- Classification error marks from the review app
+CREATE TABLE IF NOT EXISTS feedback (
+    id INTEGER PRIMARY KEY,
+    target_kind TEXT NOT NULL,      -- image | style_group | depiction | object | meaning
+    target_id TEXT NOT NULL,
+    levels TEXT NOT NULL,           -- JSON list: style_group | depiction | object | meaning | composite
+    correct_value TEXT,
+    note TEXT,
+    context TEXT,                   -- JSON snapshot of the classification when marked
+    status TEXT NOT NULL DEFAULT 'open',
+    created_at TEXT
+);
