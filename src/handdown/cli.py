@@ -315,6 +315,20 @@ def hierarchy(reresolve: bool = typer.Option(False, "--reresolve", help="only re
     typer.echo(hg.run(conn, log=typer.echo))
 
 
+@app.command("vision-vocab")
+def vision_vocab(out: str = typer.Argument("work/vision/labels.jsonl")) -> None:
+    """Write the label vocabulary (objects, views, features) for the vision runners."""
+    import json
+    from pathlib import Path
+
+    from . import vision
+
+    labels = vision.build_vocabulary(_conn(Config()))
+    Path(out).parent.mkdir(parents=True, exist_ok=True)
+    Path(out).write_text("".join(json.dumps(lab, ensure_ascii=False) + "\n" for lab in labels))
+    typer.echo(f"{len(labels)} labels -> {out}")
+
+
 @app.command()
 def status() -> None:
     """Counts per stage and source status."""
