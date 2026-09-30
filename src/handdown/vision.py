@@ -78,3 +78,163 @@ def build_vocabulary(conn: sqlite3.Connection) -> list[dict[str, Any]]:
     for feature in FEATURES:
         add(f"feature:{feature}", "feature", f"a pictogram with {feature}")
     return labels
+
+
+TOP_OBJECTS = 5
+FEATURE_MIN = 0.2
+
+
+def _images(cfg: Any, rows: list[sqlite3.Row], size: int = 224) -> tuple[list[Any], list[int]]:
+    """RGB renders (black on white) of the rows; blank renders are skipped."""
+    import numpy as np
+    from PIL import Image
+
+    from .metrics import render
+
+    images, ids = [], []
+    for r in rows:
+        path = cfg.resolve(r["norm_path"])
+        if path is None or not path.exists():
+            continue
+        ink = render(path.read_text(), size)
+        if ink.max() < 0.05:
+            continue
+        images.append(Image.fromarray(((1 - ink) * 255).astype(np.uint8)).convert("RGB"))
+        ids.append(r["id"])
+    return images, ids
+
+
+def embed(conn: sqlite3.Connection, cfg: Any, labels: list[dict[str, Any]], models: Any, batch: int = 64, log: Any = print) -> int:
+    """Embed every unique valid pictogram and store its top labels."""
+    import numpy as np
+
+    by_kind = {k: [lab["id"] for lab in labels if lab["kind"] == k] for k in ("object", "view", "feature")}
+    rows = conn.execute("SELECT id, norm_path FROM pictogram WHERE duplicate_of IS NULL AND svg_valid = 1 AND norm_path IS NOT NULL ORDER BY id").fetchall()
+    n = 0
+    for start in range(0, len(rows), batch):
+        images, ids = _images(cfg, rows[start : start + batch])
+        if not images:
+            continue
+        feats = models.image_features(images)
+        scores = {k: models.label_scores(feats["siglip"], k) for k in by_kind if by_kind[k]}
+        for i, pid in enumerate(ids):
+            for model, arr in feats.items():
+                conn.execute("INSERT OR REPLACE INTO embedding VALUES (?,?,?)", (pid, model, np.asarray(arr[i], dtype=np.float16).tobytes()))
+            conn.execute("DELETE FROM vision_label WHERE pictogram_id=?", (pid,))
+            rows_out = []
+            if "object" in scores:
+                top = np.argsort(-scores["object"][i])[:TOP_OBJECTS]
+                rows_out += [(pid, "object", by_kind["object"][j], float(scores["object"][i][j]), r + 1) for r, j in enumerate(top)]
+            if "view" in scores:
+                j = int(np.argmax(scores["view"][i]))
+                rows_out.append((pid, "view", by_kind["view"][j], float(scores["view"][i][j]), 1))
+            if "feature" in scores:
+                feats_on = [j for j in np.argsort(-scores["feature"][i]) if scores["feature"][i][j] >= FEATURE_MIN]
+                rows_out += [(pid, "feature", by_kind["feature"][j], float(scores["feature"][i][j]), r + 1) for r, j in enumerate(feats_on)]
+            conn.executemany("INSERT INTO vision_label VALUES (?,?,?,?,?)", rows_out)
+            n += 1
+        conn.commit()
+        if (start // batch) % 50 == 0:
+            log(f"  embedded {n}/{len(rows)}")
+    return n
+
+
+def export_vision(conn: sqlite3.Connection, out: Any, recipients: list[str] | None) -> int:
+    """Stream embeddings and labels as JSONL (gzip), keyed by source and
+    original id; age-encrypted when recipients are given."""
+    import base64
+    import gzip
+    import json
+    from pathlib import Path
+
+    from . import shard
+
+    out = Path(out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    n = 0
+    with gzip.open(out, "wt", encoding="utf-8") as f:
+        for p in conn.execute("SELECT id, source_id, original_id, sha256 FROM pictogram WHERE id IN (SELECT DISTINCT pictogram_id FROM embedding)"):
+            emb = {m: base64.b64encode(v).decode() for m, v in conn.execute("SELECT model, vec FROM embedding WHERE pictogram_id=?", (p[0],))}
+            labels = [list(r) for r in conn.execute("SELECT kind, label_id, score, rank FROM vision_label WHERE pictogram_id=?", (p[0],))]
+            f.write(json.dumps({"source_id": p[1], "original_id": p[2], "sha256": p[3], "emb": emb, "labels": labels}) + "\n")
+            n += 1
+    if recipients:
+        shard.encrypt_file(out, recipients)
+    return n
+
+
+def import_vision(conn: sqlite3.Connection, cfg: Any, path: Any, identity: Any) -> dict[str, int]:
+    """Merge a vision shard; rows for pictograms unknown here are counted and skipped."""
+    import base64
+    import gzip
+    import json
+    from pathlib import Path
+
+    from . import shard
+
+    path = Path(path)
+    plain = shard.decrypt_to(path, Path(identity) if identity else None, cfg) if path.name.endswith(".age") else path
+    stats = {"matched": 0, "unknown": 0}
+    try:
+        with gzip.open(plain, "rt", encoding="utf-8") as f:
+            for line in f:
+                if not line.strip():
+                    continue
+                rec = json.loads(line)
+                row = conn.execute("SELECT id FROM pictogram WHERE source_id=? AND original_id=?", (rec["source_id"], rec["original_id"])).fetchone()
+                if row is None:
+                    stats["unknown"] += 1
+                    continue
+                pid = row[0]
+                for model, b64 in rec["emb"].items():
+                    conn.execute("INSERT OR REPLACE INTO embedding VALUES (?,?,?)", (pid, model, base64.b64decode(b64)))
+                conn.execute("DELETE FROM vision_label WHERE pictogram_id=?", (pid,))
+                conn.executemany("INSERT OR REPLACE INTO vision_label VALUES (?,?,?,?,?)", [(pid, *lab) for lab in rec["labels"]])
+                stats["matched"] += 1
+                if stats["matched"] % 5000 == 0:
+                    conn.commit()
+    finally:
+        if plain != path:
+            plain.unlink(missing_ok=True)
+    conn.commit()
+    return stats
+
+
+class TorchModels:
+    """DINOv2-small and SigLIP on CPU (runners only: torch + transformers)."""
+
+    def __init__(self, labels: list[dict[str, Any]], dinov2: str = "facebook/dinov2-small", siglip: str = "google/siglip-base-patch16-224"):
+        import torch
+        from transformers import AutoImageProcessor, AutoModel, AutoProcessor
+
+        torch.set_num_threads(max(1, torch.get_num_threads()))
+        self.torch = torch
+        self.dproc = AutoImageProcessor.from_pretrained(dinov2)
+        self.dmodel = AutoModel.from_pretrained(dinov2).eval()
+        self.sproc = AutoProcessor.from_pretrained(siglip)
+        self.smodel = AutoModel.from_pretrained(siglip).eval()
+        self.text: dict[str, Any] = {}
+        for kind in ("object", "view", "feature"):
+            texts = [lab["text"] for lab in labels if lab["kind"] == kind]
+            chunks = []
+            with torch.no_grad():
+                for i in range(0, len(texts), 256):
+                    t = self.sproc(text=texts[i : i + 256], padding="max_length", return_tensors="pt")
+                    e = self.smodel.get_text_features(**t)
+                    chunks.append(e / e.norm(dim=-1, keepdim=True))
+            if chunks:
+                self.text[kind] = torch.cat(chunks)
+
+    def image_features(self, images: list[Any]) -> dict[str, Any]:
+        torch = self.torch
+        with torch.no_grad():
+            d = self.dmodel(**self.dproc(images=images, return_tensors="pt")).last_hidden_state[:, 0]
+            s = self.smodel.get_image_features(**self.sproc(images=images, return_tensors="pt"))
+        d = d / d.norm(dim=-1, keepdim=True)
+        s = s / s.norm(dim=-1, keepdim=True)
+        return {"dinov2": d.numpy(), "siglip": s.numpy()}
+
+    def label_scores(self, siglip: Any, kind: str) -> Any:
+        torch = self.torch
+        logits = torch.from_numpy(siglip) @ self.text[kind].T * self.smodel.logit_scale.exp() + self.smodel.logit_bias
+        return torch.sigmoid(logits).numpy()

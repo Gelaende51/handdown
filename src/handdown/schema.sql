@@ -299,3 +299,20 @@ CREATE TABLE IF NOT EXISTS meaning_link (
     PRIMARY KEY (depiction_id, concept_id, source)
 );
 CREATE INDEX IF NOT EXISTS meaning_link_concept ON meaning_link(concept_id);
+
+-- Vision models (docs/superpowers/specs/2026-09-30-vision-models-design.md)
+CREATE TABLE IF NOT EXISTS embedding (
+    pictogram_id INTEGER NOT NULL REFERENCES pictogram(id) ON DELETE CASCADE,
+    model TEXT NOT NULL,
+    vec BLOB NOT NULL,
+    PRIMARY KEY (pictogram_id, model)
+);
+CREATE TABLE IF NOT EXISTS vision_label (
+    pictogram_id INTEGER NOT NULL REFERENCES pictogram(id) ON DELETE CASCADE,
+    kind TEXT NOT NULL,
+    label_id TEXT NOT NULL,
+    score REAL,
+    rank INTEGER NOT NULL,
+    PRIMARY KEY (pictogram_id, kind, rank)
+);
+CREATE INDEX IF NOT EXISTS vision_label_label ON vision_label(label_id);

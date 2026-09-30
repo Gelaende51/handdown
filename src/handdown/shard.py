@@ -267,3 +267,33 @@ def _import_record(conn: sqlite3.Connection, cfg: Config, rec: dict[str, Any]) -
                VALUES (?,?,?,?,?,?,?,?,?,0)""",
             (pid, r["metric"], r["value"], r["detail"], r["method"], r["method_version"], r["model"], r["run_id"], r["computed_at"]),
         )
+
+
+def encrypt_file(plain: Path, recipients: list[str]) -> Path:
+    """age-encrypt ``plain`` to ``plain.age`` and delete the plaintext."""
+    import pyrage
+    from pyrage import x25519
+
+    try:
+        keys = [x25519.Recipient.from_str(r.strip()) for r in recipients]
+    except Exception as e:
+        raise ShardError(f"invalid age recipient: {e}") from e
+    target = plain.with_name(plain.name + ".age")
+    pyrage.encrypt_file(str(plain), str(target), keys)
+    plain.unlink()
+    return target
+
+
+def decrypt_to(path: Path, identity: Path | None, cfg: Config) -> Path:
+    """Decrypt an ``.age`` file into the cache; the caller deletes the result."""
+    if identity is None:
+        raise ShardError(f"{path} is encrypted: pass the age identity file (--identity or HANDDOWN_AGE_IDENTITY)")
+    import pyrage
+
+    plain = cfg.cache / "shards" / path.name.removesuffix(".age")
+    plain.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        pyrage.decrypt_file(str(path), str(plain), [_load_identity(identity)])
+    except pyrage.DecryptError as e:
+        raise ShardError(f"cannot decrypt {path}: wrong key?") from e
+    return plain

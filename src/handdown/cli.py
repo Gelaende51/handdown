@@ -330,6 +330,47 @@ def vision_vocab(out: str = typer.Argument("work/vision/labels.jsonl")) -> None:
 
 
 @app.command()
+def embed(labels: str = "work/vision/labels.jsonl", batch: int = 64) -> None:
+    """DINOv2 embeddings + SigLIP labels for every pictogram (runners: needs torch)."""
+    import json
+    from pathlib import Path
+
+    from . import vision
+
+    cfg = Config()
+    labs = [json.loads(line) for line in Path(labels).read_text().splitlines() if line]
+    n = vision.embed(_conn(cfg), cfg, labs, vision.TorchModels(labs), batch=batch, log=typer.echo)
+    typer.echo(f"{n} pictograms embedded")
+
+
+@app.command("export-vision")
+def export_vision_cmd(out: str, recipient: list[str] = typer.Option(None, "--recipient")) -> None:
+    """Write embeddings and labels (age-encrypted with HANDDOWN_AGE_RECIPIENT)."""
+    import os
+
+    from . import vision
+
+    recipients = list(recipient or []) + [r for r in os.environ.get("HANDDOWN_AGE_RECIPIENT", "").split(",") if r.strip()]
+    if not recipients and os.environ.get("GITHUB_ACTIONS") == "true":
+        raise SystemExit("refusing to export unencrypted vision data on GitHub Actions: set HANDDOWN_AGE_RECIPIENT")
+    typer.echo(f"{vision.export_vision(_conn(Config()), out, recipients or None)} pictograms -> {out}")
+
+
+@app.command("import-vision")
+def import_vision_cmd(paths: list[str], identity: str = typer.Option(None, "--identity")) -> None:
+    """Merge vision shards (embeddings and labels)."""
+    import os
+
+    from . import vision
+
+    ident = identity or os.environ.get("HANDDOWN_AGE_IDENTITY")
+    cfg = Config()
+    conn = _conn(cfg)
+    for p in paths:
+        typer.echo(f"{p}: {vision.import_vision(conn, cfg, p, os.path.expanduser(ident) if ident else None)}")
+
+
+@app.command()
 def status() -> None:
     """Counts per stage and source status."""
     conn = _conn(Config())
