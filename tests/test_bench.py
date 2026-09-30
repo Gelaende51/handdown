@@ -78,9 +78,7 @@ def test_run_writes_one_answer_per_key_and_resumes(tmp_path, monkeypatch):
     assert bench.run(c, cfg, sample, ask, "test:m", out, batch=2) == {"answered": 0, "missing": 0}  # resumed
 
 
-def test_numbered_answers_are_parsed_in_order():
-    text = "1: coffee cup\n2. Arrow\n\n3) the letter A\n"
-    assert bench.numbered(text, 4) == ["coffee cup", "arrow", "letter a", ""]
+def test_answers_are_cleaned():
     assert bench.clean(" **Coffee cup.** ") == "coffee cup"
     assert bench.clean("<think>hm</think>A key") == "key"
 
@@ -109,23 +107,3 @@ def test_score_summarises_per_model(tmp_path, monkeypatch):
     assert report["a"]["n"] == 2 and report["a"]["exact"] == 0.5 and report["a"]["seconds"] == 3.0
     assert report["a"]["misses"] == [("wn:key.n.01", "house")]
     assert report["b"]["n"] == 0
-
-
-def test_github_models_follows_redirects_and_reports_unreadable_answers():
-    import httpx
-    import pytest
-    from PIL import Image
-
-    def handler(request):
-        if request.url.path == "/inference/chat/completions":
-            return httpx.Response(307, headers={"location": "https://models.github.ai/v2/chat"})
-        if request.headers.get("x-broken"):
-            return httpx.Response(200, text="")
-        return httpx.Response(200, json={"choices": [{"message": {"content": "1: cup\n2: key"}}]})
-
-    images = [Image.new("RGB", (8, 8), "white")] * 2
-    ask = bench.GitHubModels("m", "t", transport=httpx.MockTransport(handler))
-    assert ask(images) == ["cup", "key"]
-    ask.client.headers["x-broken"] = "1"
-    with pytest.raises(RuntimeError, match=r"200.*empty"):
-        ask(images)

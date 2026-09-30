@@ -475,7 +475,7 @@ def bench_prepare(sample: str) -> None:
 
 
 @app.command("bench-run")
-def bench_run(sample: str, model: str = typer.Option(..., help="ollama:<tag> | github:<model> | florence:omniparser"), out: str = "bench.jsonl") -> None:
+def bench_run(sample: str, model: str = typer.Option(..., help="ollama:<tag> | florence:omniparser"), out: str = "bench.jsonl") -> None:
     """Runner: ask one model to name the object of every sample pictogram."""
     from pathlib import Path
 

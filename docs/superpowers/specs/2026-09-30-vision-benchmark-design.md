@@ -32,9 +32,8 @@ p ≥ 0.9). Answer key: the 20,052 depictions Claude assessed (`method='ai'`).
 - Backends:
   - `ollama:<tag>`: Ollama installed on the runner, one image per request,
     temperature 0 (Qwen2.5-VL 3B, Qwen3-VL 4B, Gemma 3 4B, Moondream 2).
-  - `github:<model>`: GitHub Models with the workflow token (`models: read`);
-    10 images per request and numbered answers, because the free tier allows
-    about 150 requests a day.
+  - (GitHub Models was planned as a free API, but it was retired on
+    2026-07-30; the backend was removed after the first run.)
   - `florence:omniparser`: OmniParser v2 icon caption model (Florence-2
     fine-tuned on UI icons), 64 px renders as in OmniParser.
 - Same prompt for every model: name the single object or symbol in 1–3

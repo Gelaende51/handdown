@@ -25,11 +25,6 @@ PROMPT = (
     "This is a monochrome pictogram (black on white). Name the single object or symbol it depicts "
     "in 1 to 3 English words, e.g. 'coffee cup', 'arrow', 'letter A'. Answer with the name only."
 )
-BATCH_PROMPT = (
-    "These are {n} monochrome pictograms (black on white), numbered in order. For each, name the single "
-    "object or symbol it depicts in 1 to 3 English words, e.g. 'coffee cup', 'arrow', 'letter A'. "
-    "Answer with exactly one line per pictogram: '<number>: <name>'."
-)
 
 Ask = Callable[[list[Any]], list[str]]
 
@@ -137,16 +132,6 @@ def clean(text: str) -> str:
     return re.sub(r"^(an?|the)\s+", "", text)
 
 
-def numbered(text: str, n: int) -> list[str]:
-    """Answers to a batch prompt, by number; missing numbers give ''."""
-    found: dict[int, str] = {}
-    for line in text.splitlines():
-        m = re.match(r"\s*(\d+)\s*[:.)-]\s*(.*)", line)
-        if m:
-            found[int(m.group(1))] = clean(m.group(2))
-    return [found.get(i + 1, "") for i in range(n)]
-
-
 def _png(image: Any) -> str:
     buf = io.BytesIO()
     image.save(buf, format="PNG")
@@ -171,40 +156,6 @@ class Ollama:
             r.raise_for_status()
             out.append(clean(r.json()["response"]))
         return out
-
-
-class GitHubModels:
-    """GitHub Models with the workflow token; batches, because the free tier
-    counts requests, not images."""
-
-    URL = "https://models.github.ai/inference/chat/completions"
-
-    def __init__(self, model: str, token: str, retries: int = 8, transport: Any = None):
-        import httpx
-
-        self.model, self.retries = model, retries
-        headers = {"Authorization": f"Bearer {token}", "Accept": "application/json", "X-GitHub-Api-Version": "2022-11-28"}
-        # raise_for_status passes a 3xx, so an unfollowed redirect looks like an empty success
-        self.client = httpx.Client(timeout=300, headers=headers, follow_redirects=True, transport=transport)
-
-    def __call__(self, images: list[Any]) -> list[str]:
-        content: list[dict[str, Any]] = [{"type": "text", "text": BATCH_PROMPT.format(n=len(images))}]
-        content += [{"type": "image_url", "image_url": {"url": f"data:image/png;base64,{_png(i)}", "detail": "low"}} for i in images]
-        body = {"model": self.model, "messages": [{"role": "user", "content": content}], "temperature": 0}
-        for _ in range(self.retries):
-            r = self.client.post(self.URL, json=body)
-            if r.status_code == 429:
-                wait = int(r.headers.get("retry-after", "60"))
-                if wait > 3600:
-                    raise RuntimeError(f"GitHub Models daily limit reached (retry after {wait} s)")
-                time.sleep(wait + 1)
-                continue
-            r.raise_for_status()
-            try:
-                return numbered(r.json()["choices"][0]["message"]["content"], len(images))
-            except (ValueError, KeyError, IndexError, TypeError) as e:
-                raise RuntimeError(f"GitHub Models answered {r.status_code} {r.headers.get('content-type')}: {r.text[:500] or 'empty'}") from e
-        raise RuntimeError("GitHub Models kept answering 429")
 
 
 class OmniParserCaption:
@@ -236,14 +187,10 @@ class OmniParserCaption:
 
 
 def backend(spec: str) -> tuple[Ask, int, int]:
-    """(ask, batch, render size) for 'ollama:<tag>', 'github:<model>' or 'florence:omniparser'."""
-    import os
-
+    """(ask, batch, render size) for 'ollama:<tag>' or 'florence:omniparser'."""
     kind, _, name = spec.partition(":")
     if kind == "ollama":
         return Ollama(name), 1, 256
-    if kind == "github":
-        return GitHubModels(name, os.environ["GITHUB_TOKEN"]), 10, 256
     if kind == "florence" and name == "omniparser":
         return OmniParserCaption(), 8, 64  # OmniParser captions 64 px crops
     raise ValueError(f"unknown model spec {spec!r}")
