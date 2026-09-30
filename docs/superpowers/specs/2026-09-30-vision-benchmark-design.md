@@ -76,3 +76,6 @@ the probe retrains on them.
   icon means ("users", "lamp", "fuel"), not what is drawn (silhouette, light
   bulb, gas pump). Choosing among name candidates can gain at most 8 points;
   the drawn object needs vision, text fits the meaning level.
+- Result (run 36782921650): Laya zero-shot 28 % vs rules 30 %; 69 % vs 73 %
+  where Claude's object is among several candidates; p ≥ 0.9 only 37 % right.
+  Not adopted for objects.
