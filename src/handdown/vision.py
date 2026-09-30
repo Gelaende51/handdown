@@ -215,6 +215,12 @@ def pixels(images: list[Any], mean: tuple[float, ...], std: tuple[float, ...], s
     return np.ascontiguousarray(arr.transpose(0, 3, 1, 2), dtype=np.float32)
 
 
+def as_features(out: Any) -> Any:
+    """get_*_features returns a tensor in older transformers and a model
+    output (with pooler_output) in newer ones."""
+    return out if hasattr(out, "norm") else out.pooler_output
+
+
 class TorchModels:
     """DINOv2-small and SigLIP on CPU (runners only: torch + transformers)."""
 
@@ -233,7 +239,7 @@ class TorchModels:
             with torch.no_grad():
                 for i in range(0, len(texts), 256):
                     t = tokenizer(texts[i : i + 256], padding="max_length", max_length=64, truncation=True, return_tensors="pt")
-                    e = self.smodel.get_text_features(input_ids=t["input_ids"])
+                    e = as_features(self.smodel.get_text_features(input_ids=t["input_ids"]))
                     chunks.append(e / e.norm(dim=-1, keepdim=True))
             if chunks:
                 self.text[kind] = torch.cat(chunks)
@@ -242,7 +248,7 @@ class TorchModels:
         torch = self.torch
         with torch.no_grad():
             d = self.dmodel(pixel_values=torch.from_numpy(pixels(images, *IMAGENET))).last_hidden_state[:, 0]
-            s = self.smodel.get_image_features(pixel_values=torch.from_numpy(pixels(images, *SIGLIP_NORM)))
+            s = as_features(self.smodel.get_image_features(pixel_values=torch.from_numpy(pixels(images, *SIGLIP_NORM))))
         d = d / d.norm(dim=-1, keepdim=True)
         s = s / s.norm(dim=-1, keepdim=True)
         return {"dinov2": d.numpy(), "siglip": s.numpy()}

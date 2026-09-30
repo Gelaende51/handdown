@@ -172,3 +172,18 @@ def test_pixels_normalization_without_torchvision():
     assert np.allclose(x[0], 1.0) and np.allclose(x[1], -1.0)  # (v - 0.5) / 0.5
     d = pixels([black], *IMAGENET)
     assert np.allclose(d[0, 0], -0.485 / 0.229, atol=1e-4)
+
+
+def test_feature_outputs_accept_tensor_or_model_output():
+    from handdown.vision import as_features
+
+    class Tensorish:
+        def norm(self):
+            return 1
+
+    class Output:
+        pooler_output = Tensorish()
+
+    t = Tensorish()
+    assert as_features(t) is t  # older transformers: a tensor
+    assert as_features(Output()) is Output.pooler_output  # newer: BaseModelOutputWithPooling
