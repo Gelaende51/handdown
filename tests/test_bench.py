@@ -148,7 +148,7 @@ def test_text_run_and_score(tmp_path, monkeypatch):
     c = db.connect(Config().db_path)
     _named_catalog(c)
     items = bench.text_items(c, n=10, max_options=6)
-    out = tmp_path / "text.jsonl"
+    out = tmp_path / "results" / "text.jsonl"  # a missing folder is created
 
     def predict(batch):
         return [("wn:cup.n.01", 0.95) for _ in batch]

@@ -92,6 +92,7 @@ def run(
     from .vision import _images
 
     out = Path(out)
+    out.parent.mkdir(parents=True, exist_ok=True)
     done = {json.loads(line)["key"] for line in out.read_text().splitlines()} if out.exists() else set()
     _sample_table(conn, sample)
     rows = conn.execute(
@@ -320,6 +321,7 @@ def text_items(conn: sqlite3.Connection, n: int = 2000, seed: int = 0, max_optio
 def run_text(items: list[dict[str, Any]], predict: Callable[[list[dict[str, Any]]], list[tuple[str, float]]], model: str, out: Path, batch: int = 32) -> int:
     """Write {key, model, answer, p} per item; keys already in ``out`` are skipped."""
     out = Path(out)
+    out.parent.mkdir(parents=True, exist_ok=True)
     done = {json.loads(line)["key"] for line in out.read_text().splitlines()} if out.exists() else set()
     todo = [i for i in items if i["key"] not in done]
     with out.open("a") as f:
