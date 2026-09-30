@@ -44,3 +44,27 @@ def test_actions_excepthook_emits_error_annotation(monkeypatch, capsys):
         cli.annotate_exception(type(e), e, e.__traceback__)
     out = capsys.readouterr().out
     assert out.startswith("::error title=ValueError::") and "boom%0Asecond line" in out
+
+
+def test_cli_main_annotates_command_errors(monkeypatch, capsys):
+    import pytest as _pytest
+
+    from handdown import cli
+
+    monkeypatch.setenv("GITHUB_ACTIONS", "true")
+    monkeypatch.setattr("sys.argv", ["handdown", "embed", "--labels", "/nonexistent/labels.jsonl"])
+    with _pytest.raises(SystemExit):
+        cli.main()
+    assert "::error title=FileNotFoundError::" in capsys.readouterr().out
+
+
+def test_cli_usage_errors_keep_exit_code(monkeypatch, capsys):
+    import pytest as _pytest
+
+    from handdown import cli
+
+    monkeypatch.setenv("GITHUB_ACTIONS", "true")
+    monkeypatch.setattr("sys.argv", ["handdown", "no-such-command"])
+    with _pytest.raises(SystemExit) as e:
+        cli.main()
+    assert e.value.code == 2 and "::error" not in capsys.readouterr().out

@@ -22,14 +22,29 @@ def annotate_exception(exc_type, exc, tb) -> None:  # type: ignore[no-untyped-de
         text = "".join(traceback.format_exception(exc_type, exc, tb))[-3000:]
         text = text.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
         print(f"::error title={exc_type.__name__}::{text}", flush=True)
-    sys.__excepthook__(exc_type, exc, tb)
+    traceback.print_exception(exc_type, exc, tb, file=sys.stderr)
 
 
 def main() -> None:
+    """Entry point. Typer's standalone mode would catch exceptions, print them
+    and exit 1, hiding them from the Actions annotation; run non-standalone
+    and handle click's own exits here."""
     import sys
 
-    sys.excepthook = annotate_exception
-    app()
+    try:
+        app(standalone_mode=False)
+    except Exception as e:
+        # typer vendors its own click: match its exceptions by interface
+        name = type(e).__name__
+        if name == "Exit" and hasattr(e, "exit_code"):
+            sys.exit(e.exit_code)
+        if hasattr(e, "show") and hasattr(e, "exit_code"):
+            e.show()
+            sys.exit(e.exit_code)
+        if name == "Abort":
+            sys.exit(1)
+        annotate_exception(*sys.exc_info())
+        sys.exit(1)
 
 
 def _conn(cfg: Config):
