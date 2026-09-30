@@ -1,0 +1,104 @@
+# Vision benchmark: free models name the object of 500 Claude-assessed
+# pictograms (docs/superpowers/specs/2026-09-30-vision-benchmark-design.md).
+# Pictograms never leave the runner: only the answers (text) are uploaded and
+# committed to work/bench/results/<run id>.jsonl. Score locally with:
+#   uv run handdown bench-score work/bench/results/*.jsonl
+name: bench
+on:
+  workflow_dispatch:
+    inputs:
+      models:
+        description: "Space-separated model specs (ollama:<tag> | github:<model> | florence:omniparser)"
+        default: "ollama:qwen2.5vl:3b ollama:qwen3-vl:4b-instruct ollama:gemma3:4b ollama:moondream github:openai/gpt-4.1-mini github:meta/llama-4-scout-17b-16e-instruct florence:omniparser"
+
+permissions:
+  contents: read
+
+env:
+  HF_HUB_DISABLE_TELEMETRY: "1"
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.m.outputs.matrix }}
+    steps:
+      - id: m
+        run: echo "matrix=$(python3 -c 'import json,sys; print(json.dumps(sys.argv[1].split()))' '${{ inputs.models }}')" >> "$GITHUB_OUTPUT"
+
+  run:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    permissions:
+      contents: read
+      models: read
+    strategy:
+      fail-fast: false
+      matrix:
+        model: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    env:
+      MODEL: ${{ matrix.model }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --frozen
+      - name: Model runtime
+        run: |
+          case "$MODEL" in
+            ollama:*)
+              curl -fsSL https://ollama.com/install.sh | sh
+              for i in $(seq 30); do curl -sf http://127.0.0.1:11434/api/version && break; sleep 2; done
+              ollama pull "${MODEL#ollama:}" ;;
+            florence:*)
+              # Florence-2's remote code breaks on newer transformers
+              uv pip install torch --index-url https://download.pytorch.org/whl/cpu
+              uv pip install "transformers==4.49.0" timm einops huggingface_hub ;;
+          esac
+      - if: startsWith(matrix.model, 'florence:')
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-omniparser-v2-florence2-base
+      - run: uv run handdown import-sources work/bench/sources.jsonl
+      - run: |
+          for adapter in iconify npm-svg git-svg; do
+            uv run handdown harvest "$adapter" --status accepted --no-registry
+          done
+      - run: uv run handdown bench-prepare work/bench/sample.jsonl
+      - run: uv run handdown process --workers 4
+      - run: uv run handdown bench-run work/bench/sample.jsonl --model "$MODEL" --out bench.jsonl
+      - if: always()
+        run: uv run handdown errors --annotate
+      # Only the answers leave the runner, never the pictograms
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bench-${{ strategy.job-index }}
+          path: bench.jsonl
+          if-no-files-found: warn
+          retention-days: 7
+
+  collect:
+    needs: run
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: bench-*
+          path: answers
+      - name: Commit the answers
+        run: |
+          mkdir -p work/bench/results
+          cat answers/*/bench.jsonl > "work/bench/results/${{ github.run_id }}.jsonl" || true
+          git config user.name "Vault51"
+          git config user.email "Gelaende51@users.noreply.github.com"
+          git add work/bench/results
+          if git diff --cached --quiet; then echo "no answers"; exit 0; fi
+          git commit -m "Bench: vision model answers (run ${{ github.run_id }})"
+          git pull --rebase && git push
