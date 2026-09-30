@@ -30,7 +30,7 @@ dev = [
 ]
 
 [project.scripts]
-handdown = "handdown.cli:app"
+handdown = "handdown.cli:main"
 
 [tool.ruff]
 line-length = 160

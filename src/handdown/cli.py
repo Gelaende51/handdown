@@ -7,7 +7,29 @@ import typer
 from . import db, pipeline, registry
 from .config import Config
 
-app = typer.Typer(help="Pictogram research catalog.", no_args_is_help=True)
+app = typer.Typer(help="Pictogram research catalog.", no_args_is_help=True, pretty_exceptions_enable=False)
+
+
+def annotate_exception(exc_type, exc, tb) -> None:  # type: ignore[no-untyped-def]
+    """On GitHub Actions, print an uncaught exception as an error annotation:
+    job logs of this repository are not readable from the dev container, but
+    annotations are served by the API."""
+    import os
+    import sys
+    import traceback
+
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        text = "".join(traceback.format_exception(exc_type, exc, tb))[-3000:]
+        text = text.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+        print(f"::error title={exc_type.__name__}::{text}", flush=True)
+    sys.__excepthook__(exc_type, exc, tb)
+
+
+def main() -> None:
+    import sys
+
+    sys.excepthook = annotate_exception
+    app()
 
 
 def _conn(cfg: Config):
@@ -397,4 +419,4 @@ def status() -> None:
 
 
 if __name__ == "__main__":
-    app()
+    main()

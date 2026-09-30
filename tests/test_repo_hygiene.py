@@ -32,3 +32,15 @@ def test_no_harvested_assets_tracked():
 def test_private_dirs_not_tracked():
     bad = [f for f in tracked() if f.split("/", 1)[0] in ("data", "vault", "site")]
     assert not bad, bad
+
+
+def test_actions_excepthook_emits_error_annotation(monkeypatch, capsys):
+    from handdown import cli
+
+    monkeypatch.setenv("GITHUB_ACTIONS", "true")
+    try:
+        raise ValueError("boom\nsecond line")
+    except ValueError as e:
+        cli.annotate_exception(type(e), e, e.__traceback__)
+    out = capsys.readouterr().out
+    assert out.startswith("::error title=ValueError::") and "boom%0Asecond line" in out
