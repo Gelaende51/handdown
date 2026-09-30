@@ -316,3 +316,8 @@ CREATE TABLE IF NOT EXISTS vision_label (
     PRIMARY KEY (pictogram_id, kind, rank)
 );
 CREATE INDEX IF NOT EXISTS vision_label_label ON vision_label(label_id);
+CREATE TABLE IF NOT EXISTS label_embedding (
+    label_id TEXT PRIMARY KEY,
+    kind TEXT NOT NULL,
+    vec BLOB NOT NULL
+);

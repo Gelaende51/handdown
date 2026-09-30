@@ -410,6 +410,14 @@ def import_vision_cmd(paths: list[str], identity: str = typer.Option(None, "--id
         typer.echo(f"{p}: {vision.import_vision(conn, cfg, p, os.path.expanduser(ident) if ident else None)}")
 
 
+@app.command("vision-score")
+def vision_score() -> None:
+    """Re-score labels locally (softmax) from stored image and label embeddings."""
+    from . import vision
+
+    typer.echo(f"{vision.score_labels(_conn(Config()), log=typer.echo)} pictograms scored")
+
+
 @app.command("vision-apply")
 def vision_apply(min_score: float = 0.3) -> None:
     """Fill missing objects and views of depictions from vision labels."""

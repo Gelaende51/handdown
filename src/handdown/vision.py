@@ -47,6 +47,21 @@ FEATURES = [
 ]
 
 
+# Classes for glyphs that depict no object; they compete with the objects so
+# that abstract glyphs are not forced onto the nearest thing.
+CLASSES = {
+    "class:letter": "a letter of the alphabet",
+    "class:number": "a number or digit",
+    "class:script": "a character of a writing system",
+    "class:braille": "a braille pattern of dots",
+    "class:music": "a musical notation symbol",
+    "class:geometric": "a simple geometric shape",
+    "class:logo": "a brand logo",
+    "class:abstract": "an abstract symbol",
+    "class:arrow": "an arrow",
+}
+
+
 def build_vocabulary(conn: sqlite3.Connection) -> list[dict[str, Any]]:
     """Label vocabulary: object concepts (drawable things), views, features.
     Texts are unique; the first concept with a text wins."""
@@ -73,6 +88,8 @@ def build_vocabulary(conn: sqlite3.Connection) -> list[dict[str, Any]]:
         # WordNet objects only: term phrases ("arrow left circle") dilute zero-shot
         if synset and synset_lex.get(cid) in OBJECT_LEXNAMES:
             add(cid, "object", f"a pictogram of a {label}")
+    for class_id, text in CLASSES.items():
+        add(class_id, "object", f"a pictogram of {text}")
     for view, text in VIEW_TEXTS.items():
         add(f"view:{view}", "view", f"a pictogram {text}")
     for feature in FEATURES:
@@ -109,6 +126,9 @@ def embed(conn: sqlite3.Connection, cfg: Any, labels: list[dict[str, Any]], mode
     import numpy as np
 
     by_kind = {k: [lab["id"] for lab in labels if lab["kind"] == k] for k in ("object", "view", "feature")}
+    if hasattr(models, "label_rows"):
+        label_rows, scale, bias = models.label_rows()
+        store_label_embeddings(conn, label_rows, scale, bias)
     rows = conn.execute("SELECT id, norm_path FROM pictogram WHERE duplicate_of IS NULL AND svg_valid = 1 AND norm_path IS NOT NULL ORDER BY id").fetchall()
     n = 0
     for start in range(0, len(rows), batch):
@@ -153,6 +173,13 @@ def export_vision(conn: sqlite3.Connection, out: Any, recipients: list[str] | No
     out.parent.mkdir(parents=True, exist_ok=True)
     n = 0
     with gzip.open(out, "wt", encoding="utf-8") as f:
+        meta = dict(conn.execute("SELECT key, value FROM meta WHERE key IN ('siglip_scale', 'siglip_bias')").fetchall())
+        header = {
+            "label_embeddings": [[r[0], r[1], base64.b64encode(r[2]).decode()] for r in conn.execute("SELECT label_id, kind, vec FROM label_embedding")],
+            "scale": meta.get("siglip_scale"),
+            "bias": meta.get("siglip_bias"),
+        }
+        f.write(json.dumps(header) + "\n")
         for p in conn.execute("SELECT id, source_id, original_id, sha256 FROM pictogram WHERE id IN (SELECT DISTINCT pictogram_id FROM embedding)"):
             emb = {m: base64.b64encode(v).decode() for m, v in conn.execute("SELECT model, vec FROM embedding WHERE pictogram_id=?", (p[0],))}
             labels = [list(r) for r in conn.execute("SELECT kind, label_id, score, rank FROM vision_label WHERE pictogram_id=?", (p[0],))]
@@ -181,6 +208,15 @@ def import_vision(conn: sqlite3.Connection, cfg: Any, path: Any, identity: Any) 
                 if not line.strip():
                     continue
                 rec = json.loads(line)
+                if "label_embeddings" in rec:
+                    if rec["label_embeddings"]:
+                        conn.executemany(
+                            "INSERT OR REPLACE INTO label_embedding VALUES (?,?,?)",
+                            [(lid, kind, base64.b64decode(b64)) for lid, kind, b64 in rec["label_embeddings"]],
+                        )
+                        conn.execute("INSERT OR REPLACE INTO meta VALUES ('siglip_scale', ?)", (rec["scale"],))
+                        conn.execute("INSERT OR REPLACE INTO meta VALUES ('siglip_bias', ?)", (rec["bias"],))
+                    continue
                 row = conn.execute("SELECT id FROM pictogram WHERE source_id=? AND original_id=?", (rec["source_id"], rec["original_id"])).fetchone()
                 if row is None:
                     stats["unknown"] += 1
@@ -233,6 +269,7 @@ class TorchModels:
         self.smodel = AutoModel.from_pretrained(siglip).eval()
         tokenizer = AutoTokenizer.from_pretrained(siglip)
         self.text: dict[str, Any] = {}
+        self.label_ids = {k: [lab["id"] for lab in labels if lab["kind"] == k] for k in ("object", "view", "feature")}
         for kind in ("object", "view", "feature"):
             texts = [lab["text"] for lab in labels if lab["kind"] == kind]
             chunks = []
@@ -243,6 +280,13 @@ class TorchModels:
                     chunks.append(e / e.norm(dim=-1, keepdim=True))
             if chunks:
                 self.text[kind] = torch.cat(chunks)
+
+    def label_rows(self) -> tuple[list[tuple[str, str, Any]], float, float]:
+        rows = []
+        for kind, ids in self.label_ids.items():
+            vecs = self.text[kind].numpy()
+            rows += [(lid, kind, vecs[i]) for i, lid in enumerate(ids)]
+        return rows, float(self.smodel.logit_scale.exp().item()), float(self.smodel.logit_bias.item())
 
     def image_features(self, images: list[Any]) -> dict[str, Any]:
         torch = self.torch
@@ -279,10 +323,70 @@ def apply(conn: sqlite3.Connection, min_score: float = 0.3) -> dict[str, int]:
         for did, label, _n, mean in rows:
             best.setdefault(did, (label, mean))  # first row per depiction = majority label
         for did, (label, mean) in best.items():
-            if mean < min_score:
-                continue
+            if mean < min_score or label.startswith("class:"):
+                continue  # classes (letter, braille ...) are not drawable objects
             value = label.removeprefix("view:") if kind == "view" else label
             conn.execute(f"UPDATE depiction SET {column} = ? WHERE id = ? AND {empty}", (value, did))
             counts["objects" if kind == "object" else "views"] += 1
     conn.commit()
     return counts
+
+
+def store_label_embeddings(conn: sqlite3.Connection, rows: list[tuple[str, str, Any]], scale: float, bias: float) -> None:
+    """Text embeddings of the vocabulary plus SigLIP's logit scale and bias,
+    so labels can be scored locally (and re-scored for a new vocabulary)."""
+    import numpy as np
+
+    conn.executemany(
+        "INSERT OR REPLACE INTO label_embedding VALUES (?,?,?)",
+        [(lid, kind, np.asarray(v, dtype=np.float16).tobytes()) for lid, kind, v in rows],
+    )
+    conn.execute("INSERT OR REPLACE INTO meta VALUES ('siglip_scale', ?)", (str(float(scale)),))
+    conn.execute("INSERT OR REPLACE INTO meta VALUES ('siglip_bias', ?)", (str(float(bias)),))
+    conn.commit()
+
+
+def score_labels(conn: sqlite3.Connection, chunk: int = 5000, log: Any = print) -> int:
+    """Re-score every SigLIP image embedding against the stored label
+    embeddings with a softmax per kind. SigLIP's sigmoid saturates for
+    pictograms (every image matches "a pictogram of ..."), so relative
+    softmax probabilities are the usable confidence."""
+    import numpy as np
+
+    meta = dict(conn.execute("SELECT key, value FROM meta WHERE key IN ('siglip_scale', 'siglip_bias')").fetchall())
+    scale, bias = float(meta.get("siglip_scale", 1.0)), float(meta.get("siglip_bias", 0.0))
+    kinds: dict[str, tuple[list[str], Any]] = {}
+    for kind in ("object", "view", "feature"):
+        rows = conn.execute("SELECT label_id, vec FROM label_embedding WHERE kind=? ORDER BY label_id", (kind,)).fetchall()
+        if rows:
+            m = np.stack([np.frombuffer(r[1], dtype=np.float16).astype(np.float32) for r in rows])
+            m /= np.linalg.norm(m, axis=1, keepdims=True).clip(1e-6)
+            kinds[kind] = ([r[0] for r in rows], m)
+    if not kinds:
+        return 0
+    n, last = 0, 0
+    while True:
+        rows = conn.execute(
+            "SELECT pictogram_id, vec FROM embedding WHERE model='siglip' AND pictogram_id > ? ORDER BY pictogram_id LIMIT ?", (last, chunk)
+        ).fetchall()
+        if not rows:
+            break
+        last = rows[-1][0]
+        ids = [r[0] for r in rows]
+        x = np.stack([np.frombuffer(r[1], dtype=np.float16).astype(np.float32) for r in rows])
+        x /= np.linalg.norm(x, axis=1, keepdims=True).clip(1e-6)
+        out = []
+        for kind, (label_ids, m) in kinds.items():
+            logits = x @ m.T * scale + bias
+            logits -= logits.max(axis=1, keepdims=True)
+            p = np.exp(logits)
+            p /= p.sum(axis=1, keepdims=True)
+            top = np.argsort(-p, axis=1)[:, : (TOP_OBJECTS if kind != "view" else 1)]
+            for i, pid in enumerate(ids):
+                out += [(pid, kind, label_ids[j], float(p[i, j]), r + 1) for r, j in enumerate(top[i])]
+        conn.executemany("DELETE FROM vision_label WHERE pictogram_id=?", [(pid,) for pid in ids])
+        conn.executemany("INSERT INTO vision_label VALUES (?,?,?,?,?)", out)
+        conn.commit()
+        n += len(ids)
+        log(f"  scored {n}")
+    return n

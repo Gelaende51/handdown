@@ -36,6 +36,7 @@ def test_vocabulary_objects_views_features(conn):
     assert not any(lab["id"].startswith("term:") for lab in objects)  # phrases dilute zero-shot
     assert len({lab["text"] for lab in labels}) == len(labels)  # deduplicated texts
     assert {lab["kind"] for lab in labels} == {"object", "view", "feature"}
+    assert any(lab["id"] == "class:braille" for lab in objects)  # abstract glyphs get a class, not a forced object
     assert all(json.dumps(lab) for lab in labels)
 
 
@@ -50,6 +51,12 @@ class FakeModels:
 
         m = np.array([[np.asarray(im, dtype=np.float32).mean() / 255.0] for im in images])
         return {"dinov2": np.repeat(m, 384, axis=1), "siglip": np.repeat(m, 768, axis=1)}
+
+    def label_rows(self):
+        import numpy as np
+
+        rows = [(lab["id"], k, np.ones(768, dtype=np.float32)) for k, labs in self.kinds.items() for lab in labs]
+        return rows, 10.0, -5.0
 
     def label_scores(self, siglip, kind):
         import numpy as np
@@ -98,6 +105,8 @@ def test_embed_export_import_roundtrip(tmp_path, monkeypatch):
     stats = vision.import_vision(c2, cfg2, enc, key)
     assert stats["matched"] == n and stats["unknown"] == 0
     assert c2.execute("SELECT COUNT(*) FROM embedding").fetchone()[0] == 2 * n
+    assert c2.execute("SELECT COUNT(*) FROM label_embedding").fetchone()[0] == 3  # vocabulary travels along
+    assert c2.execute("SELECT value FROM meta WHERE key='siglip_scale'").fetchone()[0] == "10.0"
 
 
 def test_import_counts_unknown_rows(tmp_path, monkeypatch):
@@ -187,3 +196,33 @@ def test_feature_outputs_accept_tensor_or_model_output():
     t = Tensorish()
     assert as_features(t) is t  # older transformers: a tensor
     assert as_features(Output()) is Output.pooler_output  # newer: BaseModelOutputWithPooling
+
+
+def test_local_softmax_scoring_from_stored_embeddings(tmp_path, monkeypatch):
+    import numpy as np
+
+    from handdown import vision
+
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    c = db.connect(Config().db_path)
+    c.execute("INSERT INTO platform (id, name) VALUES ('p','p')")
+    c.execute("INSERT INTO source (id, platform_id, name) VALUES ('s','p','s')")
+    c.execute("INSERT INTO pictogram (id, source_id, original_id, svg_valid) VALUES (1,'s','a',1)")
+    img = np.array([1.0, 0.0, 0.0], dtype=np.float16)
+    c.execute("INSERT INTO embedding VALUES (1, 'siglip', ?)", (img.tobytes(),))
+    labels = [("o:cup", "object", [0.9, 0.1, 0.0]), ("o:dome", "object", [0.8, 0.2, 0.0]), ("v:side", "view", [1.0, 0.0, 0.0])]
+    vision.store_label_embeddings(c, [(lid, kind, np.array(v, dtype=np.float32)) for lid, kind, v in labels], scale=10.0, bias=-5.0)
+    assert vision.score_labels(c) == 1
+    rows = c.execute("SELECT label_id, score, rank FROM vision_label WHERE pictogram_id=1 AND kind='object' ORDER BY rank").fetchall()
+    assert [r[0] for r in rows] == ["o:cup", "o:dome"]
+    assert abs(sum(r[1] for r in rows) - 1.0) < 1e-3  # softmax: relative confidence, not saturated sigmoids
+    assert rows[0][1] > rows[1][1]
+
+
+def test_apply_does_not_turn_classes_into_objects(conn):
+    from handdown import vision
+
+    _depiction_with_labels(conn, 0.8)
+    conn.execute("UPDATE vision_label SET label_id='class:braille' WHERE kind='object'")
+    vision.apply(conn)
+    assert conn.execute("SELECT object_id FROM depiction").fetchone()[0] is None

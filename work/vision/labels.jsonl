@@ -21,6 +21,7 @@
 {"id": "wn:ace_of_spades.n.01", "kind": "object", "text": "a pictogram of a ace of spades"}
 {"id": "wn:acer.n.01", "kind": "object", "text": "a pictogram of a Acer"}
 {"id": "wn:acerate_leaf.n.01", "kind": "object", "text": "a pictogram of a acerate leaf"}
+{"id": "wn:acetone.n.01", "kind": "object", "text": "a pictogram of a acetone"}
 {"id": "wn:achilles.n.01", "kind": "object", "text": "a pictogram of a Achilles"}
 {"id": "wn:acid.n.01", "kind": "object", "text": "a pictogram of a acid"}
 {"id": "wn:ackee.n.01", "kind": "object", "text": "a pictogram of a ackee"}
@@ -31,6 +32,7 @@
 {"id": "wn:acrobat.n.01", "kind": "object", "text": "a pictogram of a acrobat"}
 {"id": "wn:acrylic_fiber.n.01", "kind": "object", "text": "a pictogram of a acrylic fiber"}
 {"id": "wn:acrylonitrile-butadiene-styrene.n.01", "kind": "object", "text": "a pictogram of a acrylonitrile-butadiene-styrene"}
+{"id": "wn:actaea.n.01", "kind": "object", "text": "a pictogram of a Actaea"}
 {"id": "wn:actinium.n.01", "kind": "object", "text": "a pictogram of a actinium"}
 {"id": "wn:activator.n.01", "kind": "object", "text": "a pictogram of a activator"}
 {"id": "wn:active_agent.n.01", "kind": "object", "text": "a pictogram of a active agent"}
@@ -61,9 +63,11 @@
 {"id": "wn:africa.n.01", "kind": "object", "text": "a pictogram of a Africa"}
 {"id": "wn:african.n.01", "kind": "object", "text": "a pictogram of a African"}
 {"id": "wn:afro.n.01", "kind": "object", "text": "a pictogram of a Afro"}
+{"id": "wn:agamemnon.n.01", "kind": "object", "text": "a pictogram of a Agamemnon"}
 {"id": "wn:agar.n.01", "kind": "object", "text": "a pictogram of a agar"}
 {"id": "wn:agave.n.01", "kind": "object", "text": "a pictogram of a agave"}
 {"id": "wn:agent.n.01", "kind": "object", "text": "a pictogram of a agent"}
+{"id": "wn:aide.n.02", "kind": "object", "text": "a pictogram of a aide"}
 {"id": "wn:air.n.01", "kind": "object", "text": "a pictogram of a air"}
 {"id": "wn:air_conditioner.n.01", "kind": "object", "text": "a pictogram of a air conditioner"}
 {"id": "wn:air_filter.n.01", "kind": "object", "text": "a pictogram of a air filter"}
@@ -75,7 +79,9 @@
 {"id": "wn:airbrush.n.01", "kind": "object", "text": "a pictogram of a airbrush"}
 {"id": "wn:airbus.n.01", "kind": "object", "text": "a pictogram of a airbus"}
 {"id": "wn:aircraft.n.01", "kind": "object", "text": "a pictogram of a aircraft"}
+{"id": "wn:aircraft_carrier.n.01", "kind": "object", "text": "a pictogram of a aircraft carrier"}
 {"id": "wn:airdock.n.01", "kind": "object", "text": "a pictogram of a airdock"}
+{"id": "wn:aire.n.01", "kind": "object", "text": "a pictogram of a Aire"}
 {"id": "wn:airfield.n.01", "kind": "object", "text": "a pictogram of a airfield"}
 {"id": "wn:airfoil.n.01", "kind": "object", "text": "a pictogram of a airfoil"}
 {"id": "wn:airline.n.01", "kind": "object", "text": "a pictogram of a airline"}
@@ -88,9 +94,11 @@
 {"id": "wn:ajax.n.01", "kind": "object", "text": "a pictogram of a Ajax"}
 {"id": "wn:ala.n.01", "kind": "object", "text": "a pictogram of a ala"}
 {"id": "wn:alarm_clock.n.01", "kind": "object", "text": "a pictogram of a alarm clock"}
+{"id": "wn:alauda.n.01", "kind": "object", "text": "a pictogram of a Alauda"}
 {"id": "wn:albert.n.01", "kind": "object", "text": "a pictogram of a Albert"}
 {"id": "wn:alchemist.n.01", "kind": "object", "text": "a pictogram of a alchemist"}
 {"id": "wn:alcohol.n.01", "kind": "object", "text": "a pictogram of a alcohol"}
+{"id": "wn:alcove.n.01", "kind": "object", "text": "a pictogram of a alcove"}
 {"id": "wn:alembic.n.01", "kind": "object", "text": "a pictogram of a alembic"}
 {"id": "wn:alfred.n.01", "kind": "object", "text": "a pictogram of a Alfred"}
 {"id": "wn:alga.n.01", "kind": "object", "text": "a pictogram of a alga"}
@@ -104,9 +112,12 @@
 {"id": "wn:almond.n.01", "kind": "object", "text": "a pictogram of a almond"}
 {"id": "wn:alp.n.01", "kind": "object", "text": "a pictogram of a alp"}
 {"id": "wn:alpaca.n.01", "kind": "object", "text": "a pictogram of a alpaca"}
+{"id": "wn:alpha_centauri.n.01", "kind": "object", "text": "a pictogram of a alpha centauri"}
 {"id": "wn:altair.n.01", "kind": "object", "text": "a pictogram of a Altair"}
+{"id": "wn:altar.n.01", "kind": "object", "text": "a pictogram of a altar"}
 {"id": "wn:altimeter.n.01", "kind": "object", "text": "a pictogram of a altimeter"}
 {"id": "wn:alto.n.01", "kind": "object", "text": "a pictogram of a alto"}
+{"id": "wn:altocumulus.n.01", "kind": "object", "text": "a pictogram of a altocumulus"}
 {"id": "wn:alum.n.01", "kind": "object", "text": "a pictogram of a alum"}
 {"id": "wn:aluminum.n.01", "kind": "object", "text": "a pictogram of a aluminum"}
 {"id": "wn:alumnus.n.01", "kind": "object", "text": "a pictogram of a alumnus"}
@@ -126,10 +137,13 @@
 {"id": "wn:amino.n.01", "kind": "object", "text": "a pictogram of a amino"}
 {"id": "wn:ammoniac.n.01", "kind": "object", "text": "a pictogram of a ammoniac"}
 {"id": "wn:ammonite.n.01", "kind": "object", "text": "a pictogram of a ammonite"}
+{"id": "wn:ammonium_chloride.n.01", "kind": "object", "text": "a pictogram of a sal ammoniac"}
 {"id": "wn:ammunition.n.01", "kind": "object", "text": "a pictogram of a ammunition"}
+{"id": "wn:amphibian.n.01", "kind": "object", "text": "a pictogram of a amphibian"}
 {"id": "wn:amphitheater.n.01", "kind": "object", "text": "a pictogram of a amphitheater"}
 {"id": "wn:amphora.n.01", "kind": "object", "text": "a pictogram of a amphora"}
 {"id": "wn:amplifier.n.01", "kind": "object", "text": "a pictogram of a amplifier"}
+{"id": "wn:amputee.n.01", "kind": "object", "text": "a pictogram of a amputee"}
 {"id": "wn:amulet.n.01", "kind": "object", "text": "a pictogram of a amulet"}
 {"id": "wn:amundsen.n.01", "kind": "object", "text": "a pictogram of a Amundsen"}
 {"id": "wn:amusement_arcade.n.01", "kind": "object", "text": "a pictogram of a amusement arcade"}
@@ -148,6 +162,7 @@
 {"id": "wn:angel.n.01", "kind": "object", "text": "a pictogram of a angel"}
 {"id": "wn:angelfish.n.01", "kind": "object", "text": "a pictogram of a angelfish"}
 {"id": "wn:angle.n.01", "kind": "object", "text": "a pictogram of a angle"}
+{"id": "wn:anglican.n.01", "kind": "object", "text": "a pictogram of a Anglican"}
 {"id": "wn:ani.n.01", "kind": "object", "text": "a pictogram of a ani"}
 {"id": "wn:anil.n.01", "kind": "object", "text": "a pictogram of a anil"}
 {"id": "wn:animal_product.n.01", "kind": "object", "text": "a pictogram of a animal product"}
@@ -168,9 +183,11 @@
 {"id": "wn:anti.n.01", "kind": "object", "text": "a pictogram of a anti"}
 {"id": "wn:antibody.n.01", "kind": "object", "text": "a pictogram of a antibody"}
 {"id": "wn:antidote.n.01", "kind": "object", "text": "a pictogram of a antidote"}
+{"id": "wn:antigone.n.01", "kind": "object", "text": "a pictogram of a Antigone"}
 {"id": "wn:antimatter.n.01", "kind": "object", "text": "a pictogram of a antimatter"}
 {"id": "wn:antimony.n.01", "kind": "object", "text": "a pictogram of a antimony"}
 {"id": "wn:antler.n.01", "kind": "object", "text": "a pictogram of a antler"}
+{"id": "wn:antlia.n.01", "kind": "object", "text": "a pictogram of a Antlia"}
 {"id": "wn:anubis.n.01", "kind": "object", "text": "a pictogram of a Anubis"}
 {"id": "wn:anus.n.01", "kind": "object", "text": "a pictogram of a anus"}
 {"id": "wn:anvil.n.01", "kind": "object", "text": "a pictogram of a anvil"}
@@ -194,17 +211,22 @@
 {"id": "wn:appraiser.n.02", "kind": "object", "text": "a pictogram of a appraiser"}
 {"id": "wn:apricot.n.01", "kind": "object", "text": "a pictogram of a apricot"}
 {"id": "wn:apron.n.01", "kind": "object", "text": "a pictogram of a apron"}
+{"id": "wn:apus.n.01", "kind": "object", "text": "a pictogram of a Apus"}
+{"id": "wn:aqua_regia.n.01", "kind": "object", "text": "a pictogram of a aqua regia"}
+{"id": "wn:aqua_vitae.n.01", "kind": "object", "text": "a pictogram of a aqua vitae"}
 {"id": "wn:aqualung.n.01", "kind": "object", "text": "a pictogram of a aqualung"}
 {"id": "wn:aquarium.n.01", "kind": "object", "text": "a pictogram of a aquarium"}
 {"id": "wn:aquarius.n.01", "kind": "object", "text": "a pictogram of a Aquarius"}
 {"id": "wn:aquatic.n.01", "kind": "object", "text": "a pictogram of a aquatic"}
 {"id": "wn:aquatic_plant.n.01", "kind": "object", "text": "a pictogram of a aquatic plant"}
 {"id": "wn:aqueduct.n.01", "kind": "object", "text": "a pictogram of a aqueduct"}
+{"id": "wn:aquila.n.01", "kind": "object", "text": "a pictogram of a Aquila"}
 {"id": "wn:ara.n.01", "kind": "object", "text": "a pictogram of a Ara"}
 {"id": "wn:arab.n.01", "kind": "object", "text": "a pictogram of a Arab"}
 {"id": "wn:arabian_camel.n.01", "kind": "object", "text": "a pictogram of a Arabian camel"}
 {"id": "wn:arachnid.n.01", "kind": "object", "text": "a pictogram of a arachnid"}
 {"id": "wn:aragon.n.01", "kind": "object", "text": "a pictogram of a Aragon"}
+{"id": "wn:arawn.n.01", "kind": "object", "text": "a pictogram of a Arawn"}
 {"id": "wn:arbiter.n.01", "kind": "object", "text": "a pictogram of a arbiter"}
 {"id": "wn:arbitrageur.n.01", "kind": "object", "text": "a pictogram of a arbitrageur"}
 {"id": "wn:arbor.n.03", "kind": "object", "text": "a pictogram of a arbor"}
@@ -218,13 +240,16 @@
 {"id": "wn:architecture.n.01", "kind": "object", "text": "a pictogram of a architecture"}
 {"id": "wn:architeuthis.n.01", "kind": "object", "text": "a pictogram of a architeuthis"}
 {"id": "wn:archive.n.01", "kind": "object", "text": "a pictogram of a archive"}
+{"id": "wn:archpriest.n.01", "kind": "object", "text": "a pictogram of a primate"}
 {"id": "wn:areca.n.01", "kind": "object", "text": "a pictogram of a areca"}
 {"id": "wn:ares.n.01", "kind": "object", "text": "a pictogram of a Ares"}
 {"id": "wn:arete.n.01", "kind": "object", "text": "a pictogram of a arete"}
+{"id": "wn:arethusa.n.01", "kind": "object", "text": "a pictogram of a arethusa"}
 {"id": "wn:argent.n.01", "kind": "object", "text": "a pictogram of a argent"}
 {"id": "wn:argo.n.01", "kind": "object", "text": "a pictogram of a Argo"}
 {"id": "wn:argon.n.01", "kind": "object", "text": "a pictogram of a argon"}
 {"id": "wn:argus.n.01", "kind": "object", "text": "a pictogram of a Argus"}
+{"id": "wn:ariadne.n.01", "kind": "object", "text": "a pictogram of a Ariadne"}
 {"id": "wn:aries.n.01", "kind": "object", "text": "a pictogram of a Aries"}
 {"id": "wn:arista.n.01", "kind": "object", "text": "a pictogram of a arista"}
 {"id": "wn:ark.n.01", "kind": "object", "text": "a pictogram of a Ark"}
@@ -238,6 +263,7 @@
 {"id": "wn:arranger.n.02", "kind": "object", "text": "a pictogram of a arranger"}
 {"id": "wn:arrowhead.n.01", "kind": "object", "text": "a pictogram of a arrowhead"}
 {"id": "wn:arsenic.n.01", "kind": "object", "text": "a pictogram of a arsenic"}
+{"id": "wn:arsenic_acid.n.01", "kind": "object", "text": "a pictogram of a arsenic acid"}
 {"id": "wn:art.n.01", "kind": "object", "text": "a pictogram of a art"}
 {"id": "wn:artemis.n.01", "kind": "object", "text": "a pictogram of a Artemis"}
 {"id": "wn:artichoke.n.01", "kind": "object", "text": "a pictogram of a artichoke"}
@@ -270,13 +296,17 @@
 {"id": "wn:astronomer.n.01", "kind": "object", "text": "a pictogram of a astronomer"}
 {"id": "wn:asymptote.n.01", "kind": "object", "text": "a pictogram of a asymptote"}
 {"id": "wn:ate.n.01", "kind": "object", "text": "a pictogram of a Ate"}
+{"id": "wn:aten.n.01", "kind": "object", "text": "a pictogram of a Aten"}
 {"id": "wn:athena.n.01", "kind": "object", "text": "a pictogram of a Athena"}
+{"id": "wn:athlete.n.01", "kind": "object", "text": "a pictogram of a athlete"}
 {"id": "wn:atlas.n.01", "kind": "object", "text": "a pictogram of a Atlas"}
 {"id": "wn:atom.n.01", "kind": "object", "text": "a pictogram of a atom"}
 {"id": "wn:atom_bomb.n.01", "kind": "object", "text": "a pictogram of a atom bomb"}
 {"id": "wn:atomic_clock.n.01", "kind": "object", "text": "a pictogram of a atomic clock"}
 {"id": "wn:atomic_warhead.n.01", "kind": "object", "text": "a pictogram of a atomic warhead"}
 {"id": "wn:atrium.n.01", "kind": "object", "text": "a pictogram of a atrium"}
+{"id": "wn:atropos.n.01", "kind": "object", "text": "a pictogram of a Atropos"}
+{"id": "wn:attendant.n.02", "kind": "object", "text": "a pictogram of a attendant"}
 {"id": "wn:audile.n.01", "kind": "object", "text": "a pictogram of a audile"}
 {"id": "wn:audio_cd.n.01", "kind": "object", "text": "a pictogram of a audio CD"}
 {"id": "wn:audio_system.n.01", "kind": "object", "text": "a pictogram of a sound system"}
@@ -287,6 +317,7 @@
 {"id": "wn:augustus.n.01", "kind": "object", "text": "a pictogram of a Augustus"}
 {"id": "wn:auk.n.01", "kind": "object", "text": "a pictogram of a auk"}
 {"id": "wn:aunt.n.01", "kind": "object", "text": "a pictogram of a aunt"}
+{"id": "wn:auriga.n.01", "kind": "object", "text": "a pictogram of a Auriga"}
 {"id": "wn:aurochs.n.02", "kind": "object", "text": "a pictogram of a aurochs"}
 {"id": "wn:australian.n.01", "kind": "object", "text": "a pictogram of a Australian"}
 {"id": "wn:austrian.n.01", "kind": "object", "text": "a pictogram of a Austrian"}
@@ -317,6 +348,7 @@
 {"id": "wn:baby_doctor.n.01", "kind": "object", "text": "a pictogram of a baby doctor"}
 {"id": "wn:baby_oil.n.01", "kind": "object", "text": "a pictogram of a baby oil"}
 {"id": "wn:baby_powder.n.01", "kind": "object", "text": "a pictogram of a baby powder"}
+{"id": "wn:bacchus.n.01", "kind": "object", "text": "a pictogram of a Bacchus"}
 {"id": "wn:bachelor.n.01", "kind": "object", "text": "a pictogram of a bachelor"}
 {"id": "wn:bacillus.n.01", "kind": "object", "text": "a pictogram of a bacillus"}
 {"id": "wn:back.n.01", "kind": "object", "text": "a pictogram of a back"}
@@ -327,6 +359,7 @@
 {"id": "wn:backspace_key.n.01", "kind": "object", "text": "a pictogram of a backspace key"}
 {"id": "wn:bacon-lettuce-tomato_sandwich.n.01", "kind": "object", "text": "a pictogram of a bacon-lettuce-tomato sandwich"}
 {"id": "wn:bacon.n.01", "kind": "object", "text": "a pictogram of a bacon"}
+{"id": "wn:bacon_strip.n.01", "kind": "object", "text": "a pictogram of a bacon strip"}
 {"id": "wn:bacteria.n.01", "kind": "object", "text": "a pictogram of a bacteria"}
 {"id": "wn:bactrian_camel.n.01", "kind": "object", "text": "a pictogram of a Bactrian camel"}
 {"id": "wn:badminton_racket.n.01", "kind": "object", "text": "a pictogram of a badminton racket"}
@@ -353,6 +386,7 @@
 {"id": "wn:ballerina.n.01", "kind": "object", "text": "a pictogram of a ballerina"}
 {"id": "wn:ballet_dancer.n.01", "kind": "object", "text": "a pictogram of a ballet dancer"}
 {"id": "wn:balloon.n.01", "kind": "object", "text": "a pictogram of a balloon"}
+{"id": "wn:ballot_box.n.01", "kind": "object", "text": "a pictogram of a ballot box"}
 {"id": "wn:ballpark.n.01", "kind": "object", "text": "a pictogram of a ballpark"}
 {"id": "wn:ballplayer.n.01", "kind": "object", "text": "a pictogram of a ballplayer"}
 {"id": "wn:ballpoint.n.01", "kind": "object", "text": "a pictogram of a ballpoint"}
@@ -404,11 +438,13 @@
 {"id": "wn:basic.n.02", "kind": "object", "text": "a pictogram of a basic"}
 {"id": "wn:basil.n.01", "kind": "object", "text": "a pictogram of a basil"}
 {"id": "wn:basilisk.n.01", "kind": "object", "text": "a pictogram of a basilisk"}
+{"id": "wn:basin.n.01", "kind": "object", "text": "a pictogram of a basin"}
 {"id": "wn:basket.n.01", "kind": "object", "text": "a pictogram of a basket"}
 {"id": "wn:basket_star.n.01", "kind": "object", "text": "a pictogram of a basket star"}
 {"id": "wn:basketball_court.n.01", "kind": "object", "text": "a pictogram of a basketball court"}
 {"id": "wn:basque.n.01", "kind": "object", "text": "a pictogram of a Basque"}
 {"id": "wn:bass.n.03", "kind": "object", "text": "a pictogram of a bass"}
+{"id": "wn:bass_guitar.n.01", "kind": "object", "text": "a pictogram of a bass guitar"}
 {"id": "wn:bass_horn.n.01", "kind": "object", "text": "a pictogram of a bass horn"}
 {"id": "wn:basset.n.01", "kind": "object", "text": "a pictogram of a basset"}
 {"id": "wn:bassinet.n.01", "kind": "object", "text": "a pictogram of a bassinet"}
@@ -418,6 +454,7 @@
 {"id": "wn:bat.n.01", "kind": "object", "text": "a pictogram of a bat"}
 {"id": "wn:bath.n.01", "kind": "object", "text": "a pictogram of a bath"}
 {"id": "wn:bath_mat.n.01", "kind": "object", "text": "a pictogram of a bath mat"}
+{"id": "wn:bath_towel.n.01", "kind": "object", "text": "a pictogram of a bath towel"}
 {"id": "wn:bathing_cap.n.01", "kind": "object", "text": "a pictogram of a bathing cap"}
 {"id": "wn:batholith.n.01", "kind": "object", "text": "a pictogram of a batholith"}
 {"id": "wn:bathrobe.n.01", "kind": "object", "text": "a pictogram of a bathrobe"}
@@ -436,6 +473,7 @@
 {"id": "wn:beach_ball.n.01", "kind": "object", "text": "a pictogram of a beach ball"}
 {"id": "wn:beach_towel.n.01", "kind": "object", "text": "a pictogram of a beach towel"}
 {"id": "wn:beach_wagon.n.01", "kind": "object", "text": "a pictogram of a beach wagon"}
+{"id": "wn:beachwear.n.01", "kind": "object", "text": "a pictogram of a beachwear"}
 {"id": "wn:beacon.n.03", "kind": "object", "text": "a pictogram of a beacon"}
 {"id": "wn:beads.n.01", "kind": "object", "text": "a pictogram of a beads"}
 {"id": "wn:beak.n.01", "kind": "object", "text": "a pictogram of a beak"}
@@ -453,9 +491,11 @@
 {"id": "wn:beaver.n.01", "kind": "object", "text": "a pictogram of a beaver"}
 {"id": "wn:bed.n.01", "kind": "object", "text": "a pictogram of a bed"}
 {"id": "wn:bed_linen.n.01", "kind": "object", "text": "a pictogram of a bed linen"}
+{"id": "wn:bedclothes.n.01", "kind": "object", "text": "a pictogram of a bedding"}
 {"id": "wn:bedrock.n.01", "kind": "object", "text": "a pictogram of a bedrock"}
 {"id": "wn:bedroom.n.01", "kind": "object", "text": "a pictogram of a bedroom"}
 {"id": "wn:bee.n.01", "kind": "object", "text": "a pictogram of a bee"}
+{"id": "wn:beebread.n.01", "kind": "object", "text": "a pictogram of a beebread"}
 {"id": "wn:beech.n.01", "kind": "object", "text": "a pictogram of a beech"}
 {"id": "wn:beef.n.01", "kind": "object", "text": "a pictogram of a beef"}
 {"id": "wn:beehive.n.01", "kind": "object", "text": "a pictogram of a beehive"}
@@ -469,6 +509,7 @@
 {"id": "wn:beetle.n.01", "kind": "object", "text": "a pictogram of a beetle"}
 {"id": "wn:beetroot.n.01", "kind": "object", "text": "a pictogram of a beetroot"}
 {"id": "wn:begin.n.01", "kind": "object", "text": "a pictogram of a Begin"}
+{"id": "wn:belgian.n.01", "kind": "object", "text": "a pictogram of a Belgian"}
 {"id": "wn:bell.n.01", "kind": "object", "text": "a pictogram of a bell"}
 {"id": "wn:bell_gable.n.01", "kind": "object", "text": "a pictogram of a bell gable"}
 {"id": "wn:bell_tower.n.01", "kind": "object", "text": "a pictogram of a bell tower"}
@@ -483,6 +524,7 @@
 {"id": "wn:bend.n.01", "kind": "object", "text": "a pictogram of a bend"}
 {"id": "wn:bender.n.01", "kind": "object", "text": "a pictogram of a bender"}
 {"id": "wn:beneficiary.n.01", "kind": "object", "text": "a pictogram of a beneficiary"}
+{"id": "wn:bengali.n.01", "kind": "object", "text": "a pictogram of a Bengali"}
 {"id": "wn:benzene.n.01", "kind": "object", "text": "a pictogram of a benzene"}
 {"id": "wn:benzene_formula.n.01", "kind": "object", "text": "a pictogram of a benzene formula"}
 {"id": "wn:berber.n.01", "kind": "object", "text": "a pictogram of a Berber"}
@@ -501,10 +543,12 @@
 {"id": "wn:bicycle.n.01", "kind": "object", "text": "a pictogram of a bicycle"}
 {"id": "wn:bicycle_rack.n.01", "kind": "object", "text": "a pictogram of a bicycle rack"}
 {"id": "wn:bidet.n.01", "kind": "object", "text": "a pictogram of a bidet"}
+{"id": "wn:biennial.n.01", "kind": "object", "text": "a pictogram of a biennial"}
 {"id": "wn:big_ben.n.01", "kind": "object", "text": "a pictogram of a Big Ben"}
 {"id": "wn:big_dipper.n.01", "kind": "object", "text": "a pictogram of a Big Dipper"}
 {"id": "wn:big_shot.n.01", "kind": "object", "text": "a pictogram of a big shot"}
 {"id": "wn:bigfoot.n.01", "kind": "object", "text": "a pictogram of a Bigfoot"}
+{"id": "wn:bill.n.08", "kind": "object", "text": "a pictogram of a billhook"}
 {"id": "wn:billboard.n.01", "kind": "object", "text": "a pictogram of a billboard"}
 {"id": "wn:billiard_ball.n.01", "kind": "object", "text": "a pictogram of a billiard ball"}
 {"id": "wn:bin.n.01", "kind": "object", "text": "a pictogram of a bin"}
@@ -536,6 +580,7 @@
 {"id": "wn:black_forest.n.01", "kind": "object", "text": "a pictogram of a Black Forest"}
 {"id": "wn:black_hole.n.01", "kind": "object", "text": "a pictogram of a black hole"}
 {"id": "wn:black_ice.n.01", "kind": "object", "text": "a pictogram of a black ice"}
+{"id": "wn:black_man.n.01", "kind": "object", "text": "a pictogram of a Black man"}
 {"id": "wn:black_sea.n.01", "kind": "object", "text": "a pictogram of a Black Sea"}
 {"id": "wn:blackberry.n.01", "kind": "object", "text": "a pictogram of a blackberry"}
 {"id": "wn:blackboard.n.01", "kind": "object", "text": "a pictogram of a blackboard"}
@@ -550,6 +595,8 @@
 {"id": "wn:blender.n.01", "kind": "object", "text": "a pictogram of a blender"}
 {"id": "wn:blindfold.n.01", "kind": "object", "text": "a pictogram of a blindfold"}
 {"id": "wn:bling.n.01", "kind": "object", "text": "a pictogram of a bling"}
+{"id": "wn:blinker.n.01", "kind": "object", "text": "a pictogram of a blinker"}
+{"id": "wn:blister.n.03", "kind": "object", "text": "a pictogram of a blister"}
 {"id": "wn:blob.n.01", "kind": "object", "text": "a pictogram of a blob"}
 {"id": "wn:bloch.n.01", "kind": "object", "text": "a pictogram of a Bloch"}
 {"id": "wn:block.n.01", "kind": "object", "text": "a pictogram of a block"}
@@ -577,8 +624,10 @@
 {"id": "wn:boat.n.01", "kind": "object", "text": "a pictogram of a boat"}
 {"id": "wn:boater.n.01", "kind": "object", "text": "a pictogram of a boater"}
 {"id": "wn:boatswain.n.01", "kind": "object", "text": "a pictogram of a boatswain"}
+{"id": "wn:bob.n.05", "kind": "object", "text": "a pictogram of a bob"}
 {"id": "wn:bobbin.n.01", "kind": "object", "text": "a pictogram of a bobbin"}
 {"id": "wn:bobby.n.01", "kind": "object", "text": "a pictogram of a bobby"}
+{"id": "wn:bobsled.n.01", "kind": "object", "text": "a pictogram of a bobsled"}
 {"id": "wn:bodega.n.01", "kind": "object", "text": "a pictogram of a bodega"}
 {"id": "wn:body.n.01", "kind": "object", "text": "a pictogram of a body"}
 {"id": "wn:body_armor.n.01", "kind": "object", "text": "a pictogram of a body armor"}
@@ -615,6 +664,7 @@
 {"id": "wn:boot.n.01", "kind": "object", "text": "a pictogram of a boot"}
 {"id": "wn:boot_camp.n.01", "kind": "object", "text": "a pictogram of a boot camp"}
 {"id": "wn:bootee.n.01", "kind": "object", "text": "a pictogram of a bootee"}
+{"id": "wn:bootes.n.01", "kind": "object", "text": "a pictogram of a Bootes"}
 {"id": "wn:booth.n.01", "kind": "object", "text": "a pictogram of a booth"}
 {"id": "wn:bootmaker.n.01", "kind": "object", "text": "a pictogram of a boot maker"}
 {"id": "wn:bootstrap.n.01", "kind": "object", "text": "a pictogram of a bootstrap"}
@@ -695,6 +745,7 @@
 {"id": "wn:bridle.n.01", "kind": "object", "text": "a pictogram of a bridle"}
 {"id": "wn:briefcase.n.01", "kind": "object", "text": "a pictogram of a briefcase"}
 {"id": "wn:briefs.n.01", "kind": "object", "text": "a pictogram of a briefs"}
+{"id": "wn:brill.n.01", "kind": "object", "text": "a pictogram of a brill"}
 {"id": "wn:brink.n.01", "kind": "object", "text": "a pictogram of a brink"}
 {"id": "wn:british.n.01", "kind": "object", "text": "a pictogram of a British"}
 {"id": "wn:broad.n.01", "kind": "object", "text": "a pictogram of a broad"}
@@ -731,6 +782,7 @@
 {"id": "wn:building.n.01", "kind": "object", "text": "a pictogram of a building"}
 {"id": "wn:building_complex.n.01", "kind": "object", "text": "a pictogram of a building complex"}
 {"id": "wn:bulb.n.01", "kind": "object", "text": "a pictogram of a bulb"}
+{"id": "wn:bulgarian.n.01", "kind": "object", "text": "a pictogram of a Bulgarian"}
 {"id": "wn:bulge.n.01", "kind": "object", "text": "a pictogram of a bulge"}
 {"id": "wn:bulkhead.n.01", "kind": "object", "text": "a pictogram of a bulkhead"}
 {"id": "wn:bull.n.01", "kind": "object", "text": "a pictogram of a bull"}
@@ -765,6 +817,7 @@
 {"id": "wn:businessman.n.01", "kind": "object", "text": "a pictogram of a businessman"}
 {"id": "wn:businessperson.n.01", "kind": "object", "text": "a pictogram of a businessperson"}
 {"id": "wn:businesswoman.n.01", "kind": "object", "text": "a pictogram of a businesswoman"}
+{"id": "wn:butch.n.01", "kind": "object", "text": "a pictogram of a butch"}
 {"id": "wn:butcher.n.01", "kind": "object", "text": "a pictogram of a butcher"}
 {"id": "wn:butler.n.01", "kind": "object", "text": "a pictogram of a butler"}
 {"id": "wn:butt.n.01", "kind": "object", "text": "a pictogram of a butt"}
@@ -788,6 +841,7 @@
 {"id": "wn:cad.n.01", "kind": "object", "text": "a pictogram of a cad"}
 {"id": "wn:caddy.n.01", "kind": "object", "text": "a pictogram of a caddy"}
 {"id": "wn:cadmium.n.01", "kind": "object", "text": "a pictogram of a cadmium"}
+{"id": "wn:caelum.n.01", "kind": "object", "text": "a pictogram of a Caelum"}
 {"id": "wn:caesar.n.01", "kind": "object", "text": "a pictogram of a Caesar"}
 {"id": "wn:cafe.n.01", "kind": "object", "text": "a pictogram of a cafe"}
 {"id": "wn:cafeteria.n.01", "kind": "object", "text": "a pictogram of a cafeteria"}
@@ -814,11 +868,15 @@
 {"id": "wn:call_center.n.01", "kind": "object", "text": "a pictogram of a call center"}
 {"id": "wn:caller.n.01", "kind": "object", "text": "a pictogram of a caller"}
 {"id": "wn:caller_id.n.01", "kind": "object", "text": "a pictogram of a caller ID"}
+{"id": "wn:callisto.n.01", "kind": "object", "text": "a pictogram of a Callisto"}
 {"id": "wn:caltrop.n.01", "kind": "object", "text": "a pictogram of a caltrop"}
+{"id": "wn:calvary_cross.n.01", "kind": "object", "text": "a pictogram of a Calvary cross"}
+{"id": "wn:calypso.n.01", "kind": "object", "text": "a pictogram of a calypso"}
 {"id": "wn:cam.n.01", "kind": "object", "text": "a pictogram of a Cam"}
 {"id": "wn:cambridge_university.n.01", "kind": "object", "text": "a pictogram of a Cambridge University"}
 {"id": "wn:camcorder.n.01", "kind": "object", "text": "a pictogram of a camcorder"}
 {"id": "wn:camel.n.01", "kind": "object", "text": "a pictogram of a camel"}
+{"id": "wn:camellia.n.01", "kind": "object", "text": "a pictogram of a camellia"}
 {"id": "wn:camera.n.01", "kind": "object", "text": "a pictogram of a camera"}
 {"id": "wn:camera_lens.n.01", "kind": "object", "text": "a pictogram of a camera lens"}
 {"id": "wn:camera_tripod.n.01", "kind": "object", "text": "a pictogram of a camera tripod"}
@@ -826,6 +884,8 @@
 {"id": "wn:camp.n.01", "kind": "object", "text": "a pictogram of a camp"}
 {"id": "wn:camp.n.07", "kind": "object", "text": "a pictogram of a refugee camp"}
 {"id": "wn:campaigner.n.01", "kind": "object", "text": "a pictogram of a campaigner"}
+{"id": "wn:campanile.n.01", "kind": "object", "text": "a pictogram of a campanile"}
+{"id": "wn:campbell.n.01", "kind": "object", "text": "a pictogram of a Campbell"}
 {"id": "wn:camper.n.01", "kind": "object", "text": "a pictogram of a camper"}
 {"id": "wn:camper_trailer.n.01", "kind": "object", "text": "a pictogram of a camper trailer"}
 {"id": "wn:can.n.01", "kind": "object", "text": "a pictogram of a can"}
@@ -840,6 +900,8 @@
 {"id": "wn:candy_cane.n.01", "kind": "object", "text": "a pictogram of a candy cane"}
 {"id": "wn:cane.n.01", "kind": "object", "text": "a pictogram of a cane"}
 {"id": "wn:canine.n.01", "kind": "object", "text": "a pictogram of a canine"}
+{"id": "wn:canis_major.n.01", "kind": "object", "text": "a pictogram of a Canis Major"}
+{"id": "wn:canis_minor.n.01", "kind": "object", "text": "a pictogram of a Canis Minor"}
 {"id": "wn:canister.n.02", "kind": "object", "text": "a pictogram of a canister"}
 {"id": "wn:cannabis.n.01", "kind": "object", "text": "a pictogram of a cannabis"}
 {"id": "wn:canned_food.n.01", "kind": "object", "text": "a pictogram of a canned food"}
@@ -847,6 +909,7 @@
 {"id": "wn:cannon.n.01", "kind": "object", "text": "a pictogram of a cannon"}
 {"id": "wn:cannonball.n.01", "kind": "object", "text": "a pictogram of a cannonball"}
 {"id": "wn:canoe.n.01", "kind": "object", "text": "a pictogram of a canoe"}
+{"id": "wn:canola_oil.n.01", "kind": "object", "text": "a pictogram of a canola"}
 {"id": "wn:canopy.n.01", "kind": "object", "text": "a pictogram of a canopy"}
 {"id": "wn:canteen.n.01", "kind": "object", "text": "a pictogram of a canteen"}
 {"id": "wn:canterbury_bell.n.02", "kind": "object", "text": "a pictogram of a Canterbury bell"}
@@ -881,6 +944,7 @@
 {"id": "wn:carbon_dioxide.n.01", "kind": "object", "text": "a pictogram of a carbon dioxide"}
 {"id": "wn:carbon_monoxide.n.01", "kind": "object", "text": "a pictogram of a carbon monoxide"}
 {"id": "wn:carbonado.n.01", "kind": "object", "text": "a pictogram of a carbonado"}
+{"id": "wn:carcinogen.n.01", "kind": "object", "text": "a pictogram of a carcinogen"}
 {"id": "wn:card.n.01", "kind": "object", "text": "a pictogram of a card"}
 {"id": "wn:card_index.n.01", "kind": "object", "text": "a pictogram of a card index"}
 {"id": "wn:cardboard.n.01", "kind": "object", "text": "a pictogram of a cardboard"}
@@ -895,6 +959,7 @@
 {"id": "wn:caribbean.n.01", "kind": "object", "text": "a pictogram of a Caribbean"}
 {"id": "wn:caribou.n.01", "kind": "object", "text": "a pictogram of a caribou"}
 {"id": "wn:carillon.n.01", "kind": "object", "text": "a pictogram of a carillon"}
+{"id": "wn:carina.n.01", "kind": "object", "text": "a pictogram of a Carina"}
 {"id": "wn:carnivore.n.01", "kind": "object", "text": "a pictogram of a carnivore"}
 {"id": "wn:carnivorous_plant.n.01", "kind": "object", "text": "a pictogram of a carnivorous plant"}
 {"id": "wn:carousel.n.01", "kind": "object", "text": "a pictogram of a carousel"}
@@ -922,6 +987,7 @@
 {"id": "wn:casserole.n.01", "kind": "object", "text": "a pictogram of a casserole"}
 {"id": "wn:cassette.n.01", "kind": "object", "text": "a pictogram of a cassette"}
 {"id": "wn:cassette_tape.n.01", "kind": "object", "text": "a pictogram of a cassette tape"}
+{"id": "wn:cassiopeia.n.01", "kind": "object", "text": "a pictogram of a Cassiopeia"}
 {"id": "wn:cassowary.n.01", "kind": "object", "text": "a pictogram of a cassowary"}
 {"id": "wn:cast.n.03", "kind": "object", "text": "a pictogram of a cast"}
 {"id": "wn:cast.n.06", "kind": "object", "text": "a pictogram of a casting"}
@@ -946,6 +1012,7 @@
 {"id": "wn:catsup.n.01", "kind": "object", "text": "a pictogram of a catsup"}
 {"id": "wn:cattle.n.01", "kind": "object", "text": "a pictogram of a cattle"}
 {"id": "wn:cattle_guard.n.01", "kind": "object", "text": "a pictogram of a cattle guard"}
+{"id": "wn:cauda.n.01", "kind": "object", "text": "a pictogram of a cauda"}
 {"id": "wn:cauliflower.n.01", "kind": "object", "text": "a pictogram of a cauliflower"}
 {"id": "wn:cavalryman.n.01", "kind": "object", "text": "a pictogram of a trooper"}
 {"id": "wn:cave.n.01", "kind": "object", "text": "a pictogram of a cave"}
@@ -963,6 +1030,7 @@
 {"id": "wn:celtic_cross.n.01", "kind": "object", "text": "a pictogram of a Celtic cross"}
 {"id": "wn:cement.n.01", "kind": "object", "text": "a pictogram of a cement"}
 {"id": "wn:centaur.n.01", "kind": "object", "text": "a pictogram of a centaur"}
+{"id": "wn:centaurus.n.01", "kind": "object", "text": "a pictogram of a Centaurus"}
 {"id": "wn:center.n.10", "kind": "object", "text": "a pictogram of a center"}
 {"id": "wn:centerline.n.01", "kind": "object", "text": "a pictogram of a centerline"}
 {"id": "wn:centipede.n.01", "kind": "object", "text": "a pictogram of a centipede"}
@@ -972,13 +1040,16 @@
 {"id": "wn:centrifuge.n.01", "kind": "object", "text": "a pictogram of a centrifuge"}
 {"id": "wn:centrist.n.01", "kind": "object", "text": "a pictogram of a centrist"}
 {"id": "wn:centurion.n.01", "kind": "object", "text": "a pictogram of a centurion"}
+{"id": "wn:cepheus.n.01", "kind": "object", "text": "a pictogram of a Cepheus"}
 {"id": "wn:cere.n.01", "kind": "object", "text": "a pictogram of a cere"}
 {"id": "wn:cereal.n.01", "kind": "object", "text": "a pictogram of a cereal"}
 {"id": "wn:cereal_bowl.n.01", "kind": "object", "text": "a pictogram of a cereal bowl"}
 {"id": "wn:cerebral_cortex.n.01", "kind": "object", "text": "a pictogram of a cerebral cortex"}
 {"id": "wn:ceres.n.01", "kind": "object", "text": "a pictogram of a Ceres"}
 {"id": "wn:cerium.n.01", "kind": "object", "text": "a pictogram of a cerium"}
+{"id": "wn:cero.n.01", "kind": "object", "text": "a pictogram of a cero"}
 {"id": "wn:cesium.n.01", "kind": "object", "text": "a pictogram of a cesium"}
+{"id": "wn:cetacea.n.01", "kind": "object", "text": "a pictogram of a Cetacea"}
 {"id": "wn:cetus.n.01", "kind": "object", "text": "a pictogram of a Cetus"}
 {"id": "wn:chad.n.01", "kind": "object", "text": "a pictogram of a chad"}
 {"id": "wn:chaff.n.01", "kind": "object", "text": "a pictogram of a chaff"}
@@ -991,6 +1062,7 @@
 {"id": "wn:chalet.n.01", "kind": "object", "text": "a pictogram of a chalet"}
 {"id": "wn:chalice.n.01", "kind": "object", "text": "a pictogram of a chalice"}
 {"id": "wn:chalk.n.01", "kind": "object", "text": "a pictogram of a chalk"}
+{"id": "wn:chamaeleon.n.01", "kind": "object", "text": "a pictogram of a Chamaeleon"}
 {"id": "wn:chamber.n.01", "kind": "object", "text": "a pictogram of a chamber"}
 {"id": "wn:chameleon.n.01", "kind": "object", "text": "a pictogram of a chameleon"}
 {"id": "wn:champagne.n.01", "kind": "object", "text": "a pictogram of a champagne"}
@@ -999,6 +1071,7 @@
 {"id": "wn:changer.n.01", "kind": "object", "text": "a pictogram of a changer"}
 {"id": "wn:channel.n.07", "kind": "object", "text": "a pictogram of a television channel"}
 {"id": "wn:chanterelle.n.01", "kind": "object", "text": "a pictogram of a chanterelle"}
+{"id": "wn:chao_phraya.n.01", "kind": "object", "text": "a pictogram of a Chao Phraya"}
 {"id": "wn:chapatti.n.01", "kind": "object", "text": "a pictogram of a chapatti"}
 {"id": "wn:chapel.n.01", "kind": "object", "text": "a pictogram of a chapel"}
 {"id": "wn:chaplin.n.01", "kind": "object", "text": "a pictogram of a Chaplin"}
@@ -1008,12 +1081,14 @@
 {"id": "wn:charger.n.01", "kind": "object", "text": "a pictogram of a charger"}
 {"id": "wn:chariot.n.01", "kind": "object", "text": "a pictogram of a chariot"}
 {"id": "wn:charles.n.01", "kind": "object", "text": "a pictogram of a Charles"}
+{"id": "wn:charon.n.01", "kind": "object", "text": "a pictogram of a charon"}
 {"id": "wn:chateau.n.01", "kind": "object", "text": "a pictogram of a chateau"}
 {"id": "wn:checker.n.01", "kind": "object", "text": "a pictogram of a checker"}
 {"id": "wn:checkerboard.n.01", "kind": "object", "text": "a pictogram of a checkerboard"}
 {"id": "wn:checkout.n.03", "kind": "object", "text": "a pictogram of a checkout"}
 {"id": "wn:checkroom.n.01", "kind": "object", "text": "a pictogram of a checkroom"}
 {"id": "wn:cheek.n.01", "kind": "object", "text": "a pictogram of a cheek"}
+{"id": "wn:cheerleader.n.01", "kind": "object", "text": "a pictogram of a cheerleader"}
 {"id": "wn:cheese.n.01", "kind": "object", "text": "a pictogram of a cheese"}
 {"id": "wn:cheetah.n.01", "kind": "object", "text": "a pictogram of a cheetah"}
 {"id": "wn:chef.n.01", "kind": "object", "text": "a pictogram of a chef"}
@@ -1053,6 +1128,7 @@
 {"id": "wn:chiron.n.01", "kind": "object", "text": "a pictogram of a Chiron"}
 {"id": "wn:chisel.n.01", "kind": "object", "text": "a pictogram of a chisel"}
 {"id": "wn:chlorine.n.01", "kind": "object", "text": "a pictogram of a chlorine"}
+{"id": "wn:chloris.n.01", "kind": "object", "text": "a pictogram of a Chloris"}
 {"id": "wn:chocolate_bar.n.01", "kind": "object", "text": "a pictogram of a chocolate bar"}
 {"id": "wn:chocolate_egg.n.01", "kind": "object", "text": "a pictogram of a chocolate egg"}
 {"id": "wn:choirmaster.n.01", "kind": "object", "text": "a pictogram of a choirmaster"}
@@ -1082,6 +1158,8 @@
 {"id": "wn:cinnabar.n.01", "kind": "object", "text": "a pictogram of a cinnabar"}
 {"id": "wn:cinnamon.n.01", "kind": "object", "text": "a pictogram of a cinnamon"}
 {"id": "wn:cinnamon_roll.n.01", "kind": "object", "text": "a pictogram of a cinnamon roll"}
+{"id": "wn:circe.n.01", "kind": "object", "text": "a pictogram of a Circe"}
+{"id": "wn:circinus.n.01", "kind": "object", "text": "a pictogram of a Circinus"}
 {"id": "wn:circle.n.01", "kind": "object", "text": "a pictogram of a circle"}
 {"id": "wn:circlet.n.01", "kind": "object", "text": "a pictogram of a circlet"}
 {"id": "wn:circuit.n.01", "kind": "object", "text": "a pictogram of a circuit"}
@@ -1121,6 +1199,7 @@
 {"id": "wn:clerk.n.01", "kind": "object", "text": "a pictogram of a clerk"}
 {"id": "wn:client.n.01", "kind": "object", "text": "a pictogram of a client"}
 {"id": "wn:cliff.n.01", "kind": "object", "text": "a pictogram of a cliff"}
+{"id": "wn:climber.n.01", "kind": "object", "text": "a pictogram of a climber"}
 {"id": "wn:climbing_frame.n.01", "kind": "object", "text": "a pictogram of a climbing frame"}
 {"id": "wn:cline.n.01", "kind": "object", "text": "a pictogram of a Cline"}
 {"id": "wn:cling_film.n.01", "kind": "object", "text": "a pictogram of a cling film"}
@@ -1137,11 +1216,13 @@
 {"id": "wn:clockwork.n.01", "kind": "object", "text": "a pictogram of a clockwork"}
 {"id": "wn:clog.n.01", "kind": "object", "text": "a pictogram of a clog"}
 {"id": "wn:closed_circuit.n.01", "kind": "object", "text": "a pictogram of a closed circuit"}
+{"id": "wn:closeup.n.01", "kind": "object", "text": "a pictogram of a closeup"}
 {"id": "wn:clothes_hamper.n.01", "kind": "object", "text": "a pictogram of a clothes hamper"}
 {"id": "wn:clothesline.n.01", "kind": "object", "text": "a pictogram of a clothesline"}
 {"id": "wn:clothespin.n.01", "kind": "object", "text": "a pictogram of a clothespin"}
 {"id": "wn:clothing.n.01", "kind": "object", "text": "a pictogram of a clothing"}
 {"id": "wn:clothing_store.n.01", "kind": "object", "text": "a pictogram of a clothing store"}
+{"id": "wn:clotho.n.01", "kind": "object", "text": "a pictogram of a Clotho"}
 {"id": "wn:clover.n.01", "kind": "object", "text": "a pictogram of a clover"}
 {"id": "wn:clown.n.01", "kind": "object", "text": "a pictogram of a clown"}
 {"id": "wn:clubhouse.n.01", "kind": "object", "text": "a pictogram of a clubhouse"}
@@ -1151,9 +1232,11 @@
 {"id": "wn:clyde.n.01", "kind": "object", "text": "a pictogram of a Clyde"}
 {"id": "wn:coach.n.01", "kind": "object", "text": "a pictogram of a coach"}
 {"id": "wn:coal.n.01", "kind": "object", "text": "a pictogram of a coal"}
+{"id": "wn:coal_miner.n.01", "kind": "object", "text": "a pictogram of a coal miner"}
 {"id": "wn:coaster.n.01", "kind": "object", "text": "a pictogram of a coaster"}
 {"id": "wn:coat.n.01", "kind": "object", "text": "a pictogram of a coat"}
 {"id": "wn:coat_hanger.n.01", "kind": "object", "text": "a pictogram of a coat hanger"}
+{"id": "wn:coat_of_arms.n.01", "kind": "object", "text": "a pictogram of a coat of arms"}
 {"id": "wn:coatrack.n.01", "kind": "object", "text": "a pictogram of a coatrack"}
 {"id": "wn:cobalt.n.01", "kind": "object", "text": "a pictogram of a cobalt"}
 {"id": "wn:cobra.n.01", "kind": "object", "text": "a pictogram of a cobra"}
@@ -1172,6 +1255,7 @@
 {"id": "wn:cody.n.01", "kind": "object", "text": "a pictogram of a Cody"}
 {"id": "wn:coffee.n.01", "kind": "object", "text": "a pictogram of a coffee"}
 {"id": "wn:coffee_bean.n.01", "kind": "object", "text": "a pictogram of a coffee bean"}
+{"id": "wn:coffee_break.n.01", "kind": "object", "text": "a pictogram of a coffee break"}
 {"id": "wn:coffee_cup.n.01", "kind": "object", "text": "a pictogram of a coffee cup"}
 {"id": "wn:coffee_maker.n.01", "kind": "object", "text": "a pictogram of a coffee maker"}
 {"id": "wn:coffee_mill.n.01", "kind": "object", "text": "a pictogram of a coffee mill"}
@@ -1193,6 +1277,7 @@
 {"id": "wn:collector.n.01", "kind": "object", "text": "a pictogram of a collector"}
 {"id": "wn:colombian.n.01", "kind": "object", "text": "a pictogram of a Colombian"}
 {"id": "wn:colon.n.01", "kind": "object", "text": "a pictogram of a colon"}
+{"id": "wn:colonel_blimp.n.01", "kind": "object", "text": "a pictogram of a blimp"}
 {"id": "wn:colorimeter.n.01", "kind": "object", "text": "a pictogram of a colorimeter"}
 {"id": "wn:coloring.n.01", "kind": "object", "text": "a pictogram of a coloring"}
 {"id": "wn:coloring_material.n.01", "kind": "object", "text": "a pictogram of a coloring material"}
@@ -1201,7 +1286,9 @@
 {"id": "wn:colossus.n.02", "kind": "object", "text": "a pictogram of a colossus"}
 {"id": "wn:colossus_of_rhodes.n.01", "kind": "object", "text": "a pictogram of a Colossus of Rhodes"}
 {"id": "wn:colt.n.01", "kind": "object", "text": "a pictogram of a colt"}
+{"id": "wn:columba.n.01", "kind": "object", "text": "a pictogram of a Columba"}
 {"id": "wn:columbia.n.01", "kind": "object", "text": "a pictogram of a Columbia"}
+{"id": "wn:coma_berenices.n.01", "kind": "object", "text": "a pictogram of a Coma Berenices"}
 {"id": "wn:comb.n.01", "kind": "object", "text": "a pictogram of a comb"}
 {"id": "wn:combatant.n.01", "kind": "object", "text": "a pictogram of a combatant"}
 {"id": "wn:combination_lock.n.01", "kind": "object", "text": "a pictogram of a combination lock"}
@@ -1237,6 +1324,7 @@
 {"id": "wn:conciliator.n.01", "kind": "object", "text": "a pictogram of a conciliator"}
 {"id": "wn:concrete.n.01", "kind": "object", "text": "a pictogram of a concrete"}
 {"id": "wn:concrete_mixer.n.01", "kind": "object", "text": "a pictogram of a concrete mixer"}
+{"id": "wn:condiment.n.01", "kind": "object", "text": "a pictogram of a condiment"}
 {"id": "wn:condom.n.01", "kind": "object", "text": "a pictogram of a condom"}
 {"id": "wn:condor.n.01", "kind": "object", "text": "a pictogram of a condor"}
 {"id": "wn:conductor.n.01", "kind": "object", "text": "a pictogram of a conductor"}
@@ -1306,11 +1394,13 @@
 {"id": "wn:corn.n.01", "kind": "object", "text": "a pictogram of a corn"}
 {"id": "wn:cornell_university.n.01", "kind": "object", "text": "a pictogram of a Cornell University"}
 {"id": "wn:cornet.n.01", "kind": "object", "text": "a pictogram of a cornet"}
+{"id": "wn:corona_borealis.n.01", "kind": "object", "text": "a pictogram of a Corona Borealis"}
 {"id": "wn:corporal.n.01", "kind": "object", "text": "a pictogram of a corporal"}
 {"id": "wn:corrective.n.01", "kind": "object", "text": "a pictogram of a corrective"}
 {"id": "wn:correspondent.n.01", "kind": "object", "text": "a pictogram of a correspondent"}
 {"id": "wn:corsair.n.01", "kind": "object", "text": "a pictogram of a corsair"}
 {"id": "wn:corset.n.01", "kind": "object", "text": "a pictogram of a corset"}
+{"id": "wn:corvus.n.01", "kind": "object", "text": "a pictogram of a Corvus"}
 {"id": "wn:cos_lettuce.n.01", "kind": "object", "text": "a pictogram of a cos lettuce"}
 {"id": "wn:cosmetic.n.01", "kind": "object", "text": "a pictogram of a cosmetic"}
 {"id": "wn:costa.n.01", "kind": "object", "text": "a pictogram of a costa"}
@@ -1327,6 +1417,7 @@
 {"id": "wn:countersink.n.01", "kind": "object", "text": "a pictogram of a countersink"}
 {"id": "wn:countertop.n.01", "kind": "object", "text": "a pictogram of a countertop"}
 {"id": "wn:courthouse.n.01", "kind": "object", "text": "a pictogram of a courthouse"}
+{"id": "wn:couverture.n.01", "kind": "object", "text": "a pictogram of a couverture"}
 {"id": "wn:cove.n.01", "kind": "object", "text": "a pictogram of a cove"}
 {"id": "wn:cover_girl.n.01", "kind": "object", "text": "a pictogram of a cover girl"}
 {"id": "wn:coverall.n.01", "kind": "object", "text": "a pictogram of a coverall"}
@@ -1381,10 +1472,12 @@
 {"id": "wn:crowbar.n.01", "kind": "object", "text": "a pictogram of a crowbar"}
 {"id": "wn:crucible.n.01", "kind": "object", "text": "a pictogram of a crucible"}
 {"id": "wn:crucifix.n.01", "kind": "object", "text": "a pictogram of a crucifix"}
+{"id": "wn:cruise_control.n.01", "kind": "object", "text": "a pictogram of a cruise control"}
 {"id": "wn:cruise_ship.n.01", "kind": "object", "text": "a pictogram of a cruise ship"}
 {"id": "wn:cruiser.n.01", "kind": "object", "text": "a pictogram of a cruiser"}
 {"id": "wn:crushed_leather.n.01", "kind": "object", "text": "a pictogram of a crushed leather"}
 {"id": "wn:crust.n.01", "kind": "object", "text": "a pictogram of a crust"}
+{"id": "wn:crustacean.n.01", "kind": "object", "text": "a pictogram of a crustacean"}
 {"id": "wn:crutch.n.01", "kind": "object", "text": "a pictogram of a crutch"}
 {"id": "wn:crypt.n.01", "kind": "object", "text": "a pictogram of a crypt"}
 {"id": "wn:crystal.n.01", "kind": "object", "text": "a pictogram of a crystal"}
@@ -1398,6 +1491,7 @@
 {"id": "wn:culotte.n.01", "kind": "object", "text": "a pictogram of a culotte"}
 {"id": "wn:cultist.n.01", "kind": "object", "text": "a pictogram of a cultist"}
 {"id": "wn:cumulonimbus.n.01", "kind": "object", "text": "a pictogram of a cumulonimbus"}
+{"id": "wn:cumulus.n.01", "kind": "object", "text": "a pictogram of a cumulus"}
 {"id": "wn:cunt.n.02", "kind": "object", "text": "a pictogram of a cunt"}
 {"id": "wn:cup.n.01", "kind": "object", "text": "a pictogram of a cup"}
 {"id": "wn:cupboard.n.01", "kind": "object", "text": "a pictogram of a cupboard"}
@@ -1423,9 +1517,11 @@
 {"id": "wn:cutout.n.01", "kind": "object", "text": "a pictogram of a cutout"}
 {"id": "wn:cutter.n.06", "kind": "object", "text": "a pictogram of a cutter"}
 {"id": "wn:cuttlefish.n.01", "kind": "object", "text": "a pictogram of a cuttlefish"}
+{"id": "wn:cybele.n.01", "kind": "object", "text": "a pictogram of a Cybele"}
 {"id": "wn:cyborg.n.01", "kind": "object", "text": "a pictogram of a cyborg"}
 {"id": "wn:cyclist.n.01", "kind": "object", "text": "a pictogram of a cyclist"}
 {"id": "wn:cyclops.n.01", "kind": "object", "text": "a pictogram of a Cyclops"}
+{"id": "wn:cygnus.n.01", "kind": "object", "text": "a pictogram of a Cygnus"}
 {"id": "wn:cylinder.n.01", "kind": "object", "text": "a pictogram of a cylinder"}
 {"id": "wn:cymbal.n.01", "kind": "object", "text": "a pictogram of a cymbal"}
 {"id": "wn:cypress.n.01", "kind": "object", "text": "a pictogram of a cypress"}
@@ -1441,9 +1537,11 @@
 {"id": "wn:dais.n.01", "kind": "object", "text": "a pictogram of a dais"}
 {"id": "wn:daisy.n.01", "kind": "object", "text": "a pictogram of a daisy"}
 {"id": "wn:dakota.n.01", "kind": "object", "text": "a pictogram of a Dakota"}
+{"id": "wn:dali.n.01", "kind": "object", "text": "a pictogram of a Dali"}
 {"id": "wn:dallier.n.01", "kind": "object", "text": "a pictogram of a dallier"}
 {"id": "wn:dam.n.01", "kind": "object", "text": "a pictogram of a dam"}
 {"id": "wn:dame.n.01", "kind": "object", "text": "a pictogram of a dame"}
+{"id": "wn:damocles.n.01", "kind": "object", "text": "a pictogram of a damocles"}
 {"id": "wn:dance_floor.n.01", "kind": "object", "text": "a pictogram of a dance floor"}
 {"id": "wn:dancer.n.01", "kind": "object", "text": "a pictogram of a dancer"}
 {"id": "wn:dandelion.n.01", "kind": "object", "text": "a pictogram of a dandelion"}
@@ -1451,12 +1549,14 @@
 {"id": "wn:danish.n.02", "kind": "object", "text": "a pictogram of a danish"}
 {"id": "wn:dante.n.01", "kind": "object", "text": "a pictogram of a Dante"}
 {"id": "wn:danu.n.01", "kind": "object", "text": "a pictogram of a Danu"}
+{"id": "wn:daphne.n.01", "kind": "object", "text": "a pictogram of a daphne"}
 {"id": "wn:darkroom.n.01", "kind": "object", "text": "a pictogram of a darkroom"}
 {"id": "wn:darling.n.01", "kind": "object", "text": "a pictogram of a darling"}
 {"id": "wn:darmstadtium.n.01", "kind": "object", "text": "a pictogram of a darmstadtium"}
 {"id": "wn:darnel.n.01", "kind": "object", "text": "a pictogram of a darnel"}
 {"id": "wn:dart.n.01", "kind": "object", "text": "a pictogram of a dart"}
 {"id": "wn:dartboard.n.01", "kind": "object", "text": "a pictogram of a dartboard"}
+{"id": "wn:darwin.n.01", "kind": "object", "text": "a pictogram of a Darwin"}
 {"id": "wn:data_input_device.n.01", "kind": "object", "text": "a pictogram of a input device"}
 {"id": "wn:daughter.n.01", "kind": "object", "text": "a pictogram of a daughter"}
 {"id": "wn:dawdler.n.01", "kind": "object", "text": "a pictogram of a dawdler"}
@@ -1476,6 +1576,7 @@
 {"id": "wn:defecator.n.01", "kind": "object", "text": "a pictogram of a defecator"}
 {"id": "wn:defender.n.01", "kind": "object", "text": "a pictogram of a defender"}
 {"id": "wn:defibrillator.n.01", "kind": "object", "text": "a pictogram of a defibrillator"}
+{"id": "wn:deimos.n.01", "kind": "object", "text": "a pictogram of a Deimos"}
 {"id": "wn:delaware.n.01", "kind": "object", "text": "a pictogram of a Delaware"}
 {"id": "wn:delegate.n.01", "kind": "object", "text": "a pictogram of a delegate"}
 {"id": "wn:delicatessen.n.02", "kind": "object", "text": "a pictogram of a deli"}
@@ -1483,7 +1584,9 @@
 {"id": "wn:deliverable.n.01", "kind": "object", "text": "a pictogram of a deliverable"}
 {"id": "wn:delivery_truck.n.01", "kind": "object", "text": "a pictogram of a delivery truck"}
 {"id": "wn:dell.n.01", "kind": "object", "text": "a pictogram of a dell"}
+{"id": "wn:delphinus.n.01", "kind": "object", "text": "a pictogram of a Delphinus"}
 {"id": "wn:delta.n.01", "kind": "object", "text": "a pictogram of a delta"}
+{"id": "wn:demeter.n.01", "kind": "object", "text": "a pictogram of a Demeter"}
 {"id": "wn:demigod.n.01", "kind": "object", "text": "a pictogram of a demigod"}
 {"id": "wn:democrat.n.01", "kind": "object", "text": "a pictogram of a Democrat"}
 {"id": "wn:dental_floss.n.01", "kind": "object", "text": "a pictogram of a dental floss"}
@@ -1496,6 +1599,7 @@
 {"id": "wn:depository.n.01", "kind": "object", "text": "a pictogram of a depository"}
 {"id": "wn:derelict.n.01", "kind": "object", "text": "a pictogram of a derelict"}
 {"id": "wn:dervish.n.01", "kind": "object", "text": "a pictogram of a dervish"}
+{"id": "wn:descendant.n.01", "kind": "object", "text": "a pictogram of a descendant"}
 {"id": "wn:desk.n.01", "kind": "object", "text": "a pictogram of a desk"}
 {"id": "wn:desktop_computer.n.01", "kind": "object", "text": "a pictogram of a desktop computer"}
 {"id": "wn:dessert.n.01", "kind": "object", "text": "a pictogram of a dessert"}
@@ -1514,6 +1618,8 @@
 {"id": "wn:diagonal.n.01", "kind": "object", "text": "a pictogram of a diagonal"}
 {"id": "wn:diagram.n.01", "kind": "object", "text": "a pictogram of a diagram"}
 {"id": "wn:dial.n.01", "kind": "object", "text": "a pictogram of a dial"}
+{"id": "wn:dialog_box.n.01", "kind": "object", "text": "a pictogram of a dialog box"}
+{"id": "wn:diana.n.01", "kind": "object", "text": "a pictogram of a Diana"}
 {"id": "wn:diaper.n.01", "kind": "object", "text": "a pictogram of a diaper"}
 {"id": "wn:diaphragm.n.01", "kind": "object", "text": "a pictogram of a diaphragm"}
 {"id": "wn:dice_cup.n.01", "kind": "object", "text": "a pictogram of a dice cup"}
@@ -1522,6 +1628,7 @@
 {"id": "wn:dictator.n.01", "kind": "object", "text": "a pictogram of a dictator"}
 {"id": "wn:dideoxycytosine.n.01", "kind": "object", "text": "a pictogram of a dideoxycytosine"}
 {"id": "wn:dideoxyinosine.n.01", "kind": "object", "text": "a pictogram of a dideoxyinosine"}
+{"id": "wn:dido.n.01", "kind": "object", "text": "a pictogram of a Dido"}
 {"id": "wn:die.n.01", "kind": "object", "text": "a pictogram of a die"}
 {"id": "wn:diesel.n.01", "kind": "object", "text": "a pictogram of a Diesel"}
 {"id": "wn:diesel_locomotive.n.01", "kind": "object", "text": "a pictogram of a diesel locomotive"}
@@ -1549,6 +1656,7 @@
 {"id": "wn:dinosaur.n.01", "kind": "object", "text": "a pictogram of a dinosaur"}
 {"id": "wn:diode.n.01", "kind": "object", "text": "a pictogram of a diode"}
 {"id": "wn:diodon.n.01", "kind": "object", "text": "a pictogram of a Diodon"}
+{"id": "wn:dionysus.n.01", "kind": "object", "text": "a pictogram of a Dionysus"}
 {"id": "wn:dior.n.01", "kind": "object", "text": "a pictogram of a Dior"}
 {"id": "wn:dip.n.01", "kind": "object", "text": "a pictogram of a dip"}
 {"id": "wn:dip_switch.n.01", "kind": "object", "text": "a pictogram of a DIP switch"}
@@ -1610,11 +1718,14 @@
 {"id": "wn:doorway.n.01", "kind": "object", "text": "a pictogram of a doorway"}
 {"id": "wn:dopamine.n.01", "kind": "object", "text": "a pictogram of a dopamine"}
 {"id": "wn:doppler.n.01", "kind": "object", "text": "a pictogram of a Doppler"}
+{"id": "wn:dorado.n.01", "kind": "object", "text": "a pictogram of a Dorado"}
+{"id": "wn:doris.n.01", "kind": "object", "text": "a pictogram of a Doris"}
 {"id": "wn:dormitory.n.01", "kind": "object", "text": "a pictogram of a dorm"}
 {"id": "wn:dose.n.01", "kind": "object", "text": "a pictogram of a dose"}
 {"id": "wn:double_bed.n.01", "kind": "object", "text": "a pictogram of a double bed"}
 {"id": "wn:double_door.n.01", "kind": "object", "text": "a pictogram of a double door"}
 {"id": "wn:doublet.n.01", "kind": "object", "text": "a pictogram of a doublet"}
+{"id": "wn:douche.n.01", "kind": "object", "text": "a pictogram of a douche"}
 {"id": "wn:dough.n.01", "kind": "object", "text": "a pictogram of a dough"}
 {"id": "wn:doughnut.n.02", "kind": "object", "text": "a pictogram of a doughnut"}
 {"id": "wn:douglas.n.01", "kind": "object", "text": "a pictogram of a Douglas"}
@@ -1623,6 +1734,7 @@
 {"id": "wn:down.n.01", "kind": "object", "text": "a pictogram of a down"}
 {"id": "wn:downcast.n.01", "kind": "object", "text": "a pictogram of a downcast"}
 {"id": "wn:downhill.n.01", "kind": "object", "text": "a pictogram of a downhill"}
+{"id": "wn:draco.n.01", "kind": "object", "text": "a pictogram of a Draco"}
 {"id": "wn:dracula.n.01", "kind": "object", "text": "a pictogram of a Dracula"}
 {"id": "wn:drafting_board.n.01", "kind": "object", "text": "a pictogram of a drafting board"}
 {"id": "wn:dragon.n.01", "kind": "object", "text": "a pictogram of a dragon"}
@@ -1662,6 +1774,7 @@
 {"id": "wn:dropout.n.01", "kind": "object", "text": "a pictogram of a dropout"}
 {"id": "wn:dropper.n.01", "kind": "object", "text": "a pictogram of a dropper"}
 {"id": "wn:drug.n.01", "kind": "object", "text": "a pictogram of a drug"}
+{"id": "wn:druid.n.01", "kind": "object", "text": "a pictogram of a druid"}
 {"id": "wn:drum.n.01", "kind": "object", "text": "a pictogram of a drum"}
 {"id": "wn:drumstick.n.01", "kind": "object", "text": "a pictogram of a drumstick"}
 {"id": "wn:drunkard.n.01", "kind": "object", "text": "a pictogram of a drunkard"}
@@ -1670,6 +1783,7 @@
 {"id": "wn:dryer.n.01", "kind": "object", "text": "a pictogram of a dryer"}
 {"id": "wn:dubnium.n.01", "kind": "object", "text": "a pictogram of a dubnium"}
 {"id": "wn:duck.n.01", "kind": "object", "text": "a pictogram of a duck"}
+{"id": "wn:duckling.n.01", "kind": "object", "text": "a pictogram of a duckling"}
 {"id": "wn:dueler.n.01", "kind": "object", "text": "a pictogram of a duelist"}
 {"id": "wn:duffel_bag.n.01", "kind": "object", "text": "a pictogram of a duffel bag"}
 {"id": "wn:dug.n.01", "kind": "object", "text": "a pictogram of a dug"}
@@ -1682,6 +1796,7 @@
 {"id": "wn:dune.n.01", "kind": "object", "text": "a pictogram of a dune"}
 {"id": "wn:duplex_house.n.01", "kind": "object", "text": "a pictogram of a duplex house"}
 {"id": "wn:duplicate.n.02", "kind": "object", "text": "a pictogram of a duplicate"}
+{"id": "wn:duplicator.n.01", "kind": "object", "text": "a pictogram of a copier"}
 {"id": "wn:dust.n.01", "kind": "object", "text": "a pictogram of a dust"}
 {"id": "wn:dutch.n.01", "kind": "object", "text": "a pictogram of a Dutch"}
 {"id": "wn:dvorak.n.01", "kind": "object", "text": "a pictogram of a dvorak"}
@@ -1699,15 +1814,19 @@
 {"id": "wn:earwig.n.01", "kind": "object", "text": "a pictogram of a earwig"}
 {"id": "wn:easel.n.01", "kind": "object", "text": "a pictogram of a easel"}
 {"id": "wn:easter_egg.n.01", "kind": "object", "text": "a pictogram of a Easter egg"}
+{"id": "wn:echidna.n.01", "kind": "object", "text": "a pictogram of a echidna"}
+{"id": "wn:ecologist.n.01", "kind": "object", "text": "a pictogram of a ecologist"}
 {"id": "wn:economist.n.01", "kind": "object", "text": "a pictogram of a economist"}
 {"id": "wn:eddy.n.01", "kind": "object", "text": "a pictogram of a Eddy"}
 {"id": "wn:edison.n.01", "kind": "object", "text": "a pictogram of a Edison"}
 {"id": "wn:editor.n.01", "kind": "object", "text": "a pictogram of a editor"}
 {"id": "wn:edo.n.01", "kind": "object", "text": "a pictogram of a Edo"}
 {"id": "wn:educator.n.01", "kind": "object", "text": "a pictogram of a educator"}
+{"id": "wn:edward.n.01", "kind": "object", "text": "a pictogram of a Edward"}
 {"id": "wn:eel.n.01", "kind": "object", "text": "a pictogram of a eel"}
 {"id": "wn:effecter.n.01", "kind": "object", "text": "a pictogram of a effecter"}
 {"id": "wn:eft.n.01", "kind": "object", "text": "a pictogram of a eft"}
+{"id": "wn:egeria.n.01", "kind": "object", "text": "a pictogram of a Egeria"}
 {"id": "wn:egg.n.01", "kind": "object", "text": "a pictogram of a egg"}
 {"id": "wn:egg_white.n.01", "kind": "object", "text": "a pictogram of a egg white"}
 {"id": "wn:egg_yolk.n.01", "kind": "object", "text": "a pictogram of a egg yolk"}
@@ -1735,6 +1854,7 @@
 {"id": "wn:electron.n.01", "kind": "object", "text": "a pictogram of a electron"}
 {"id": "wn:electrum.n.01", "kind": "object", "text": "a pictogram of a electrum"}
 {"id": "wn:elephant.n.01", "kind": "object", "text": "a pictogram of a elephant"}
+{"id": "wn:elevated_railway.n.01", "kind": "object", "text": "a pictogram of a elevated railway"}
 {"id": "wn:elevator.n.01", "kind": "object", "text": "a pictogram of a elevator"}
 {"id": "wn:elf.n.01", "kind": "object", "text": "a pictogram of a elf"}
 {"id": "wn:elixir.n.01", "kind": "object", "text": "a pictogram of a elixir"}
@@ -1774,20 +1894,27 @@
 {"id": "wn:enzyme.n.01", "kind": "object", "text": "a pictogram of a enzyme"}
 {"id": "wn:eon.n.03", "kind": "object", "text": "a pictogram of a eon"}
 {"id": "wn:eos.n.01", "kind": "object", "text": "a pictogram of a Eos"}
+{"id": "wn:epee.n.01", "kind": "object", "text": "a pictogram of a epee"}
 {"id": "wn:ephemeron.n.01", "kind": "object", "text": "a pictogram of a ephemeron"}
 {"id": "wn:epicure.n.01", "kind": "object", "text": "a pictogram of a epicure"}
+{"id": "wn:epimetheus.n.01", "kind": "object", "text": "a pictogram of a Epimetheus"}
 {"id": "wn:epinephrine.n.01", "kind": "object", "text": "a pictogram of a epinephrine"}
 {"id": "wn:equalizer.n.01", "kind": "object", "text": "a pictogram of a equalizer"}
 {"id": "wn:equatorial.n.01", "kind": "object", "text": "a pictogram of a equatorial"}
 {"id": "wn:equilateral.n.01", "kind": "object", "text": "a pictogram of a equilateral"}
 {"id": "wn:equipment.n.01", "kind": "object", "text": "a pictogram of a equipment"}
 {"id": "wn:eraser.n.01", "kind": "object", "text": "a pictogram of a eraser"}
+{"id": "wn:erato.n.01", "kind": "object", "text": "a pictogram of a Erato"}
+{"id": "wn:eratosthenes.n.01", "kind": "object", "text": "a pictogram of a Eratosthenes"}
 {"id": "wn:erbium.n.01", "kind": "object", "text": "a pictogram of a erbium"}
+{"id": "wn:eridanus.n.01", "kind": "object", "text": "a pictogram of a Eridanus"}
 {"id": "wn:eris.n.01", "kind": "object", "text": "a pictogram of a Eris"}
 {"id": "wn:erlenmeyer.n.01", "kind": "object", "text": "a pictogram of a Erlenmeyer"}
 {"id": "wn:erlenmeyer_flask.n.01", "kind": "object", "text": "a pictogram of a Erlenmeyer flask"}
 {"id": "wn:ermine.n.01", "kind": "object", "text": "a pictogram of a ermine"}
 {"id": "wn:ern.n.01", "kind": "object", "text": "a pictogram of a ern"}
+{"id": "wn:eros.n.01", "kind": "object", "text": "a pictogram of a Eros"}
+{"id": "wn:erotic.n.01", "kind": "object", "text": "a pictogram of a erotic"}
 {"id": "wn:eskimo.n.01", "kind": "object", "text": "a pictogram of a Eskimo"}
 {"id": "wn:eskimo_dog.n.01", "kind": "object", "text": "a pictogram of a Eskimo dog"}
 {"id": "wn:esophagus.n.01", "kind": "object", "text": "a pictogram of a esophagus"}
@@ -1798,9 +1925,14 @@
 {"id": "wn:ethernet.n.01", "kind": "object", "text": "a pictogram of a ethernet"}
 {"id": "wn:ethernet_cable.n.01", "kind": "object", "text": "a pictogram of a ethernet cable"}
 {"id": "wn:ethiopian.n.01", "kind": "object", "text": "a pictogram of a Ethiopian"}
+{"id": "wn:eugenia.n.01", "kind": "object", "text": "a pictogram of a Eugenia"}
+{"id": "wn:eunuch.n.01", "kind": "object", "text": "a pictogram of a eunuch"}
+{"id": "wn:euphrosyne.n.01", "kind": "object", "text": "a pictogram of a Euphrosyne"}
+{"id": "wn:europa.n.01", "kind": "object", "text": "a pictogram of a Europa"}
 {"id": "wn:europe.n.01", "kind": "object", "text": "a pictogram of a Europe"}
 {"id": "wn:european.n.01", "kind": "object", "text": "a pictogram of a European"}
 {"id": "wn:europium.n.01", "kind": "object", "text": "a pictogram of a europium"}
+{"id": "wn:euterpe.n.01", "kind": "object", "text": "a pictogram of a Euterpe"}
 {"id": "wn:eve.n.01", "kind": "object", "text": "a pictogram of a Eve"}
 {"id": "wn:everest.n.01", "kind": "object", "text": "a pictogram of a Everest"}
 {"id": "wn:evergreen.n.01", "kind": "object", "text": "a pictogram of a evergreen"}
@@ -1862,10 +1994,13 @@
 {"id": "wn:fan_blade.n.01", "kind": "object", "text": "a pictogram of a fan blade"}
 {"id": "wn:fanjet.n.01", "kind": "object", "text": "a pictogram of a fanjet"}
 {"id": "wn:farm.n.01", "kind": "object", "text": "a pictogram of a farm"}
+{"id": "wn:farm_building.n.01", "kind": "object", "text": "a pictogram of a farm building"}
 {"id": "wn:farmer.n.01", "kind": "object", "text": "a pictogram of a farmer"}
 {"id": "wn:farrier.n.01", "kind": "object", "text": "a pictogram of a farrier"}
 {"id": "wn:farsi.n.01", "kind": "object", "text": "a pictogram of a Farsi"}
 {"id": "wn:fast_food.n.01", "kind": "object", "text": "a pictogram of a fast food"}
+{"id": "wn:fastener.n.01", "kind": "object", "text": "a pictogram of a fastener"}
+{"id": "wn:fastener.n.02", "kind": "object", "text": "a pictogram of a fastening"}
 {"id": "wn:fat.n.01", "kind": "object", "text": "a pictogram of a fat"}
 {"id": "wn:father.n.01", "kind": "object", "text": "a pictogram of a father"}
 {"id": "wn:faucet.n.01", "kind": "object", "text": "a pictogram of a faucet"}
@@ -1885,6 +2020,7 @@
 {"id": "wn:female.n.01", "kind": "object", "text": "a pictogram of a female"}
 {"id": "wn:female_body.n.01", "kind": "object", "text": "a pictogram of a female body"}
 {"id": "wn:female_reproductive_system.n.01", "kind": "object", "text": "a pictogram of a female reproductive system"}
+{"id": "wn:feminist.n.01", "kind": "object", "text": "a pictogram of a feminist"}
 {"id": "wn:femur.n.01", "kind": "object", "text": "a pictogram of a femur"}
 {"id": "wn:fence.n.01", "kind": "object", "text": "a pictogram of a fence"}
 {"id": "wn:fencer.n.01", "kind": "object", "text": "a pictogram of a fencer"}
@@ -1906,6 +2042,7 @@
 {"id": "wn:field_artillery.n.01", "kind": "object", "text": "a pictogram of a field artillery"}
 {"id": "wn:field_glass.n.01", "kind": "object", "text": "a pictogram of a field glass"}
 {"id": "wn:fields.n.01", "kind": "object", "text": "a pictogram of a fields"}
+{"id": "wn:figure_eight.n.01", "kind": "object", "text": "a pictogram of a figure eight"}
 {"id": "wn:filament.n.03", "kind": "object", "text": "a pictogram of a filament"}
 {"id": "wn:file.n.03", "kind": "object", "text": "a pictogram of a file"}
 {"id": "wn:file_folder.n.01", "kind": "object", "text": "a pictogram of a file folder"}
@@ -2004,6 +2141,7 @@
 {"id": "wn:flying_fox.n.01", "kind": "object", "text": "a pictogram of a flying fox"}
 {"id": "wn:flywheel.n.01", "kind": "object", "text": "a pictogram of a flywheel"}
 {"id": "wn:foam.n.01", "kind": "object", "text": "a pictogram of a foam"}
+{"id": "wn:foil.n.01", "kind": "object", "text": "a pictogram of a foil"}
 {"id": "wn:fold.n.01", "kind": "object", "text": "a pictogram of a fold"}
 {"id": "wn:folder.n.02", "kind": "object", "text": "a pictogram of a folder"}
 {"id": "wn:folium.n.01", "kind": "object", "text": "a pictogram of a folium"}
@@ -2026,11 +2164,14 @@
 {"id": "wn:foreigner.n.01", "kind": "object", "text": "a pictogram of a foreigner"}
 {"id": "wn:foreman.n.01", "kind": "object", "text": "a pictogram of a foreman"}
 {"id": "wn:forge.n.01", "kind": "object", "text": "a pictogram of a forge"}
+{"id": "wn:forget-me-not.n.01", "kind": "object", "text": "a pictogram of a forget-me-not"}
 {"id": "wn:fork.n.01", "kind": "object", "text": "a pictogram of a fork"}
 {"id": "wn:forklift.n.01", "kind": "object", "text": "a pictogram of a forklift"}
+{"id": "wn:fornax.n.01", "kind": "object", "text": "a pictogram of a Fornax"}
 {"id": "wn:forth.n.01", "kind": "object", "text": "a pictogram of a Forth"}
 {"id": "wn:fortification.n.01", "kind": "object", "text": "a pictogram of a fortification"}
 {"id": "wn:fortress.n.01", "kind": "object", "text": "a pictogram of a fortress"}
+{"id": "wn:fortuna.n.01", "kind": "object", "text": "a pictogram of a Fortuna"}
 {"id": "wn:fortune_cookie.n.01", "kind": "object", "text": "a pictogram of a fortune cookie"}
 {"id": "wn:forward.n.01", "kind": "object", "text": "a pictogram of a forward"}
 {"id": "wn:fossil_fuel.n.01", "kind": "object", "text": "a pictogram of a fossil fuel"}
@@ -2056,11 +2197,13 @@
 {"id": "wn:french_horn.n.01", "kind": "object", "text": "a pictogram of a French horn"}
 {"id": "wn:freon.n.01", "kind": "object", "text": "a pictogram of a Freon"}
 {"id": "wn:fresco.n.01", "kind": "object", "text": "a pictogram of a fresco"}
+{"id": "wn:fret.n.03", "kind": "object", "text": "a pictogram of a greek key"}
 {"id": "wn:fried_egg.n.01", "kind": "object", "text": "a pictogram of a fried egg"}
 {"id": "wn:fried_rice.n.01", "kind": "object", "text": "a pictogram of a fried rice"}
 {"id": "wn:friend.n.01", "kind": "object", "text": "a pictogram of a friend"}
 {"id": "wn:friend.n.05", "kind": "object", "text": "a pictogram of a Friend"}
 {"id": "wn:frigate.n.01", "kind": "object", "text": "a pictogram of a frigate"}
+{"id": "wn:frigg.n.01", "kind": "object", "text": "a pictogram of a Frigg"}
 {"id": "wn:frill.n.02", "kind": "object", "text": "a pictogram of a frill"}
 {"id": "wn:frisbee.n.01", "kind": "object", "text": "a pictogram of a Frisbee"}
 {"id": "wn:fritter.n.01", "kind": "object", "text": "a pictogram of a fritter"}
@@ -2094,7 +2237,9 @@
 {"id": "wn:gable.n.01", "kind": "object", "text": "a pictogram of a gable"}
 {"id": "wn:gable_roof.n.01", "kind": "object", "text": "a pictogram of a saddle roof"}
 {"id": "wn:gaea.n.01", "kind": "object", "text": "a pictogram of a Gaea"}
+{"id": "wn:galatea.n.01", "kind": "object", "text": "a pictogram of a Galatea"}
 {"id": "wn:galea.n.01", "kind": "object", "text": "a pictogram of a galea"}
+{"id": "wn:galega.n.01", "kind": "object", "text": "a pictogram of a Galega"}
 {"id": "wn:galen.n.01", "kind": "object", "text": "a pictogram of a Galen"}
 {"id": "wn:gallbladder.n.01", "kind": "object", "text": "a pictogram of a gallbladder"}
 {"id": "wn:galleon.n.01", "kind": "object", "text": "a pictogram of a galleon"}
@@ -2104,11 +2249,13 @@
 {"id": "wn:gallows_tree.n.01", "kind": "object", "text": "a pictogram of a gallows tree"}
 {"id": "wn:gamma_hydroxybutyrate.n.01", "kind": "object", "text": "a pictogram of a ghb"}
 {"id": "wn:gantry.n.01", "kind": "object", "text": "a pictogram of a gantry"}
+{"id": "wn:ganymede.n.01", "kind": "object", "text": "a pictogram of a Ganymede"}
 {"id": "wn:garage.n.01", "kind": "object", "text": "a pictogram of a garage"}
 {"id": "wn:garbage.n.01", "kind": "object", "text": "a pictogram of a garbage"}
 {"id": "wn:garbage_man.n.01", "kind": "object", "text": "a pictogram of a garbage man"}
 {"id": "wn:garbage_truck.n.01", "kind": "object", "text": "a pictogram of a garbage truck"}
 {"id": "wn:garden.n.01", "kind": "object", "text": "a pictogram of a garden"}
+{"id": "wn:garden_tool.n.01", "kind": "object", "text": "a pictogram of a garden tool"}
 {"id": "wn:gardener.n.01", "kind": "object", "text": "a pictogram of a gardener"}
 {"id": "wn:gargle.n.01", "kind": "object", "text": "a pictogram of a gargle"}
 {"id": "wn:gargoyle.n.01", "kind": "object", "text": "a pictogram of a gargoyle"}
@@ -2135,6 +2282,7 @@
 {"id": "wn:gauguin.n.01", "kind": "object", "text": "a pictogram of a Gauguin"}
 {"id": "wn:gauze.n.01", "kind": "object", "text": "a pictogram of a gauze"}
 {"id": "wn:gavel.n.01", "kind": "object", "text": "a pictogram of a gavel"}
+{"id": "wn:gay_man.n.01", "kind": "object", "text": "a pictogram of a gay man"}
 {"id": "wn:gazebo.n.01", "kind": "object", "text": "a pictogram of a gazebo"}
 {"id": "wn:gear.n.01", "kind": "object", "text": "a pictogram of a gear"}
 {"id": "wn:gearbox.n.01", "kind": "object", "text": "a pictogram of a gearbox"}
@@ -2163,6 +2311,7 @@
 {"id": "wn:geodesic.n.01", "kind": "object", "text": "a pictogram of a geodesic"}
 {"id": "wn:george.n.01", "kind": "object", "text": "a pictogram of a George"}
 {"id": "wn:georgian.n.01", "kind": "object", "text": "a pictogram of a Georgian"}
+{"id": "wn:geranium.n.01", "kind": "object", "text": "a pictogram of a geranium"}
 {"id": "wn:gerbera.n.01", "kind": "object", "text": "a pictogram of a Gerbera"}
 {"id": "wn:germanium.n.01", "kind": "object", "text": "a pictogram of a germanium"}
 {"id": "wn:gerris.n.01", "kind": "object", "text": "a pictogram of a gerris"}
@@ -2175,6 +2324,7 @@
 {"id": "wn:gift_wrap.n.01", "kind": "object", "text": "a pictogram of a gift wrap"}
 {"id": "wn:gig.n.01", "kind": "object", "text": "a pictogram of a gig"}
 {"id": "wn:gigolo.n.01", "kind": "object", "text": "a pictogram of a gigolo"}
+{"id": "wn:gilgamesh.n.01", "kind": "object", "text": "a pictogram of a Gilgamesh"}
 {"id": "wn:gilt.n.01", "kind": "object", "text": "a pictogram of a gilt"}
 {"id": "wn:gimbal.n.01", "kind": "object", "text": "a pictogram of a gimbal"}
 {"id": "wn:gin.n.01", "kind": "object", "text": "a pictogram of a gin"}
@@ -2190,6 +2340,7 @@
 {"id": "wn:glass.n.01", "kind": "object", "text": "a pictogram of a glass"}
 {"id": "wn:glass.n.02", "kind": "object", "text": "a pictogram of a drinking glass"}
 {"id": "wn:glass_eye.n.01", "kind": "object", "text": "a pictogram of a glass eye"}
+{"id": "wn:glaze.n.01", "kind": "object", "text": "a pictogram of a glaze"}
 {"id": "wn:glider.n.01", "kind": "object", "text": "a pictogram of a glider"}
 {"id": "wn:global_positioning_system.n.01", "kind": "object", "text": "a pictogram of a Global Positioning System"}
 {"id": "wn:glucose.n.01", "kind": "object", "text": "a pictogram of a glucose"}
@@ -2207,6 +2358,8 @@
 {"id": "wn:goffer.n.01", "kind": "object", "text": "a pictogram of a goffer"}
 {"id": "wn:goggles.n.01", "kind": "object", "text": "a pictogram of a goggles"}
 {"id": "wn:gold.n.03", "kind": "object", "text": "a pictogram of a gold"}
+{"id": "wn:gold_dust.n.01", "kind": "object", "text": "a pictogram of a gold dust"}
+{"id": "wn:gold_foil.n.01", "kind": "object", "text": "a pictogram of a gold foil"}
 {"id": "wn:gold_medal.n.01", "kind": "object", "text": "a pictogram of a gold medal"}
 {"id": "wn:goldfish.n.01", "kind": "object", "text": "a pictogram of a goldfish"}
 {"id": "wn:goldman.n.01", "kind": "object", "text": "a pictogram of a Goldman"}
@@ -2254,6 +2407,7 @@
 {"id": "wn:grate.n.01", "kind": "object", "text": "a pictogram of a grate"}
 {"id": "wn:grater.n.01", "kind": "object", "text": "a pictogram of a grater"}
 {"id": "wn:grave.n.02", "kind": "object", "text": "a pictogram of a grave"}
+{"id": "wn:gravel.n.01", "kind": "object", "text": "a pictogram of a gravel"}
 {"id": "wn:gravestone.n.01", "kind": "object", "text": "a pictogram of a gravestone"}
 {"id": "wn:gravy.n.01", "kind": "object", "text": "a pictogram of a gravy"}
 {"id": "wn:gravy_boat.n.01", "kind": "object", "text": "a pictogram of a gravy boat"}
@@ -2274,6 +2428,7 @@
 {"id": "wn:greeter.n.01", "kind": "object", "text": "a pictogram of a greeter"}
 {"id": "wn:grenade.n.01", "kind": "object", "text": "a pictogram of a grenade"}
 {"id": "wn:grey.n.01", "kind": "object", "text": "a pictogram of a Grey"}
+{"id": "wn:griddle.n.01", "kind": "object", "text": "a pictogram of a griddle"}
 {"id": "wn:griffith.n.01", "kind": "object", "text": "a pictogram of a Griffith"}
 {"id": "wn:grillroom.n.01", "kind": "object", "text": "a pictogram of a grillroom"}
 {"id": "wn:grim_reaper.n.01", "kind": "object", "text": "a pictogram of a Grim Reaper"}
@@ -2284,14 +2439,17 @@
 {"id": "wn:grocery_store.n.01", "kind": "object", "text": "a pictogram of a grocery store"}
 {"id": "wn:groin.n.01", "kind": "object", "text": "a pictogram of a groin"}
 {"id": "wn:groove.n.01", "kind": "object", "text": "a pictogram of a groove"}
+{"id": "wn:grouch.n.01", "kind": "object", "text": "a pictogram of a grouch"}
 {"id": "wn:ground_control.n.01", "kind": "object", "text": "a pictogram of a ground control"}
 {"id": "wn:ground_floor.n.01", "kind": "object", "text": "a pictogram of a ground floor"}
 {"id": "wn:ground_plan.n.01", "kind": "object", "text": "a pictogram of a ground plan"}
 {"id": "wn:ground_water.n.01", "kind": "object", "text": "a pictogram of a ground water"}
 {"id": "wn:group.n.02", "kind": "object", "text": "a pictogram of a group"}
 {"id": "wn:grove.n.02", "kind": "object", "text": "a pictogram of a grove"}
+{"id": "wn:grus.n.01", "kind": "object", "text": "a pictogram of a Grus"}
 {"id": "wn:gryphon.n.01", "kind": "object", "text": "a pictogram of a gryphon"}
 {"id": "wn:guacamole.n.01", "kind": "object", "text": "a pictogram of a guacamole"}
+{"id": "wn:guan.n.01", "kind": "object", "text": "a pictogram of a guan"}
 {"id": "wn:guarantor.n.01", "kind": "object", "text": "a pictogram of a guarantor"}
 {"id": "wn:guard.n.01", "kind": "object", "text": "a pictogram of a guard"}
 {"id": "wn:guardsman.n.01", "kind": "object", "text": "a pictogram of a guardsman"}
@@ -2315,6 +2473,7 @@
 {"id": "wn:guyanese.n.01", "kind": "object", "text": "a pictogram of a guyanese"}
 {"id": "wn:gym_shoe.n.01", "kind": "object", "text": "a pictogram of a gym shoe"}
 {"id": "wn:gymnasium.n.02", "kind": "object", "text": "a pictogram of a gymnasium"}
+{"id": "wn:gypsy.n.02", "kind": "object", "text": "a pictogram of a Gypsy"}
 {"id": "wn:gyro.n.01", "kind": "object", "text": "a pictogram of a gyro"}
 {"id": "wn:gyroscope.n.01", "kind": "object", "text": "a pictogram of a gyroscope"}
 {"id": "wn:haber.n.01", "kind": "object", "text": "a pictogram of a Haber"}
@@ -2342,12 +2501,14 @@
 {"id": "wn:hand_brake.n.01", "kind": "object", "text": "a pictogram of a hand brake"}
 {"id": "wn:hand_calculator.n.01", "kind": "object", "text": "a pictogram of a hand calculator"}
 {"id": "wn:hand_cream.n.01", "kind": "object", "text": "a pictogram of a hand cream"}
+{"id": "wn:hand_drill.n.01", "kind": "object", "text": "a pictogram of a hand drill"}
 {"id": "wn:hand_glass.n.01", "kind": "object", "text": "a pictogram of a hand glass"}
 {"id": "wn:hand_grenade.n.01", "kind": "object", "text": "a pictogram of a hand grenade"}
 {"id": "wn:hand_tool.n.01", "kind": "object", "text": "a pictogram of a hand tool"}
 {"id": "wn:hand_towel.n.01", "kind": "object", "text": "a pictogram of a hand towel"}
 {"id": "wn:hand_truck.n.01", "kind": "object", "text": "a pictogram of a hand truck"}
 {"id": "wn:handball.n.01", "kind": "object", "text": "a pictogram of a handball"}
+{"id": "wn:handcar.n.01", "kind": "object", "text": "a pictogram of a handcar"}
 {"id": "wn:handcuff.n.01", "kind": "object", "text": "a pictogram of a handcuff"}
 {"id": "wn:handle.n.01", "kind": "object", "text": "a pictogram of a handle"}
 {"id": "wn:handlebar.n.01", "kind": "object", "text": "a pictogram of a handlebar"}
@@ -2454,6 +2615,7 @@
 {"id": "wn:hijab.n.01", "kind": "object", "text": "a pictogram of a hijab"}
 {"id": "wn:hiker.n.01", "kind": "object", "text": "a pictogram of a hiker"}
 {"id": "wn:hill.n.01", "kind": "object", "text": "a pictogram of a hill"}
+{"id": "wn:hillside.n.01", "kind": "object", "text": "a pictogram of a hillside"}
 {"id": "wn:hilt.n.01", "kind": "object", "text": "a pictogram of a hilt"}
 {"id": "wn:hindu.n.01", "kind": "object", "text": "a pictogram of a Hindu"}
 {"id": "wn:hinge.n.01", "kind": "object", "text": "a pictogram of a hinge"}
@@ -2512,6 +2674,7 @@
 {"id": "wn:hornet.n.01", "kind": "object", "text": "a pictogram of a hornet"}
 {"id": "wn:horse.n.01", "kind": "object", "text": "a pictogram of a horse"}
 {"id": "wn:horseback.n.01", "kind": "object", "text": "a pictogram of a horseback"}
+{"id": "wn:horsecar.n.01", "kind": "object", "text": "a pictogram of a horsecar"}
 {"id": "wn:horseman.n.01", "kind": "object", "text": "a pictogram of a horseman"}
 {"id": "wn:horseshoe.n.01", "kind": "object", "text": "a pictogram of a horseshoe"}
 {"id": "wn:horus.n.01", "kind": "object", "text": "a pictogram of a Horus"}
@@ -2549,10 +2712,12 @@
 {"id": "wn:humerus.n.01", "kind": "object", "text": "a pictogram of a humerus"}
 {"id": "wn:hummer.n.01", "kind": "object", "text": "a pictogram of a hummer"}
 {"id": "wn:hummingbird.n.01", "kind": "object", "text": "a pictogram of a hummingbird"}
+{"id": "wn:hun.n.01", "kind": "object", "text": "a pictogram of a Hun"}
 {"id": "wn:hungarian.n.01", "kind": "object", "text": "a pictogram of a Hungarian"}
 {"id": "wn:hunt.n.01", "kind": "object", "text": "a pictogram of a Hunt"}
 {"id": "wn:hunter.n.01", "kind": "object", "text": "a pictogram of a hunter"}
 {"id": "wn:huntington.n.01", "kind": "object", "text": "a pictogram of a Huntington"}
+{"id": "wn:hurdle.n.01", "kind": "object", "text": "a pictogram of a hurdle"}
 {"id": "wn:husband.n.01", "kind": "object", "text": "a pictogram of a husband"}
 {"id": "wn:hut.n.01", "kind": "object", "text": "a pictogram of a hut"}
 {"id": "wn:hutch.n.01", "kind": "object", "text": "a pictogram of a hutch"}
@@ -2562,14 +2727,18 @@
 {"id": "wn:hydrogen.n.01", "kind": "object", "text": "a pictogram of a hydrogen"}
 {"id": "wn:hydrus.n.01", "kind": "object", "text": "a pictogram of a Hydrus"}
 {"id": "wn:hyena.n.01", "kind": "object", "text": "a pictogram of a hyena"}
+{"id": "wn:hypatia.n.01", "kind": "object", "text": "a pictogram of a Hypatia"}
 {"id": "wn:hyperbola.n.01", "kind": "object", "text": "a pictogram of a hyperbola"}
 {"id": "wn:hyperion.n.01", "kind": "object", "text": "a pictogram of a Hyperion"}
+{"id": "wn:hypnos.n.01", "kind": "object", "text": "a pictogram of a Hypnos"}
 {"id": "wn:hypocrite.n.01", "kind": "object", "text": "a pictogram of a hypocrite"}
 {"id": "wn:hypodermic_syringe.n.01", "kind": "object", "text": "a pictogram of a hypodermic syringe"}
 {"id": "wn:hyrax.n.01", "kind": "object", "text": "a pictogram of a hyrax"}
+{"id": "wn:iapetus.n.01", "kind": "object", "text": "a pictogram of a Iapetus"}
 {"id": "wn:ibis.n.01", "kind": "object", "text": "a pictogram of a ibis"}
 {"id": "wn:icarus.n.01", "kind": "object", "text": "a pictogram of a Icarus"}
 {"id": "wn:ice.n.01", "kind": "object", "text": "a pictogram of a ice"}
+{"id": "wn:ice_ax.n.01", "kind": "object", "text": "a pictogram of a ice ax"}
 {"id": "wn:ice_bear.n.01", "kind": "object", "text": "a pictogram of a ice bear"}
 {"id": "wn:ice_cream.n.01", "kind": "object", "text": "a pictogram of a ice cream"}
 {"id": "wn:ice_cube.n.01", "kind": "object", "text": "a pictogram of a ice cube"}
@@ -2588,6 +2757,7 @@
 {"id": "wn:igloo.n.01", "kind": "object", "text": "a pictogram of a igloo"}
 {"id": "wn:igniter.n.01", "kind": "object", "text": "a pictogram of a igniter"}
 {"id": "wn:illustrator.n.01", "kind": "object", "text": "a pictogram of a illustrator"}
+{"id": "wn:imam.n.01", "kind": "object", "text": "a pictogram of a imam"}
 {"id": "wn:imbrication.n.01", "kind": "object", "text": "a pictogram of a imbrication"}
 {"id": "wn:immersion_heater.n.01", "kind": "object", "text": "a pictogram of a immersion heater"}
 {"id": "wn:immortal.n.01", "kind": "object", "text": "a pictogram of a immortal"}
@@ -2621,7 +2791,9 @@
 {"id": "wn:ink.n.01", "kind": "object", "text": "a pictogram of a ink"}
 {"id": "wn:ink_bottle.n.01", "kind": "object", "text": "a pictogram of a ink bottle"}
 {"id": "wn:ink_eraser.n.01", "kind": "object", "text": "a pictogram of a ink eraser"}
+{"id": "wn:inkwell.n.01", "kind": "object", "text": "a pictogram of a inkwell"}
 {"id": "wn:inlet.n.01", "kind": "object", "text": "a pictogram of a inlet"}
+{"id": "wn:innocent.n.01", "kind": "object", "text": "a pictogram of a innocent"}
 {"id": "wn:inpatient.n.01", "kind": "object", "text": "a pictogram of a inpatient"}
 {"id": "wn:inquirer.n.01", "kind": "object", "text": "a pictogram of a inquirer"}
 {"id": "wn:insect.n.01", "kind": "object", "text": "a pictogram of a insect"}
@@ -2660,20 +2832,25 @@
 {"id": "wn:iodine.n.01", "kind": "object", "text": "a pictogram of a iodine"}
 {"id": "wn:ion.n.01", "kind": "object", "text": "a pictogram of a ion"}
 {"id": "wn:iowa.n.01", "kind": "object", "text": "a pictogram of a Iowa"}
+{"id": "wn:iphigenia.n.01", "kind": "object", "text": "a pictogram of a Iphigenia"}
 {"id": "wn:ipod.n.01", "kind": "object", "text": "a pictogram of a iPod"}
 {"id": "wn:irani.n.01", "kind": "object", "text": "a pictogram of a Irani"}
 {"id": "wn:iridium.n.01", "kind": "object", "text": "a pictogram of a iridium"}
 {"id": "wn:iris.n.01", "kind": "object", "text": "a pictogram of a iris"}
 {"id": "wn:irish.n.01", "kind": "object", "text": "a pictogram of a Irish"}
 {"id": "wn:iron.n.01", "kind": "object", "text": "a pictogram of a iron"}
+{"id": "wn:iron.n.03", "kind": "object", "text": "a pictogram of a branding iron"}
+{"id": "wn:iron_filing.n.01", "kind": "object", "text": "a pictogram of a iron filing"}
 {"id": "wn:iron_man.n.01", "kind": "object", "text": "a pictogram of a iron man"}
 {"id": "wn:iron_ore.n.01", "kind": "object", "text": "a pictogram of a iron ore"}
 {"id": "wn:ironing.n.01", "kind": "object", "text": "a pictogram of a ironing"}
 {"id": "wn:ironing_board.n.01", "kind": "object", "text": "a pictogram of a ironing board"}
 {"id": "wn:irons.n.01", "kind": "object", "text": "a pictogram of a irons"}
 {"id": "wn:ishtar.n.01", "kind": "object", "text": "a pictogram of a Ishtar"}
+{"id": "wn:isis.n.01", "kind": "object", "text": "a pictogram of a Isis"}
 {"id": "wn:island.n.01", "kind": "object", "text": "a pictogram of a island"}
 {"id": "wn:isle.n.01", "kind": "object", "text": "a pictogram of a isle"}
+{"id": "wn:israeli.n.01", "kind": "object", "text": "a pictogram of a Israeli"}
 {"id": "wn:italian.n.01", "kind": "object", "text": "a pictogram of a Italian"}
 {"id": "wn:ivory.n.01", "kind": "object", "text": "a pictogram of a ivory"}
 {"id": "wn:ivy.n.01", "kind": "object", "text": "a pictogram of a ivy"}
@@ -2688,6 +2865,8 @@
 {"id": "wn:jam.n.01", "kind": "object", "text": "a pictogram of a jam"}
 {"id": "wn:james.n.01", "kind": "object", "text": "a pictogram of a James"}
 {"id": "wn:jammer.n.01", "kind": "object", "text": "a pictogram of a jammer"}
+{"id": "wn:janitor.n.01", "kind": "object", "text": "a pictogram of a janitor"}
+{"id": "wn:janus.n.01", "kind": "object", "text": "a pictogram of a Janus"}
 {"id": "wn:japanese.n.01", "kind": "object", "text": "a pictogram of a Japanese"}
 {"id": "wn:jar.n.01", "kind": "object", "text": "a pictogram of a jar"}
 {"id": "wn:jasmine.n.01", "kind": "object", "text": "a pictogram of a jasmine"}
@@ -2719,6 +2898,7 @@
 {"id": "wn:johnson.n.01", "kind": "object", "text": "a pictogram of a Johnson"}
 {"id": "wn:joint.n.01", "kind": "object", "text": "a pictogram of a joint"}
 {"id": "wn:joker.n.01", "kind": "object", "text": "a pictogram of a joker"}
+{"id": "wn:jonathan.n.01", "kind": "object", "text": "a pictogram of a Jonathan"}
 {"id": "wn:jones.n.01", "kind": "object", "text": "a pictogram of a Jones"}
 {"id": "wn:joplin.n.01", "kind": "object", "text": "a pictogram of a Joplin"}
 {"id": "wn:jordan.n.01", "kind": "object", "text": "a pictogram of a Jordan"}
@@ -2753,6 +2933,7 @@
 {"id": "wn:kat.n.01", "kind": "object", "text": "a pictogram of a kat"}
 {"id": "wn:kava.n.01", "kind": "object", "text": "a pictogram of a kava"}
 {"id": "wn:kayak.n.01", "kind": "object", "text": "a pictogram of a kayak"}
+{"id": "wn:kazak.n.01", "kind": "object", "text": "a pictogram of a Kazak"}
 {"id": "wn:kazakhstani.n.01", "kind": "object", "text": "a pictogram of a Kazakhstani"}
 {"id": "wn:keep.n.02", "kind": "object", "text": "a pictogram of a keep"}
 {"id": "wn:keeper.n.01", "kind": "object", "text": "a pictogram of a keeper"}
@@ -2798,6 +2979,7 @@
 {"id": "wn:knob.n.01", "kind": "object", "text": "a pictogram of a knob"}
 {"id": "wn:knoll.n.01", "kind": "object", "text": "a pictogram of a knoll"}
 {"id": "wn:koala.n.01", "kind": "object", "text": "a pictogram of a koala"}
+{"id": "wn:koch.n.01", "kind": "object", "text": "a pictogram of a Koch"}
 {"id": "wn:kohl.n.01", "kind": "object", "text": "a pictogram of a kohl"}
 {"id": "wn:kookaburra.n.01", "kind": "object", "text": "a pictogram of a kookaburra"}
 {"id": "wn:korean.n.01", "kind": "object", "text": "a pictogram of a Korean"}
@@ -2811,6 +2993,9 @@
 {"id": "wn:lab.n.01", "kind": "object", "text": "a pictogram of a lab"}
 {"id": "wn:lab_coat.n.01", "kind": "object", "text": "a pictogram of a lab coat"}
 {"id": "wn:laban.n.01", "kind": "object", "text": "a pictogram of a Laban"}
+{"id": "wn:lacerta.n.01", "kind": "object", "text": "a pictogram of a Lacerta"}
+{"id": "wn:lachesis.n.01", "kind": "object", "text": "a pictogram of a Lachesis"}
+{"id": "wn:lacrosse_player.n.01", "kind": "object", "text": "a pictogram of a lacrosse player"}
 {"id": "wn:lactose.n.01", "kind": "object", "text": "a pictogram of a lactose"}
 {"id": "wn:ladder.n.01", "kind": "object", "text": "a pictogram of a ladder"}
 {"id": "wn:ladle.n.01", "kind": "object", "text": "a pictogram of a ladle"}
@@ -2822,6 +3007,7 @@
 {"id": "wn:lamb.n.01", "kind": "object", "text": "a pictogram of a lamb"}
 {"id": "wn:lamina.n.01", "kind": "object", "text": "a pictogram of a lamina"}
 {"id": "wn:lamp.n.01", "kind": "object", "text": "a pictogram of a lamp"}
+{"id": "wn:lamppost.n.01", "kind": "object", "text": "a pictogram of a lamppost"}
 {"id": "wn:lamprey.n.01", "kind": "object", "text": "a pictogram of a lamprey"}
 {"id": "wn:lampshade.n.01", "kind": "object", "text": "a pictogram of a lampshade"}
 {"id": "wn:land.n.04", "kind": "object", "text": "a pictogram of a land"}
@@ -2836,6 +3022,7 @@
 {"id": "wn:lanthanum.n.01", "kind": "object", "text": "a pictogram of a lanthanum"}
 {"id": "wn:lao.n.01", "kind": "object", "text": "a pictogram of a Lao"}
 {"id": "wn:lap.n.01", "kind": "object", "text": "a pictogram of a lap"}
+{"id": "wn:lapin.n.01", "kind": "object", "text": "a pictogram of a lapin"}
 {"id": "wn:lapp.n.01", "kind": "object", "text": "a pictogram of a Lapp"}
 {"id": "wn:laptop.n.01", "kind": "object", "text": "a pictogram of a laptop"}
 {"id": "wn:large_intestine.n.01", "kind": "object", "text": "a pictogram of a large intestine"}
@@ -2849,6 +3036,7 @@
 {"id": "wn:latin_cross.n.01", "kind": "object", "text": "a pictogram of a Latin cross"}
 {"id": "wn:latissimus_dorsi.n.01", "kind": "object", "text": "a pictogram of a latissimus dorsi"}
 {"id": "wn:latrine.n.01", "kind": "object", "text": "a pictogram of a latrine"}
+{"id": "wn:latvian.n.01", "kind": "object", "text": "a pictogram of a Latvian"}
 {"id": "wn:launch.n.01", "kind": "object", "text": "a pictogram of a launch"}
 {"id": "wn:launcher.n.01", "kind": "object", "text": "a pictogram of a launcher"}
 {"id": "wn:launching_pad.n.01", "kind": "object", "text": "a pictogram of a launching pad"}
@@ -2871,6 +3059,7 @@
 {"id": "wn:leash.n.01", "kind": "object", "text": "a pictogram of a leash"}
 {"id": "wn:leather.n.01", "kind": "object", "text": "a pictogram of a leather"}
 {"id": "wn:lectern.n.01", "kind": "object", "text": "a pictogram of a lectern"}
+{"id": "wn:leda.n.01", "kind": "object", "text": "a pictogram of a Leda"}
 {"id": "wn:lee.n.01", "kind": "object", "text": "a pictogram of a Lee"}
 {"id": "wn:leek.n.01", "kind": "object", "text": "a pictogram of a leek"}
 {"id": "wn:left.n.03", "kind": "object", "text": "a pictogram of a left"}
@@ -2887,6 +3076,7 @@
 {"id": "wn:leo_ix.n.01", "kind": "object", "text": "a pictogram of a Leo IX"}
 {"id": "wn:leonardo.n.01", "kind": "object", "text": "a pictogram of a Leonardo"}
 {"id": "wn:leopard.n.01", "kind": "object", "text": "a pictogram of a leopard"}
+{"id": "wn:lepus.n.01", "kind": "object", "text": "a pictogram of a Lepus"}
 {"id": "wn:lesbian.n.01", "kind": "object", "text": "a pictogram of a lesbian"}
 {"id": "wn:leto.n.01", "kind": "object", "text": "a pictogram of a Leto"}
 {"id": "wn:letter_bomb.n.01", "kind": "object", "text": "a pictogram of a letter bomb"}
@@ -2895,6 +3085,7 @@
 {"id": "wn:level.n.05", "kind": "object", "text": "a pictogram of a level"}
 {"id": "wn:level_crossing.n.01", "kind": "object", "text": "a pictogram of a level crossing"}
 {"id": "wn:lever.n.01", "kind": "object", "text": "a pictogram of a lever"}
+{"id": "wn:leviathan.n.01", "kind": "object", "text": "a pictogram of a leviathan"}
 {"id": "wn:liar.n.01", "kind": "object", "text": "a pictogram of a liar"}
 {"id": "wn:libation.n.01", "kind": "object", "text": "a pictogram of a libation"}
 {"id": "wn:libby.n.01", "kind": "object", "text": "a pictogram of a Libby"}
@@ -2911,7 +3102,9 @@
 {"id": "wn:lifeguard.n.01", "kind": "object", "text": "a pictogram of a lifeguard"}
 {"id": "wn:light-emitting_diode.n.01", "kind": "object", "text": "a pictogram of a light-emitting diode"}
 {"id": "wn:light_bulb.n.01", "kind": "object", "text": "a pictogram of a light bulb"}
+{"id": "wn:lighting_fixture.n.01", "kind": "object", "text": "a pictogram of a lighting fixture"}
 {"id": "wn:lightweight.n.01", "kind": "object", "text": "a pictogram of a lightweight"}
+{"id": "wn:lilith.n.01", "kind": "object", "text": "a pictogram of a Lilith"}
 {"id": "wn:lily.n.01", "kind": "object", "text": "a pictogram of a lily"}
 {"id": "wn:lily_pad.n.01", "kind": "object", "text": "a pictogram of a lily pad"}
 {"id": "wn:limb.n.01", "kind": "object", "text": "a pictogram of a limb"}
@@ -2937,6 +3130,7 @@
 {"id": "wn:liquor.n.01", "kind": "object", "text": "a pictogram of a liquor"}
 {"id": "wn:lithium.n.01", "kind": "object", "text": "a pictogram of a lithium"}
 {"id": "wn:litmus.n.01", "kind": "object", "text": "a pictogram of a litmus"}
+{"id": "wn:little_bear.n.01", "kind": "object", "text": "a pictogram of a Little Bear"}
 {"id": "wn:little_finger.n.01", "kind": "object", "text": "a pictogram of a little finger"}
 {"id": "wn:liver.n.01", "kind": "object", "text": "a pictogram of a liver"}
 {"id": "wn:livestock.n.01", "kind": "object", "text": "a pictogram of a livestock"}
@@ -2992,6 +3186,7 @@
 {"id": "wn:lp.n.01", "kind": "object", "text": "a pictogram of a lp"}
 {"id": "wn:luba.n.01", "kind": "object", "text": "a pictogram of a Luba"}
 {"id": "wn:lucy.n.01", "kind": "object", "text": "a pictogram of a Lucy"}
+{"id": "wn:luge.n.01", "kind": "object", "text": "a pictogram of a luge"}
 {"id": "wn:luger.n.01", "kind": "object", "text": "a pictogram of a Luger"}
 {"id": "wn:lumber.n.01", "kind": "object", "text": "a pictogram of a lumber"}
 {"id": "wn:lumberman.n.01", "kind": "object", "text": "a pictogram of a lumberman"}
@@ -3026,8 +3221,10 @@
 {"id": "wn:madia.n.01", "kind": "object", "text": "a pictogram of a madia"}
 {"id": "wn:madison.n.01", "kind": "object", "text": "a pictogram of a Madison"}
 {"id": "wn:maestro.n.01", "kind": "object", "text": "a pictogram of a maestro"}
+{"id": "wn:magellan.n.01", "kind": "object", "text": "a pictogram of a Magellan"}
 {"id": "wn:maggot.n.01", "kind": "object", "text": "a pictogram of a maggot"}
 {"id": "wn:magician.n.01", "kind": "object", "text": "a pictogram of a magician"}
+{"id": "wn:magnesium.n.01", "kind": "object", "text": "a pictogram of a magnesium"}
 {"id": "wn:magnet.n.01", "kind": "object", "text": "a pictogram of a magnet"}
 {"id": "wn:magnetic_tape.n.01", "kind": "object", "text": "a pictogram of a magnetic tape"}
 {"id": "wn:magneto.n.01", "kind": "object", "text": "a pictogram of a magneto"}
@@ -3040,6 +3237,7 @@
 {"id": "wn:main.n.01", "kind": "object", "text": "a pictogram of a main"}
 {"id": "wn:mainframe.n.01", "kind": "object", "text": "a pictogram of a mainframe"}
 {"id": "wn:mainsail.n.01", "kind": "object", "text": "a pictogram of a mainsail"}
+{"id": "wn:maja.n.01", "kind": "object", "text": "a pictogram of a Maja"}
 {"id": "wn:major.n.01", "kind": "object", "text": "a pictogram of a major"}
 {"id": "wn:maker.n.01", "kind": "object", "text": "a pictogram of a maker"}
 {"id": "wn:makeup.n.01", "kind": "object", "text": "a pictogram of a makeup"}
@@ -3054,6 +3252,7 @@
 {"id": "wn:mammogram.n.01", "kind": "object", "text": "a pictogram of a mammogram"}
 {"id": "wn:mammoth.n.01", "kind": "object", "text": "a pictogram of a mammoth"}
 {"id": "wn:man.n.01", "kind": "object", "text": "a pictogram of a man"}
+{"id": "wn:manchu.n.01", "kind": "object", "text": "a pictogram of a Manchu"}
 {"id": "wn:mandala.n.01", "kind": "object", "text": "a pictogram of a mandala"}
 {"id": "wn:mandarin.n.01", "kind": "object", "text": "a pictogram of a mandarin"}
 {"id": "wn:mandatary.n.01", "kind": "object", "text": "a pictogram of a mandatary"}
@@ -3066,6 +3265,7 @@
 {"id": "wn:manhole.n.01", "kind": "object", "text": "a pictogram of a manhole"}
 {"id": "wn:manhole_cover.n.01", "kind": "object", "text": "a pictogram of a manhole cover"}
 {"id": "wn:manifold.n.01", "kind": "object", "text": "a pictogram of a manifold"}
+{"id": "wn:mann.n.01", "kind": "object", "text": "a pictogram of a mann"}
 {"id": "wn:manor.n.01", "kind": "object", "text": "a pictogram of a manor"}
 {"id": "wn:manta.n.01", "kind": "object", "text": "a pictogram of a manta"}
 {"id": "wn:mantel.n.01", "kind": "object", "text": "a pictogram of a mantel"}
@@ -3136,6 +3336,7 @@
 {"id": "wn:meadowlark.n.01", "kind": "object", "text": "a pictogram of a meadowlark"}
 {"id": "wn:meal.n.01", "kind": "object", "text": "a pictogram of a meal"}
 {"id": "wn:mealie.n.01", "kind": "object", "text": "a pictogram of a mealie"}
+{"id": "wn:meander.n.01", "kind": "object", "text": "a pictogram of a meander"}
 {"id": "wn:measuring_cup.n.01", "kind": "object", "text": "a pictogram of a measuring cup"}
 {"id": "wn:measuring_worm.n.01", "kind": "object", "text": "a pictogram of a measuring worm"}
 {"id": "wn:meat.n.01", "kind": "object", "text": "a pictogram of a meat"}
@@ -3143,6 +3344,7 @@
 {"id": "wn:meat_hook.n.01", "kind": "object", "text": "a pictogram of a meat hook"}
 {"id": "wn:meatball.n.01", "kind": "object", "text": "a pictogram of a meatball"}
 {"id": "wn:medalist.n.01", "kind": "object", "text": "a pictogram of a medalist"}
+{"id": "wn:medea.n.01", "kind": "object", "text": "a pictogram of a Medea"}
 {"id": "wn:medic.n.01", "kind": "object", "text": "a pictogram of a medic"}
 {"id": "wn:medical_building.n.01", "kind": "object", "text": "a pictogram of a medical building"}
 {"id": "wn:medical_instrument.n.01", "kind": "object", "text": "a pictogram of a medical instrument"}
@@ -3155,6 +3357,7 @@
 {"id": "wn:meitnerium.n.01", "kind": "object", "text": "a pictogram of a meitnerium"}
 {"id": "wn:melanocyte-stimulating_hormone.n.01", "kind": "object", "text": "a pictogram of a melanocyte-stimulating hormone"}
 {"id": "wn:melon.n.01", "kind": "object", "text": "a pictogram of a melon"}
+{"id": "wn:melpomene.n.01", "kind": "object", "text": "a pictogram of a Melpomene"}
 {"id": "wn:member.n.01", "kind": "object", "text": "a pictogram of a member"}
 {"id": "wn:memorial.n.03", "kind": "object", "text": "a pictogram of a memorial"}
 {"id": "wn:memory.n.04", "kind": "object", "text": "a pictogram of a memory"}
@@ -3198,6 +3401,7 @@
 {"id": "wn:microphone.n.01", "kind": "object", "text": "a pictogram of a microphone"}
 {"id": "wn:microprocessor.n.01", "kind": "object", "text": "a pictogram of a microprocessor"}
 {"id": "wn:microscope.n.01", "kind": "object", "text": "a pictogram of a microscope"}
+{"id": "wn:microscopium.n.01", "kind": "object", "text": "a pictogram of a Microscopium"}
 {"id": "wn:microwave.n.02", "kind": "object", "text": "a pictogram of a microwave"}
 {"id": "wn:midas.n.01", "kind": "object", "text": "a pictogram of a Midas"}
 {"id": "wn:middle_finger.n.01", "kind": "object", "text": "a pictogram of a middle finger"}
@@ -3228,6 +3432,7 @@
 {"id": "wn:minimalist.n.01", "kind": "object", "text": "a pictogram of a minimalist"}
 {"id": "wn:minimus.n.01", "kind": "object", "text": "a pictogram of a minimus"}
 {"id": "wn:minion.n.01", "kind": "object", "text": "a pictogram of a minion"}
+{"id": "wn:miniskirt.n.01", "kind": "object", "text": "a pictogram of a miniskirt"}
 {"id": "wn:minivan.n.01", "kind": "object", "text": "a pictogram of a minivan"}
 {"id": "wn:minotaur.n.01", "kind": "object", "text": "a pictogram of a Minotaur"}
 {"id": "wn:miro.n.01", "kind": "object", "text": "a pictogram of a miro"}
@@ -3252,6 +3457,7 @@
 {"id": "wn:modem.n.01", "kind": "object", "text": "a pictogram of a modem"}
 {"id": "wn:moderator.n.01", "kind": "object", "text": "a pictogram of a moderator"}
 {"id": "wn:modern.n.01", "kind": "object", "text": "a pictogram of a modern"}
+{"id": "wn:mogul.n.01", "kind": "object", "text": "a pictogram of a mogul"}
 {"id": "wn:mohorovicic_discontinuity.n.01", "kind": "object", "text": "a pictogram of a Mohorovicic discontinuity"}
 {"id": "wn:molar.n.01", "kind": "object", "text": "a pictogram of a molar"}
 {"id": "wn:mold.n.08", "kind": "object", "text": "a pictogram of a mold"}
@@ -3281,9 +3487,11 @@
 {"id": "wn:morgue.n.01", "kind": "object", "text": "a pictogram of a morgue"}
 {"id": "wn:morpheus.n.01", "kind": "object", "text": "a pictogram of a Morpheus"}
 {"id": "wn:morrison.n.01", "kind": "object", "text": "a pictogram of a Morrison"}
+{"id": "wn:mors.n.01", "kind": "object", "text": "a pictogram of a Mors"}
 {"id": "wn:mortar.n.01", "kind": "object", "text": "a pictogram of a mortar"}
 {"id": "wn:mortarboard.n.01", "kind": "object", "text": "a pictogram of a mortarboard"}
 {"id": "wn:mosaic.n.01", "kind": "object", "text": "a pictogram of a mosaic"}
+{"id": "wn:moses.n.01", "kind": "object", "text": "a pictogram of a Moses"}
 {"id": "wn:mosque.n.01", "kind": "object", "text": "a pictogram of a mosque"}
 {"id": "wn:mosquito.n.01", "kind": "object", "text": "a pictogram of a mosquito"}
 {"id": "wn:mosquito_net.n.01", "kind": "object", "text": "a pictogram of a mosquito net"}
@@ -3297,6 +3505,7 @@
 {"id": "wn:motor_scooter.n.01", "kind": "object", "text": "a pictogram of a motor scooter"}
 {"id": "wn:motorboat.n.01", "kind": "object", "text": "a pictogram of a motorboat"}
 {"id": "wn:motorcycle.n.01", "kind": "object", "text": "a pictogram of a motorcycle"}
+{"id": "wn:motorcyclist.n.01", "kind": "object", "text": "a pictogram of a motorcyclist"}
 {"id": "wn:motorized_wheelchair.n.01", "kind": "object", "text": "a pictogram of a motorized wheelchair"}
 {"id": "wn:mound.n.01", "kind": "object", "text": "a pictogram of a mound"}
 {"id": "wn:mountain.n.01", "kind": "object", "text": "a pictogram of a mountain"}
@@ -3325,6 +3534,7 @@
 {"id": "wn:munition.n.02", "kind": "object", "text": "a pictogram of a ordnance"}
 {"id": "wn:muon.n.01", "kind": "object", "text": "a pictogram of a muon"}
 {"id": "wn:mural.n.01", "kind": "object", "text": "a pictogram of a mural"}
+{"id": "wn:musca.n.01", "kind": "object", "text": "a pictogram of a Musca"}
 {"id": "wn:muscle.n.01", "kind": "object", "text": "a pictogram of a muscle"}
 {"id": "wn:muse.n.01", "kind": "object", "text": "a pictogram of a Muse"}
 {"id": "wn:museum.n.01", "kind": "object", "text": "a pictogram of a museum"}
@@ -3342,14 +3552,17 @@
 {"id": "wn:mute.n.01", "kind": "object", "text": "a pictogram of a mute"}
 {"id": "wn:mycelium.n.01", "kind": "object", "text": "a pictogram of a mycelium"}
 {"id": "wn:myna.n.01", "kind": "object", "text": "a pictogram of a myna"}
+{"id": "wn:mythical_monster.n.01", "kind": "object", "text": "a pictogram of a mythical creature"}
 {"id": "wn:nabu.n.01", "kind": "object", "text": "a pictogram of a Nabu"}
 {"id": "wn:nacho.n.01", "kind": "object", "text": "a pictogram of a nacho"}
+{"id": "wn:naiad.n.01", "kind": "object", "text": "a pictogram of a naiad"}
 {"id": "wn:nail.n.01", "kind": "object", "text": "a pictogram of a nail"}
 {"id": "wn:nail_polish.n.01", "kind": "object", "text": "a pictogram of a nail polish"}
 {"id": "wn:name.n.04", "kind": "object", "text": "a pictogram of a public figure"}
 {"id": "wn:nameplate.n.01", "kind": "object", "text": "a pictogram of a nameplate"}
 {"id": "wn:nan.n.01", "kind": "object", "text": "a pictogram of a nan"}
 {"id": "wn:napkin.n.01", "kind": "object", "text": "a pictogram of a napkin"}
+{"id": "wn:narcissus.n.01", "kind": "object", "text": "a pictogram of a narcissus"}
 {"id": "wn:narrator.n.01", "kind": "object", "text": "a pictogram of a narrator"}
 {"id": "wn:narrow.n.01", "kind": "object", "text": "a pictogram of a narrow"}
 {"id": "wn:narrow_gauge.n.01", "kind": "object", "text": "a pictogram of a narrow gauge"}
@@ -3362,6 +3575,8 @@
 {"id": "wn:natural.n.01", "kind": "object", "text": "a pictogram of a natural"}
 {"id": "wn:natural_gas.n.01", "kind": "object", "text": "a pictogram of a natural gas"}
 {"id": "wn:nautilus.n.01", "kind": "object", "text": "a pictogram of a nautilus"}
+{"id": "wn:navaho.n.01", "kind": "object", "text": "a pictogram of a Navaho"}
+{"id": "wn:nazi.n.01", "kind": "object", "text": "a pictogram of a Nazi"}
 {"id": "wn:nebula.n.01", "kind": "object", "text": "a pictogram of a nebula"}
 {"id": "wn:necessity.n.02", "kind": "object", "text": "a pictogram of a necessity"}
 {"id": "wn:neck.n.01", "kind": "object", "text": "a pictogram of a neck"}
@@ -3372,16 +3587,19 @@
 {"id": "wn:negligee.n.01", "kind": "object", "text": "a pictogram of a negligee"}
 {"id": "wn:neighbor.n.01", "kind": "object", "text": "a pictogram of a neighbor"}
 {"id": "wn:nelson.n.01", "kind": "object", "text": "a pictogram of a nelson"}
+{"id": "wn:nemesis.n.01", "kind": "object", "text": "a pictogram of a Nemesis"}
 {"id": "wn:neodymium.n.01", "kind": "object", "text": "a pictogram of a neodymium"}
 {"id": "wn:neon.n.01", "kind": "object", "text": "a pictogram of a neon"}
 {"id": "wn:neonate.n.01", "kind": "object", "text": "a pictogram of a neonate"}
 {"id": "wn:nepalese.n.01", "kind": "object", "text": "a pictogram of a Nepalese"}
 {"id": "wn:neptune.n.01", "kind": "object", "text": "a pictogram of a Neptune"}
 {"id": "wn:neptunium.n.01", "kind": "object", "text": "a pictogram of a neptunium"}
+{"id": "wn:nereid.n.01", "kind": "object", "text": "a pictogram of a Nereid"}
 {"id": "wn:nero.n.01", "kind": "object", "text": "a pictogram of a Nero"}
 {"id": "wn:nerve.n.01", "kind": "object", "text": "a pictogram of a nerve"}
 {"id": "wn:nerve_cell.n.01", "kind": "object", "text": "a pictogram of a neuron"}
 {"id": "wn:nest.n.01", "kind": "object", "text": "a pictogram of a nest"}
+{"id": "wn:nestor.n.01", "kind": "object", "text": "a pictogram of a Nestor"}
 {"id": "wn:net_melon.n.01", "kind": "object", "text": "a pictogram of a net melon"}
 {"id": "wn:neutral.n.01", "kind": "object", "text": "a pictogram of a neutral"}
 {"id": "wn:neutron.n.01", "kind": "object", "text": "a pictogram of a neutron"}
@@ -3390,9 +3608,11 @@
 {"id": "wn:newsreader.n.01", "kind": "object", "text": "a pictogram of a newsreader"}
 {"id": "wn:newsstand.n.01", "kind": "object", "text": "a pictogram of a newsstand"}
 {"id": "wn:newt.n.01", "kind": "object", "text": "a pictogram of a newt"}
+{"id": "wn:newton.n.01", "kind": "object", "text": "a pictogram of a Newton"}
 {"id": "wn:niagara.n.01", "kind": "object", "text": "a pictogram of a Niagara"}
 {"id": "wn:nib.n.01", "kind": "object", "text": "a pictogram of a nib"}
 {"id": "wn:nickel.n.01", "kind": "object", "text": "a pictogram of a nickel"}
+{"id": "wn:nicotinamide_adenine_dinucleotide.n.01", "kind": "object", "text": "a pictogram of a nicotinamide adenine dinucleotide"}
 {"id": "wn:nicotine.n.01", "kind": "object", "text": "a pictogram of a nicotine"}
 {"id": "wn:niger.n.01", "kind": "object", "text": "a pictogram of a niger"}
 {"id": "wn:night_owl.n.01", "kind": "object", "text": "a pictogram of a night owl"}
@@ -3403,16 +3623,20 @@
 {"id": "wn:nimrod.n.01", "kind": "object", "text": "a pictogram of a Nimrod"}
 {"id": "wn:nina.n.01", "kind": "object", "text": "a pictogram of a Nina"}
 {"id": "wn:ninja.n.01", "kind": "object", "text": "a pictogram of a ninja"}
+{"id": "wn:niobe.n.01", "kind": "object", "text": "a pictogram of a Niobe"}
 {"id": "wn:niobium.n.01", "kind": "object", "text": "a pictogram of a niobium"}
 {"id": "wn:niqab.n.01", "kind": "object", "text": "a pictogram of a niqab"}
+{"id": "wn:nitric_acid.n.01", "kind": "object", "text": "a pictogram of a aqua fortis"}
 {"id": "wn:nitrogen.n.01", "kind": "object", "text": "a pictogram of a nitrogen"}
 {"id": "wn:node.n.01", "kind": "object", "text": "a pictogram of a node"}
 {"id": "wn:nomad.n.01", "kind": "object", "text": "a pictogram of a nomad"}
 {"id": "wn:nonagon.n.01", "kind": "object", "text": "a pictogram of a nonagon"}
 {"id": "wn:noodle.n.01", "kind": "object", "text": "a pictogram of a noodle"}
 {"id": "wn:nootka.n.01", "kind": "object", "text": "a pictogram of a Nootka"}
+{"id": "wn:norma.n.01", "kind": "object", "text": "a pictogram of a Norma"}
 {"id": "wn:normalizer.n.01", "kind": "object", "text": "a pictogram of a normalizer"}
 {"id": "wn:north_america.n.01", "kind": "object", "text": "a pictogram of a North America"}
+{"id": "wn:north_american.n.01", "kind": "object", "text": "a pictogram of a North American"}
 {"id": "wn:norwegian.n.01", "kind": "object", "text": "a pictogram of a Norwegian"}
 {"id": "wn:nose.n.01", "kind": "object", "text": "a pictogram of a nose"}
 {"id": "wn:nostril.n.01", "kind": "object", "text": "a pictogram of a nostril"}
@@ -3433,6 +3657,7 @@
 {"id": "wn:nyx.n.01", "kind": "object", "text": "a pictogram of a Nyx"}
 {"id": "wn:oak.n.01", "kind": "object", "text": "a pictogram of a oak"}
 {"id": "wn:oar.n.01", "kind": "object", "text": "a pictogram of a oar"}
+{"id": "wn:oarsman.n.01", "kind": "object", "text": "a pictogram of a oarsman"}
 {"id": "wn:oat.n.01", "kind": "object", "text": "a pictogram of a oat"}
 {"id": "wn:ob.n.01", "kind": "object", "text": "a pictogram of a Ob"}
 {"id": "wn:obeche.n.02", "kind": "object", "text": "a pictogram of a obeche"}
@@ -3445,6 +3670,7 @@
 {"id": "wn:octagon.n.01", "kind": "object", "text": "a pictogram of a octagon"}
 {"id": "wn:octahedron.n.01", "kind": "object", "text": "a pictogram of a octahedron"}
 {"id": "wn:octane.n.01", "kind": "object", "text": "a pictogram of a octane"}
+{"id": "wn:octans.n.01", "kind": "object", "text": "a pictogram of a Octans"}
 {"id": "wn:octopus.n.01", "kind": "object", "text": "a pictogram of a octopus"}
 {"id": "wn:odin.n.01", "kind": "object", "text": "a pictogram of a Odin"}
 {"id": "wn:odometer.n.01", "kind": "object", "text": "a pictogram of a odometer"}
@@ -3495,6 +3721,7 @@
 {"id": "wn:ordinary.n.01", "kind": "object", "text": "a pictogram of a ordinary"}
 {"id": "wn:ore.n.01", "kind": "object", "text": "a pictogram of a ore"}
 {"id": "wn:oregano.n.01", "kind": "object", "text": "a pictogram of a oregano"}
+{"id": "wn:oreo.n.01", "kind": "object", "text": "a pictogram of a oreo"}
 {"id": "wn:organ.n.01", "kind": "object", "text": "a pictogram of a organ"}
 {"id": "wn:organ_donor.n.01", "kind": "object", "text": "a pictogram of a organ donor"}
 {"id": "wn:organic.n.01", "kind": "object", "text": "a pictogram of a organic"}
@@ -3507,15 +3734,19 @@
 {"id": "wn:os.n.01", "kind": "object", "text": "a pictogram of a os"}
 {"id": "wn:oscillator.n.01", "kind": "object", "text": "a pictogram of a oscillator"}
 {"id": "wn:oscilloscope.n.01", "kind": "object", "text": "a pictogram of a oscilloscope"}
+{"id": "wn:osiris.n.01", "kind": "object", "text": "a pictogram of a Osiris"}
 {"id": "wn:osprey.n.01", "kind": "object", "text": "a pictogram of a osprey"}
 {"id": "wn:ostrich.n.01", "kind": "object", "text": "a pictogram of a ostrich"}
+{"id": "wn:ostrich_fern.n.01", "kind": "object", "text": "a pictogram of a ostrich fern"}
 {"id": "wn:oto.n.01", "kind": "object", "text": "a pictogram of a Oto"}
 {"id": "wn:otoscope.n.01", "kind": "object", "text": "a pictogram of a otoscope"}
 {"id": "wn:otter.n.01", "kind": "object", "text": "a pictogram of a otter"}
+{"id": "wn:ottoman.n.01", "kind": "object", "text": "a pictogram of a Ottoman"}
 {"id": "wn:ouranos.n.01", "kind": "object", "text": "a pictogram of a Ouranos"}
 {"id": "wn:outfall.n.01", "kind": "object", "text": "a pictogram of a outfall"}
 {"id": "wn:outlier.n.01", "kind": "object", "text": "a pictogram of a outlier"}
 {"id": "wn:outpatient.n.01", "kind": "object", "text": "a pictogram of a outpatient"}
+{"id": "wn:output_device.n.01", "kind": "object", "text": "a pictogram of a output device"}
 {"id": "wn:oven.n.01", "kind": "object", "text": "a pictogram of a oven"}
 {"id": "wn:overall.n.01", "kind": "object", "text": "a pictogram of a overall"}
 {"id": "wn:overhead_projector.n.01", "kind": "object", "text": "a pictogram of a overhead projector"}
@@ -3572,6 +3803,7 @@
 {"id": "wn:pantie.n.01", "kind": "object", "text": "a pictogram of a pantie"}
 {"id": "wn:pantograph.n.01", "kind": "object", "text": "a pictogram of a pantograph"}
 {"id": "wn:pantry.n.01", "kind": "object", "text": "a pictogram of a pantry"}
+{"id": "wn:panzer.n.01", "kind": "object", "text": "a pictogram of a panzer"}
 {"id": "wn:papal_cross.n.01", "kind": "object", "text": "a pictogram of a papal cross"}
 {"id": "wn:paper.n.01", "kind": "object", "text": "a pictogram of a paper"}
 {"id": "wn:paper_clip.n.01", "kind": "object", "text": "a pictogram of a paper clip"}
@@ -3586,6 +3818,7 @@
 {"id": "wn:paramedic.n.01", "kind": "object", "text": "a pictogram of a paramedic"}
 {"id": "wn:parana.n.01", "kind": "object", "text": "a pictogram of a Parana"}
 {"id": "wn:parasail.n.01", "kind": "object", "text": "a pictogram of a parasail"}
+{"id": "wn:parasitic_plant.n.01", "kind": "object", "text": "a pictogram of a parasitic plant"}
 {"id": "wn:parasol.n.01", "kind": "object", "text": "a pictogram of a parasol"}
 {"id": "wn:parchment.n.01", "kind": "object", "text": "a pictogram of a parchment"}
 {"id": "wn:parent.n.01", "kind": "object", "text": "a pictogram of a parent"}
@@ -3599,6 +3832,7 @@
 {"id": "wn:participant.n.01", "kind": "object", "text": "a pictogram of a participant"}
 {"id": "wn:partition.n.01", "kind": "object", "text": "a pictogram of a partition"}
 {"id": "wn:pasha.n.01", "kind": "object", "text": "a pictogram of a pasha"}
+{"id": "wn:pasiphae.n.01", "kind": "object", "text": "a pictogram of a Pasiphae"}
 {"id": "wn:passenger.n.01", "kind": "object", "text": "a pictogram of a passenger"}
 {"id": "wn:passenger_car.n.01", "kind": "object", "text": "a pictogram of a passenger car"}
 {"id": "wn:passenger_ship.n.01", "kind": "object", "text": "a pictogram of a passenger ship"}
@@ -3614,10 +3848,12 @@
 {"id": "wn:patient.n.01", "kind": "object", "text": "a pictogram of a patient"}
 {"id": "wn:patio.n.01", "kind": "object", "text": "a pictogram of a patio"}
 {"id": "wn:patriarchal_cross.n.01", "kind": "object", "text": "a pictogram of a patriarchal cross"}
+{"id": "wn:patroclus.n.01", "kind": "object", "text": "a pictogram of a Patroclus"}
 {"id": "wn:patron.n.03", "kind": "object", "text": "a pictogram of a patron"}
 {"id": "wn:patzer.n.01", "kind": "object", "text": "a pictogram of a patzer"}
 {"id": "wn:pavilion.n.01", "kind": "object", "text": "a pictogram of a pavilion"}
 {"id": "wn:paving.n.01", "kind": "object", "text": "a pictogram of a paving"}
+{"id": "wn:pavo.n.01", "kind": "object", "text": "a pictogram of a Pavo"}
 {"id": "wn:paw.n.01", "kind": "object", "text": "a pictogram of a paw"}
 {"id": "wn:payee.n.01", "kind": "object", "text": "a pictogram of a payee"}
 {"id": "wn:pea.n.01", "kind": "object", "text": "a pictogram of a pea"}
@@ -3664,6 +3900,7 @@
 {"id": "wn:perceiver.n.01", "kind": "object", "text": "a pictogram of a perceiver"}
 {"id": "wn:percolator.n.01", "kind": "object", "text": "a pictogram of a percolator"}
 {"id": "wn:percy.n.01", "kind": "object", "text": "a pictogram of a Percy"}
+{"id": "wn:perennial.n.01", "kind": "object", "text": "a pictogram of a perennial"}
 {"id": "wn:perforation.n.01", "kind": "object", "text": "a pictogram of a perforation"}
 {"id": "wn:perfumer.n.01", "kind": "object", "text": "a pictogram of a perfumer"}
 {"id": "wn:perfumery.n.01", "kind": "object", "text": "a pictogram of a perfumery"}
@@ -3674,6 +3911,7 @@
 {"id": "wn:permanent_wave.n.01", "kind": "object", "text": "a pictogram of a permanent wave"}
 {"id": "wn:perpendicular.n.01", "kind": "object", "text": "a pictogram of a perpendicular"}
 {"id": "wn:persephone.n.01", "kind": "object", "text": "a pictogram of a Persephone"}
+{"id": "wn:perseus.n.01", "kind": "object", "text": "a pictogram of a Perseus"}
 {"id": "wn:personal_computer.n.01", "kind": "object", "text": "a pictogram of a personal computer"}
 {"id": "wn:personal_digital_assistant.n.01", "kind": "object", "text": "a pictogram of a personal digital assistant"}
 {"id": "wn:perspiration.n.01", "kind": "object", "text": "a pictogram of a perspiration"}
@@ -3692,6 +3930,8 @@
 {"id": "wn:phial.n.01", "kind": "object", "text": "a pictogram of a phial"}
 {"id": "wn:philip.n.01", "kind": "object", "text": "a pictogram of a Philip"}
 {"id": "wn:philosopher.n.01", "kind": "object", "text": "a pictogram of a philosopher"}
+{"id": "wn:phlogiston.n.01", "kind": "object", "text": "a pictogram of a phlogiston"}
+{"id": "wn:phobos.n.01", "kind": "object", "text": "a pictogram of a Phobos"}
 {"id": "wn:phonograph_record.n.01", "kind": "object", "text": "a pictogram of a phonograph record"}
 {"id": "wn:phosphate_buffer_solution.n.01", "kind": "object", "text": "a pictogram of a phosphate buffer solution"}
 {"id": "wn:phosphor.n.01", "kind": "object", "text": "a pictogram of a phosphor"}
@@ -3707,12 +3947,16 @@
 {"id": "wn:pianist.n.01", "kind": "object", "text": "a pictogram of a pianist"}
 {"id": "wn:piano.n.01", "kind": "object", "text": "a pictogram of a piano"}
 {"id": "wn:piano_keyboard.n.01", "kind": "object", "text": "a pictogram of a piano keyboard"}
+{"id": "wn:pichi.n.01", "kind": "object", "text": "a pictogram of a pichi"}
+{"id": "wn:pick.n.05", "kind": "object", "text": "a pictogram of a plectrum"}
 {"id": "wn:pick.n.07", "kind": "object", "text": "a pictogram of a pick"}
 {"id": "wn:pickelhaube.n.01", "kind": "object", "text": "a pictogram of a pickelhaube"}
 {"id": "wn:picker.n.01", "kind": "object", "text": "a pictogram of a picker"}
+{"id": "wn:picket.n.05", "kind": "object", "text": "a pictogram of a picket"}
 {"id": "wn:picket_fence.n.01", "kind": "object", "text": "a pictogram of a picket fence"}
 {"id": "wn:pickle.n.01", "kind": "object", "text": "a pictogram of a pickle"}
 {"id": "wn:pickup.n.01", "kind": "object", "text": "a pictogram of a pickup"}
+{"id": "wn:pictor.n.01", "kind": "object", "text": "a pictogram of a Pictor"}
 {"id": "wn:picture.n.01", "kind": "object", "text": "a pictogram of a picture"}
 {"id": "wn:picture_frame.n.01", "kind": "object", "text": "a pictogram of a picture frame"}
 {"id": "wn:pie.n.01", "kind": "object", "text": "a pictogram of a pie"}
@@ -3751,10 +3995,12 @@
 {"id": "wn:piping.n.01", "kind": "object", "text": "a pictogram of a piping"}
 {"id": "wn:pirate.n.02", "kind": "object", "text": "a pictogram of a pirate"}
 {"id": "wn:pistachio.n.01", "kind": "object", "text": "a pictogram of a pistachio"}
+{"id": "wn:piste.n.01", "kind": "object", "text": "a pictogram of a piste"}
 {"id": "wn:pistol.n.01", "kind": "object", "text": "a pictogram of a pistol"}
 {"id": "wn:piston.n.01", "kind": "object", "text": "a pictogram of a Piston"}
 {"id": "wn:pit.n.01", "kind": "object", "text": "a pictogram of a pit"}
 {"id": "wn:pitch.n.06", "kind": "object", "text": "a pictogram of a pitch"}
+{"id": "wn:pitcher.n.01", "kind": "object", "text": "a pictogram of a pitcher"}
 {"id": "wn:pitchfork.n.01", "kind": "object", "text": "a pictogram of a pitchfork"}
 {"id": "wn:pivot.n.01", "kind": "object", "text": "a pictogram of a pivot"}
 {"id": "wn:pixel.n.01", "kind": "object", "text": "a pictogram of a pixel"}
@@ -3827,7 +4073,7 @@
 {"id": "wn:pole.n.01", "kind": "object", "text": "a pictogram of a pole"}
 {"id": "wn:police_station.n.01", "kind": "object", "text": "a pictogram of a police station"}
 {"id": "wn:policeman.n.01", "kind": "object", "text": "a pictogram of a policeman"}
-{"id": "wn:politician.n.02", "kind": "object", "text": "a pictogram of a politician"}
+{"id": "wn:politician.n.01", "kind": "object", "text": "a pictogram of a politician"}
 {"id": "wn:polk.n.01", "kind": "object", "text": "a pictogram of a Polk"}
 {"id": "wn:polka_dot.n.01", "kind": "object", "text": "a pictogram of a polka dot"}
 {"id": "wn:pollen.n.01", "kind": "object", "text": "a pictogram of a pollen"}
@@ -3836,6 +4082,7 @@
 {"id": "wn:polonium.n.01", "kind": "object", "text": "a pictogram of a polonium"}
 {"id": "wn:polygon.n.01", "kind": "object", "text": "a pictogram of a polygon"}
 {"id": "wn:polyhedron.n.01", "kind": "object", "text": "a pictogram of a polyhedron"}
+{"id": "wn:polyhymnia.n.01", "kind": "object", "text": "a pictogram of a Polyhymnia"}
 {"id": "wn:polymer.n.01", "kind": "object", "text": "a pictogram of a polymer"}
 {"id": "wn:polyvinyl_chloride.n.01", "kind": "object", "text": "a pictogram of a pvc"}
 {"id": "wn:pomegranate.n.01", "kind": "object", "text": "a pictogram of a pomegranate"}
@@ -3856,6 +4103,7 @@
 {"id": "wn:popover.n.01", "kind": "object", "text": "a pictogram of a popover"}
 {"id": "wn:popper.n.01", "kind": "object", "text": "a pictogram of a popper"}
 {"id": "wn:poppy.n.01", "kind": "object", "text": "a pictogram of a poppy"}
+{"id": "wn:populus.n.01", "kind": "object", "text": "a pictogram of a Populus"}
 {"id": "wn:porcelain.n.01", "kind": "object", "text": "a pictogram of a porcelain"}
 {"id": "wn:porcupine.n.01", "kind": "object", "text": "a pictogram of a porcupine"}
 {"id": "wn:porcupinefish.n.01", "kind": "object", "text": "a pictogram of a porcupinefish"}
@@ -3867,12 +4115,14 @@
 {"id": "wn:porter.n.01", "kind": "object", "text": "a pictogram of a porter"}
 {"id": "wn:portfolio.n.01", "kind": "object", "text": "a pictogram of a portfolio"}
 {"id": "wn:porthole.n.01", "kind": "object", "text": "a pictogram of a porthole"}
+{"id": "wn:portrait_camera.n.01", "kind": "object", "text": "a pictogram of a portrait camera"}
 {"id": "wn:portuguese_man-of-war.n.01", "kind": "object", "text": "a pictogram of a Portuguese man-of-war"}
 {"id": "wn:poseidon.n.01", "kind": "object", "text": "a pictogram of a Poseidon"}
 {"id": "wn:poseur.n.01", "kind": "object", "text": "a pictogram of a poser"}
 {"id": "wn:positron.n.01", "kind": "object", "text": "a pictogram of a positron"}
 {"id": "wn:postbox.n.01", "kind": "object", "text": "a pictogram of a postbox"}
 {"id": "wn:pot.n.01", "kind": "object", "text": "a pictogram of a pot"}
+{"id": "wn:potassium.n.01", "kind": "object", "text": "a pictogram of a potassium"}
 {"id": "wn:potassium_nitrate.n.01", "kind": "object", "text": "a pictogram of a nitre"}
 {"id": "wn:potato.n.01", "kind": "object", "text": "a pictogram of a potato"}
 {"id": "wn:potentiometer.n.01", "kind": "object", "text": "a pictogram of a potentiometer"}
@@ -3884,7 +4134,10 @@
 {"id": "wn:pouch.n.01", "kind": "object", "text": "a pictogram of a pouch"}
 {"id": "wn:powder.n.01", "kind": "object", "text": "a pictogram of a powder"}
 {"id": "wn:power_cord.n.01", "kind": "object", "text": "a pictogram of a power cord"}
+{"id": "wn:power_line.n.01", "kind": "object", "text": "a pictogram of a power line"}
+{"id": "wn:power_station.n.01", "kind": "object", "text": "a pictogram of a power station"}
 {"id": "wn:power_takeoff.n.01", "kind": "object", "text": "a pictogram of a power takeoff"}
+{"id": "wn:power_tool.n.01", "kind": "object", "text": "a pictogram of a power tool"}
 {"id": "wn:praseodymium.n.01", "kind": "object", "text": "a pictogram of a praseodymium"}
 {"id": "wn:prawn.n.01", "kind": "object", "text": "a pictogram of a prawn"}
 {"id": "wn:prayer_rug.n.01", "kind": "object", "text": "a pictogram of a prayer rug"}
@@ -3898,13 +4151,16 @@
 {"id": "wn:pressurized_water_reactor.n.01", "kind": "object", "text": "a pictogram of a pressurized water reactor"}
 {"id": "wn:pretzel.n.01", "kind": "object", "text": "a pictogram of a pretzel"}
 {"id": "wn:prey.n.01", "kind": "object", "text": "a pictogram of a prey"}
+{"id": "wn:priest.n.01", "kind": "object", "text": "a pictogram of a priest"}
 {"id": "wn:prima.n.01", "kind": "object", "text": "a pictogram of a Prima"}
 {"id": "wn:prime_minister.n.01", "kind": "object", "text": "a pictogram of a Prime Minister"}
 {"id": "wn:primitive.n.01", "kind": "object", "text": "a pictogram of a primitive"}
+{"id": "wn:primrose.n.01", "kind": "object", "text": "a pictogram of a primrose"}
 {"id": "wn:prince.n.01", "kind": "object", "text": "a pictogram of a prince"}
 {"id": "wn:princess.n.01", "kind": "object", "text": "a pictogram of a princess"}
 {"id": "wn:principal.n.02", "kind": "object", "text": "a pictogram of a principal"}
 {"id": "wn:printer.n.01", "kind": "object", "text": "a pictogram of a printer"}
+{"id": "wn:prior.n.01", "kind": "object", "text": "a pictogram of a prior"}
 {"id": "wn:prism.n.01", "kind": "object", "text": "a pictogram of a prism"}
 {"id": "wn:prison.n.01", "kind": "object", "text": "a pictogram of a prison"}
 {"id": "wn:prison_guard.n.01", "kind": "object", "text": "a pictogram of a prison guard"}
@@ -3965,6 +4221,7 @@
 {"id": "wn:punching_bag.n.01", "kind": "object", "text": "a pictogram of a punching bag"}
 {"id": "wn:puppet.n.01", "kind": "object", "text": "a pictogram of a puppet"}
 {"id": "wn:puppeteer.n.01", "kind": "object", "text": "a pictogram of a puppeteer"}
+{"id": "wn:puppis.n.01", "kind": "object", "text": "a pictogram of a Puppis"}
 {"id": "wn:puppy.n.01", "kind": "object", "text": "a pictogram of a puppy"}
 {"id": "wn:puritan.n.01", "kind": "object", "text": "a pictogram of a Puritan"}
 {"id": "wn:push_button.n.01", "kind": "object", "text": "a pictogram of a push button"}
@@ -3978,6 +4235,7 @@
 {"id": "wn:pyromaniac.n.01", "kind": "object", "text": "a pictogram of a pyromaniac"}
 {"id": "wn:python.n.01", "kind": "object", "text": "a pictogram of a python"}
 {"id": "wn:pyx.n.01", "kind": "object", "text": "a pictogram of a pyx"}
+{"id": "wn:pyxidium.n.01", "kind": "object", "text": "a pictogram of a pyxidium"}
 {"id": "wn:quadrilateral.n.01", "kind": "object", "text": "a pictogram of a quadrilateral"}
 {"id": "wn:quadruplet.n.02", "kind": "object", "text": "a pictogram of a quadruplet"}
 {"id": "wn:quagga.n.01", "kind": "object", "text": "a pictogram of a quagga"}
@@ -3990,6 +4248,7 @@
 {"id": "wn:quay.n.01", "kind": "object", "text": "a pictogram of a quay"}
 {"id": "wn:quechua.n.01", "kind": "object", "text": "a pictogram of a Quechua"}
 {"id": "wn:queen.n.01", "kind": "object", "text": "a pictogram of a queen"}
+{"id": "wn:quetzalcoatl.n.01", "kind": "object", "text": "a pictogram of a Quetzalcoatl"}
 {"id": "wn:quiche.n.01", "kind": "object", "text": "a pictogram of a Quiche"}
 {"id": "wn:quick.n.01", "kind": "object", "text": "a pictogram of a quick"}
 {"id": "wn:quill.n.01", "kind": "object", "text": "a pictogram of a quill"}
@@ -4017,6 +4276,7 @@
 {"id": "wn:radon.n.01", "kind": "object", "text": "a pictogram of a radon"}
 {"id": "wn:raft.n.01", "kind": "object", "text": "a pictogram of a raft"}
 {"id": "wn:rag.n.01", "kind": "object", "text": "a pictogram of a rag"}
+{"id": "wn:rahu.n.01", "kind": "object", "text": "a pictogram of a Rahu"}
 {"id": "wn:railing.n.01", "kind": "object", "text": "a pictogram of a railing"}
 {"id": "wn:railway.n.01", "kind": "object", "text": "a pictogram of a railway"}
 {"id": "wn:railway_station.n.01", "kind": "object", "text": "a pictogram of a railway station"}
@@ -4097,6 +4357,7 @@
 {"id": "wn:relic.n.01", "kind": "object", "text": "a pictogram of a relic"}
 {"id": "wn:religious.n.01", "kind": "object", "text": "a pictogram of a religious"}
 {"id": "wn:remote_control.n.01", "kind": "object", "text": "a pictogram of a remote control"}
+{"id": "wn:remus.n.01", "kind": "object", "text": "a pictogram of a Remus"}
 {"id": "wn:render.n.01", "kind": "object", "text": "a pictogram of a render"}
 {"id": "wn:rep.n.01", "kind": "object", "text": "a pictogram of a rep"}
 {"id": "wn:repeater.n.01", "kind": "object", "text": "a pictogram of a repeater"}
@@ -4107,7 +4368,9 @@
 {"id": "wn:rescuer.n.02", "kind": "object", "text": "a pictogram of a saver"}
 {"id": "wn:reseau.n.01", "kind": "object", "text": "a pictogram of a reseau"}
 {"id": "wn:reset.n.01", "kind": "object", "text": "a pictogram of a reset"}
+{"id": "wn:reset_button.n.01", "kind": "object", "text": "a pictogram of a reset button"}
 {"id": "wn:resident.n.01", "kind": "object", "text": "a pictogram of a resident"}
+{"id": "wn:resin.n.01", "kind": "object", "text": "a pictogram of a resin"}
 {"id": "wn:resistor.n.01", "kind": "object", "text": "a pictogram of a resistor"}
 {"id": "wn:respirator.n.01", "kind": "object", "text": "a pictogram of a respirator"}
 {"id": "wn:respiratory_system.n.01", "kind": "object", "text": "a pictogram of a respiratory system"}
@@ -4118,6 +4381,7 @@
 {"id": "wn:reticle.n.01", "kind": "object", "text": "a pictogram of a reticle"}
 {"id": "wn:reticule.n.01", "kind": "object", "text": "a pictogram of a reticule"}
 {"id": "wn:reticuloendothelial_system.n.01", "kind": "object", "text": "a pictogram of a reticuloendothelial system"}
+{"id": "wn:reticulum.n.01", "kind": "object", "text": "a pictogram of a Reticulum"}
 {"id": "wn:retina.n.01", "kind": "object", "text": "a pictogram of a retina"}
 {"id": "wn:retriever.n.01", "kind": "object", "text": "a pictogram of a retriever"}
 {"id": "wn:return_key.n.01", "kind": "object", "text": "a pictogram of a return key"}
@@ -4126,6 +4390,8 @@
 {"id": "wn:revolver.n.01", "kind": "object", "text": "a pictogram of a revolver"}
 {"id": "wn:rh-negative_blood_type.n.01", "kind": "object", "text": "a pictogram of a rh negative"}
 {"id": "wn:rh-positive_blood_type.n.01", "kind": "object", "text": "a pictogram of a rh positive"}
+{"id": "wn:rhadamanthus.n.01", "kind": "object", "text": "a pictogram of a rhadamanthus"}
+{"id": "wn:rhea.n.01", "kind": "object", "text": "a pictogram of a Rhea"}
 {"id": "wn:rhenium.n.01", "kind": "object", "text": "a pictogram of a rhenium"}
 {"id": "wn:rhinoceros.n.01", "kind": "object", "text": "a pictogram of a rhinoceros"}
 {"id": "wn:rhizome.n.01", "kind": "object", "text": "a pictogram of a rhizome"}
@@ -4169,6 +4435,7 @@
 {"id": "wn:robinson.n.01", "kind": "object", "text": "a pictogram of a Robinson"}
 {"id": "wn:roc.n.01", "kind": "object", "text": "a pictogram of a roc"}
 {"id": "wn:rock.n.01", "kind": "object", "text": "a pictogram of a rock"}
+{"id": "wn:rock_climber.n.01", "kind": "object", "text": "a pictogram of a rock climber"}
 {"id": "wn:rocker.n.01", "kind": "object", "text": "a pictogram of a rocker"}
 {"id": "wn:rocket.n.01", "kind": "object", "text": "a pictogram of a rocket"}
 {"id": "wn:rocking_chair.n.01", "kind": "object", "text": "a pictogram of a rocking chair"}
@@ -4184,10 +4451,12 @@
 {"id": "wn:rolling_pin.n.01", "kind": "object", "text": "a pictogram of a rolling pin"}
 {"id": "wn:rolodex.n.01", "kind": "object", "text": "a pictogram of a Rolodex"}
 {"id": "wn:roman.n.01", "kind": "object", "text": "a pictogram of a Roman"}
+{"id": "wn:roman_catholic.n.01", "kind": "object", "text": "a pictogram of a Roman Catholic"}
 {"id": "wn:romanian.n.01", "kind": "object", "text": "a pictogram of a Romanian"}
 {"id": "wn:romantic.n.01", "kind": "object", "text": "a pictogram of a romantic"}
 {"id": "wn:romeo.n.01", "kind": "object", "text": "a pictogram of a Romeo"}
 {"id": "wn:romper.n.01", "kind": "object", "text": "a pictogram of a romper"}
+{"id": "wn:romulus.n.01", "kind": "object", "text": "a pictogram of a Romulus"}
 {"id": "wn:roof.n.01", "kind": "object", "text": "a pictogram of a roof"}
 {"id": "wn:roofing.n.01", "kind": "object", "text": "a pictogram of a roofing"}
 {"id": "wn:room.n.01", "kind": "object", "text": "a pictogram of a room"}
@@ -4221,10 +4490,12 @@
 {"id": "wn:rugby_ball.n.01", "kind": "object", "text": "a pictogram of a rugby ball"}
 {"id": "wn:ruler.n.01", "kind": "object", "text": "a pictogram of a ruler"}
 {"id": "wn:rum.n.01", "kind": "object", "text": "a pictogram of a rum"}
+{"id": "wn:rumen.n.01", "kind": "object", "text": "a pictogram of a rumen"}
 {"id": "wn:running_shoe.n.01", "kind": "object", "text": "a pictogram of a running shoe"}
 {"id": "wn:runt.n.01", "kind": "object", "text": "a pictogram of a runt"}
 {"id": "wn:russian.n.01", "kind": "object", "text": "a pictogram of a Russian"}
 {"id": "wn:rust.n.01", "kind": "object", "text": "a pictogram of a rust"}
+{"id": "wn:ruta.n.01", "kind": "object", "text": "a pictogram of a Ruta"}
 {"id": "wn:ruthenium.n.01", "kind": "object", "text": "a pictogram of a ruthenium"}
 {"id": "wn:rye.n.01", "kind": "object", "text": "a pictogram of a rye"}
 {"id": "wn:saber.n.01", "kind": "object", "text": "a pictogram of a saber"}
@@ -4238,6 +4509,7 @@
 {"id": "wn:safety_pin.n.01", "kind": "object", "text": "a pictogram of a safety pin"}
 {"id": "wn:safety_rail.n.01", "kind": "object", "text": "a pictogram of a safety rail"}
 {"id": "wn:sage.n.01", "kind": "object", "text": "a pictogram of a sage"}
+{"id": "wn:sagitta.n.01", "kind": "object", "text": "a pictogram of a Sagitta"}
 {"id": "wn:sagittarius.n.01", "kind": "object", "text": "a pictogram of a Sagittarius"}
 {"id": "wn:saguaro.n.01", "kind": "object", "text": "a pictogram of a saguaro"}
 {"id": "wn:sail.n.01", "kind": "object", "text": "a pictogram of a sail"}
@@ -4253,7 +4525,7 @@
 {"id": "wn:salami.n.01", "kind": "object", "text": "a pictogram of a salami"}
 {"id": "wn:saline_solution.n.01", "kind": "object", "text": "a pictogram of a saline solution"}
 {"id": "wn:salmon.n.01", "kind": "object", "text": "a pictogram of a salmon"}
-{"id": "wn:salon.n.02", "kind": "object", "text": "a pictogram of a salon"}
+{"id": "wn:salon.n.01", "kind": "object", "text": "a pictogram of a salon"}
 {"id": "wn:salt.n.01", "kind": "object", "text": "a pictogram of a salt"}
 {"id": "wn:saltshaker.n.01", "kind": "object", "text": "a pictogram of a saltshaker"}
 {"id": "wn:saltwort.n.01", "kind": "object", "text": "a pictogram of a saltwort"}
@@ -4279,6 +4551,7 @@
 {"id": "wn:sarcophagus.n.01", "kind": "object", "text": "a pictogram of a sarcophagus"}
 {"id": "wn:sari.n.01", "kind": "object", "text": "a pictogram of a sari"}
 {"id": "wn:sarin.n.01", "kind": "object", "text": "a pictogram of a sarin"}
+{"id": "wn:sarpedon.n.01", "kind": "object", "text": "a pictogram of a Sarpedon"}
 {"id": "wn:sartorius.n.01", "kind": "object", "text": "a pictogram of a sartorius"}
 {"id": "wn:sash_fastener.n.01", "kind": "object", "text": "a pictogram of a sash fastener"}
 {"id": "wn:sashimi.n.01", "kind": "object", "text": "a pictogram of a sashimi"}
@@ -4343,9 +4616,11 @@
 {"id": "wn:scrub_brush.n.01", "kind": "object", "text": "a pictogram of a scrub brush"}
 {"id": "wn:scrubber.n.01", "kind": "object", "text": "a pictogram of a scrubber"}
 {"id": "wn:scrutinizer.n.01", "kind": "object", "text": "a pictogram of a scrutinizer"}
+{"id": "wn:sculptor.n.01", "kind": "object", "text": "a pictogram of a sculptor"}
 {"id": "wn:sculpture.n.01", "kind": "object", "text": "a pictogram of a sculpture"}
 {"id": "wn:scut.n.01", "kind": "object", "text": "a pictogram of a scut"}
 {"id": "wn:scuttle.n.01", "kind": "object", "text": "a pictogram of a scuttle"}
+{"id": "wn:scylla.n.01", "kind": "object", "text": "a pictogram of a Scylla"}
 {"id": "wn:scythe.n.01", "kind": "object", "text": "a pictogram of a scythe"}
 {"id": "wn:sea.n.01", "kind": "object", "text": "a pictogram of a sea"}
 {"id": "wn:sea_lion.n.01", "kind": "object", "text": "a pictogram of a sea lion"}
@@ -4390,8 +4665,10 @@
 {"id": "wn:septum.n.01", "kind": "object", "text": "a pictogram of a septum"}
 {"id": "wn:sequencer.n.01", "kind": "object", "text": "a pictogram of a sequencer"}
 {"id": "wn:sequoia.n.01", "kind": "object", "text": "a pictogram of a sequoia"}
+{"id": "wn:serbian.n.01", "kind": "object", "text": "a pictogram of a Serbian"}
 {"id": "wn:sergeant.n.01", "kind": "object", "text": "a pictogram of a sergeant"}
 {"id": "wn:serial_port.n.01", "kind": "object", "text": "a pictogram of a serial port"}
+{"id": "wn:serpens.n.01", "kind": "object", "text": "a pictogram of a Serpens"}
 {"id": "wn:service.n.09", "kind": "object", "text": "a pictogram of a service"}
 {"id": "wn:servo.n.01", "kind": "object", "text": "a pictogram of a servo"}
 {"id": "wn:sesame.n.01", "kind": "object", "text": "a pictogram of a sesame"}
@@ -4407,6 +4684,7 @@
 {"id": "wn:shakti.n.01", "kind": "object", "text": "a pictogram of a Shakti"}
 {"id": "wn:shampoo.n.01", "kind": "object", "text": "a pictogram of a shampoo"}
 {"id": "wn:shard.n.01", "kind": "object", "text": "a pictogram of a shard"}
+{"id": "wn:shari.n.01", "kind": "object", "text": "a pictogram of a Shari"}
 {"id": "wn:shark.n.01", "kind": "object", "text": "a pictogram of a shark"}
 {"id": "wn:shaver.n.01", "kind": "object", "text": "a pictogram of a shaver"}
 {"id": "wn:shaving_cream.n.01", "kind": "object", "text": "a pictogram of a shaving cream"}
@@ -4426,6 +4704,7 @@
 {"id": "wn:sheriff.n.01", "kind": "object", "text": "a pictogram of a sheriff"}
 {"id": "wn:sherlock_holmes.n.01", "kind": "object", "text": "a pictogram of a Sherlock Holmes"}
 {"id": "wn:shield.n.01", "kind": "object", "text": "a pictogram of a shield"}
+{"id": "wn:shillelagh.n.01", "kind": "object", "text": "a pictogram of a shillelagh"}
 {"id": "wn:shin.n.01", "kind": "object", "text": "a pictogram of a shin"}
 {"id": "wn:shingle.n.01", "kind": "object", "text": "a pictogram of a shingle"}
 {"id": "wn:shintoist.n.01", "kind": "object", "text": "a pictogram of a Shintoist"}
@@ -4484,6 +4763,7 @@
 {"id": "wn:silex.n.01", "kind": "object", "text": "a pictogram of a silex"}
 {"id": "wn:silicon.n.01", "kind": "object", "text": "a pictogram of a silicon"}
 {"id": "wn:silk.n.01", "kind": "object", "text": "a pictogram of a silk"}
+{"id": "wn:silly.n.01", "kind": "object", "text": "a pictogram of a silly"}
 {"id": "wn:silo.n.01", "kind": "object", "text": "a pictogram of a silo"}
 {"id": "wn:silver.n.01", "kind": "object", "text": "a pictogram of a silver"}
 {"id": "wn:silver_medal.n.01", "kind": "object", "text": "a pictogram of a silver medal"}
@@ -4505,10 +4785,12 @@
 {"id": "wn:sirius.n.01", "kind": "object", "text": "a pictogram of a Sirius"}
 {"id": "wn:sister.n.01", "kind": "object", "text": "a pictogram of a sister"}
 {"id": "wn:sitar.n.01", "kind": "object", "text": "a pictogram of a sitar"}
+{"id": "wn:siva.n.01", "kind": "object", "text": "a pictogram of a Siva"}
 {"id": "wn:six-pack.n.01", "kind": "object", "text": "a pictogram of a six-pack"}
 {"id": "wn:size.n.03", "kind": "object", "text": "a pictogram of a size"}
 {"id": "wn:skate.n.01", "kind": "object", "text": "a pictogram of a skate"}
 {"id": "wn:skateboard.n.01", "kind": "object", "text": "a pictogram of a skateboard"}
+{"id": "wn:skater.n.01", "kind": "object", "text": "a pictogram of a skater"}
 {"id": "wn:skeleton_key.n.01", "kind": "object", "text": "a pictogram of a skeleton key"}
 {"id": "wn:sketch.n.01", "kind": "object", "text": "a pictogram of a sketch"}
 {"id": "wn:sketchbook.n.01", "kind": "object", "text": "a pictogram of a sketchbook"}
@@ -4517,6 +4799,7 @@
 {"id": "wn:ski_rack.n.01", "kind": "object", "text": "a pictogram of a ski rack"}
 {"id": "wn:ski_run.n.01", "kind": "object", "text": "a pictogram of a ski run"}
 {"id": "wn:ski_tow.n.01", "kind": "object", "text": "a pictogram of a ski tow"}
+{"id": "wn:skibob.n.01", "kind": "object", "text": "a pictogram of a skibob"}
 {"id": "wn:skid.n.01", "kind": "object", "text": "a pictogram of a skid"}
 {"id": "wn:skidder.n.01", "kind": "object", "text": "a pictogram of a skidder"}
 {"id": "wn:skier.n.01", "kind": "object", "text": "a pictogram of a skier"}
@@ -4536,6 +4819,7 @@
 {"id": "wn:slate.n.01", "kind": "object", "text": "a pictogram of a slate"}
 {"id": "wn:slave.n.01", "kind": "object", "text": "a pictogram of a slave"}
 {"id": "wn:sled.n.01", "kind": "object", "text": "a pictogram of a sled"}
+{"id": "wn:sled_dog.n.01", "kind": "object", "text": "a pictogram of a sled dog"}
 {"id": "wn:sleeper.n.01", "kind": "object", "text": "a pictogram of a sleeper"}
 {"id": "wn:sleeping_bag.n.01", "kind": "object", "text": "a pictogram of a sleeping bag"}
 {"id": "wn:sleeping_car.n.01", "kind": "object", "text": "a pictogram of a sleeping car"}
@@ -4544,6 +4828,7 @@
 {"id": "wn:slicer.n.01", "kind": "object", "text": "a pictogram of a slicer"}
 {"id": "wn:slide.n.01", "kind": "object", "text": "a pictogram of a slide"}
 {"id": "wn:slide_fastener.n.01", "kind": "object", "text": "a pictogram of a slide fastener"}
+{"id": "wn:slide_rule.n.01", "kind": "object", "text": "a pictogram of a slide rule"}
 {"id": "wn:sliding_window.n.01", "kind": "object", "text": "a pictogram of a sliding window"}
 {"id": "wn:sling.n.01", "kind": "object", "text": "a pictogram of a sling"}
 {"id": "wn:slingshot.n.01", "kind": "object", "text": "a pictogram of a slingshot"}
@@ -4579,6 +4864,7 @@
 {"id": "wn:snowman.n.01", "kind": "object", "text": "a pictogram of a snowman"}
 {"id": "wn:snowmobile.n.01", "kind": "object", "text": "a pictogram of a snowmobile"}
 {"id": "wn:snowplow.n.01", "kind": "object", "text": "a pictogram of a snowplow"}
+{"id": "wn:snowshoe.n.01", "kind": "object", "text": "a pictogram of a snowshoe"}
 {"id": "wn:soap.n.01", "kind": "object", "text": "a pictogram of a soap"}
 {"id": "wn:soap_bubble.n.01", "kind": "object", "text": "a pictogram of a soap bubble"}
 {"id": "wn:soap_dispenser.n.01", "kind": "object", "text": "a pictogram of a soap dispenser"}
@@ -4596,6 +4882,7 @@
 {"id": "wn:soft-shell_clam.n.01", "kind": "object", "text": "a pictogram of a soft-shell clam"}
 {"id": "wn:soft_drink.n.01", "kind": "object", "text": "a pictogram of a soft drink"}
 {"id": "wn:softball.n.01", "kind": "object", "text": "a pictogram of a softball"}
+{"id": "wn:software_package.n.02", "kind": "object", "text": "a pictogram of a software product"}
 {"id": "wn:soil.n.02", "kind": "object", "text": "a pictogram of a soil"}
 {"id": "wn:sol.n.01", "kind": "object", "text": "a pictogram of a sol"}
 {"id": "wn:solanum.n.01", "kind": "object", "text": "a pictogram of a Solanum"}
@@ -4638,6 +4925,7 @@
 {"id": "wn:space_bar.n.01", "kind": "object", "text": "a pictogram of a space bar"}
 {"id": "wn:space_cadet.n.01", "kind": "object", "text": "a pictogram of a space cadet"}
 {"id": "wn:space_needle.n.01", "kind": "object", "text": "a pictogram of a Space Needle"}
+{"id": "wn:space_probe.n.01", "kind": "object", "text": "a pictogram of a space probe"}
 {"id": "wn:space_rocket.n.01", "kind": "object", "text": "a pictogram of a space rocket"}
 {"id": "wn:space_shuttle.n.01", "kind": "object", "text": "a pictogram of a space shuttle"}
 {"id": "wn:space_station.n.01", "kind": "object", "text": "a pictogram of a space station"}
@@ -4695,11 +4983,13 @@
 {"id": "wn:sport_utility.n.01", "kind": "object", "text": "a pictogram of a sport utility"}
 {"id": "wn:sports_car.n.01", "kind": "object", "text": "a pictogram of a sports car"}
 {"id": "wn:sports_equipment.n.01", "kind": "object", "text": "a pictogram of a sports equipment"}
+{"id": "wn:sportswear.n.01", "kind": "object", "text": "a pictogram of a sportswear"}
 {"id": "wn:spouse.n.01", "kind": "object", "text": "a pictogram of a spouse"}
 {"id": "wn:spray.n.01", "kind": "object", "text": "a pictogram of a spray"}
 {"id": "wn:spray_paint.n.01", "kind": "object", "text": "a pictogram of a spray paint"}
 {"id": "wn:springer.n.01", "kind": "object", "text": "a pictogram of a springer"}
 {"id": "wn:sprinkler.n.01", "kind": "object", "text": "a pictogram of a sprinkler"}
+{"id": "wn:sprinter.n.01", "kind": "object", "text": "a pictogram of a sprinter"}
 {"id": "wn:spritzer.n.01", "kind": "object", "text": "a pictogram of a spritzer"}
 {"id": "wn:sprout.n.01", "kind": "object", "text": "a pictogram of a sprout"}
 {"id": "wn:spruce.n.01", "kind": "object", "text": "a pictogram of a spruce"}
@@ -4763,6 +5053,7 @@
 {"id": "wn:stereo.n.01", "kind": "object", "text": "a pictogram of a stereo"}
 {"id": "wn:sterna.n.01", "kind": "object", "text": "a pictogram of a Sterna"}
 {"id": "wn:steroid.n.01", "kind": "object", "text": "a pictogram of a steroid"}
+{"id": "wn:sterope.n.01", "kind": "object", "text": "a pictogram of a Sterope"}
 {"id": "wn:stethoscope.n.01", "kind": "object", "text": "a pictogram of a stethoscope"}
 {"id": "wn:stevedore.n.01", "kind": "object", "text": "a pictogram of a stevedore"}
 {"id": "wn:stick.n.01", "kind": "object", "text": "a pictogram of a stick"}
@@ -4775,6 +5066,7 @@
 {"id": "wn:stitch.n.01", "kind": "object", "text": "a pictogram of a stitch"}
 {"id": "wn:stitcher.n.01", "kind": "object", "text": "a pictogram of a stitcher"}
 {"id": "wn:stoat.n.01", "kind": "object", "text": "a pictogram of a stoat"}
+{"id": "wn:stock.n.03", "kind": "object", "text": "a pictogram of a stock"}
 {"id": "wn:stock_cube.n.01", "kind": "object", "text": "a pictogram of a stock cube"}
 {"id": "wn:stock_exchange.n.01", "kind": "object", "text": "a pictogram of a stock exchange"}
 {"id": "wn:stockfish.n.01", "kind": "object", "text": "a pictogram of a stockfish"}
@@ -4811,6 +5103,7 @@
 {"id": "wn:strip.n.01", "kind": "object", "text": "a pictogram of a strip"}
 {"id": "wn:stripper.n.03", "kind": "object", "text": "a pictogram of a stripper"}
 {"id": "wn:strongbox.n.01", "kind": "object", "text": "a pictogram of a strongbox"}
+{"id": "wn:strongman.n.01", "kind": "object", "text": "a pictogram of a strongman"}
 {"id": "wn:strontium.n.01", "kind": "object", "text": "a pictogram of a strontium"}
 {"id": "wn:structure.n.01", "kind": "object", "text": "a pictogram of a structure"}
 {"id": "wn:stub.n.01", "kind": "object", "text": "a pictogram of a stub"}
@@ -4825,6 +5118,7 @@
 {"id": "wn:sty.n.02", "kind": "object", "text": "a pictogram of a sty"}
 {"id": "wn:stylus.n.01", "kind": "object", "text": "a pictogram of a stylus"}
 {"id": "wn:styrofoam.n.01", "kind": "object", "text": "a pictogram of a Styrofoam"}
+{"id": "wn:styx.n.01", "kind": "object", "text": "a pictogram of a Styx"}
 {"id": "wn:subject.n.06", "kind": "object", "text": "a pictogram of a subject"}
 {"id": "wn:sublimate.n.01", "kind": "object", "text": "a pictogram of a sublimate"}
 {"id": "wn:submarine.n.01", "kind": "object", "text": "a pictogram of a submarine"}
@@ -4836,6 +5130,7 @@
 {"id": "wn:subway_train.n.01", "kind": "object", "text": "a pictogram of a subway train"}
 {"id": "wn:subwoofer.n.01", "kind": "object", "text": "a pictogram of a subwoofer"}
 {"id": "wn:sugar.n.01", "kind": "object", "text": "a pictogram of a sugar"}
+{"id": "wn:sugar_beet.n.01", "kind": "object", "text": "a pictogram of a sugar beet"}
 {"id": "wn:sugar_bowl.n.01", "kind": "object", "text": "a pictogram of a sugar bowl"}
 {"id": "wn:sugarcane.n.01", "kind": "object", "text": "a pictogram of a sugarcane"}
 {"id": "wn:suggester.n.01", "kind": "object", "text": "a pictogram of a suggester"}
@@ -4856,6 +5151,7 @@
 {"id": "wn:superintendent.n.02", "kind": "object", "text": "a pictogram of a superintendent"}
 {"id": "wn:superior.n.01", "kind": "object", "text": "a pictogram of a superior"}
 {"id": "wn:supermarket.n.01", "kind": "object", "text": "a pictogram of a supermarket"}
+{"id": "wn:supernatural.n.01", "kind": "object", "text": "a pictogram of a occult"}
 {"id": "wn:supernova.n.01", "kind": "object", "text": "a pictogram of a supernova"}
 {"id": "wn:supernumerary.n.02", "kind": "object", "text": "a pictogram of a supernumerary"}
 {"id": "wn:supervisor.n.01", "kind": "object", "text": "a pictogram of a supervisor"}
@@ -4899,6 +5195,7 @@
 {"id": "wn:switch.n.01", "kind": "object", "text": "a pictogram of a switch"}
 {"id": "wn:switchblade.n.01", "kind": "object", "text": "a pictogram of a switchblade"}
 {"id": "wn:switcher.n.01", "kind": "object", "text": "a pictogram of a switcher"}
+{"id": "wn:swivel.n.01", "kind": "object", "text": "a pictogram of a swivel"}
 {"id": "wn:sword.n.01", "kind": "object", "text": "a pictogram of a sword"}
 {"id": "wn:swot.n.01", "kind": "object", "text": "a pictogram of a swot"}
 {"id": "wn:sycophant.n.01", "kind": "object", "text": "a pictogram of a sycophant"}
@@ -4945,12 +5242,14 @@
 {"id": "wn:tank.n.01", "kind": "object", "text": "a pictogram of a tank"}
 {"id": "wn:tank_top.n.01", "kind": "object", "text": "a pictogram of a tank top"}
 {"id": "wn:tantalum.n.01", "kind": "object", "text": "a pictogram of a tantalum"}
+{"id": "wn:tantalus.n.01", "kind": "object", "text": "a pictogram of a Tantalus"}
 {"id": "wn:taoist.n.01", "kind": "object", "text": "a pictogram of a Taoist"}
 {"id": "wn:tap_water.n.01", "kind": "object", "text": "a pictogram of a tap water"}
 {"id": "wn:tapa.n.01", "kind": "object", "text": "a pictogram of a tapa"}
 {"id": "wn:tape.n.01", "kind": "object", "text": "a pictogram of a tape"}
 {"id": "wn:tape_cartridge.n.01", "kind": "object", "text": "a pictogram of a tape cartridge"}
 {"id": "wn:tape_drive.n.01", "kind": "object", "text": "a pictogram of a tape drive"}
+{"id": "wn:tape_player.n.01", "kind": "object", "text": "a pictogram of a tape player"}
 {"id": "wn:tape_recorder.n.01", "kind": "object", "text": "a pictogram of a tape recorder"}
 {"id": "wn:taper.n.01", "kind": "object", "text": "a pictogram of a taper"}
 {"id": "wn:tapir.n.01", "kind": "object", "text": "a pictogram of a tapir"}
@@ -4959,6 +5258,7 @@
 {"id": "wn:tarot_card.n.01", "kind": "object", "text": "a pictogram of a tarot card"}
 {"id": "wn:tarpaulin.n.01", "kind": "object", "text": "a pictogram of a tarpaulin"}
 {"id": "wn:tartan.n.01", "kind": "object", "text": "a pictogram of a tartan"}
+{"id": "wn:tau_cross.n.01", "kind": "object", "text": "a pictogram of a tau cross"}
 {"id": "wn:tavern.n.01", "kind": "object", "text": "a pictogram of a tavern"}
 {"id": "wn:taw.n.02", "kind": "object", "text": "a pictogram of a taw"}
 {"id": "wn:taylor.n.01", "kind": "object", "text": "a pictogram of a Taylor"}
@@ -4986,6 +5286,7 @@
 {"id": "wn:telephone_receiver.n.01", "kind": "object", "text": "a pictogram of a telephone receiver"}
 {"id": "wn:teleprompter.n.01", "kind": "object", "text": "a pictogram of a teleprompter"}
 {"id": "wn:telescope.n.01", "kind": "object", "text": "a pictogram of a telescope"}
+{"id": "wn:telescopium.n.01", "kind": "object", "text": "a pictogram of a Telescopium"}
 {"id": "wn:television_equipment.n.01", "kind": "object", "text": "a pictogram of a video equipment"}
 {"id": "wn:television_receiver.n.01", "kind": "object", "text": "a pictogram of a television receiver"}
 {"id": "wn:tell.n.01", "kind": "object", "text": "a pictogram of a Tell"}
@@ -5005,12 +5306,16 @@
 {"id": "wn:terbium.n.01", "kind": "object", "text": "a pictogram of a terbium"}
 {"id": "wn:terminal.n.01", "kind": "object", "text": "a pictogram of a terminal"}
 {"id": "wn:tern.n.01", "kind": "object", "text": "a pictogram of a tern"}
+{"id": "wn:terpsichore.n.01", "kind": "object", "text": "a pictogram of a Terpsichore"}
 {"id": "wn:terrarium.n.01", "kind": "object", "text": "a pictogram of a terrarium"}
 {"id": "wn:terror.n.03", "kind": "object", "text": "a pictogram of a brat"}
+{"id": "wn:terrorist.n.01", "kind": "object", "text": "a pictogram of a terrorist"}
 {"id": "wn:tesla_coil.n.01", "kind": "object", "text": "a pictogram of a Tesla coil"}
 {"id": "wn:tesseract.n.01", "kind": "object", "text": "a pictogram of a tesseract"}
 {"id": "wn:test_tube.n.01", "kind": "object", "text": "a pictogram of a test tube"}
 {"id": "wn:testis.n.01", "kind": "object", "text": "a pictogram of a testis"}
+{"id": "wn:tethys.n.01", "kind": "object", "text": "a pictogram of a Tethys"}
+{"id": "wn:tetraskelion.n.01", "kind": "object", "text": "a pictogram of a tetraskele"}
 {"id": "wn:texas_ranger.n.01", "kind": "object", "text": "a pictogram of a Texas Ranger"}
 {"id": "wn:thai.n.01", "kind": "object", "text": "a pictogram of a Thai"}
 {"id": "wn:thales.n.01", "kind": "object", "text": "a pictogram of a Thales"}
@@ -5020,11 +5325,13 @@
 {"id": "wn:thea.n.01", "kind": "object", "text": "a pictogram of a theia"}
 {"id": "wn:theater.n.01", "kind": "object", "text": "a pictogram of a theater"}
 {"id": "wn:theater_curtain.n.01", "kind": "object", "text": "a pictogram of a theater curtain"}
+{"id": "wn:themis.n.01", "kind": "object", "text": "a pictogram of a Themis"}
 {"id": "wn:theodolite.n.01", "kind": "object", "text": "a pictogram of a theodolite"}
 {"id": "wn:therapist.n.01", "kind": "object", "text": "a pictogram of a therapist"}
 {"id": "wn:thermometer.n.01", "kind": "object", "text": "a pictogram of a thermometer"}
 {"id": "wn:thermos.n.01", "kind": "object", "text": "a pictogram of a thermos"}
 {"id": "wn:thermostat.n.01", "kind": "object", "text": "a pictogram of a thermostat"}
+{"id": "wn:thetis.n.01", "kind": "object", "text": "a pictogram of a Thetis"}
 {"id": "wn:thigh.n.01", "kind": "object", "text": "a pictogram of a thigh"}
 {"id": "wn:thimbleweed.n.01", "kind": "object", "text": "a pictogram of a thimbleweed"}
 {"id": "wn:third_eye.n.01", "kind": "object", "text": "a pictogram of a third eye"}
@@ -5068,6 +5375,7 @@
 {"id": "wn:tire_iron.n.01", "kind": "object", "text": "a pictogram of a tire iron"}
 {"id": "wn:tissue.n.01", "kind": "object", "text": "a pictogram of a tissue"}
 {"id": "wn:titanium.n.01", "kind": "object", "text": "a pictogram of a titanium"}
+{"id": "wn:titanium_dioxide.n.01", "kind": "object", "text": "a pictogram of a titanium dioxide"}
 {"id": "wn:tnt.n.01", "kind": "object", "text": "a pictogram of a TNT"}
 {"id": "wn:toast.n.01", "kind": "object", "text": "a pictogram of a toast"}
 {"id": "wn:toaster.n.01", "kind": "object", "text": "a pictogram of a toaster"}
@@ -5083,12 +5391,14 @@
 {"id": "wn:toilet_roll.n.01", "kind": "object", "text": "a pictogram of a toilet roll"}
 {"id": "wn:toilet_seat.n.01", "kind": "object", "text": "a pictogram of a toilet seat"}
 {"id": "wn:toilet_tissue.n.01", "kind": "object", "text": "a pictogram of a toilet tissue"}
+{"id": "wn:tolkien.n.01", "kind": "object", "text": "a pictogram of a Tolkien"}
 {"id": "wn:toller.n.01", "kind": "object", "text": "a pictogram of a toller"}
 {"id": "wn:tom.n.01", "kind": "object", "text": "a pictogram of a Tom"}
 {"id": "wn:tom.n.02", "kind": "object", "text": "a pictogram of a tom"}
 {"id": "wn:tomahawk.n.01", "kind": "object", "text": "a pictogram of a tomahawk"}
 {"id": "wn:tomato.n.01", "kind": "object", "text": "a pictogram of a tomato"}
 {"id": "wn:tomato_juice.n.01", "kind": "object", "text": "a pictogram of a tomato juice"}
+{"id": "wn:tombaugh.n.01", "kind": "object", "text": "a pictogram of a Tombaugh"}
 {"id": "wn:tomboy.n.01", "kind": "object", "text": "a pictogram of a tomboy"}
 {"id": "wn:tongs.n.01", "kind": "object", "text": "a pictogram of a tongs"}
 {"id": "wn:tongue.n.01", "kind": "object", "text": "a pictogram of a tongue"}
@@ -5132,6 +5442,7 @@
 {"id": "wn:tractor.n.01", "kind": "object", "text": "a pictogram of a tractor"}
 {"id": "wn:trader.n.01", "kind": "object", "text": "a pictogram of a trader"}
 {"id": "wn:traffic_circle.n.01", "kind": "object", "text": "a pictogram of a traffic circle"}
+{"id": "wn:traffic_island.n.01", "kind": "object", "text": "a pictogram of a safety zone"}
 {"id": "wn:trail.n.01", "kind": "object", "text": "a pictogram of a trail"}
 {"id": "wn:trail_bike.n.01", "kind": "object", "text": "a pictogram of a trail bike"}
 {"id": "wn:trailer_truck.n.01", "kind": "object", "text": "a pictogram of a trailer truck"}
@@ -5146,6 +5457,7 @@
 {"id": "wn:transport_ship.n.01", "kind": "object", "text": "a pictogram of a transport ship"}
 {"id": "wn:transportation_system.n.01", "kind": "object", "text": "a pictogram of a transportation system"}
 {"id": "wn:transporter.n.01", "kind": "object", "text": "a pictogram of a transporter"}
+{"id": "wn:transsexual.n.01", "kind": "object", "text": "a pictogram of a transsexual"}
 {"id": "wn:trap.n.01", "kind": "object", "text": "a pictogram of a trap"}
 {"id": "wn:trapeze.n.01", "kind": "object", "text": "a pictogram of a trapeze"}
 {"id": "wn:trapezium.n.01", "kind": "object", "text": "a pictogram of a trapezium"}
@@ -5159,6 +5471,8 @@
 {"id": "wn:trench.n.01", "kind": "object", "text": "a pictogram of a trench"}
 {"id": "wn:trench_knife.n.01", "kind": "object", "text": "a pictogram of a trench knife"}
 {"id": "wn:triangle.n.01", "kind": "object", "text": "a pictogram of a triangle"}
+{"id": "wn:triangulum.n.01", "kind": "object", "text": "a pictogram of a Triangulum"}
+{"id": "wn:triangulum_australe.n.01", "kind": "object", "text": "a pictogram of a Triangulum Australe"}
 {"id": "wn:triceratops.n.01", "kind": "object", "text": "a pictogram of a triceratops"}
 {"id": "wn:tricorn.n.01", "kind": "object", "text": "a pictogram of a tricorn"}
 {"id": "wn:tricycle.n.01", "kind": "object", "text": "a pictogram of a tricycle"}
@@ -5185,6 +5499,7 @@
 {"id": "wn:trunk.n.01", "kind": "object", "text": "a pictogram of a trunk"}
 {"id": "wn:tube.n.01", "kind": "object", "text": "a pictogram of a tube"}
 {"id": "wn:tuber.n.01", "kind": "object", "text": "a pictogram of a tuber"}
+{"id": "wn:tucana.n.01", "kind": "object", "text": "a pictogram of a Tucana"}
 {"id": "wn:tulip.n.01", "kind": "object", "text": "a pictogram of a tulip"}
 {"id": "wn:tumbler.n.01", "kind": "object", "text": "a pictogram of a tumbler"}
 {"id": "wn:tumbleweed.n.01", "kind": "object", "text": "a pictogram of a tumbleweed"}
@@ -5200,6 +5515,7 @@
 {"id": "wn:turk.n.01", "kind": "object", "text": "a pictogram of a Turk"}
 {"id": "wn:turkey.n.01", "kind": "object", "text": "a pictogram of a turkey"}
 {"id": "wn:turkey_leg.n.01", "kind": "object", "text": "a pictogram of a turkey leg"}
+{"id": "wn:turkoman.n.01", "kind": "object", "text": "a pictogram of a Turkoman"}
 {"id": "wn:turnip.n.01", "kind": "object", "text": "a pictogram of a turnip"}
 {"id": "wn:turnpike.n.02", "kind": "object", "text": "a pictogram of a toll road"}
 {"id": "wn:turnstile.n.01", "kind": "object", "text": "a pictogram of a turnstile"}
@@ -5210,9 +5526,11 @@
 {"id": "wn:twin.n.01", "kind": "object", "text": "a pictogram of a twin"}
 {"id": "wn:twin_bed.n.01", "kind": "object", "text": "a pictogram of a twin bed"}
 {"id": "wn:twins.n.01", "kind": "object", "text": "a pictogram of a twins"}
+{"id": "wn:tyche.n.01", "kind": "object", "text": "a pictogram of a Tyche"}
 {"id": "wn:type_metal.n.01", "kind": "object", "text": "a pictogram of a type metal"}
 {"id": "wn:typewriter.n.01", "kind": "object", "text": "a pictogram of a typewriter"}
 {"id": "wn:typha.n.01", "kind": "object", "text": "a pictogram of a Typha"}
+{"id": "wn:typhon.n.01", "kind": "object", "text": "a pictogram of a Typhon"}
 {"id": "wn:tyrannosaur.n.01", "kind": "object", "text": "a pictogram of a tyrannosaur"}
 {"id": "wn:tyrant.n.01", "kind": "object", "text": "a pictogram of a tyrant"}
 {"id": "wn:uca.n.01", "kind": "object", "text": "a pictogram of a Uca"}
@@ -5225,6 +5543,7 @@
 {"id": "wn:umpire.n.01", "kind": "object", "text": "a pictogram of a umpire"}
 {"id": "wn:uncle.n.01", "kind": "object", "text": "a pictogram of a uncle"}
 {"id": "wn:underpants.n.01", "kind": "object", "text": "a pictogram of a underpants"}
+{"id": "wn:underpass.n.01", "kind": "object", "text": "a pictogram of a underpass"}
 {"id": "wn:underwear.n.01", "kind": "object", "text": "a pictogram of a underwear"}
 {"id": "wn:unicorn.n.01", "kind": "object", "text": "a pictogram of a unicorn"}
 {"id": "wn:unicycle.n.01", "kind": "object", "text": "a pictogram of a unicycle"}
@@ -5239,6 +5558,7 @@
 {"id": "wn:upstage.n.01", "kind": "object", "text": "a pictogram of a upstage"}
 {"id": "wn:upstairs.n.01", "kind": "object", "text": "a pictogram of a upstairs"}
 {"id": "wn:uracil.n.01", "kind": "object", "text": "a pictogram of a uracil"}
+{"id": "wn:urania.n.01", "kind": "object", "text": "a pictogram of a Urania"}
 {"id": "wn:urban_ii.n.01", "kind": "object", "text": "a pictogram of a Urban II"}
 {"id": "wn:urinal.n.01", "kind": "object", "text": "a pictogram of a urinal"}
 {"id": "wn:urine.n.01", "kind": "object", "text": "a pictogram of a urine"}
@@ -5265,6 +5585,7 @@
 {"id": "wn:variable.n.01", "kind": "object", "text": "a pictogram of a variable"}
 {"id": "wn:varicose_vein.n.01", "kind": "object", "text": "a pictogram of a varicose vein"}
 {"id": "wn:varnish.n.01", "kind": "object", "text": "a pictogram of a varnish"}
+{"id": "wn:varuna.n.01", "kind": "object", "text": "a pictogram of a Varuna"}
 {"id": "wn:vase.n.01", "kind": "object", "text": "a pictogram of a vase"}
 {"id": "wn:vatican.n.01", "kind": "object", "text": "a pictogram of a vatican"}
 {"id": "wn:vault.n.01", "kind": "object", "text": "a pictogram of a vault"}
@@ -5310,9 +5631,11 @@
 {"id": "wn:vigilante.n.01", "kind": "object", "text": "a pictogram of a vigilante"}
 {"id": "wn:viking.n.01", "kind": "object", "text": "a pictogram of a Viking"}
 {"id": "wn:villa.n.01", "kind": "object", "text": "a pictogram of a Villa"}
+{"id": "wn:villain.n.01", "kind": "object", "text": "a pictogram of a villain"}
 {"id": "wn:vine.n.01", "kind": "object", "text": "a pictogram of a vine"}
 {"id": "wn:vinegar.n.01", "kind": "object", "text": "a pictogram of a vinegar"}
 {"id": "wn:vineyard.n.01", "kind": "object", "text": "a pictogram of a vineyard"}
+{"id": "wn:vinifera.n.01", "kind": "object", "text": "a pictogram of a vinifera"}
 {"id": "wn:vintage.n.01", "kind": "object", "text": "a pictogram of a vintage"}
 {"id": "wn:vinyl.n.01", "kind": "object", "text": "a pictogram of a vinyl"}
 {"id": "wn:viola.n.01", "kind": "object", "text": "a pictogram of a viola"}
@@ -5322,6 +5645,7 @@
 {"id": "wn:viper.n.01", "kind": "object", "text": "a pictogram of a viper"}
 {"id": "wn:virgin.n.01", "kind": "object", "text": "a pictogram of a virgin"}
 {"id": "wn:virgo.n.01", "kind": "object", "text": "a pictogram of a Virgo"}
+{"id": "wn:virino.n.01", "kind": "object", "text": "a pictogram of a virino"}
 {"id": "wn:virtual_memory.n.01", "kind": "object", "text": "a pictogram of a virtual memory"}
 {"id": "wn:virus.n.01", "kind": "object", "text": "a pictogram of a virus"}
 {"id": "wn:visionary.n.01", "kind": "object", "text": "a pictogram of a visionary"}
@@ -5335,8 +5659,10 @@
 {"id": "wn:vitriol.n.01", "kind": "object", "text": "a pictogram of a vitriol"}
 {"id": "wn:vivaldi.n.01", "kind": "object", "text": "a pictogram of a Vivaldi"}
 {"id": "wn:vixen.n.01", "kind": "object", "text": "a pictogram of a vixen"}
+{"id": "wn:volans.n.01", "kind": "object", "text": "a pictogram of a Volans"}
 {"id": "wn:volcanic_crater.n.01", "kind": "object", "text": "a pictogram of a volcanic crater"}
 {"id": "wn:volga.n.01", "kind": "object", "text": "a pictogram of a Volga"}
+{"id": "wn:volleyball_court.n.01", "kind": "object", "text": "a pictogram of a volleyball court"}
 {"id": "wn:volleyball_net.n.01", "kind": "object", "text": "a pictogram of a volleyball net"}
 {"id": "wn:volta.n.01", "kind": "object", "text": "a pictogram of a Volta"}
 {"id": "wn:volunteer.n.01", "kind": "object", "text": "a pictogram of a volunteer"}
@@ -5346,7 +5672,9 @@
 {"id": "wn:voyager.n.01", "kind": "object", "text": "a pictogram of a voyager"}
 {"id": "wn:voyeur.n.01", "kind": "object", "text": "a pictogram of a voyeur"}
 {"id": "wn:vulcan.n.01", "kind": "object", "text": "a pictogram of a Vulcan"}
+{"id": "wn:vulpecula.n.01", "kind": "object", "text": "a pictogram of a Vulpecula"}
 {"id": "wn:vulture.n.01", "kind": "object", "text": "a pictogram of a vulture"}
+{"id": "wn:vulva.n.01", "kind": "object", "text": "a pictogram of a vulva"}
 {"id": "wn:wad.n.01", "kind": "object", "text": "a pictogram of a wad"}
 {"id": "wn:wafer.n.01", "kind": "object", "text": "a pictogram of a wafer"}
 {"id": "wn:waffle.n.01", "kind": "object", "text": "a pictogram of a waffle"}
@@ -5389,6 +5717,7 @@
 {"id": "wn:washbasin.n.01", "kind": "object", "text": "a pictogram of a washbasin"}
 {"id": "wn:washer.n.01", "kind": "object", "text": "a pictogram of a washer"}
 {"id": "wn:washington_monument.n.01", "kind": "object", "text": "a pictogram of a Washington Monument"}
+{"id": "wn:washroom.n.01", "kind": "object", "text": "a pictogram of a washroom"}
 {"id": "wn:wasp.n.01", "kind": "object", "text": "a pictogram of a WASP"}
 {"id": "wn:waste.n.01", "kind": "object", "text": "a pictogram of a waste"}
 {"id": "wn:waste_paper.n.01", "kind": "object", "text": "a pictogram of a waste paper"}
@@ -5434,6 +5763,7 @@
 {"id": "wn:wayside.n.01", "kind": "object", "text": "a pictogram of a wayside"}
 {"id": "wn:weakling.n.01", "kind": "object", "text": "a pictogram of a weakling"}
 {"id": "wn:weapon.n.01", "kind": "object", "text": "a pictogram of a weapon"}
+{"id": "wn:weapon_of_mass_destruction.n.01", "kind": "object", "text": "a pictogram of a weapon of mass destruction"}
 {"id": "wn:weaponry.n.01", "kind": "object", "text": "a pictogram of a weaponry"}
 {"id": "wn:weather_map.n.01", "kind": "object", "text": "a pictogram of a weather map"}
 {"id": "wn:weather_radar.n.01", "kind": "object", "text": "a pictogram of a weather radar"}
@@ -5465,6 +5795,7 @@
 {"id": "wn:white_clover.n.01", "kind": "object", "text": "a pictogram of a white clover"}
 {"id": "wn:white_flag.n.01", "kind": "object", "text": "a pictogram of a white flag"}
 {"id": "wn:white_wine.n.01", "kind": "object", "text": "a pictogram of a white wine"}
+{"id": "wn:whitehead.n.01", "kind": "object", "text": "a pictogram of a Whitehead"}
 {"id": "wn:wicket.n.01", "kind": "object", "text": "a pictogram of a wicket"}
 {"id": "wn:wide_area_network.n.01", "kind": "object", "text": "a pictogram of a wide area network"}
 {"id": "wn:wife.n.01", "kind": "object", "text": "a pictogram of a wife"}
@@ -5473,6 +5804,7 @@
 {"id": "wn:wild_boar.n.01", "kind": "object", "text": "a pictogram of a wild boar"}
 {"id": "wn:willow.n.01", "kind": "object", "text": "a pictogram of a willow"}
 {"id": "wn:wind_chime.n.01", "kind": "object", "text": "a pictogram of a wind chime"}
+{"id": "wn:wind_farm.n.01", "kind": "object", "text": "a pictogram of a wind farm"}
 {"id": "wn:wind_rose.n.01", "kind": "object", "text": "a pictogram of a wind rose"}
 {"id": "wn:wind_turbine.n.01", "kind": "object", "text": "a pictogram of a wind turbine"}
 {"id": "wn:windmill.n.01", "kind": "object", "text": "a pictogram of a windmill"}
@@ -5483,6 +5815,7 @@
 {"id": "wn:window_seat.n.01", "kind": "object", "text": "a pictogram of a window seat"}
 {"id": "wn:window_shade.n.01", "kind": "object", "text": "a pictogram of a window shade"}
 {"id": "wn:windshield.n.01", "kind": "object", "text": "a pictogram of a windshield"}
+{"id": "wn:windshield_wiper.n.01", "kind": "object", "text": "a pictogram of a windshield wiper"}
 {"id": "wn:wine.n.01", "kind": "object", "text": "a pictogram of a wine"}
 {"id": "wn:wine_bar.n.01", "kind": "object", "text": "a pictogram of a wine bar"}
 {"id": "wn:wine_bottle.n.01", "kind": "object", "text": "a pictogram of a wine bottle"}
@@ -5502,6 +5835,7 @@
 {"id": "wn:wolf.n.01", "kind": "object", "text": "a pictogram of a wolf"}
 {"id": "wn:woman.n.01", "kind": "object", "text": "a pictogram of a woman"}
 {"id": "wn:wombat.n.01", "kind": "object", "text": "a pictogram of a wombat"}
+{"id": "wn:wonder_boy.n.01", "kind": "object", "text": "a pictogram of a wonder boy"}
 {"id": "wn:wonderland.n.01", "kind": "object", "text": "a pictogram of a wonderland"}
 {"id": "wn:wood.n.01", "kind": "object", "text": "a pictogram of a wood"}
 {"id": "wn:wooden_spoon.n.01", "kind": "object", "text": "a pictogram of a wooden spoon"}
@@ -5520,6 +5854,7 @@
 {"id": "wn:workshop.n.01", "kind": "object", "text": "a pictogram of a workshop"}
 {"id": "wn:workstation.n.01", "kind": "object", "text": "a pictogram of a workstation"}
 {"id": "wn:worktable.n.01", "kind": "object", "text": "a pictogram of a worktable"}
+{"id": "wn:workwear.n.01", "kind": "object", "text": "a pictogram of a workwear"}
 {"id": "wn:world.n.08", "kind": "object", "text": "a pictogram of a world"}
 {"id": "wn:world_trade_center.n.01", "kind": "object", "text": "a pictogram of a World Trade Center"}
 {"id": "wn:world_wide_web.n.01", "kind": "object", "text": "a pictogram of a World Wide Web"}
@@ -5539,6 +5874,7 @@
 {"id": "wn:writer.n.01", "kind": "object", "text": "a pictogram of a writer"}
 {"id": "wn:wyvern.n.01", "kind": "object", "text": "a pictogram of a wyvern"}
 {"id": "wn:xenon.n.01", "kind": "object", "text": "a pictogram of a xenon"}
+{"id": "wn:xenophon.n.01", "kind": "object", "text": "a pictogram of a Xenophon"}
 {"id": "wn:xy.n.01", "kind": "object", "text": "a pictogram of a XY"}
 {"id": "wn:yacht.n.01", "kind": "object", "text": "a pictogram of a yacht"}
 {"id": "wn:yale_university.n.01", "kind": "object", "text": "a pictogram of a Yale University"}
@@ -5568,6 +5904,7 @@
 {"id": "wn:zeus.n.01", "kind": "object", "text": "a pictogram of a Zeus"}
 {"id": "wn:zigzag.n.01", "kind": "object", "text": "a pictogram of a zigzag"}
 {"id": "wn:zimbabwean.n.01", "kind": "object", "text": "a pictogram of a zimbabwean"}
+{"id": "wn:zinc.n.01", "kind": "object", "text": "a pictogram of a zinc"}
 {"id": "wn:zirconium.n.01", "kind": "object", "text": "a pictogram of a zirconium"}
 {"id": "wn:zola.n.01", "kind": "object", "text": "a pictogram of a Zola"}
 {"id": "wn:zombi.n.03", "kind": "object", "text": "a pictogram of a zombi"}
@@ -5575,6 +5912,15 @@
 {"id": "wn:zu.n.01", "kind": "object", "text": "a pictogram of a Zu"}
 {"id": "wn:zucchini.n.01", "kind": "object", "text": "a pictogram of a zucchini"}
 {"id": "wn:zulu.n.01", "kind": "object", "text": "a pictogram of a Zulu"}
+{"id": "class:letter", "kind": "object", "text": "a pictogram of a letter of the alphabet"}
+{"id": "class:number", "kind": "object", "text": "a pictogram of a number or digit"}
+{"id": "class:script", "kind": "object", "text": "a pictogram of a character of a writing system"}
+{"id": "class:braille", "kind": "object", "text": "a pictogram of a braille pattern of dots"}
+{"id": "class:music", "kind": "object", "text": "a pictogram of a musical notation symbol"}
+{"id": "class:geometric", "kind": "object", "text": "a pictogram of a simple geometric shape"}
+{"id": "class:logo", "kind": "object", "text": "a pictogram of a brand logo"}
+{"id": "class:abstract", "kind": "object", "text": "a pictogram of an abstract symbol"}
+{"id": "class:arrow", "kind": "object", "text": "a pictogram of an arrow"}
 {"id": "view:front", "kind": "view", "text": "a pictogram seen from the front"}
 {"id": "view:side", "kind": "view", "text": "a pictogram seen from the side"}
 {"id": "view:top", "kind": "view", "text": "a pictogram seen from above"}
