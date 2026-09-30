@@ -32,7 +32,7 @@ def main() -> None:
     import sys
 
     try:
-        app(standalone_mode=False)
+        rv = app(standalone_mode=False)
     except Exception as e:
         # typer vendors its own click: match its exceptions by interface
         name = type(e).__name__
@@ -45,6 +45,9 @@ def main() -> None:
             sys.exit(1)
         annotate_exception(*sys.exc_info())
         sys.exit(1)
+    # non-standalone click returns the code of typer.Exit instead of raising it
+    if isinstance(rv, int) and rv != 0:
+        sys.exit(rv)
 
 
 def _conn(cfg: Config):

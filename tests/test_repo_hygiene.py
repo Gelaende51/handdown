@@ -68,3 +68,19 @@ def test_cli_usage_errors_keep_exit_code(monkeypatch, capsys):
     with _pytest.raises(SystemExit) as e:
         cli.main()
     assert e.value.code == 2 and "::error" not in capsys.readouterr().out
+
+
+def test_cli_exit_codes_reach_the_shell(monkeypatch):
+    import pytest as _pytest
+    import typer
+
+    from handdown import cli
+
+    @cli.app.command("zz-test-exit")
+    def _zz() -> None:
+        raise typer.Exit(75)
+
+    monkeypatch.setattr("sys.argv", ["handdown", "zz-test-exit"])
+    with _pytest.raises(SystemExit) as e:
+        cli.main()
+    assert e.value.code == 75  # the paced AI loop waits on 75
