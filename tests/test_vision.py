@@ -226,3 +226,73 @@ def test_apply_does_not_turn_classes_into_objects(conn):
     conn.execute("UPDATE vision_label SET label_id='class:braille' WHERE kind='object'")
     vision.apply(conn)
     assert conn.execute("SELECT object_id FROM depiction").fetchone()[0] is None
+
+
+def _probe_catalog(c):
+    import numpy as np
+
+    c.execute("INSERT INTO platform (id, name) VALUES ('p','p')")
+    c.execute("INSERT INTO source (id, platform_id, name) VALUES ('s','p','s')")
+    rng = np.random.default_rng(1)
+    centers = {"wn:cup.n.01": np.eye(768)[0], "wn:key.n.01": np.eye(768)[1]}
+    pid = 0
+    for obj, center in centers.items():  # 10 Claude-assessed depictions per object
+        for _ in range(10):
+            pid += 1
+            c.execute("INSERT INTO pictogram (id, source_id, original_id, svg_valid) VALUES (?,?,?,1)", (pid, "s", str(pid)))
+            did = c.execute("INSERT INTO depiction (object_id, method) VALUES (?, 'ai') RETURNING id", (obj,)).fetchone()[0]
+            c.execute("INSERT INTO style_group (depiction_id, representative_id, size) VALUES (?,?,1)", (did, pid))
+            vec = center + rng.normal(0, 0.05, 768)
+            c.execute("INSERT INTO embedding VALUES (?, 'siglip', ?)", (pid, vec.astype(np.float16).tobytes()))
+            c.execute("INSERT INTO embedding VALUES (?, 'dinov2', ?)", (pid, vec[:384].astype(np.float16).tobytes()))
+    unlabeled = {}
+    for name, vec in (("clear", centers["wn:cup.n.01"]), ("unclear", (centers["wn:cup.n.01"] + centers["wn:key.n.01"]) / 2)):
+        pid += 1
+        c.execute("INSERT INTO pictogram (id, source_id, original_id, svg_valid) VALUES (?,?,?,1)", (pid, "s", str(pid)))
+        did = c.execute("INSERT INTO depiction (object_id, method) VALUES (NULL, 'rules') RETURNING id").fetchone()[0]
+        c.execute("INSERT INTO style_group (depiction_id, representative_id, size) VALUES (?,?,1)", (did, pid))
+        c.execute("INSERT INTO embedding VALUES (?, 'siglip', ?)", (pid, vec.astype(np.float16).tobytes()))
+        c.execute("INSERT INTO embedding VALUES (?, 'dinov2', ?)", (pid, vec[:384].astype(np.float16).tobytes()))
+        unlabeled[name] = did
+    c.commit()
+    return unlabeled
+
+
+def test_probe_trains_on_ai_labels_and_predicts_confident_objects(tmp_path, monkeypatch):
+    from handdown import vision
+
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    cfg = Config()
+    c = db.connect(cfg.db_path)
+    unlabeled = _probe_catalog(c)
+    model = tmp_path / "probe.npz"
+    stats = vision.train_probe(c, model, min_examples=5, cv=True)
+    assert stats["classes"] == 2 and stats["examples"] == 20 and stats["cv_accuracy"] > 0.9
+    out = vision.predict_probe(c, model, min_conf=0.9)
+    assert out["set"] == 1
+    clear = c.execute("SELECT object_id, method FROM depiction WHERE id=?", (unlabeled["clear"],)).fetchone()
+    assert tuple(clear) == ("wn:cup.n.01", "probe")
+    assert c.execute("SELECT object_id FROM depiction WHERE id=?", (unlabeled["unclear"],)).fetchone()[0] is None
+
+
+def test_probe_uses_the_largest_style_group_as_representative(tmp_path, monkeypatch):
+    import numpy as np
+
+    from handdown import vision
+
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    cfg = Config()
+    c = db.connect(cfg.db_path)
+    unlabeled = _probe_catalog(c)
+    did = unlabeled["unclear"]
+    # a bigger style group that clearly shows a cup joins the unclear depiction
+    c.execute("INSERT INTO pictogram (id, source_id, original_id, svg_valid) VALUES (999,'s','big',1)")
+    c.execute("INSERT INTO style_group (depiction_id, representative_id, size) VALUES (?, 999, 5)", (did,))
+    vec = np.eye(768)[0]
+    c.execute("INSERT INTO embedding VALUES (999, 'siglip', ?)", (vec.astype(np.float16).tobytes(),))
+    c.execute("INSERT INTO embedding VALUES (999, 'dinov2', ?)", (vec[:384].astype(np.float16).tobytes(),))
+    c.commit()
+    model = tmp_path / "probe.npz"
+    vision.train_probe(c, model, min_examples=5)
+    vision.predict_probe(c, model, min_conf=0.9)
+    assert c.execute("SELECT object_id FROM depiction WHERE id=?", (did,)).fetchone()[0] == "wn:cup.n.01"

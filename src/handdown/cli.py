@@ -418,6 +418,24 @@ def vision_score() -> None:
     typer.echo(f"{vision.score_labels(_conn(Config()), log=typer.echo)} pictograms scored")
 
 
+@app.command("vision-train")
+def vision_train(min_examples: int = 8, cv: bool = True) -> None:
+    """Train the object probe on Claude-assessed depictions (data/vision-probe.npz)."""
+    from . import vision
+
+    cfg = Config()
+    typer.echo(vision.train_probe(_conn(cfg), cfg.data / "vision-probe.npz", min_examples=min_examples, cv=cv))
+
+
+@app.command("vision-predict")
+def vision_predict(min_conf: float = 0.9) -> None:
+    """Set objects of depictions without one where the probe is confident."""
+    from . import vision
+
+    cfg = Config()
+    typer.echo(vision.predict_probe(_conn(cfg), cfg.data / "vision-probe.npz", min_conf=min_conf))
+
+
 @app.command("vision-apply")
 def vision_apply(min_score: float = 0.3) -> None:
     """Fill missing objects and views of depictions from vision labels."""

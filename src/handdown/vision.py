@@ -390,3 +390,117 @@ def score_labels(conn: sqlite3.Connection, chunk: int = 5000, log: Any = print) 
         n += len(ids)
         log(f"  scored {n}")
     return n
+
+
+PROBE_SCALE = 8.0  # temperature: unit vectors -> logits with useful spread
+
+
+def _probe_features(conn: sqlite3.Connection, pictogram_ids: list[int]) -> tuple[list[int], Any]:
+    """Concatenated unit SigLIP + DINOv2 embeddings for pictograms that have both."""
+    import numpy as np
+
+    ids, rows = [], []
+    for pid in pictogram_ids:
+        e = dict(conn.execute("SELECT model, vec FROM embedding WHERE pictogram_id=?", (pid,)).fetchall())
+        if "siglip" in e and "dinov2" in e:
+            s = np.frombuffer(e["siglip"], np.float16).astype(np.float32)
+            d = np.frombuffer(e["dinov2"], np.float16).astype(np.float32)
+            rows.append(np.concatenate([s / (np.linalg.norm(s) or 1), d / (np.linalg.norm(d) or 1)]) * PROBE_SCALE)
+            ids.append(pid)
+    return ids, (np.stack(rows) if rows else np.zeros((0, 1152), np.float32))
+
+
+def _softmax_regression(x: Any, y: Any, k: int, epochs: int = 300, lr: float = 0.5, l2: float = 1e-4) -> tuple[Any, Any]:
+    import numpy as np
+
+    w = np.zeros((x.shape[1], k), np.float32)
+    b = np.zeros(k, np.float32)
+    onehot = np.eye(k, dtype=np.float32)[y]
+    for _ in range(epochs):
+        z = x @ w + b
+        z -= z.max(axis=1, keepdims=True)
+        p = np.exp(z)
+        p /= p.sum(axis=1, keepdims=True)
+        g = (p - onehot) / len(y)
+        w -= lr * (x.T @ g + l2 * w)
+        b -= lr * g.sum(axis=0)
+    return w, b
+
+
+def _proba(x: Any, w: Any, b: Any) -> Any:
+    import numpy as np
+
+    z = x @ w + b
+    z -= z.max(axis=1, keepdims=True)
+    p = np.exp(z)
+    return p / p.sum(axis=1, keepdims=True)
+
+
+def train_probe(conn: sqlite3.Connection, out: Any, min_examples: int = 8, cv: bool = False, epochs: int = 300) -> dict[str, Any]:
+    """Linear probe on the embeddings of Claude-assessed depictions (method
+    'ai'). Zero-shot labels do not fit pictograms (34-51 % agreement); a
+    probe trained on the assessed sample reached 94 % at confidence >= 0.7."""
+    import collections
+
+    import numpy as np
+
+    rows = conn.execute(
+        """SELECT d.object_id, g.representative_id FROM depiction d JOIN style_group g ON g.depiction_id = d.id
+           WHERE d.method = 'ai' AND d.object_id IS NOT NULL"""
+    ).fetchall()
+    ids, x = _probe_features(conn, [r[1] for r in rows])
+    label = {r[1]: r[0] for r in rows}
+    y_raw = [label[i] for i in ids]
+    counts = collections.Counter(y_raw)
+    keep = [i for i, o in enumerate(y_raw) if counts[o] >= min_examples]
+    classes = sorted({y_raw[i] for i in keep})
+    if len(classes) < 2:
+        raise ValueError("fewer than two objects with enough examples to train on")
+    index = {o: k for k, o in enumerate(classes)}
+    x, y = x[keep], np.array([index[y_raw[i]] for i in keep])
+    stats: dict[str, Any] = {"examples": len(y), "classes": len(classes)}
+    if cv:
+        folds = np.random.default_rng(0).integers(0, 5, len(y))
+        correct = np.zeros(len(y), bool)
+        for f in range(5):
+            tr, te = folds != f, folds == f
+            if te.any() and len(set(y[tr])) == len(classes):
+                w, b = _softmax_regression(x[tr], y[tr], len(classes), epochs)
+                correct[te] = _proba(x[te], w, b).argmax(axis=1) == y[te]
+        stats["cv_accuracy"] = round(float(correct.mean()), 3)
+    w, b = _softmax_regression(x, y, len(classes), epochs)
+    np.savez_compressed(out, w=w, b=b, classes=np.array(classes))
+    return stats
+
+
+def predict_probe(conn: sqlite3.Connection, model: Any, min_conf: float = 0.9) -> dict[str, int]:
+    """Set the object of depictions that have none, when the probe is confident.
+    Such depictions get method 'probe' (kept by rule rebuilds, visible as
+    their own method in reviews and quality measurement)."""
+    import numpy as np
+
+    m = np.load(model, allow_pickle=False)
+    w, b, classes = m["w"], m["b"], [str(c) for c in m["classes"]]
+    rows = conn.execute(
+        # SQLite takes the bare columns from the row holding MAX(g.size)
+        """SELECT d.id, g.representative_id, MAX(g.size) FROM depiction d JOIN style_group g ON g.depiction_id = d.id
+           WHERE d.object_id IS NULL GROUP BY d.id"""
+    ).fetchall()
+    counts = {"candidates": len(rows), "set": 0}
+    for start in range(0, len(rows), 5000):
+        part = rows[start : start + 5000]
+        ids, x = _probe_features(conn, [r[1] for r in part])
+        if not ids:
+            continue
+        p = _proba(x, w, b)
+        dep = {r[1]: r[0] for r in part}
+        for i, pid in enumerate(ids):
+            k = int(p[i].argmax())
+            if p[i, k] >= min_conf:
+                conn.execute(
+                    "UPDATE depiction SET object_id=?, method='probe', description=? WHERE id=? AND object_id IS NULL",
+                    (classes[k], f"probe p={p[i, k]:.2f}", dep[pid]),
+                )
+                counts["set"] += 1
+        conn.commit()
+    return counts

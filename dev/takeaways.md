@@ -120,3 +120,10 @@ candidates for bug reports, feature requests or pull requests.
 - `pkill -f`/`pgrep -f` with a pattern that also appears in the calling
   shell's command line kills or finds that shell; use a bracket pattern
   (`[f]inish.sh`).
+
+## Vision models on pictograms
+
+- Zero-shot SigLIP (base) is poor on monochrome pictograms even with a local softmax over label text embeddings: 34–51 % top-1 agreement with Claude's object labels. Sigmoid scores saturate (a pawn scored 1.0 for "grail").
+- DINOv2 nearest neighbour against Claude-labelled groups: 39–52 %. Visual neighbours share shape, not object.
+- A linear probe (softmax regression on concatenated unit SigLIP + DINOv2 features, numpy only) trained on 1,724 Claude-labelled depictions across 77 objects: 77 % in 5-fold cross-validation, 94 % above p ≥ 0.7, 98 % above p ≥ 0.9. The cheap path is Claude on a representative sample, probe on the rest.
+- SQLite lets `GROUP BY` take bare columns from the row that holds `MAX()`, which picks each depiction's largest style group without a window function.
