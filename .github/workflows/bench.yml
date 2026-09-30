@@ -8,8 +8,8 @@ on:
   workflow_dispatch:
     inputs:
       models:
-        description: "Space-separated model specs (ollama:<tag> | github:<model> | florence:omniparser)"
-        default: "ollama:qwen2.5vl:3b ollama:qwen3-vl:4b-instruct ollama:gemma3:4b ollama:moondream github:openai/gpt-4.1-mini github:meta/llama-4-scout-17b-16e-instruct florence:omniparser"
+        description: "Space-separated model specs (ollama:<tag> | florence:omniparser)"
+        default: "ollama:qwen2.5vl:3b ollama:qwen3-vl:4b-instruct ollama:gemma3:4b ollama:moondream florence:omniparser"
 
 permissions:
   contents: read
@@ -32,14 +32,12 @@ jobs:
     timeout-minutes: 350
     permissions:
       contents: read
-      models: read
     strategy:
       fail-fast: false
       matrix:
         model: ${{ fromJSON(needs.plan.outputs.matrix) }}
     env:
       MODEL: ${{ matrix.model }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
