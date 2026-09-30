@@ -86,7 +86,7 @@ def adapter(name: str, cfg: Config, conn: sqlite3.Connection):
     if name == "iconify":
         from .adapters.iconify import IconifyAdapter
 
-        return IconifyAdapter(cfg)
+        return IconifyAdapter(cfg, conn)
     if name in ("git-svg", "npm-svg"):
         from .adapters.tarball import GitSvgAdapter, NpmSvgAdapter
 

@@ -137,3 +137,17 @@ def test_commons_text_handles_numbers_and_language_dicts():
     assert _text(2019.0) == "2019.0"
     assert _text({"en": "<b>Sign</b>", "de": "Schild"}) == "Sign"
     assert _text("") is None and _text(None) is None
+
+
+def test_iconify_restricts_to_job_list(tmp_path, monkeypatch):
+    from handdown.adapters.iconify import IconifyAdapter
+
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    cfg = Config()
+    conn = db.connect(cfg.db_path)
+    pkg = cfg.raw / "iconify" / "package"
+    pkg.mkdir(parents=True)
+    (pkg / "collections.json").write_text(json.dumps({p: {"name": p} for p in ("a", "b", "c")}))
+    assert len(list(IconifyAdapter(cfg, conn).sources())) == 3  # no job list: everything
+    record_candidate(conn, None, id="iconify:b", platform_id="iconify", name="b", adapter="iconify", harvest_status="accepted")
+    assert [s.id for s in IconifyAdapter(cfg, conn).sources()] == ["iconify:b"]

@@ -7,6 +7,7 @@ the original author, license and URL, and ``iconify`` as the platform.
 from __future__ import annotations
 
 import json
+import sqlite3
 import tarfile
 from collections import defaultdict
 from collections.abc import Iterator
@@ -29,8 +30,9 @@ DOMAIN_BY_CATEGORY = {
 class IconifyAdapter:
     name = "iconify"
 
-    def __init__(self, cfg: Config):
+    def __init__(self, cfg: Config, conn: sqlite3.Connection | None = None):
         self.cfg = cfg
+        self.conn = conn
         self.base = cfg.raw / "iconify"
         self.pkg = self.base / "package"
 
@@ -56,9 +58,17 @@ class IconifyAdapter:
     def _collections(self) -> dict[str, dict]:
         return json.loads((self.pkg / "collections.json").read_text())
 
-    def sources(self) -> Iterator[SourceInfo]:
+    def sources(self, statuses: tuple[str, ...] | None = None) -> Iterator[SourceInfo]:
+        """All collections; on a runner with a job list, only the Iconify
+        sources that the job list marked accepted."""
         version = (self.base / "VERSION").read_text().strip() if (self.base / "VERSION").exists() else None
+        wanted = None
+        if self.conn is not None:
+            ids = {r[0] for r in self.conn.execute("SELECT id FROM source WHERE adapter='iconify' AND harvest_status='accepted'")}
+            wanted = ids or None
         for prefix, info in self._collections().items():
+            if wanted is not None and f"iconify:{prefix}" not in wanted:
+                continue
             author = info.get("author", {})
             lic = info.get("license", {})
             cat = info.get("category")
