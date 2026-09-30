@@ -107,3 +107,56 @@ def test_score_summarises_per_model(tmp_path, monkeypatch):
     assert report["a"]["n"] == 2 and report["a"]["exact"] == 0.5 and report["a"]["seconds"] == 3.0
     assert report["a"]["misses"] == [("wn:key.n.01", "house")]
     assert report["b"]["n"] == 0
+
+
+def _named_catalog(c):
+    c.execute("INSERT INTO platform (id, name) VALUES ('p','p')")
+    c.execute("INSERT INTO source (id, platform_id, name) VALUES ('s','p','s')")
+    names = {1: ["coffee-cup", "cup-hot", "mug-outline"], 2: ["star-filled", "favorite-star"]}
+    gold = {1: "wn:cup.n.01", 2: "wn:star.n.05"}
+    pid = 0
+    for did, members in names.items():
+        c.execute("INSERT INTO depiction (id, object_id, method) VALUES (?, ?, 'ai')", (did, gold[did]))
+        gid = c.execute(
+            "INSERT INTO style_group (depiction_id, representative_id, size) VALUES (?, ?, ?) RETURNING id", (did, pid + 1, len(members))
+        ).fetchone()[0]
+        for name in members:
+            pid += 1
+            c.execute("INSERT INTO pictogram (id, source_id, original_id, original_name, svg_valid) VALUES (?,?,?,?,1)", (pid, "s", name, name))
+            c.execute("INSERT INTO style_member VALUES (?, ?)", (gid, pid))
+    c.execute("INSERT INTO depiction (id, object_id, method) VALUES (3, 'term:app', 'ai')")  # not WordNet: skipped
+    c.commit()
+
+
+def test_text_items_offer_name_derived_candidates(tmp_path, monkeypatch):
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    c = db.connect(Config().db_path)
+    _named_catalog(c)
+    items = {i["key"]: i for i in bench.text_items(c, n=10, max_options=6)}
+    assert set(items) == {1, 2}
+    cup = items[1]
+    assert "coffee cup" in cup["state"] and "mug outline" in cup["state"]
+    assert "wn:cup.n.01" in cup["options"] and len(cup["options"]) <= 6
+    assert cup["options"]["wn:cup.n.01"].startswith("cup: ")
+    assert cup["rules"] == "wn:coffee_cup.n.01"  # the name rules' pick ("coffee cup"), for comparison
+    assert next(iter(cup["options"])) == cup["rules"]
+    assert "wn:star.n.05" in items[2]["options"] or "wn:star.n.01" in items[2]["options"]
+
+
+def test_text_run_and_score(tmp_path, monkeypatch):
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    c = db.connect(Config().db_path)
+    _named_catalog(c)
+    items = bench.text_items(c, n=10, max_options=6)
+    out = tmp_path / "text.jsonl"
+
+    def predict(batch):
+        return [("wn:cup.n.01", 0.95) for _ in batch]
+
+    assert bench.run_text(items, predict, "fake", out, batch=1) == 2
+    assert bench.run_text(items, predict, "fake", out, batch=1) == 0  # resumed
+    results = [json.loads(line) for line in out.read_text().splitlines()]
+    report = bench.score_text(c, items, results)
+    assert report["fake"]["n"] == 2 and report["fake"]["exact"] == 0.5 and report["fake"]["exact_at_0.9"] == 0.5
+    assert report["rules"]["n"] == 2
+    assert report["fake"]["coverage"] == report["rules"]["coverage"]

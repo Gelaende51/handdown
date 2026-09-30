@@ -499,6 +499,42 @@ def bench_score(results: list[str]) -> None:
         typer.echo(f"\n{model} misses: " + "; ".join(f"{g[3:]} <- {a!r}" for g, a in m["misses"]))
 
 
+@app.command("bench-text-items")
+def bench_text_items(n: int = 2000, seed: int = 0, out: str = "work/bench/text.jsonl") -> None:
+    """Text benchmark items: names of Claude-assessed depictions and candidate objects (metadata only)."""
+    import json
+    from pathlib import Path
+
+    from . import bench
+
+    items = bench.text_items(_conn(Config()), n=n, seed=seed)
+    Path(out).write_text("".join(json.dumps(i, ensure_ascii=False) + "\n" for i in items))
+    typer.echo(f"{len(items)} items -> {out}")
+
+
+@app.command("bench-text")
+def bench_text(items: str, out: str = "text.jsonl", batch: int = 32) -> None:
+    """Runner: Laya picks the drawn object among each item's candidates."""
+    from pathlib import Path
+
+    from . import bench
+
+    typer.echo(f"{bench.run_text(_jsonl(items), bench.LayaChoice(), 'laya', Path(out), batch=batch)} answered")
+
+
+@app.command("bench-text-score")
+def bench_text_score(items: str, results: list[str] = typer.Argument(None)) -> None:
+    """Compare text answers (and the name rules) with Claude's objects."""
+    from . import bench
+
+    rows = [r for path in results or [] for r in _jsonl(path)]
+    for model, m in bench.score_text(_conn(Config()), _jsonl(items), rows).items():
+        typer.echo(
+            f"{model:10} n={m['n']:5}  exact {m['exact']:.0%}  (answerable {m['coverage']:.0%})"
+            f"  p>=0.9: {m['share_at_0.9']:.0%} of items, {m['exact_at_0.9']:.0%} correct"
+        )
+
+
 @app.command()
 def serve(port: int = 8765) -> None:
     """Review app: browse the hierarchy and mark classification errors (http://127.0.0.1:PORT)."""

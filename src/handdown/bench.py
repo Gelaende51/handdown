@@ -13,6 +13,7 @@ import random
 import re
 import sqlite3
 import time
+from collections import Counter
 from collections.abc import Callable
 from pathlib import Path
 from typing import Any
@@ -263,3 +264,121 @@ def score(conn: sqlite3.Connection, results: list[dict[str, Any]], misses: int =
         n = m["n"] or 1
         m["exact"], m["near"], m["seconds"] = round(m["exact"] / n, 3), round(m["near"] / n, 3), round(m["seconds"] / n, 2)
     return report
+
+
+# Text benchmark: names of a depiction's pictograms -> which candidate object is drawn.
+TEXT_QUESTION = "These are the names of one pictogram in several icon sets. Which object is drawn in it?"
+
+
+def _gloss(s: Any, words: int = 10) -> str:
+    return f"{s.lemma_names()[0].replace('_', ' ')}: {' '.join(s.definition().split()[:words])}"
+
+
+def text_items(conn: sqlite3.Connection, n: int = 2000, seed: int = 0, max_options: int = 8, max_names: int = 20) -> list[dict[str, Any]]:
+    """Claude-assessed depictions as text: member names as the state, candidate
+    objects from the names' object words (the rules' pick first, then per word
+    the rules' sense and the two most frequent noun senses) and the rules' own pick for comparison.
+    Depictions whose names give no candidate are left out."""
+    from .concepts import resolve, wordnet
+    from .hierarchy.names import name_roles
+
+    wn = wordnet()
+    keys = [r[0] for r in conn.execute("SELECT id FROM depiction WHERE method='ai' AND object_id LIKE 'wn:%' ORDER BY id")]
+    random.Random(seed).shuffle(keys)
+    items: list[dict[str, Any]] = []
+    for did in keys:
+        if len(items) >= n:
+            break
+        names = [
+            r[0]
+            for r in conn.execute(
+                """SELECT DISTINCT p.original_name FROM style_group g JOIN style_member m ON m.style_group_id = g.id
+                   JOIN pictogram p ON p.id = m.pictogram_id WHERE g.depiction_id = ? AND p.original_name IS NOT NULL
+                   ORDER BY p.id LIMIT ?""",
+                (did, max_names),
+            )
+        ]
+        roles = [name_roles(nm) for nm in names]
+        phrase = Counter(" ".join(r.object_tokens) for r in roles if r.object_tokens).most_common(1)
+        rules = resolve(phrase[0][0].split()) if phrase else None
+        options: dict[str, str] = {}
+        if rules and rules.id.startswith("wn:"):  # the rules' pick is always a candidate
+            options[rules.id] = _gloss(wn.synset(rules.id[3:]))
+        for token, _ in Counter(t for r in roles for t in r.object_tokens).most_common():
+            ruled = resolve([token])
+            senses = ([wn.synset(ruled.id[3:])] if ruled and ruled.id.startswith("wn:") else []) + list(wn.synsets(token, pos=wn.NOUN)[:2])
+            for s in senses:
+                options.setdefault(f"wn:{s.name()}", _gloss(s))
+        options = dict(list(options.items())[:max_options])
+        if not options:
+            continue
+        state = "; ".join(" ".join(re.findall(r"[a-z0-9]+", nm.lower())) for nm in names)
+        items.append({"key": did, "state": state, "options": options, "rules": rules.id if rules else None})
+    return items
+
+
+def run_text(items: list[dict[str, Any]], predict: Callable[[list[dict[str, Any]]], list[tuple[str, float]]], model: str, out: Path, batch: int = 32) -> int:
+    """Write {key, model, answer, p} per item; keys already in ``out`` are skipped."""
+    out = Path(out)
+    done = {json.loads(line)["key"] for line in out.read_text().splitlines()} if out.exists() else set()
+    todo = [i for i in items if i["key"] not in done]
+    with out.open("a") as f:
+        for start in range(0, len(todo), batch):
+            part = todo[start : start + batch]
+            for item, (answer, p) in zip(part, predict(part), strict=True):
+                f.write(json.dumps({"key": item["key"], "model": model, "answer": answer, "p": round(p, 4)}) + "\n")
+            f.flush()
+    return len(todo)
+
+
+def score_text(conn: sqlite3.Connection, items: list[dict[str, Any]], results: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
+    """Per model (and the name rules): share matching Claude's object, the
+    share answerable at all (Claude's object among the candidates) and the
+    share correct among answers with p >= 0.9."""
+    gold = {r[0]: r[1] for r in conn.execute("SELECT id, object_id FROM depiction WHERE method='ai'")}
+    by_key = {i["key"]: i for i in items}
+    rows = results + [{"key": i["key"], "model": "rules", "answer": i["rules"], "p": 1.0} for i in items]
+    report: dict[str, dict[str, Any]] = {}
+    for r in rows:
+        if r["key"] not in gold or r["key"] not in by_key:
+            continue
+        m = report.setdefault(r["model"], {"n": 0, "exact": 0, "coverage": 0, "confident": 0, "confident_exact": 0})
+        hit = r["answer"] == gold[r["key"]]
+        m["n"] += 1
+        m["exact"] += hit
+        m["coverage"] += gold[r["key"]] in by_key[r["key"]]["options"]
+        if r.get("p", 0) >= 0.9:
+            m["confident"] += 1
+            m["confident_exact"] += hit
+    for m in report.values():
+        n = m["n"] or 1
+        m["exact_at_0.9"] = round(m.pop("confident_exact") / (m["confident"] or 1), 3)
+        m["share_at_0.9"] = round(m.pop("confident") / n, 3)
+        m["exact"], m["coverage"] = round(m["exact"] / n, 3), round(m["coverage"] / n, 3)
+    return report
+
+
+class LayaChoice:
+    """Laya (Convai Innovations, Apache-2.0): one choice question over the
+    candidates, in batches; the Router picks the checkpoint."""
+
+    def __init__(self) -> None:
+        from laya import Router
+
+        self.router = Router(device="cpu")
+
+    def __call__(self, items: list[dict[str, Any]]) -> list[tuple[str, float]]:
+        requests = [
+            {
+                "state": i["state"],
+                "questions": {"object": {"type": "choice", "instructions": TEXT_QUESTION, "criteria": i["options"]}},
+                "max_len": 512,
+                "head_max_len": 320,  # room for up to 8 glossed candidates
+            }
+            for i in items
+        ]
+        out = []
+        for res in self.router.predict_batch(requests):
+            a = res["answers"]["object"]
+            out.append((a["choice"], float(a["probabilities"][a["choice"]])))
+        return out

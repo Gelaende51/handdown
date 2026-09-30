@@ -63,3 +63,16 @@ share, or clearly beats zero-shot SigLIP (34–51 %) overall at a runtime that
 fits a day of runners for ~135k depictions, becomes the long-tail labeller
 (method `vlm`, like `probe`). Otherwise Claude keeps labelling hard cases and
 the probe retrains on them.
+
+## Text benchmark (Laya)
+
+- `handdown bench-text-items` writes 2,000 Claude-assessed depictions as text:
+  the member pictograms' names (state) and up to 8 WordNet candidates from
+  their object words, the name rules' pick first (`work/bench/text.jsonl`,
+  metadata only). `bench-text.yml` asks Laya (Apache-2.0, ModernBERT-large,
+  CPU) to choose one; `bench-text-score` compares with Claude and the rules.
+- Baseline before Laya: the name rules match Claude on 30 %, and Claude's
+  object is among the candidates for only 38 %: names mostly say what an
+  icon means ("users", "lamp", "fuel"), not what is drawn (silhouette, light
+  bulb, gas pump). Choosing among name candidates can gain at most 8 points;
+  the drawn object needs vision, text fits the meaning level.
