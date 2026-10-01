@@ -12,6 +12,7 @@ import json
 import random
 import re
 import sqlite3
+import subprocess
 import time
 from collections import Counter
 from collections.abc import Callable
@@ -582,9 +583,16 @@ def run_claude(
             part = rows[start : start + batch]
             image = ai.sheet([cfg.resolve(r["norm_path"]).read_text() for r in part], cols=6)
             t = time.monotonic()
-            answer, result = ai.ask(
-                image, ai.HIERARCHY_PROMPT, "You look at pictograms and report what you see. Reply with JSON only.", workdir, model=model, effort=effort
-            )
+            try:
+                answer, result = ai.ask(
+                    image, ai.HIERARCHY_PROMPT, "You look at pictograms and report what you see. Reply with JSON only.", workdir, model=model, effort=effort
+                )
+            except ai.QuotaExceeded:
+                raise
+            except (RuntimeError, ValueError, OSError, subprocess.TimeoutExpired) as e:  # one bad batch: skip it, as the production pass does
+                log(f"{name}: batch at {start} failed: {str(e)[:200]}")
+                stats["failed"] = stats.get("failed", 0) + 1
+                continue
             n = len(part)
             seconds = round((time.monotonic() - t) / n, 2)
             usage = result.get("usage") or {}
