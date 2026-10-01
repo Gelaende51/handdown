@@ -88,6 +88,11 @@ def test_match_levels():
     assert bench.match("floppy disk", "wn:diskette.n.01") == "exact"
     assert bench.match("mug", "wn:cup.n.01") == "near"
     assert bench.match("elephant", "wn:cup.n.01") == "miss"
+    # seen in the first run: filler words and the object word not last
+    assert bench.match("folder icon", "wn:folder.n.02") == "exact"
+    assert bench.match("cloud upload", "wn:cloud.n.01") == "exact"
+    assert bench.match("arrow left", "wn:arrow.n.01") == "exact"
+    assert bench.match("phone call", "wn:telephone.n.01") == "exact"
     assert bench.match("", "wn:cup.n.01") == "miss"
     assert bench.match("check mark", "term:checkmarks") == "exact"  # Claude's terms outside WordNet
     assert bench.match("green checkmark", "term:checkmark") == "exact"

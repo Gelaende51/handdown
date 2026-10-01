@@ -198,16 +198,22 @@ def backend(spec: str) -> tuple[Ask, int, int]:
     raise ValueError(f"unknown model spec {spec!r}")
 
 
+# Words models add around the object name ("folder icon", "outline of a house")
+FILLER = {"icon", "icons", "symbol", "sign", "shape", "outline", "filled", "solid", "black", "white", "simple", "pictogram", "glyph", "emoji", "of"}
+
+
 def _synsets(phrase: str) -> list[Any]:
+    """Senses of the whole phrase, then of each noun in it ("cloud upload" ->
+    cloud and upload): models name the object anywhere in a short phrase."""
     from .concepts import wordnet
 
     wn = wordnet()
-    words = re.findall(r"[a-z0-9]+", phrase.lower())
+    words = [w for w in re.findall(r"[a-z0-9]+", phrase.lower()) if w not in FILLER]
     if not words:
         return []
     found = list(wn.synsets("_".join(words)))
-    if not found:
-        found = list(wn.synsets(words[-1], pos=wn.NOUN)) or list(wn.synsets(words[-1]))
+    for w in words:
+        found += [s for s in wn.synsets(w, pos=wn.NOUN) if s not in found]
     return found
 
 
@@ -234,10 +240,9 @@ def match(answer: str, gold: str) -> str:
         target = wordnet().synset(gold[3:])
     except WordNetError:  # a gold id that WordNet does not know is a miss, not a crash
         return "miss"
-    head = _synsets(answer.split()[-1]) if len(answer.split()) > 1 else []
-    if target in candidates or target in head:
+    if target in candidates:
         return "exact"
-    for s in candidates + head:
+    for s in candidates:
         d = s.shortest_path_distance(target)
         if d is not None and d <= 4 and any(h.max_depth() >= 6 for h in s.lowest_common_hypernyms(target)):
             return "near"

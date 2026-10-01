@@ -41,8 +41,8 @@ p ≥ 0.9). Answer key: the 20,052 depictions Claude assessed (`method='ai'`).
 
 ## Scoring (local)
 
-`handdown bench-score` maps each answer to WordNet (whole phrase, then head
-word) and compares with Claude's object:
+`handdown bench-score` maps each answer to WordNet (whole phrase and every
+word, filler words like "icon" dropped) and compares with Claude's object:
 
 - exact: Claude's synset is among the answer's synsets;
 - near: WordNet path distance ≤ 4 under a specific shared parent (depth ≥ 6:
