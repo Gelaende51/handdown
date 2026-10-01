@@ -334,3 +334,29 @@ CREATE TABLE IF NOT EXISTS feedback (
     status TEXT NOT NULL DEFAULT 'open',
     created_at TEXT
 );
+
+-- Every image and text classification with its origin (append-only), so other
+-- classifiers can be compared later. The pictogram is named by source and
+-- original id, which survive catalog rebuilds; subject ids are as of the time.
+CREATE TABLE IF NOT EXISTS classification (
+    id INTEGER PRIMARY KEY,
+    source_id TEXT,
+    original_id TEXT,
+    pictogram_id INTEGER,
+    subject TEXT,                   -- depiction | style_group | pictogram
+    subject_id INTEGER,
+    field TEXT NOT NULL,            -- object | view | varieties | meaning | composition
+    value TEXT,                     -- normalized (e.g. wn:cup.n.01)
+    raw TEXT,                       -- the classifier's own answer
+    confidence REAL,
+    method TEXT NOT NULL,           -- ai | probe | vlm | bench | laya
+    model TEXT,                     -- model and settings
+    input TEXT NOT NULL,            -- image | text
+    run TEXT,                       -- session, GitHub run or file it came from
+    context TEXT,                   -- JSON: settings, input text, applied or not
+    created_at TEXT NOT NULL
+);
+CREATE UNIQUE INDEX IF NOT EXISTS classification_once ON classification(
+    method, IFNULL(model, ''), IFNULL(run, ''), IFNULL(pictogram_id, -1), IFNULL(subject_id, -1), field, IFNULL(value, '')
+);
+CREATE INDEX IF NOT EXISTS classification_pictogram ON classification(source_id, original_id);

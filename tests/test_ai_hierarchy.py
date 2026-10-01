@@ -37,6 +37,11 @@ def test_hierarchy_answers_set_object_and_split_varieties(tmp_path, monkeypatch)
     assert {d[2] for d in deps} == {"[]", '["steam"]'}
     assert all(d[1] == "side" and "mug" in d[0] for d in deps)
     assert conn.execute("SELECT COUNT(*) FROM meaning_link WHERE source='ai'").fetchone()[0] >= 2
+    # every answer is logged with its origin, also where it changes nothing
+    logged = conn.execute("SELECT field, raw, model, run, input FROM classification WHERE original_id='1' ORDER BY field").fetchall()
+    assert {r[0] for r in logged} == {"object", "view", "varieties", "meaning"}
+    assert all(r[2] == "sonnet" and r[3] == "h" and r[4] == "image" for r in logged)
+    assert ("object", "mug") in {(r[0], r[1]) for r in logged}
 
 
 def test_hierarchy_ignores_bad_answers(tmp_path, monkeypatch):

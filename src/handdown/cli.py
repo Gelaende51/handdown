@@ -561,9 +561,23 @@ def vlm_jobs(out: str = "work/vlm") -> None:
 @app.command("vlm-apply")
 def vlm_apply(answers: list[str]) -> None:
     """Set objects of depictions without one from vision model answers (method 'vlm')."""
+    from pathlib import Path
+
     from . import bench
 
-    typer.echo(bench.vlm_apply(_conn(Config()), [r for path in answers for r in _jsonl(path)]))
+    conn = _conn(Config())
+    for path in answers:  # the file names the run (work/vlm/answers/<adapter>-<run id>.jsonl)
+        typer.echo(f"{path}: {bench.vlm_apply(conn, _jsonl(path), run=Path(path).stem)}")
+
+
+@app.command("provenance-backfill")
+def provenance_backfill(bench_dir: str = "work/bench") -> None:
+    """Log the origin of classifications made before the log existed (Claude, probe, benchmarks)."""
+    from pathlib import Path
+
+    from . import provenance
+
+    typer.echo(provenance.backfill(_conn(Config()), Path(bench_dir)))
 
 
 @app.command()

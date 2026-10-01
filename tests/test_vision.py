@@ -273,6 +273,10 @@ def test_probe_trains_on_ai_labels_and_predicts_confident_objects(tmp_path, monk
     clear = c.execute("SELECT object_id, method FROM depiction WHERE id=?", (unlabeled["clear"],)).fetchone()
     assert tuple(clear) == ("wn:cup.n.01", "probe")
     assert c.execute("SELECT object_id FROM depiction WHERE id=?", (unlabeled["unclear"],)).fetchone()[0] is None
+    # every prediction is logged, also the ones below the threshold
+    logged = c.execute("SELECT subject_id, confidence, model FROM classification WHERE method='probe'").fetchall()
+    assert {r[0] for r in logged} == set(unlabeled.values())
+    assert all(r[1] is not None and "siglip" in r[2] for r in logged)
 
 
 def test_probe_uses_the_largest_style_group_as_representative(tmp_path, monkeypatch):

@@ -9,8 +9,11 @@ installed on runners and imported lazily.
 from __future__ import annotations
 
 import sqlite3
+from datetime import UTC, datetime
+from pathlib import Path
 from typing import Any
 
+from . import provenance
 from .hierarchy.names import OBJECT_LEXNAMES
 
 VIEW_TEXTS = {
@@ -481,6 +484,9 @@ def predict_probe(conn: sqlite3.Connection, model: Any, min_conf: float = 0.9) -
 
     m = np.load(model, allow_pickle=False)
     w, b, classes = m["w"], m["b"], [str(c) for c in m["classes"]]
+    trained = datetime.fromtimestamp(Path(model).stat().st_mtime, UTC).isoformat(timespec="seconds")
+    model_name = f"{provenance.PROBE_MODEL} ({len(classes)} classes)"
+    run = f"{Path(model).name} trained {trained}"
     rows = conn.execute(
         # SQLite takes the bare columns from the row holding MAX(g.size)
         """SELECT d.id, g.representative_id, MAX(g.size) FROM depiction d JOIN style_group g ON g.depiction_id = d.id
@@ -494,13 +500,32 @@ def predict_probe(conn: sqlite3.Connection, model: Any, min_conf: float = 0.9) -
             continue
         p = _proba(x, w, b)
         dep = {r[1]: r[0] for r in part}
+        logged = []
         for i, pid in enumerate(ids):
             k = int(p[i].argmax())
-            if p[i, k] >= min_conf:
+            applied = bool(p[i, k] >= min_conf)
+            if applied:
                 conn.execute(
                     "UPDATE depiction SET object_id=?, method='probe', description=? WHERE id=? AND object_id IS NULL",
                     (classes[k], f"probe p={p[i, k]:.2f}", dep[pid]),
                 )
                 counts["set"] += 1
+            top = [(classes[j], round(float(p[i, j]), 3)) for j in np.argsort(-p[i])[:3]]
+            logged.append(
+                dict(
+                    pictogram_id=pid,
+                    subject="depiction",
+                    subject_id=dep[pid],
+                    field="object",
+                    value=classes[k],
+                    confidence=round(float(p[i, k]), 4),
+                    method="probe",
+                    model=model_name,
+                    input="image",
+                    run=run,
+                    context={"applied": applied, "min_conf": min_conf, "top3": top},
+                )
+            )
+        provenance.record(conn, logged)
         conn.commit()
     return counts

@@ -1,3 +1,5 @@
+import json
+
 from handdown import ai, db
 from handdown.config import Config
 
@@ -27,6 +29,8 @@ def test_ai_composition_overwrites_rule_rows(tmp_path, monkeypatch):
     assert tuple(conn.execute("SELECT method, conflict FROM composition WHERE pictogram_id=1").fetchone()) == ("ai", 0)
     assert [r[0] for r in conn.execute("SELECT role FROM composition_part ORDER BY part_no")] == ["base", "negation"]
     assert conn.execute("SELECT relation FROM composition_relation").fetchone()[0] == "crossing"
+    row = conn.execute("SELECT field, value, method, model, run, raw FROM classification").fetchone()
+    assert tuple(row[:5]) == ("composition", "generic", "ai", "sonnet", "x") and json.loads(row[5])["parts"][1]["label"] == "slash"
 
 
 def test_ai_composition_skips_malformed_answers(tmp_path, monkeypatch):

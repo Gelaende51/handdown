@@ -257,3 +257,6 @@ def test_vlm_apply_sets_objects_only_where_missing(tmp_path, monkeypatch):
     assert rows[2][:2] == ("wn:arrow.n.01", "vlm")
     assert rows[3][:2] == ("wn:key.n.01", "ai") and rows[4][0] is None
     assert c.execute("SELECT 1 FROM concept WHERE id='wn:arrow.n.01'").fetchone()
+    # every answer is logged, applied or not
+    logged = {r[0]: (r[1], json.loads(r[2])["applied"]) for r in c.execute("SELECT subject_id, raw, context FROM classification WHERE method='vlm'")}
+    assert logged == {1: ("coffee cup icon", True), 2: ("down arrow in circle", True), 3: ("house", False)}

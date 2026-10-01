@@ -34,7 +34,7 @@ from typing import Any
 import numpy as np
 from PIL import Image, ImageDraw
 
-from . import db
+from . import db, provenance
 from .config import Config
 from .metrics import render
 
@@ -322,6 +322,24 @@ def run_composition(conn: sqlite3.Connection, workdir: Path, limit: int = 48, sa
             if not isinstance(parts, list) or not all(isinstance(p, dict) for p in parts) or not parts:
                 continue
             pid = r["pictogram_id"]
+            provenance.record(
+                conn,
+                [
+                    dict(
+                        pictogram_id=pid,
+                        subject="pictogram",
+                        subject_id=pid,
+                        field="composition",
+                        value=a.get("kind"),
+                        raw=json.dumps(a, ensure_ascii=False),
+                        method="ai",
+                        model=MODEL,
+                        input="image",
+                        run=rid,
+                        context={"names_shown": True},
+                    )
+                ],
+            )
             conn.execute("DELETE FROM composition_part WHERE pictogram_id=?", (pid,))
             conn.execute("DELETE FROM composition_relation WHERE pictogram_id=?", (pid,))
             conn.execute(
@@ -370,7 +388,7 @@ def run_hierarchy(
     cfg = Config()
     seen: set[str] = {r[0] for r in conn.execute("SELECT id FROM concept")}
     rows = conn.execute(
-        """SELECT g.id AS gid, g.depiction_id, p.norm_path FROM style_group g
+        """SELECT g.id AS gid, g.depiction_id, g.representative_id AS rid, p.norm_path FROM style_group g
            JOIN depiction d ON d.id = g.depiction_id JOIN pictogram p ON p.id = g.representative_id
            WHERE g.assessed_at IS NULL ORDER BY d.source_count DESC, g.source_count DESC LIMIT ?""",
         (limit,),
@@ -398,14 +416,24 @@ def run_hierarchy(
             except (RuntimeError, ValueError, OSError, subprocess.TimeoutExpired, json.JSONDecodeError) as e:
                 log(f"  batch {n}: {e}")
                 continue
-            _log_run(conn, "hierarchy", result)
+            run_id = _log_run(conn, "hierarchy", result)
             cost += result.get("total_cost_usd") or 0
             for i, r in enumerate(batch, 1):
                 conn.execute("UPDATE style_group SET assessed_at=? WHERE id=?", (now, r["gid"]))
                 a = answer.get(str(i))
                 if not isinstance(a, dict) or not isinstance(a.get("object"), str) or not split_name(a["object"]):
                     continue
-                _apply_hierarchy_answer(conn, r, a, seen)
+                applied = _apply_hierarchy_answer(conn, r, a, seen)
+                base = dict(pictogram_id=r["rid"], subject="style_group", subject_id=r["gid"], method="ai", model=MODEL, input="image", run=run_id)
+                provenance.record(
+                    conn,
+                    [
+                        {**base, "field": "object", "value": applied["object"], "raw": a["object"]},
+                        {**base, "field": "view", "value": applied["view"], "raw": a.get("view") if isinstance(a.get("view"), str) else None},
+                        {**base, "field": "varieties", "value": applied["varieties"], "raw": json.dumps(a.get("features"), ensure_ascii=False)},
+                    ]
+                    + [{**base, "field": "meaning", "value": cid, "raw": raw} for cid, raw in applied["meanings"]],
+                )
                 done += 1
             conn.commit()
             if n % 10 == 0 or n == len(batches):
@@ -413,7 +441,8 @@ def run_hierarchy(
     return {"assessed": done, "cost_usd": round(cost, 4), "quota_hit": quota_hit}
 
 
-def _apply_hierarchy_answer(conn: sqlite3.Connection, r: sqlite3.Row, a: dict[str, Any], seen: set[str]) -> None:
+def _apply_hierarchy_answer(conn: sqlite3.Connection, r: sqlite3.Row, a: dict[str, Any], seen: set[str]) -> dict[str, Any]:
+    """Apply one answer; returns the values as resolved (for the provenance log)."""
     from .concepts import _ensure, resolve, split_name
     from .hierarchy.names import VIEWS, object_head
 
@@ -441,8 +470,11 @@ def _apply_hierarchy_answer(conn: sqlite3.Connection, r: sqlite3.Row, a: dict[st
             (obj_c.id, new_view, new_var, a["object"], target),
         )
     meanings = a.get("meanings") if isinstance(a.get("meanings"), list) else []
+    resolved = []
     for m in meanings[:3]:
         if isinstance(m, str) and split_name(m):
             mc = resolve(split_name(m))
             _ensure(conn, mc, seen)
             conn.execute("INSERT OR IGNORE INTO meaning_link VALUES (?,?,?,?)", (target, mc.id, "ai", 0.7))
+            resolved.append((mc.id, m))
+    return {"object": obj_c.id, "view": new_view, "varieties": new_var, "meanings": resolved}

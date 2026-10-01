@@ -18,7 +18,7 @@ from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
-from . import db
+from . import db, provenance
 
 # Runners re-harvest whole sources; fonts and Commons are too slow for that.
 ADAPTERS = ("iconify", "npm-svg", "git-svg")
@@ -500,9 +500,10 @@ def present_only(conn: sqlite3.Connection, items: list[dict[str, Any]]) -> list[
     return [i for i in items if i["source_id"] in have]
 
 
-def vlm_apply(conn: sqlite3.Connection, answers: list[dict[str, Any]]) -> dict[str, int]:
+def vlm_apply(conn: sqlite3.Connection, answers: list[dict[str, Any]], run: str | None = None) -> dict[str, int]:
     """Set the object of depictions that have none from a vision model's answer
-    (its head noun, resolved like pictogram names), as method 'vlm'."""
+    (its head noun, resolved like pictogram names), as method 'vlm'. Every
+    answer is logged with its origin, applied or not."""
     from .concepts import _ensure, resolve
     from .hierarchy.names import object_head
 
@@ -515,12 +516,33 @@ def vlm_apply(conn: sqlite3.Connection, answers: list[dict[str, Any]]) -> dict[s
         words = " ".join(w for w in re.findall(r"[a-z0-9]+", a["answer"].lower()) if w not in FILLER)
         tokens, _ = object_head(words)
         concept = resolve(tokens) if tokens else None
-        if concept is None or not concept.id.startswith("wn:"):
-            continue
-        _ensure(conn, concept, seen)
-        counts["set"] += conn.execute(
-            "UPDATE depiction SET object_id=?, method='vlm', description=? WHERE id=? AND object_id IS NULL",
-            (concept.id, f"vlm {a['model']}: {a['answer']}", a["key"]),
-        ).rowcount
+        value = concept.id if concept is not None and concept.id.startswith("wn:") else None
+        applied = 0
+        if value:
+            _ensure(conn, concept, seen)
+            applied = conn.execute(
+                "UPDATE depiction SET object_id=?, method='vlm', description=? WHERE id=? AND object_id IS NULL",
+                (value, f"vlm {a['model']}: {a['answer']}", a["key"]),
+            ).rowcount
+            counts["set"] += applied
+        timings = {k: v for k, v in a.items() if k not in ("key", "model", "answer", "run")}
+        provenance.record(
+            conn,
+            [
+                dict(
+                    pictogram_id=provenance._representative(conn, a["key"]),
+                    subject="depiction",
+                    subject_id=a["key"],
+                    field="object",
+                    value=value,
+                    raw=a["answer"],
+                    method="vlm",
+                    model=a["model"],
+                    input="image",
+                    run=a.get("run") or run,
+                    context={"applied": bool(applied), **timings},
+                )
+            ],
+        )
     conn.commit()
     return counts
