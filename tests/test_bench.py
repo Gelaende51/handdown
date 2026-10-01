@@ -190,3 +190,28 @@ def test_backend_options_and_timings_reach_the_answers(tmp_path, monkeypatch):
     rows = [json.loads(line) for line in out.read_text().splitlines()]
     assert [r["key"] for r in rows] == [11, 12]  # the first keys, so variants answer the same images
     assert rows[0]["answer"] == "square" and rows[0]["prompt_tokens"] == 70
+
+
+def test_llamacpp_backend_caps_image_tokens_and_reads_timings():
+    import httpx
+    from PIL import Image
+
+    ask, batch, size = bench.backend("llamacpp:Qwen/Qwen3-VL-2B-Instruct-GGUF@tokens=64,threads=4")
+    assert (batch, size) == (1, 256)
+    args = ask.command()
+    assert args[args.index("-hf") + 1] == "Qwen/Qwen3-VL-2B-Instruct-GGUF"
+    assert args[args.index("--image-min-tokens") + 1] == "64" and args[args.index("--image-max-tokens") + 1] == "64"
+    assert args[args.index("-t") + 1] == "4"
+
+    seen = []
+
+    def handler(request):
+        seen.append(json.loads(request.content))
+        body = {"choices": [{"message": {"content": "A coffee cup."}}], "usage": {"prompt_tokens": 90}, "timings": {"prompt_ms": 1500.0, "predicted_ms": 200.0}}
+        return httpx.Response(200, json=body)
+
+    ask.client = httpx.Client(base_url="http://test", transport=httpx.MockTransport(handler))
+    ask.started = True  # no server in tests
+    answers = ask([Image.new("RGB", (8, 8), "white")])
+    assert answers == [("coffee cup", {"prompt_eval": 1.5, "eval": 0.2, "prompt_tokens": 90})]
+    assert seen[0]["temperature"] == 0 and seen[0]["messages"][0]["content"][1]["image_url"]["url"].startswith("data:image/png;base64,")

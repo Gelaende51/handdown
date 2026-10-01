@@ -175,6 +175,62 @@ class Ollama:
         return out
 
 
+class LlamaServer:
+    """A GGUF vision model served by llama.cpp's ``llama-server`` (started on the
+    first call), with the image capped at ``tokens`` tokens: Ollama scales every
+    image to ~1,000 tokens, which is the whole cost on a CPU runner."""
+
+    def __init__(self, repo: str, tokens: int | None = None, threads: int | None = None, port: int = 8081, binary: str = "llama-server"):
+        import httpx
+
+        self.repo, self.tokens, self.threads, self.port, self.binary = repo, tokens, threads, port, binary
+        self.client = httpx.Client(base_url=f"http://127.0.0.1:{port}", timeout=900)
+        self.started = False
+
+    def command(self) -> list[str]:
+        args = [self.binary, "-hf", self.repo, "--port", str(self.port), "-c", "4096"]
+        if self.tokens:
+            args += ["--image-min-tokens", str(self.tokens), "--image-max-tokens", str(self.tokens)]
+        if self.threads:
+            args += ["-t", str(self.threads)]
+        return args
+
+    def _start(self, wait: int = 3600) -> None:
+        import atexit
+        import subprocess
+
+        import httpx
+
+        proc = subprocess.Popen(self.command())
+        atexit.register(proc.terminate)
+        deadline = time.monotonic() + wait  # the first start downloads the model
+        while time.monotonic() < deadline:
+            if proc.poll() is not None:
+                raise RuntimeError(f"llama-server exited with {proc.returncode}")
+            try:
+                if self.client.get("/health").status_code == 200:
+                    self.started = True
+                    return
+            except httpx.TransportError:  # not listening yet
+                pass
+            time.sleep(5)
+        raise RuntimeError("llama-server did not become ready")
+
+    def __call__(self, images: list[Any]) -> list[tuple[str, dict[str, Any]]]:
+        if not self.started:
+            self._start()
+        out = []
+        for image in images:
+            content = [{"type": "text", "text": PROMPT}, {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{_png(image)}"}}]
+            r = self.client.post("/v1/chat/completions", json={"messages": [{"role": "user", "content": content}], "temperature": 0, "max_tokens": 32})
+            r.raise_for_status()
+            j = r.json()
+            t = j.get("timings", {})
+            extra = {"prompt_eval": round(t.get("prompt_ms", 0) / 1000, 2), "eval": round(t.get("predicted_ms", 0) / 1000, 2)}
+            out.append((clean(j["choices"][0]["message"]["content"]), {**extra, "prompt_tokens": j.get("usage", {}).get("prompt_tokens")}))
+        return out
+
+
 class OmniParserCaption:
     """OmniParser v2's icon caption model (Florence-2 fine-tuned on UI icons),
     loaded the way OmniParser loads it."""
@@ -204,14 +260,19 @@ class OmniParserCaption:
 
 
 def backend(spec: str) -> tuple[Ask, int, int]:
-    """(ask, batch, render size) for 'ollama:<tag>' or 'florence:omniparser';
-    '@size=128,threads=4' after an Ollama tag sets render size and threads."""
+    """(ask, batch, render size) for 'ollama:<tag>', 'llamacpp:<hf repo>[:quant]'
+    or 'florence:omniparser'; options after '@': size (render px), threads,
+    tokens (llama.cpp image tokens), e.g. '@size=128,threads=4,tokens=64'."""
     kind, _, rest = spec.partition(":")
     name, _, opts = rest.partition("@")
     options = dict(kv.split("=", 1) for kv in opts.split(",") if kv)
     if kind == "ollama":
         threads = int(options["threads"]) if "threads" in options else None
         return Ollama(name, threads=threads), 1, int(options.get("size", 256))
+    if kind == "llamacpp":
+        tokens = int(options["tokens"]) if "tokens" in options else None
+        threads = int(options["threads"]) if "threads" in options else None
+        return LlamaServer(name, tokens=tokens, threads=threads), 1, int(options.get("size", 256))
     if kind == "florence" and name == "omniparser":
         return OmniParserCaption(), 8, 64  # OmniParser captions 64 px crops
     raise ValueError(f"unknown model spec {spec!r}")
