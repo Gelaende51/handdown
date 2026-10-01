@@ -52,6 +52,11 @@ jobs:
             ollama:*)
               curl -fsSL https://ollama.com/install.sh | sh
               for i in $(seq 30); do curl -sf http://127.0.0.1:11434/api/version && break; sleep 2; done
+              # the install script's systemd service does not always come up: serve it ourselves
+              if ! curl -sf http://127.0.0.1:11434/api/version; then
+                nohup ollama serve > ollama.log 2>&1 &
+                for i in $(seq 30); do curl -sf http://127.0.0.1:11434/api/version && break; sleep 2; done
+              fi
               for i in 1 2 3; do
                 tag="${MODEL#ollama:}"
                 out=$(ollama pull "${tag%%@*}" 2>&1) && break
