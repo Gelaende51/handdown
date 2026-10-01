@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       models:
-        description: "Space-separated model specs (ollama:<tag>[@size=128,threads=4] | florence:omniparser)"
+        description: "Space-separated model specs (ollama:<tag> | llamacpp:<hf repo> | florence:omniparser), options after @: size, threads, tokens"
         default: "ollama:qwen2.5vl:3b ollama:qwen3-vl:4b-instruct ollama:gemma3:4b ollama:moondream florence:omniparser"
       limit:
         description: "Only the first N sample pictograms (speed tests); empty for all 500"
@@ -63,6 +63,10 @@ jobs:
                 echo "::warning title=ollama pull ${i}::$(echo "$out" | tail -2 | tr '\n' ' ')"
                 [ "$i" = 3 ] && exit 1; sleep 20
               done ;;
+            llamacpp:*)
+              # pinned llama.cpp CPU build; the backend starts llama-server with capped image tokens
+              curl -fsSL -o llama.tar.gz https://github.com/ggml-org/llama.cpp/releases/download/b11319/llama-b11319-bin-ubuntu-x64.tar.gz
+              tar xzf llama.tar.gz && echo "$PWD/llama-b11319" >> "$GITHUB_PATH" ;;
             florence:*)
               # Florence-2's remote code breaks on newer transformers
               # torchvision from the same CPU index as torch: timm would pull the CUDA build
