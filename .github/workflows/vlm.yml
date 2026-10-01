@@ -1,0 +1,107 @@
+# Long-tail labelling: a vision model names the object of every depiction
+# without one (job lists from `handdown vlm-jobs`). Each runner re-harvests its
+# share of the sources and processes only the listed pictograms; pictograms
+# never leave the runner, only the answers (text) are committed to
+# work/vlm/answers/<adapter>-<run id>.jsonl. Apply locally with:
+#   uv run handdown vlm-apply work/vlm/answers/*.jsonl
+name: vlm
+on:
+  workflow_dispatch:
+    inputs:
+      adapter:
+        description: "Adapter: iconify | git-svg | npm-svg | font | commons"
+        required: true
+      model:
+        description: "Model spec, e.g. llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=64,threads=4"
+        required: true
+      shards:
+        description: "Number of runners"
+        default: "20"
+
+permissions:
+  contents: read
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.m.outputs.matrix }}
+    steps:
+      - id: m
+        run: echo "matrix=$(python3 -c 'import json,sys; print(json.dumps(list(range(int(sys.argv[1])))))' '${{ inputs.shards }}')" >> "$GITHUB_OUTPUT"
+
+  label:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        shard: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    env:
+      MODEL: ${{ inputs.model }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --frozen
+      - name: Model runtime
+        run: |
+          case "$MODEL" in
+            llamacpp:*)
+              curl -fsSL -o llama.tar.gz https://github.com/ggml-org/llama.cpp/releases/download/b11319/llama-b11319-bin-ubuntu-x64.tar.gz
+              tar xzf llama.tar.gz && echo "$PWD/llama-b11319" >> "$GITHUB_PATH" ;;
+            ollama:*)
+              curl -fsSL https://ollama.com/install.sh | sh
+              for i in $(seq 30); do curl -sf http://127.0.0.1:11434/api/version && break; sleep 2; done
+              if ! curl -sf http://127.0.0.1:11434/api/version; then
+                nohup ollama serve > ollama.log 2>&1 &
+                for i in $(seq 30); do curl -sf http://127.0.0.1:11434/api/version && break; sleep 2; done
+              fi
+              tag="${MODEL#ollama:}"
+              ollama pull "${tag%%@*}" ;;
+          esac
+      # model weights only (no pictograms): spares Hugging Face 20 downloads per run
+      - if: startsWith(inputs.model, 'llamacpp:')
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/llama.cpp
+          key: llamacpp-${{ inputs.model }}
+      - run: uv run handdown import-sources "work/vlm/sources-${{ inputs.adapter }}.jsonl" --shard "${{ matrix.shard }}/${{ inputs.shards }}"
+      - run: uv run handdown harvest "${{ inputs.adapter }}" --status accepted --no-registry
+      - run: uv run handdown bench-prepare "work/vlm/items-${{ inputs.adapter }}.jsonl"
+      - run: uv run handdown process --workers 4
+      - run: uv run handdown bench-run "work/vlm/items-${{ inputs.adapter }}.jsonl" --model "$MODEL" --out answers.jsonl --present-only
+      - if: always()
+        run: uv run handdown errors --annotate
+      # Only the answers leave the runner, never the pictograms
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vlm-${{ matrix.shard }}
+          path: answers.jsonl
+          if-no-files-found: warn
+          retention-days: 7
+
+  collect:
+    needs: label
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: vlm-*
+          path: answers
+      - name: Commit the answers
+        run: |
+          mkdir -p work/vlm/answers
+          cat answers/*/answers.jsonl > "work/vlm/answers/${{ inputs.adapter }}-${{ github.run_id }}.jsonl" || true
+          git config user.name "Vault51"
+          git config user.email "Gelaende51@users.noreply.github.com"
+          git add work/vlm/answers
+          if git diff --cached --quiet; then echo "no answers"; exit 0; fi
+          git commit -m "VLM: answers for ${{ inputs.adapter }} (run ${{ github.run_id }})"
+          git pull --rebase && git push
