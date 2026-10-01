@@ -1,0 +1,488 @@
+{"key": 251778, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "y shape", "seconds": 93.08, "prompt_eval": 42.85, "eval": 0.19, "prompt_tokens": 635}
+{"key": 280982, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "folder", "seconds": 42.74, "prompt_eval": 42.6, "eval": 0.09, "prompt_tokens": 635}
+{"key": 280986, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "document scan", "seconds": 42.85, "prompt_eval": 42.62, "eval": 0.19, "prompt_tokens": 635}
+{"key": 302608, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "left arrow", "seconds": 42.88, "prompt_eval": 42.65, "eval": 0.19, "prompt_tokens": 635}
+{"key": 303183, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "rectangle", "seconds": 42.7, "prompt_eval": 42.57, "eval": 0.1, "prompt_tokens": 635}
+{"key": 314260, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "shopping cart", "seconds": 42.9, "prompt_eval": 42.66, "eval": 0.19, "prompt_tokens": 635}
+{"key": 316203, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "open book", "seconds": 42.85, "prompt_eval": 42.62, "eval": 0.19, "prompt_tokens": 635}
+{"key": 331096, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "check mark", "seconds": 42.79, "prompt_eval": 42.57, "eval": 0.19, "prompt_tokens": 635}
+{"key": 338484, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "letter c", "seconds": 42.81, "prompt_eval": 42.58, "eval": 0.19, "prompt_tokens": 635}
+{"key": 339411, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "cloud upload", "seconds": 42.81, "prompt_eval": 42.58, "eval": 0.19, "prompt_tokens": 635}
+{"key": 358214, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "water drop", "seconds": 42.85, "prompt_eval": 42.61, "eval": 0.19, "prompt_tokens": 635}
+{"key": 365318, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "handshake", "seconds": 42.81, "prompt_eval": 42.57, "eval": 0.19, "prompt_tokens": 635}
+{"key": 370249, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "document", "seconds": 42.73, "prompt_eval": 42.6, "eval": 0.1, "prompt_tokens": 635}
+{"key": 388650, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "hexagon", "seconds": 42.85, "prompt_eval": 42.61, "eval": 0.19, "prompt_tokens": 635}
+{"key": 394341, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "building", "seconds": 42.75, "prompt_eval": 42.61, "eval": 0.1, "prompt_tokens": 635}
+{"key": 395810, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "letter e", "seconds": 42.79, "prompt_eval": 42.56, "eval": 0.19, "prompt_tokens": 635}
+{"key": 403949, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "instagram logo", "seconds": 42.79, "prompt_eval": 42.56, "eval": 0.18, "prompt_tokens": 635}
+{"key": 405977, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "bib", "seconds": 42.78, "prompt_eval": 42.65, "eval": 0.1, "prompt_tokens": 635}
+{"key": 428891, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "microphone", "seconds": 42.77, "prompt_eval": 42.55, "eval": 0.18, "prompt_tokens": 635}
+{"key": 453952, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "phone call", "seconds": 42.73, "prompt_eval": 42.5, "eval": 0.19, "prompt_tokens": 635}
+{"key": 454056, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "no smoking", "seconds": 42.9, "prompt_eval": 42.66, "eval": 0.19, "prompt_tokens": 635}
+{"key": 466611, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "double arrow", "seconds": 42.77, "prompt_eval": 42.53, "eval": 0.19, "prompt_tokens": 635}
+{"key": 487308, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "star with line", "seconds": 42.82, "prompt_eval": 42.5, "eval": 0.28, "prompt_tokens": 635}
+{"key": 503345, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "arrow", "seconds": 42.66, "prompt_eval": 42.53, "eval": 0.09, "prompt_tokens": 635}
+{"key": 515992, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "phone receiver", "seconds": 42.71, "prompt_eval": 42.48, "eval": 0.19, "prompt_tokens": 635}
+{"key": 521482, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "wine glass", "seconds": 42.69, "prompt_eval": 42.47, "eval": 0.19, "prompt_tokens": 635}
+{"key": 526373, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "question mark", "seconds": 42.72, "prompt_eval": 42.49, "eval": 0.19, "prompt_tokens": 635}
+{"key": 526554, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "warning sign", "seconds": 42.7, "prompt_eval": 42.46, "eval": 0.19, "prompt_tokens": 635}
+{"key": 526803, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "stool", "seconds": 42.71, "prompt_eval": 42.48, "eval": 0.19, "prompt_tokens": 635}
+{"key": 528177, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "play button", "seconds": 42.69, "prompt_eval": 42.46, "eval": 0.19, "prompt_tokens": 635}
+{"key": 528939, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "bed", "seconds": 42.64, "prompt_eval": 42.51, "eval": 0.1, "prompt_tokens": 635}
+{"key": 530126, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "briefcase", "seconds": 42.77, "prompt_eval": 42.54, "eval": 0.19, "prompt_tokens": 635}
+{"key": 530430, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "speaker", "seconds": 42.73, "prompt_eval": 42.55, "eval": 0.1, "prompt_tokens": 635}
+{"key": 530658, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "power button", "seconds": 42.89, "prompt_eval": 42.61, "eval": 0.2, "prompt_tokens": 635}
+{"key": 530825, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "calendar", "seconds": 42.8, "prompt_eval": 42.64, "eval": 0.1, "prompt_tokens": 635}
+{"key": 533386, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "refresh symbol", "seconds": 43.0, "prompt_eval": 42.73, "eval": 0.2, "prompt_tokens": 635}
+{"key": 534801, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "loading circle", "seconds": 42.81, "prompt_eval": 42.54, "eval": 0.2, "prompt_tokens": 635}
+{"key": 535291, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "computer monitor", "seconds": 42.81, "prompt_eval": 42.56, "eval": 0.18, "prompt_tokens": 635}
+{"key": 536114, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "book open", "seconds": 42.84, "prompt_eval": 42.58, "eval": 0.19, "prompt_tokens": 635}
+{"key": 536468, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "water drop", "seconds": 42.79, "prompt_eval": 42.53, "eval": 0.19, "prompt_tokens": 635}
+{"key": 536729, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "pen", "seconds": 42.77, "prompt_eval": 42.62, "eval": 0.1, "prompt_tokens": 635}
+{"key": 537468, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "smiling cloud", "seconds": 42.89, "prompt_eval": 42.54, "eval": 0.28, "prompt_tokens": 635}
+{"key": 538538, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "teardrop", "seconds": 42.84, "prompt_eval": 42.51, "eval": 0.28, "prompt_tokens": 635}
+{"key": 541206, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "heart", "seconds": 42.69, "prompt_eval": 42.52, "eval": 0.1, "prompt_tokens": 635}
+{"key": 541510, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "clockwise arrow", "seconds": 42.85, "prompt_eval": 42.53, "eval": 0.28, "prompt_tokens": 635}
+{"key": 542261, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "photo frame", "seconds": 42.79, "prompt_eval": 42.54, "eval": 0.19, "prompt_tokens": 635}
+{"key": 544326, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "thumbs up", "seconds": 42.72, "prompt_eval": 42.49, "eval": 0.19, "prompt_tokens": 635}
+{"key": 545729, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "menu", "seconds": 42.72, "prompt_eval": 42.59, "eval": 0.1, "prompt_tokens": 635}
+{"key": 545903, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "train station", "seconds": 42.74, "prompt_eval": 42.51, "eval": 0.19, "prompt_tokens": 635}
+{"key": 546262, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "exclamation mark", "seconds": 42.84, "prompt_eval": 42.5, "eval": 0.28, "prompt_tokens": 635}
+{"key": 546541, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "motorcycle", "seconds": 42.84, "prompt_eval": 42.6, "eval": 0.19, "prompt_tokens": 635}
+{"key": 547297, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "notebook page", "seconds": 42.86, "prompt_eval": 42.54, "eval": 0.28, "prompt_tokens": 635}
+{"key": 549525, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "speech bubble", "seconds": 42.77, "prompt_eval": 42.52, "eval": 0.19, "prompt_tokens": 635}
+{"key": 550114, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "trash bin", "seconds": 42.87, "prompt_eval": 42.59, "eval": 0.2, "prompt_tokens": 635}
+{"key": 550321, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "circle", "seconds": 42.73, "prompt_eval": 42.57, "eval": 0.1, "prompt_tokens": 635}
+{"key": 551140, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "quotation marks", "seconds": 43.04, "prompt_eval": 42.64, "eval": 0.32, "prompt_tokens": 635}
+{"key": 551334, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "archway", "seconds": 43.0, "prompt_eval": 42.71, "eval": 0.21, "prompt_tokens": 635}
+{"key": 552300, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "award star", "seconds": 42.89, "prompt_eval": 42.62, "eval": 0.19, "prompt_tokens": 635}
+{"key": 552749, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "arrow", "seconds": 42.81, "prompt_eval": 42.65, "eval": 0.1, "prompt_tokens": 635}
+{"key": 553743, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "paper plane", "seconds": 42.88, "prompt_eval": 42.61, "eval": 0.19, "prompt_tokens": 635}
+{"key": 553955, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "share button", "seconds": 42.82, "prompt_eval": 42.55, "eval": 0.2, "prompt_tokens": 635}
+{"key": 553961, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "arrow", "seconds": 42.8, "prompt_eval": 42.63, "eval": 0.1, "prompt_tokens": 635}
+{"key": 554109, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "ship", "seconds": 42.81, "prompt_eval": 42.65, "eval": 0.1, "prompt_tokens": 635}
+{"key": 554220, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "shopping cart", "seconds": 42.8, "prompt_eval": 42.55, "eval": 0.19, "prompt_tokens": 635}
+{"key": 556321, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "square", "seconds": 42.66, "prompt_eval": 42.51, "eval": 0.09, "prompt_tokens": 635}
+{"key": 559885, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "lock", "seconds": 42.72, "prompt_eval": 42.55, "eval": 0.1, "prompt_tokens": 635}
+{"key": 560965, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "coffee cup", "seconds": 42.85, "prompt_eval": 42.58, "eval": 0.19, "prompt_tokens": 635}
+{"key": 561468, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "windows logo", "seconds": 42.79, "prompt_eval": 42.53, "eval": 0.19, "prompt_tokens": 635}
+{"key": 562014, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "laptop computer", "seconds": 42.89, "prompt_eval": 42.55, "eval": 0.28, "prompt_tokens": 635}
+{"key": 562039, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "trash bin", "seconds": 42.82, "prompt_eval": 42.57, "eval": 0.19, "prompt_tokens": 635}
+{"key": 562073, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "sun", "seconds": 42.7, "prompt_eval": 42.54, "eval": 0.09, "prompt_tokens": 635}
+{"key": 562095, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "bookshelf", "seconds": 42.76, "prompt_eval": 42.53, "eval": 0.19, "prompt_tokens": 635}
+{"key": 562122, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "folder", "seconds": 42.69, "prompt_eval": 42.55, "eval": 0.09, "prompt_tokens": 635}
+{"key": 562123, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "gear", "seconds": 42.72, "prompt_eval": 42.55, "eval": 0.1, "prompt_tokens": 635}
+{"key": 562124, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "snowflake", "seconds": 42.87, "prompt_eval": 42.61, "eval": 0.19, "prompt_tokens": 635}
+{"key": 562126, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "ladybug", "seconds": 42.95, "prompt_eval": 42.6, "eval": 0.28, "prompt_tokens": 635}
+{"key": 562128, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "robot arm", "seconds": 42.89, "prompt_eval": 42.65, "eval": 0.19, "prompt_tokens": 635}
+{"key": 562150, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "wifi symbol", "seconds": 42.79, "prompt_eval": 42.56, "eval": 0.19, "prompt_tokens": 635}
+{"key": 562153, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "wifi signal", "seconds": 42.88, "prompt_eval": 42.51, "eval": 0.19, "prompt_tokens": 635}
+{"key": 562194, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "anchor", "seconds": 42.66, "prompt_eval": 42.5, "eval": 0.1, "prompt_tokens": 635}
+{"key": 562221, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "fire flame", "seconds": 42.8, "prompt_eval": 42.55, "eval": 0.19, "prompt_tokens": 635}
+{"key": 562276, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "code brackets", "seconds": 42.86, "prompt_eval": 42.52, "eval": 0.19, "prompt_tokens": 635}
+{"key": 562301, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "envelope", "seconds": 42.78, "prompt_eval": 42.53, "eval": 0.2, "prompt_tokens": 635}
+{"key": 562316, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "thumbs up", "seconds": 43.21, "prompt_eval": 42.95, "eval": 0.19, "prompt_tokens": 635}
+{"key": 562329, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "speech bubble", "seconds": 42.77, "prompt_eval": 42.54, "eval": 0.18, "prompt_tokens": 635}
+{"key": 562390, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "microphone", "seconds": 42.82, "prompt_eval": 42.48, "eval": 0.18, "prompt_tokens": 635}
+{"key": 562435, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "printer", "seconds": 42.78, "prompt_eval": 42.63, "eval": 0.09, "prompt_tokens": 635}
+{"key": 562455, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "cat face", "seconds": 42.71, "prompt_eval": 42.47, "eval": 0.19, "prompt_tokens": 635}
+{"key": 562456, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "document stack", "seconds": 42.78, "prompt_eval": 42.54, "eval": 0.19, "prompt_tokens": 635}
+{"key": 562457, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "document", "seconds": 42.77, "prompt_eval": 42.6, "eval": 0.1, "prompt_tokens": 635}
+{"key": 562671, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "camera lens", "seconds": 42.79, "prompt_eval": 42.53, "eval": 0.18, "prompt_tokens": 635}
+{"key": 562717, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "television", "seconds": 42.96, "prompt_eval": 42.68, "eval": 0.19, "prompt_tokens": 635}
+{"key": 562726, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "graduation cap", "seconds": 42.83, "prompt_eval": 42.51, "eval": 0.28, "prompt_tokens": 635}
+{"key": 562805, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "right arrow", "seconds": 42.73, "prompt_eval": 42.5, "eval": 0.18, "prompt_tokens": 635}
+{"key": 562832, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "cross", "seconds": 42.65, "prompt_eval": 42.51, "eval": 0.09, "prompt_tokens": 635}
+{"key": 562852, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "handshake", "seconds": 42.75, "prompt_eval": 42.53, "eval": 0.18, "prompt_tokens": 635}
+{"key": 562883, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "document", "seconds": 42.64, "prompt_eval": 42.51, "eval": 0.1, "prompt_tokens": 635}
+{"key": 562884, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "coffee cup", "seconds": 42.73, "prompt_eval": 42.5, "eval": 0.18, "prompt_tokens": 635}
+{"key": 562911, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "thumbs up", "seconds": 42.71, "prompt_eval": 42.5, "eval": 0.18, "prompt_tokens": 635}
+{"key": 562917, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "mute", "seconds": 42.71, "prompt_eval": 42.57, "eval": 0.09, "prompt_tokens": 635}
+{"key": 562942, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "key", "seconds": 42.63, "prompt_eval": 42.5, "eval": 0.09, "prompt_tokens": 635}
+{"key": 562947, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "newspaper", "seconds": 42.83, "prompt_eval": 42.5, "eval": 0.28, "prompt_tokens": 635}
+{"key": 562954, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "letter e", "seconds": 42.71, "prompt_eval": 42.48, "eval": 0.19, "prompt_tokens": 635}
+{"key": 563057, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "arrow", "seconds": 42.63, "prompt_eval": 42.5, "eval": 0.09, "prompt_tokens": 635}
+{"key": 563149, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "speech bubble", "seconds": 42.75, "prompt_eval": 42.53, "eval": 0.18, "prompt_tokens": 635}
+{"key": 563184, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "motorcycle", "seconds": 42.72, "prompt_eval": 42.5, "eval": 0.18, "prompt_tokens": 635}
+{"key": 563230, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "eye closed", "seconds": 42.73, "prompt_eval": 42.5, "eval": 0.18, "prompt_tokens": 635}
+{"key": 563268, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "tulip", "seconds": 42.82, "prompt_eval": 42.5, "eval": 0.28, "prompt_tokens": 635}
+{"key": 563305, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "check mark", "seconds": 42.81, "prompt_eval": 42.58, "eval": 0.19, "prompt_tokens": 635}
+{"key": 563307, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "chair", "seconds": 42.72, "prompt_eval": 42.57, "eval": 0.1, "prompt_tokens": 635}
+{"key": 563346, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "sailboat", "seconds": 42.87, "prompt_eval": 42.55, "eval": 0.28, "prompt_tokens": 635}
+{"key": 563393, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "plus sign", "seconds": 42.77, "prompt_eval": 42.54, "eval": 0.19, "prompt_tokens": 635}
+{"key": 563491, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "bookshelf", "seconds": 42.77, "prompt_eval": 42.53, "eval": 0.2, "prompt_tokens": 635}
+{"key": 563512, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "phone call", "seconds": 42.78, "prompt_eval": 42.55, "eval": 0.18, "prompt_tokens": 635}
+{"key": 563515, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "arrow circle", "seconds": 42.78, "prompt_eval": 42.55, "eval": 0.19, "prompt_tokens": 635}
+{"key": 563520, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "shop house", "seconds": 42.8, "prompt_eval": 42.57, "eval": 0.19, "prompt_tokens": 635}
+{"key": 563523, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "thumbs down", "seconds": 42.79, "prompt_eval": 42.56, "eval": 0.19, "prompt_tokens": 635}
+{"key": 563689, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "stethoscope", "seconds": 42.89, "prompt_eval": 42.56, "eval": 0.29, "prompt_tokens": 635}
+{"key": 563690, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "stethoscope", "seconds": 42.91, "prompt_eval": 42.58, "eval": 0.28, "prompt_tokens": 635}
+{"key": 563844, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "play button", "seconds": 42.76, "prompt_eval": 42.53, "eval": 0.19, "prompt_tokens": 635}
+{"key": 563850, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "list items", "seconds": 42.81, "prompt_eval": 42.57, "eval": 0.2, "prompt_tokens": 635}
+{"key": 563887, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "letter e", "seconds": 42.79, "prompt_eval": 42.56, "eval": 0.19, "prompt_tokens": 635}
+{"key": 563985, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "cactus plant", "seconds": 42.89, "prompt_eval": 42.56, "eval": 0.28, "prompt_tokens": 635}
+{"key": 564003, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "notebook", "seconds": 42.82, "prompt_eval": 42.55, "eval": 0.19, "prompt_tokens": 635}
+{"key": 564011, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "shopping cart", "seconds": 42.83, "prompt_eval": 42.56, "eval": 0.19, "prompt_tokens": 635}
+{"key": 564016, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "people group", "seconds": 42.84, "prompt_eval": 42.59, "eval": 0.19, "prompt_tokens": 635}
+{"key": 564119, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "letters mec", "seconds": 42.83, "prompt_eval": 42.57, "eval": 0.19, "prompt_tokens": 635}
+{"key": 564126, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "shield", "seconds": 42.73, "prompt_eval": 42.56, "eval": 0.1, "prompt_tokens": 635}
+{"key": 564156, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "cloud upload", "seconds": 42.84, "prompt_eval": 42.59, "eval": 0.19, "prompt_tokens": 635}
+{"key": 564174, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "shopping cart", "seconds": 42.89, "prompt_eval": 42.61, "eval": 0.2, "prompt_tokens": 635}
+{"key": 564191, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "people group", "seconds": 42.82, "prompt_eval": 42.55, "eval": 0.2, "prompt_tokens": 635}
+{"key": 564193, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "microscope", "seconds": 42.95, "prompt_eval": 42.7, "eval": 0.2, "prompt_tokens": 635}
+{"key": 564198, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "no smoke", "seconds": 42.82, "prompt_eval": 42.56, "eval": 0.19, "prompt_tokens": 635}
+{"key": 564261, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "house money", "seconds": 42.82, "prompt_eval": 42.58, "eval": 0.19, "prompt_tokens": 635}
+{"key": 564295, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "train", "seconds": 42.88, "prompt_eval": 42.71, "eval": 0.1, "prompt_tokens": 635}
+{"key": 564302, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "fireworks", "seconds": 42.9, "prompt_eval": 42.66, "eval": 0.2, "prompt_tokens": 635}
+{"key": 577322, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "center balance", "seconds": 42.9, "prompt_eval": 42.65, "eval": 0.2, "prompt_tokens": 635}
+{"key": 577404, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "letter b", "seconds": 42.82, "prompt_eval": 42.57, "eval": 0.2, "prompt_tokens": 635}
+{"key": 577450, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "list", "seconds": 42.71, "prompt_eval": 42.58, "eval": 0.1, "prompt_tokens": 635}
+{"key": 580859, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "letter a", "seconds": 42.79, "prompt_eval": 42.56, "eval": 0.19, "prompt_tokens": 635}
+{"key": 584208, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "chart line", "seconds": 42.78, "prompt_eval": 42.52, "eval": 0.19, "prompt_tokens": 635}
+{"key": 587416, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "up down arrows", "seconds": 42.85, "prompt_eval": 42.51, "eval": 0.28, "prompt_tokens": 635}
+{"key": 588188, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "up arrows", "seconds": 42.77, "prompt_eval": 42.54, "eval": 0.19, "prompt_tokens": 635}
+{"key": 589324, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "headphones", "seconds": 42.83, "prompt_eval": 42.56, "eval": 0.19, "prompt_tokens": 635}
+{"key": 599607, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "bookmark plus", "seconds": 42.77, "prompt_eval": 42.5, "eval": 0.19, "prompt_tokens": 635}
+{"key": 602660, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "window frames", "seconds": 42.79, "prompt_eval": 42.54, "eval": 0.18, "prompt_tokens": 635}
+{"key": 606730, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "coffee cup", "seconds": 42.82, "prompt_eval": 42.56, "eval": 0.19, "prompt_tokens": 635}
+{"key": 608469, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "video camera", "seconds": 42.78, "prompt_eval": 42.51, "eval": 0.19, "prompt_tokens": 635}
+{"key": 608721, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "camera", "seconds": 42.68, "prompt_eval": 42.5, "eval": 0.1, "prompt_tokens": 635}
+{"key": 608848, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "eyes", "seconds": 42.7, "prompt_eval": 42.54, "eval": 0.09, "prompt_tokens": 635}
+{"key": 613113, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "graph paper", "seconds": 42.76, "prompt_eval": 42.5, "eval": 0.18, "prompt_tokens": 635}
+{"key": 620988, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "clipboard arrow", "seconds": 42.8, "prompt_eval": 42.54, "eval": 0.19, "prompt_tokens": 635}
+{"key": 621898, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "cloud checkmark", "seconds": 42.87, "prompt_eval": 42.52, "eval": 0.28, "prompt_tokens": 635}
+{"key": 622242, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "storm cloud", "seconds": 42.76, "prompt_eval": 42.5, "eval": 0.19, "prompt_tokens": 635}
+{"key": 622262, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "lock cloud", "seconds": 42.77, "prompt_eval": 42.51, "eval": 0.19, "prompt_tokens": 635}
+{"key": 622366, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "cloud with rain", "seconds": 42.84, "prompt_eval": 42.49, "eval": 0.28, "prompt_tokens": 635}
+{"key": 625102, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "addition sign", "seconds": 42.84, "prompt_eval": 42.5, "eval": 0.28, "prompt_tokens": 635}
+{"key": 626598, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "scissors", "seconds": 42.76, "prompt_eval": 42.5, "eval": 0.18, "prompt_tokens": 635}
+{"key": 628407, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "credit card", "seconds": 42.71, "prompt_eval": 42.46, "eval": 0.19, "prompt_tokens": 635}
+{"key": 633627, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "table lamp", "seconds": 42.8, "prompt_eval": 42.53, "eval": 0.2, "prompt_tokens": 635}
+{"key": 634883, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "exclamation mark", "seconds": 42.91, "prompt_eval": 42.58, "eval": 0.28, "prompt_tokens": 635}
+{"key": 634899, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "dial pad", "seconds": 42.88, "prompt_eval": 42.53, "eval": 0.29, "prompt_tokens": 635}
+{"key": 639987, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "down arrow", "seconds": 42.75, "prompt_eval": 42.52, "eval": 0.19, "prompt_tokens": 635}
+{"key": 645733, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "check mark", "seconds": 42.77, "prompt_eval": 42.53, "eval": 0.19, "prompt_tokens": 635}
+{"key": 646985, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "keyhole", "seconds": 42.83, "prompt_eval": 42.55, "eval": 0.19, "prompt_tokens": 635}
+{"key": 648006, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "ethereum logo", "seconds": 42.83, "prompt_eval": 42.56, "eval": 0.19, "prompt_tokens": 635}
+{"key": 648321, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "battery charging", "seconds": 42.78, "prompt_eval": 42.52, "eval": 0.19, "prompt_tokens": 635}
+{"key": 648704, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "data transfer", "seconds": 43.21, "prompt_eval": 42.96, "eval": 0.2, "prompt_tokens": 635}
+{"key": 650282, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "sad face", "seconds": 42.86, "prompt_eval": 42.61, "eval": 0.19, "prompt_tokens": 635}
+{"key": 651311, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "word end", "seconds": 43.0, "prompt_eval": 42.55, "eval": 0.37, "prompt_tokens": 635}
+{"key": 651936, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "arrows curve", "seconds": 42.88, "prompt_eval": 42.54, "eval": 0.28, "prompt_tokens": 635}
+{"key": 653305, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "image file", "seconds": 42.82, "prompt_eval": 42.57, "eval": 0.19, "prompt_tokens": 635}
+{"key": 653318, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "document scanner", "seconds": 42.81, "prompt_eval": 42.54, "eval": 0.19, "prompt_tokens": 635}
+{"key": 653573, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "document page", "seconds": 42.84, "prompt_eval": 42.59, "eval": 0.19, "prompt_tokens": 635}
+{"key": 658317, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "letter j", "seconds": 42.8, "prompt_eval": 42.56, "eval": 0.19, "prompt_tokens": 635}
+{"key": 661098, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "locked folder", "seconds": 42.76, "prompt_eval": 42.54, "eval": 0.18, "prompt_tokens": 635}
+{"key": 661745, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "folder plus", "seconds": 42.82, "prompt_eval": 42.57, "eval": 0.19, "prompt_tokens": 635}
+{"key": 662099, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "folder search", "seconds": 42.77, "prompt_eval": 42.53, "eval": 0.19, "prompt_tokens": 635}
+{"key": 663693, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "lines", "seconds": 42.6, "prompt_eval": 42.47, "eval": 0.09, "prompt_tokens": 635}
+{"key": 663695, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "list", "seconds": 42.61, "prompt_eval": 42.48, "eval": 0.09, "prompt_tokens": 635}
+{"key": 665445, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "crosshair", "seconds": 42.78, "prompt_eval": 42.54, "eval": 0.19, "prompt_tokens": 635}
+{"key": 670597, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "letter o", "seconds": 42.78, "prompt_eval": 42.53, "eval": 0.19, "prompt_tokens": 635}
+{"key": 672736, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "circle arrow", "seconds": 42.77, "prompt_eval": 42.5, "eval": 0.19, "prompt_tokens": 635}
+{"key": 675214, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "external hard drive", "seconds": 42.97, "prompt_eval": 42.63, "eval": 0.3, "prompt_tokens": 635}
+{"key": 677054, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "stack of blocks", "seconds": 42.89, "prompt_eval": 42.57, "eval": 0.28, "prompt_tokens": 635}
+{"key": 677478, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "house with smoke", "seconds": 42.86, "prompt_eval": 42.54, "eval": 0.28, "prompt_tokens": 635}
+{"key": 678302, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "shoe print", "seconds": 42.84, "prompt_eval": 42.52, "eval": 0.28, "prompt_tokens": 635}
+{"key": 680506, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "flower", "seconds": 42.63, "prompt_eval": 42.49, "eval": 0.09, "prompt_tokens": 635}
+{"key": 682098, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "download arrow", "seconds": 42.73, "prompt_eval": 42.5, "eval": 0.19, "prompt_tokens": 635}
+{"key": 691444, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "list", "seconds": 42.62, "prompt_eval": 42.49, "eval": 0.09, "prompt_tokens": 635}
+{"key": 691448, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "lines", "seconds": 42.63, "prompt_eval": 42.5, "eval": 0.1, "prompt_tokens": 635}
+{"key": 692934, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "microphone", "seconds": 42.79, "prompt_eval": 42.56, "eval": 0.19, "prompt_tokens": 635}
+{"key": 697519, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "left arrow", "seconds": 42.77, "prompt_eval": 42.54, "eval": 0.19, "prompt_tokens": 635}
+{"key": 701812, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "linkedin logo", "seconds": 42.77, "prompt_eval": 42.54, "eval": 0.19, "prompt_tokens": 635}
+{"key": 702331, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "number list", "seconds": 42.77, "prompt_eval": 42.54, "eval": 0.18, "prompt_tokens": 635}
+{"key": 703931, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "arrow circle", "seconds": 42.75, "prompt_eval": 42.52, "eval": 0.18, "prompt_tokens": 635}
+{"key": 703943, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "back arrow", "seconds": 42.77, "prompt_eval": 42.53, "eval": 0.19, "prompt_tokens": 635}
+{"key": 704388, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "document arrow", "seconds": 42.76, "prompt_eval": 42.53, "eval": 0.18, "prompt_tokens": 635}
+{"key": 705189, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "sun", "seconds": 42.65, "prompt_eval": 42.5, "eval": 0.09, "prompt_tokens": 635}
+{"key": 709393, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "star rating", "seconds": 42.78, "prompt_eval": 42.54, "eval": 0.19, "prompt_tokens": 635}
+{"key": 710102, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "plus sign", "seconds": 42.75, "prompt_eval": 42.52, "eval": 0.19, "prompt_tokens": 635}
+{"key": 710141, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "first aid kit", "seconds": 42.86, "prompt_eval": 42.54, "eval": 0.28, "prompt_tokens": 635}
+{"key": 711402, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "circle", "seconds": 42.7, "prompt_eval": 42.56, "eval": 0.1, "prompt_tokens": 635}
+{"key": 717685, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "music note", "seconds": 42.91, "prompt_eval": 42.63, "eval": 0.23, "prompt_tokens": 635}
+{"key": 719670, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "dog", "seconds": 42.89, "prompt_eval": 42.73, "eval": 0.12, "prompt_tokens": 635}
+{"key": 719783, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "compass", "seconds": 42.78, "prompt_eval": 42.63, "eval": 0.11, "prompt_tokens": 635}
+{"key": 720001, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "bar chart", "seconds": 42.89, "prompt_eval": 42.64, "eval": 0.21, "prompt_tokens": 635}
+{"key": 720386, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "face recognition", "seconds": 43.0, "prompt_eval": 42.72, "eval": 0.23, "prompt_tokens": 635}
+{"key": 720734, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "face expression", "seconds": 42.98, "prompt_eval": 42.71, "eval": 0.22, "prompt_tokens": 635}
+{"key": 726614, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "rabbit", "seconds": 42.94, "prompt_eval": 42.78, "eval": 0.12, "prompt_tokens": 635}
+{"key": 737143, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "phone delete", "seconds": 43.03, "prompt_eval": 42.76, "eval": 0.22, "prompt_tokens": 635}
+{"key": 737459, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "laptop phone", "seconds": 43.15, "prompt_eval": 42.78, "eval": 0.33, "prompt_tokens": 635}
+{"key": 738601, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "letter p", "seconds": 43.04, "prompt_eval": 42.76, "eval": 0.24, "prompt_tokens": 635}
+{"key": 738996, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "letter a", "seconds": 43.0, "prompt_eval": 42.72, "eval": 0.23, "prompt_tokens": 635}
+{"key": 739011, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "letter p", "seconds": 43.03, "prompt_eval": 42.74, "eval": 0.2, "prompt_tokens": 635}
+{"key": 739144, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "letter p", "seconds": 43.06, "prompt_eval": 42.79, "eval": 0.19, "prompt_tokens": 635}
+{"key": 741011, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "pokemon ball", "seconds": 42.97, "prompt_eval": 42.71, "eval": 0.2, "prompt_tokens": 635}
+{"key": 741935, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "power button", "seconds": 42.87, "prompt_eval": 42.59, "eval": 0.2, "prompt_tokens": 635}
+{"key": 745538, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "qr code", "seconds": 42.87, "prompt_eval": 42.59, "eval": 0.2, "prompt_tokens": 635}
+{"key": 745597, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "barcode", "seconds": 42.8, "prompt_eval": 42.64, "eval": 0.1, "prompt_tokens": 635}
+{"key": 745600, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "barcode", "seconds": 42.79, "prompt_eval": 42.61, "eval": 0.1, "prompt_tokens": 635}
+{"key": 750423, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "arrow down up", "seconds": 42.97, "prompt_eval": 42.61, "eval": 0.29, "prompt_tokens": 635}
+{"key": 752254, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "refresh arrow", "seconds": 42.9, "prompt_eval": 42.64, "eval": 0.2, "prompt_tokens": 635}
+{"key": 752276, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "refresh", "seconds": 42.79, "prompt_eval": 42.63, "eval": 0.1, "prompt_tokens": 635}
+{"key": 761181, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "folder open", "seconds": 42.86, "prompt_eval": 42.62, "eval": 0.2, "prompt_tokens": 635}
+{"key": 761431, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "arrow out", "seconds": 42.92, "prompt_eval": 42.64, "eval": 0.2, "prompt_tokens": 635}
+{"key": 767727, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "arrow", "seconds": 42.84, "prompt_eval": 42.69, "eval": 0.1, "prompt_tokens": 635}
+{"key": 769593, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "arrow", "seconds": 42.82, "prompt_eval": 42.66, "eval": 0.1, "prompt_tokens": 635}
+{"key": 769675, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "staircase", "seconds": 42.98, "prompt_eval": 42.63, "eval": 0.31, "prompt_tokens": 635}
+{"key": 772441, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "tuxedo", "seconds": 43.0, "prompt_eval": 42.65, "eval": 0.3, "prompt_tokens": 635}
+{"key": 773560, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "snowflake", "seconds": 42.91, "prompt_eval": 42.66, "eval": 0.2, "prompt_tokens": 635}
+{"key": 780230, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "letter t", "seconds": 42.86, "prompt_eval": 42.6, "eval": 0.2, "prompt_tokens": 635}
+{"key": 783012, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "envelope", "seconds": 42.88, "prompt_eval": 42.61, "eval": 0.21, "prompt_tokens": 635}
+{"key": 787085, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "diamond", "seconds": 42.83, "prompt_eval": 42.68, "eval": 0.1, "prompt_tokens": 635}
+{"key": 792947, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "no pills", "seconds": 42.86, "prompt_eval": 42.58, "eval": 0.2, "prompt_tokens": 635}
+{"key": 797118, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "video camera", "seconds": 42.93, "prompt_eval": 42.65, "eval": 0.19, "prompt_tokens": 635}
+{"key": 798959, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "speaker", "seconds": 42.72, "prompt_eval": 42.56, "eval": 0.09, "prompt_tokens": 635}
+{"key": 801508, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "moon cloud", "seconds": 42.83, "prompt_eval": 42.55, "eval": 0.19, "prompt_tokens": 635}
+{"key": 804645, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "smiley face", "seconds": 42.92, "prompt_eval": 42.55, "eval": 0.29, "prompt_tokens": 635}
+{"key": 809094, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "keyboard", "seconds": 42.75, "prompt_eval": 42.56, "eval": 0.1, "prompt_tokens": 635}
+{"key": 809379, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "calendar", "seconds": 42.74, "prompt_eval": 42.57, "eval": 0.1, "prompt_tokens": 635}
+{"key": 810748, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "paper clip", "seconds": 42.87, "prompt_eval": 42.59, "eval": 0.2, "prompt_tokens": 635}
+{"key": 811891, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "person", "seconds": 42.81, "prompt_eval": 42.62, "eval": 0.11, "prompt_tokens": 635}
+{"key": 813116, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=576,threads=4,size=768", "answer": "pound sign", "seconds": 43.08, "prompt_eval": 42.71, "eval": 0.3, "prompt_tokens": 635}
+{"key": 251778, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "three way valve", "seconds": 119.38, "prompt_eval": 78.98, "eval": 0.33, "prompt_tokens": 1083}
+{"key": 280982, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "folder", "seconds": 79.34, "prompt_eval": 79.15, "eval": 0.12, "prompt_tokens": 1083}
+{"key": 280986, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "gas can", "seconds": 79.03, "prompt_eval": 78.73, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 302608, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "arrow left", "seconds": 79.08, "prompt_eval": 78.78, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 303183, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "rectangle", "seconds": 79.01, "prompt_eval": 78.83, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 314260, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "shopping cart", "seconds": 79.07, "prompt_eval": 78.77, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 316203, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "open book", "seconds": 78.93, "prompt_eval": 78.64, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 331096, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "check mark", "seconds": 79.08, "prompt_eval": 78.79, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 338484, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "letter g", "seconds": 78.93, "prompt_eval": 78.64, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 339411, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "cloud upload", "seconds": 79.1, "prompt_eval": 78.79, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 358214, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "brain storm", "seconds": 78.91, "prompt_eval": 78.61, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 365318, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "coffee cup", "seconds": 78.97, "prompt_eval": 78.64, "eval": 0.25, "prompt_tokens": 1083}
+{"key": 370249, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "square button", "seconds": 78.82, "prompt_eval": 78.51, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 388650, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "hexagon", "seconds": 79.02, "prompt_eval": 78.71, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 394341, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "house roof", "seconds": 78.97, "prompt_eval": 78.62, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 395810, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "coffee cup", "seconds": 78.99, "prompt_eval": 78.64, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 403949, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "camera icon", "seconds": 79.03, "prompt_eval": 78.7, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 405977, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "bib", "seconds": 78.82, "prompt_eval": 78.61, "eval": 0.12, "prompt_tokens": 1083}
+{"key": 428891, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "microphone", "seconds": 78.99, "prompt_eval": 78.67, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 453952, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "phone call", "seconds": 79.22, "prompt_eval": 78.9, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 454056, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "no glasses", "seconds": 79.09, "prompt_eval": 78.75, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 466611, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "double arrow", "seconds": 79.09, "prompt_eval": 78.77, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 487308, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "star", "seconds": 78.86, "prompt_eval": 78.62, "eval": 0.13, "prompt_tokens": 1083}
+{"key": 503345, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "arrow", "seconds": 78.84, "prompt_eval": 78.64, "eval": 0.12, "prompt_tokens": 1083}
+{"key": 515992, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "letter k", "seconds": 79.02, "prompt_eval": 78.68, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 521482, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "wine glass", "seconds": 79.04, "prompt_eval": 78.7, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 526373, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "question mark", "seconds": 79.0, "prompt_eval": 78.66, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 526554, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "exclamation mark", "seconds": 79.04, "prompt_eval": 78.58, "eval": 0.33, "prompt_tokens": 1083}
+{"key": 526803, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "android robot", "seconds": 78.8, "prompt_eval": 78.46, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 528177, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "rewind button", "seconds": 79.11, "prompt_eval": 78.68, "eval": 0.32, "prompt_tokens": 1083}
+{"key": 528939, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "bed", "seconds": 78.68, "prompt_eval": 78.48, "eval": 0.12, "prompt_tokens": 1083}
+{"key": 530126, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "suitcase", "seconds": 78.78, "prompt_eval": 78.45, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 530430, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "speaker", "seconds": 78.8, "prompt_eval": 78.59, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 530658, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "power button", "seconds": 78.67, "prompt_eval": 78.37, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 530825, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "calendar", "seconds": 78.7, "prompt_eval": 78.5, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 533386, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "refresh symbol", "seconds": 78.89, "prompt_eval": 78.57, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 534801, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "loading circle", "seconds": 78.79, "prompt_eval": 78.44, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 535291, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "computer monitor", "seconds": 78.86, "prompt_eval": 78.53, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 536114, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "bookshelf", "seconds": 78.9, "prompt_eval": 78.55, "eval": 0.24, "prompt_tokens": 1083}
+{"key": 536468, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "water drop", "seconds": 78.91, "prompt_eval": 78.57, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 536729, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "pencil", "seconds": 78.9, "prompt_eval": 78.54, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 537468, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "smiling cloud", "seconds": 79.06, "prompt_eval": 78.61, "eval": 0.35, "prompt_tokens": 1083}
+{"key": 538538, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "teardrop", "seconds": 79.29, "prompt_eval": 78.82, "eval": 0.34, "prompt_tokens": 1083}
+{"key": 541206, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "heart", "seconds": 78.68, "prompt_eval": 78.46, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 541510, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "clockwise arrow", "seconds": 79.02, "prompt_eval": 78.57, "eval": 0.33, "prompt_tokens": 1083}
+{"key": 542261, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "photo frame", "seconds": 78.94, "prompt_eval": 78.6, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 544326, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "thumbs up", "seconds": 78.9, "prompt_eval": 78.53, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 545729, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "menu", "seconds": 78.96, "prompt_eval": 78.73, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 545903, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "train", "seconds": 79.39, "prompt_eval": 79.16, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 546262, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "exclamation mark", "seconds": 79.03, "prompt_eval": 78.54, "eval": 0.36, "prompt_tokens": 1083}
+{"key": 546541, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "bicycle", "seconds": 79.08, "prompt_eval": 78.71, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 547297, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "notebook page", "seconds": 79.1, "prompt_eval": 78.56, "eval": 0.33, "prompt_tokens": 1083}
+{"key": 549525, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "speech bubble", "seconds": 78.93, "prompt_eval": 78.61, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 550114, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "trash bin", "seconds": 78.96, "prompt_eval": 78.62, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 550321, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "circle", "seconds": 78.9, "prompt_eval": 78.71, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 551140, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "quotation marks", "seconds": 78.82, "prompt_eval": 78.42, "eval": 0.34, "prompt_tokens": 1083}
+{"key": 551334, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "rainbow", "seconds": 78.77, "prompt_eval": 78.48, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 552300, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "award ribbon", "seconds": 78.81, "prompt_eval": 78.5, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 552749, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "arrows", "seconds": 78.91, "prompt_eval": 78.6, "eval": 0.24, "prompt_tokens": 1083}
+{"key": 553743, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "paper plane", "seconds": 78.76, "prompt_eval": 78.45, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 553955, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "share button", "seconds": 78.87, "prompt_eval": 78.56, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 553961, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "arrow", "seconds": 78.63, "prompt_eval": 78.44, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 554109, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "train", "seconds": 78.63, "prompt_eval": 78.44, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 554220, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "shopping cart", "seconds": 78.98, "prompt_eval": 78.69, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 556321, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "square", "seconds": 78.9, "prompt_eval": 78.7, "eval": 0.12, "prompt_tokens": 1083}
+{"key": 559885, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "unlock", "seconds": 78.93, "prompt_eval": 78.75, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 560965, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "coffee cup", "seconds": 79.02, "prompt_eval": 78.72, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 561468, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "windows logo", "seconds": 79.08, "prompt_eval": 78.74, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 562014, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "laptop computer", "seconds": 79.16, "prompt_eval": 78.71, "eval": 0.34, "prompt_tokens": 1083}
+{"key": 562039, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "trash bin", "seconds": 78.87, "prompt_eval": 78.55, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 562073, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "sun", "seconds": 78.74, "prompt_eval": 78.54, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 562095, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "bookshelf", "seconds": 78.92, "prompt_eval": 78.61, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 562122, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "folder", "seconds": 78.66, "prompt_eval": 78.46, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 562123, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "gear", "seconds": 78.8, "prompt_eval": 78.57, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 562124, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "snowflake", "seconds": 78.92, "prompt_eval": 78.6, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 562126, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "ladybug", "seconds": 79.13, "prompt_eval": 78.7, "eval": 0.32, "prompt_tokens": 1083}
+{"key": 562128, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "robot", "seconds": 78.83, "prompt_eval": 78.64, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 562150, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "wifi signal", "seconds": 78.94, "prompt_eval": 78.61, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 562153, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "wifi signal", "seconds": 78.94, "prompt_eval": 78.61, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 562194, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "anchor", "seconds": 78.68, "prompt_eval": 78.46, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 562221, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "fire flame", "seconds": 78.91, "prompt_eval": 78.56, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 562276, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "angle brackets", "seconds": 78.8, "prompt_eval": 78.48, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 562301, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "envelope", "seconds": 78.83, "prompt_eval": 78.52, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 562316, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "thumbs up", "seconds": 78.9, "prompt_eval": 78.6, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 562329, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "speech bubble", "seconds": 78.77, "prompt_eval": 78.44, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 562390, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "microphone", "seconds": 78.83, "prompt_eval": 78.51, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 562435, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "printer", "seconds": 78.72, "prompt_eval": 78.54, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 562455, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "cat face", "seconds": 78.92, "prompt_eval": 78.62, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 562456, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "document folder", "seconds": 78.88, "prompt_eval": 78.59, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 562457, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "document", "seconds": 78.89, "prompt_eval": 78.69, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 562671, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "spinner", "seconds": 78.95, "prompt_eval": 78.73, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 562717, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "television", "seconds": 79.07, "prompt_eval": 78.76, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 562726, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "graduation cap", "seconds": 79.11, "prompt_eval": 78.7, "eval": 0.34, "prompt_tokens": 1083}
+{"key": 562805, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "play button", "seconds": 79.3, "prompt_eval": 78.96, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 562832, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "cross", "seconds": 79.0, "prompt_eval": 78.78, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 562852, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "hand pointer", "seconds": 78.97, "prompt_eval": 78.63, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 562883, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "document", "seconds": 78.72, "prompt_eval": 78.52, "eval": 0.12, "prompt_tokens": 1083}
+{"key": 562884, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "coffee cup", "seconds": 78.81, "prompt_eval": 78.51, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 562911, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "thumbs up", "seconds": 78.84, "prompt_eval": 78.55, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 562917, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "mute button", "seconds": 79.04, "prompt_eval": 78.74, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 562942, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "key", "seconds": 78.78, "prompt_eval": 78.6, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 562947, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "newspaper", "seconds": 78.96, "prompt_eval": 78.54, "eval": 0.33, "prompt_tokens": 1083}
+{"key": 562954, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "power outlet", "seconds": 78.89, "prompt_eval": 78.6, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 563057, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "arrow", "seconds": 78.74, "prompt_eval": 78.55, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 563149, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "speech bubble", "seconds": 78.8, "prompt_eval": 78.5, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 563184, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "motorcycle", "seconds": 78.84, "prompt_eval": 78.54, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 563230, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "eye closed", "seconds": 78.77, "prompt_eval": 78.48, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 563268, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "hand cursor", "seconds": 78.86, "prompt_eval": 78.56, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 563305, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "check mark", "seconds": 78.75, "prompt_eval": 78.46, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 563307, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "armchair", "seconds": 78.8, "prompt_eval": 78.51, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 563346, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "sailboat", "seconds": 78.81, "prompt_eval": 78.41, "eval": 0.33, "prompt_tokens": 1083}
+{"key": 563393, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "grid icon", "seconds": 78.88, "prompt_eval": 78.59, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 563491, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "phone charger", "seconds": 78.78, "prompt_eval": 78.5, "eval": 0.21, "prompt_tokens": 1083}
+{"key": 563512, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "phone call", "seconds": 78.88, "prompt_eval": 78.58, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 563515, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "arrow circle", "seconds": 78.79, "prompt_eval": 78.49, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 563520, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "store front", "seconds": 78.96, "prompt_eval": 78.66, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 563523, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "thumbs down", "seconds": 78.91, "prompt_eval": 78.61, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 563689, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "stethoscope", "seconds": 79.0, "prompt_eval": 78.57, "eval": 0.34, "prompt_tokens": 1083}
+{"key": 563690, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "stethoscope", "seconds": 78.98, "prompt_eval": 78.58, "eval": 0.33, "prompt_tokens": 1083}
+{"key": 563844, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "arrow right", "seconds": 78.78, "prompt_eval": 78.48, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 563850, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "bullets", "seconds": 79.03, "prompt_eval": 78.73, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 563887, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "internet explorer", "seconds": 78.97, "prompt_eval": 78.67, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 563985, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "cactus", "seconds": 78.83, "prompt_eval": 78.52, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 564003, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "information icon", "seconds": 78.93, "prompt_eval": 78.64, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 564011, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "shopping bag", "seconds": 79.01, "prompt_eval": 78.69, "eval": 0.24, "prompt_tokens": 1083}
+{"key": 564016, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "people group", "seconds": 78.92, "prompt_eval": 78.61, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 564119, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "m c e", "seconds": 79.0, "prompt_eval": 78.59, "eval": 0.33, "prompt_tokens": 1083}
+{"key": 564126, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "shield", "seconds": 78.68, "prompt_eval": 78.5, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 564156, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "cloud upload", "seconds": 78.76, "prompt_eval": 78.46, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 564174, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "shopping cart", "seconds": 78.71, "prompt_eval": 78.42, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 564191, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "people group", "seconds": 78.76, "prompt_eval": 78.46, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 564193, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "microphone", "seconds": 78.75, "prompt_eval": 78.46, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 564198, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "microphone", "seconds": 78.79, "prompt_eval": 78.5, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 564261, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "wallet", "seconds": 78.64, "prompt_eval": 78.45, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 564295, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "train", "seconds": 78.79, "prompt_eval": 78.61, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 564302, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "fireworks", "seconds": 78.85, "prompt_eval": 78.55, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 577322, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "center balance", "seconds": 78.79, "prompt_eval": 78.51, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 577404, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "letter b", "seconds": 78.89, "prompt_eval": 78.59, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 577450, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "list", "seconds": 79.11, "prompt_eval": 78.92, "eval": 0.13, "prompt_tokens": 1083}
+{"key": 580859, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "adp logo", "seconds": 79.3, "prompt_eval": 78.9, "eval": 0.33, "prompt_tokens": 1083}
+{"key": 584208, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "chart line", "seconds": 79.05, "prompt_eval": 78.75, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 587416, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "up down arrows", "seconds": 79.05, "prompt_eval": 78.62, "eval": 0.36, "prompt_tokens": 1083}
+{"key": 588188, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "up arrows", "seconds": 78.85, "prompt_eval": 78.56, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 589324, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "headphones", "seconds": 78.99, "prompt_eval": 78.7, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 599607, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "bookmark plus", "seconds": 78.92, "prompt_eval": 78.63, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 602660, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "screen", "seconds": 78.6, "prompt_eval": 78.42, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 606730, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "coffee cup", "seconds": 78.86, "prompt_eval": 78.57, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 608469, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "video camera", "seconds": 78.74, "prompt_eval": 78.44, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 608721, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "camera", "seconds": 78.75, "prompt_eval": 78.57, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 608848, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "eyes", "seconds": 78.68, "prompt_eval": 78.51, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 613113, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "dotted paper", "seconds": 78.86, "prompt_eval": 78.46, "eval": 0.33, "prompt_tokens": 1083}
+{"key": 620988, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "clipboard arrow", "seconds": 78.88, "prompt_eval": 78.58, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 621898, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "cloud checkmark", "seconds": 79.03, "prompt_eval": 78.62, "eval": 0.33, "prompt_tokens": 1083}
+{"key": 622242, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "storm cloud", "seconds": 78.8, "prompt_eval": 78.51, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 622262, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "lock cloud", "seconds": 78.83, "prompt_eval": 78.55, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 622366, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "no cloud", "seconds": 78.72, "prompt_eval": 78.41, "eval": 0.24, "prompt_tokens": 1083}
+{"key": 625102, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "addition", "seconds": 78.88, "prompt_eval": 78.58, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 626598, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "scissors", "seconds": 78.75, "prompt_eval": 78.46, "eval": 0.21, "prompt_tokens": 1083}
+{"key": 628407, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "credit card", "seconds": 78.87, "prompt_eval": 78.58, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 633627, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "table lamp", "seconds": 78.77, "prompt_eval": 78.47, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 634883, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "exclamation mark", "seconds": 78.9, "prompt_eval": 78.51, "eval": 0.32, "prompt_tokens": 1083}
+{"key": 634899, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "dots", "seconds": 78.66, "prompt_eval": 78.48, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 639987, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "down arrow", "seconds": 78.98, "prompt_eval": 78.68, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 645733, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "check mark", "seconds": 78.8, "prompt_eval": 78.5, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 646985, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "keyhole", "seconds": 78.99, "prompt_eval": 78.68, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 648006, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "ethereum logo", "seconds": 78.91, "prompt_eval": 78.61, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 648321, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "battery charging", "seconds": 78.74, "prompt_eval": 78.43, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 648704, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "data transfer", "seconds": 78.87, "prompt_eval": 78.57, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 650282, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "sad face", "seconds": 78.9, "prompt_eval": 78.6, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 651311, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "endfold", "seconds": 78.86, "prompt_eval": 78.46, "eval": 0.33, "prompt_tokens": 1083}
+{"key": 651936, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "arrows curve", "seconds": 78.9, "prompt_eval": 78.49, "eval": 0.33, "prompt_tokens": 1083}
+{"key": 653305, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "image file", "seconds": 78.82, "prompt_eval": 78.52, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 653318, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "document", "seconds": 78.83, "prompt_eval": 78.64, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 653573, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "document page", "seconds": 78.8, "prompt_eval": 78.5, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 658317, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "number two", "seconds": 78.75, "prompt_eval": 78.45, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 661098, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "locked folder", "seconds": 78.93, "prompt_eval": 78.63, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 661745, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "folder plus", "seconds": 78.79, "prompt_eval": 78.48, "eval": 0.24, "prompt_tokens": 1083}
+{"key": 662099, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "folder search", "seconds": 78.75, "prompt_eval": 78.45, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 663693, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "list", "seconds": 78.73, "prompt_eval": 78.55, "eval": 0.12, "prompt_tokens": 1083}
+{"key": 663695, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "lines", "seconds": 78.73, "prompt_eval": 78.55, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 665445, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "crosshair", "seconds": 78.97, "prompt_eval": 78.67, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 670597, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "letter o", "seconds": 78.97, "prompt_eval": 78.67, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 672736, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "pacman", "seconds": 78.92, "prompt_eval": 78.6, "eval": 0.24, "prompt_tokens": 1083}
+{"key": 675214, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "scanner", "seconds": 78.8, "prompt_eval": 78.62, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 677054, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "square blocks", "seconds": 79.49, "prompt_eval": 79.19, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 677478, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "house", "seconds": 79.0, "prompt_eval": 78.81, "eval": 0.12, "prompt_tokens": 1083}
+{"key": 678302, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "shoe sole", "seconds": 79.02, "prompt_eval": 78.6, "eval": 0.34, "prompt_tokens": 1083}
+{"key": 680506, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "flower", "seconds": 78.9, "prompt_eval": 78.71, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 682098, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "download arrow", "seconds": 79.01, "prompt_eval": 78.71, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 691444, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "lines", "seconds": 78.82, "prompt_eval": 78.65, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 691448, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "menu", "seconds": 78.75, "prompt_eval": 78.57, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 692934, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "microphone", "seconds": 79.0, "prompt_eval": 78.7, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 697519, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "left arrow", "seconds": 78.77, "prompt_eval": 78.48, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 701812, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "linkedin logo", "seconds": 78.81, "prompt_eval": 78.52, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 702331, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "number list", "seconds": 78.72, "prompt_eval": 78.44, "eval": 0.21, "prompt_tokens": 1083}
+{"key": 703931, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "refresh arrow", "seconds": 78.81, "prompt_eval": 78.5, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 703943, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "back arrow", "seconds": 78.71, "prompt_eval": 78.42, "eval": 0.21, "prompt_tokens": 1083}
+{"key": 704388, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "document arrow", "seconds": 78.72, "prompt_eval": 78.43, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 705189, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "sun", "seconds": 78.58, "prompt_eval": 78.38, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 709393, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "star rocket", "seconds": 78.7, "prompt_eval": 78.39, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 710102, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "plus sign", "seconds": 78.63, "prompt_eval": 78.34, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 710141, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "first aid kit", "seconds": 78.76, "prompt_eval": 78.35, "eval": 0.33, "prompt_tokens": 1083}
+{"key": 711402, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "circle", "seconds": 78.51, "prompt_eval": 78.33, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 717685, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "music note", "seconds": 78.75, "prompt_eval": 78.45, "eval": 0.23, "prompt_tokens": 1083}
+{"key": 719670, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "cat", "seconds": 78.56, "prompt_eval": 78.38, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 719783, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "wind turbine", "seconds": 78.6, "prompt_eval": 78.3, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 720001, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "bar chart", "seconds": 78.59, "prompt_eval": 78.3, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 720386, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "code block", "seconds": 78.66, "prompt_eval": 78.37, "eval": 0.21, "prompt_tokens": 1083}
+{"key": 720734, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "face neutral", "seconds": 78.76, "prompt_eval": 78.46, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 726614, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "rabbit", "seconds": 78.42, "prompt_eval": 78.24, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 737143, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "phone delete", "seconds": 78.69, "prompt_eval": 78.39, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 737459, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "laptop computer", "seconds": 78.6, "prompt_eval": 78.21, "eval": 0.32, "prompt_tokens": 1083}
+{"key": 738601, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "letter p", "seconds": 78.68, "prompt_eval": 78.39, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 738996, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "progress arrow", "seconds": 78.75, "prompt_eval": 78.45, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 739011, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "pinterest logo", "seconds": 78.58, "prompt_eval": 78.29, "eval": 0.21, "prompt_tokens": 1083}
+{"key": 739144, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "letter p", "seconds": 78.61, "prompt_eval": 78.31, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 741011, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "pokemon ball", "seconds": 78.64, "prompt_eval": 78.35, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 741935, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "power button", "seconds": 78.67, "prompt_eval": 78.37, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 745538, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "qr code", "seconds": 78.65, "prompt_eval": 78.35, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 745597, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "qr code", "seconds": 78.65, "prompt_eval": 78.37, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 745600, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "qr code", "seconds": 78.6, "prompt_eval": 78.32, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 750423, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "upload", "seconds": 78.65, "prompt_eval": 78.48, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 752254, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "arrow circle", "seconds": 78.65, "prompt_eval": 78.36, "eval": 0.21, "prompt_tokens": 1083}
+{"key": 752276, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "refresh", "seconds": 78.48, "prompt_eval": 78.3, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 761181, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "folder", "seconds": 78.56, "prompt_eval": 78.39, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 761431, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "arrow out", "seconds": 78.6, "prompt_eval": 78.31, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 767727, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "palm tree", "seconds": 78.82, "prompt_eval": 78.42, "eval": 0.32, "prompt_tokens": 1083}
+{"key": 769593, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "lightning bolt", "seconds": 78.69, "prompt_eval": 78.29, "eval": 0.33, "prompt_tokens": 1083}
+{"key": 769675, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "staircase", "seconds": 78.72, "prompt_eval": 78.3, "eval": 0.35, "prompt_tokens": 1083}
+{"key": 772441, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "tuxedo", "seconds": 78.87, "prompt_eval": 78.46, "eval": 0.33, "prompt_tokens": 1083}
+{"key": 773560, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "snowflake", "seconds": 79.21, "prompt_eval": 78.92, "eval": 0.21, "prompt_tokens": 1083}
+{"key": 780230, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "letter t", "seconds": 78.72, "prompt_eval": 78.44, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 783012, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "envelope", "seconds": 78.63, "prompt_eval": 78.33, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 787085, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "diamond", "seconds": 78.61, "prompt_eval": 78.43, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 792947, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "no pills", "seconds": 78.58, "prompt_eval": 78.28, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 797118, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "video camera", "seconds": 78.6, "prompt_eval": 78.31, "eval": 0.21, "prompt_tokens": 1083}
+{"key": 798959, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "speaker", "seconds": 78.49, "prompt_eval": 78.3, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 801508, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "moon cloud", "seconds": 78.61, "prompt_eval": 78.33, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 804645, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "smiley face", "seconds": 78.82, "prompt_eval": 78.42, "eval": 0.32, "prompt_tokens": 1083}
+{"key": 809094, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "remote control", "seconds": 78.75, "prompt_eval": 78.45, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 809379, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "calendar", "seconds": 78.55, "prompt_eval": 78.37, "eval": 0.11, "prompt_tokens": 1083}
+{"key": 810748, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "paper clip", "seconds": 78.61, "prompt_eval": 78.32, "eval": 0.22, "prompt_tokens": 1083}
+{"key": 811891, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "person", "seconds": 78.49, "prompt_eval": 78.3, "eval": 0.12, "prompt_tokens": 1083}
+{"key": 813116, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=1024,threads=4,size=1024", "answer": "pound sign", "seconds": 78.73, "prompt_eval": 78.32, "eval": 0.33, "prompt_tokens": 1083}
