@@ -1,0 +1,488 @@
+{"key": 251778, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "yarn ball", "seconds": 138.78, "prompt_eval": 8.33, "eval": 0.42, "prompt_tokens": 123}
+{"key": 280982, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "folder", "seconds": 5.27, "prompt_eval": 5.12, "eval": 0.14, "prompt_tokens": 123}
+{"key": 280986, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "file folder", "seconds": 5.43, "prompt_eval": 5.13, "eval": 0.28, "prompt_tokens": 123}
+{"key": 302608, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow", "seconds": 5.3, "prompt_eval": 5.15, "eval": 0.14, "prompt_tokens": 123}
+{"key": 303183, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "rectangle", "seconds": 5.28, "prompt_eval": 5.12, "eval": 0.15, "prompt_tokens": 123}
+{"key": 314260, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "ladder", "seconds": 5.41, "prompt_eval": 5.12, "eval": 0.28, "prompt_tokens": 123}
+{"key": 316203, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "open book", "seconds": 5.41, "prompt_eval": 5.12, "eval": 0.28, "prompt_tokens": 123}
+{"key": 331096, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "check mark", "seconds": 5.41, "prompt_eval": 5.12, "eval": 0.28, "prompt_tokens": 123}
+{"key": 338484, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter c", "seconds": 5.47, "prompt_eval": 5.18, "eval": 0.28, "prompt_tokens": 123}
+{"key": 339411, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "up arrow", "seconds": 5.44, "prompt_eval": 5.12, "eval": 0.3, "prompt_tokens": 123}
+{"key": 358214, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "apple core", "seconds": 5.5, "prompt_eval": 5.2, "eval": 0.29, "prompt_tokens": 123}
+{"key": 365318, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter a", "seconds": 5.64, "prompt_eval": 5.34, "eval": 0.28, "prompt_tokens": 123}
+{"key": 370249, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter a", "seconds": 5.56, "prompt_eval": 5.24, "eval": 0.3, "prompt_tokens": 123}
+{"key": 388650, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow triangle", "seconds": 5.46, "prompt_eval": 5.17, "eval": 0.28, "prompt_tokens": 123}
+{"key": 394341, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "house", "seconds": 5.26, "prompt_eval": 5.11, "eval": 0.14, "prompt_tokens": 123}
+{"key": 395810, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter j", "seconds": 5.4, "prompt_eval": 5.11, "eval": 0.27, "prompt_tokens": 123}
+{"key": 403949, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "instagram logo", "seconds": 5.43, "prompt_eval": 5.12, "eval": 0.29, "prompt_tokens": 123}
+{"key": 405977, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "shirt", "seconds": 5.26, "prompt_eval": 5.11, "eval": 0.14, "prompt_tokens": 123}
+{"key": 428891, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "handprint", "seconds": 5.39, "prompt_eval": 5.11, "eval": 0.28, "prompt_tokens": 123}
+{"key": 453952, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "telephone", "seconds": 5.26, "prompt_eval": 5.11, "eval": 0.14, "prompt_tokens": 123}
+{"key": 454056, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "prohibited", "seconds": 5.41, "prompt_eval": 5.12, "eval": 0.27, "prompt_tokens": 123}
+{"key": 466611, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "double arrow", "seconds": 5.43, "prompt_eval": 5.14, "eval": 0.27, "prompt_tokens": 123}
+{"key": 487308, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "star", "seconds": 5.26, "prompt_eval": 5.1, "eval": 0.14, "prompt_tokens": 123}
+{"key": 503345, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow", "seconds": 5.26, "prompt_eval": 5.11, "eval": 0.14, "prompt_tokens": 123}
+{"key": 515992, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter k", "seconds": 5.41, "prompt_eval": 5.13, "eval": 0.28, "prompt_tokens": 123}
+{"key": 521482, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "wine glass", "seconds": 5.43, "prompt_eval": 5.15, "eval": 0.27, "prompt_tokens": 123}
+{"key": 526373, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "question mark", "seconds": 5.43, "prompt_eval": 5.14, "eval": 0.27, "prompt_tokens": 123}
+{"key": 526554, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "exclamation mark", "seconds": 5.57, "prompt_eval": 5.14, "eval": 0.42, "prompt_tokens": 123}
+{"key": 526803, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "coffee cup", "seconds": 5.41, "prompt_eval": 5.12, "eval": 0.28, "prompt_tokens": 123}
+{"key": 528177, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow pair", "seconds": 5.41, "prompt_eval": 5.12, "eval": 0.28, "prompt_tokens": 123}
+{"key": 528939, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "bed", "seconds": 5.36, "prompt_eval": 5.21, "eval": 0.14, "prompt_tokens": 123}
+{"key": 530126, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "safety helmet", "seconds": 5.58, "prompt_eval": 5.12, "eval": 0.44, "prompt_tokens": 123}
+{"key": 530430, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "speaker", "seconds": 5.29, "prompt_eval": 5.13, "eval": 0.14, "prompt_tokens": 123}
+{"key": 530658, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "lightning bolt", "seconds": 5.59, "prompt_eval": 5.14, "eval": 0.44, "prompt_tokens": 123}
+{"key": 530825, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "coffee cup", "seconds": 5.41, "prompt_eval": 5.12, "eval": 0.28, "prompt_tokens": 123}
+{"key": 533386, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "circle", "seconds": 5.41, "prompt_eval": 5.24, "eval": 0.15, "prompt_tokens": 123}
+{"key": 534801, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "compass", "seconds": 5.26, "prompt_eval": 5.11, "eval": 0.14, "prompt_tokens": 123}
+{"key": 535291, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "monitor", "seconds": 5.26, "prompt_eval": 5.11, "eval": 0.14, "prompt_tokens": 123}
+{"key": 536114, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "door", "seconds": 5.26, "prompt_eval": 5.11, "eval": 0.14, "prompt_tokens": 123}
+{"key": 536468, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "teardrop", "seconds": 5.53, "prompt_eval": 5.11, "eval": 0.41, "prompt_tokens": 123}
+{"key": 536729, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "pen", "seconds": 5.26, "prompt_eval": 5.11, "eval": 0.14, "prompt_tokens": 123}
+{"key": 537468, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "headphones", "seconds": 5.43, "prompt_eval": 5.13, "eval": 0.28, "prompt_tokens": 123}
+{"key": 538538, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "flame", "seconds": 5.42, "prompt_eval": 5.12, "eval": 0.29, "prompt_tokens": 123}
+{"key": 541206, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "heart shape", "seconds": 5.43, "prompt_eval": 5.12, "eval": 0.29, "prompt_tokens": 123}
+{"key": 541510, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "refresh symbol", "seconds": 5.4, "prompt_eval": 5.11, "eval": 0.28, "prompt_tokens": 123}
+{"key": 542261, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter a", "seconds": 5.4, "prompt_eval": 5.1, "eval": 0.28, "prompt_tokens": 123}
+{"key": 544326, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "thumbs up", "seconds": 5.4, "prompt_eval": 5.11, "eval": 0.28, "prompt_tokens": 123}
+{"key": 545729, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "menu", "seconds": 5.27, "prompt_eval": 5.12, "eval": 0.14, "prompt_tokens": 123}
+{"key": 545903, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter a", "seconds": 5.42, "prompt_eval": 5.12, "eval": 0.28, "prompt_tokens": 123}
+{"key": 546262, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "light bulb", "seconds": 5.42, "prompt_eval": 5.12, "eval": 0.29, "prompt_tokens": 123}
+{"key": 546541, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "scooter", "seconds": 5.56, "prompt_eval": 5.11, "eval": 0.43, "prompt_tokens": 123}
+{"key": 547297, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "notebook page", "seconds": 5.55, "prompt_eval": 5.11, "eval": 0.42, "prompt_tokens": 123}
+{"key": 549525, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "speech bubble", "seconds": 5.41, "prompt_eval": 5.11, "eval": 0.28, "prompt_tokens": 123}
+{"key": 550114, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "cloud rain", "seconds": 5.44, "prompt_eval": 5.14, "eval": 0.28, "prompt_tokens": 123}
+{"key": 550321, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "circle", "seconds": 5.27, "prompt_eval": 5.11, "eval": 0.14, "prompt_tokens": 123}
+{"key": 551140, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter a", "seconds": 5.44, "prompt_eval": 5.15, "eval": 0.28, "prompt_tokens": 123}
+{"key": 551334, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "archway", "seconds": 5.41, "prompt_eval": 5.11, "eval": 0.29, "prompt_tokens": 123}
+{"key": 552300, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "starburst", "seconds": 5.41, "prompt_eval": 5.11, "eval": 0.28, "prompt_tokens": 123}
+{"key": 552749, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrowheads", "seconds": 5.42, "prompt_eval": 5.12, "eval": 0.28, "prompt_tokens": 123}
+{"key": 553743, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "paper airplane", "seconds": 5.46, "prompt_eval": 5.16, "eval": 0.28, "prompt_tokens": 123}
+{"key": 553955, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "network node", "seconds": 5.4, "prompt_eval": 5.11, "eval": 0.28, "prompt_tokens": 123}
+{"key": 553961, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow", "seconds": 5.27, "prompt_eval": 5.11, "eval": 0.14, "prompt_tokens": 123}
+{"key": 554109, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "train car", "seconds": 5.4, "prompt_eval": 5.1, "eval": 0.29, "prompt_tokens": 123}
+{"key": 554220, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "shopping cart", "seconds": 5.41, "prompt_eval": 5.11, "eval": 0.28, "prompt_tokens": 123}
+{"key": 556321, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "square box", "seconds": 5.4, "prompt_eval": 5.11, "eval": 0.28, "prompt_tokens": 123}
+{"key": 559885, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "padlock", "seconds": 5.44, "prompt_eval": 5.13, "eval": 0.29, "prompt_tokens": 123}
+{"key": 560965, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "coffee cup", "seconds": 5.48, "prompt_eval": 5.18, "eval": 0.29, "prompt_tokens": 123}
+{"key": 561468, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "four squares", "seconds": 5.52, "prompt_eval": 5.18, "eval": 0.33, "prompt_tokens": 123}
+{"key": 562014, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "laptop computer", "seconds": 5.59, "prompt_eval": 5.13, "eval": 0.45, "prompt_tokens": 123}
+{"key": 562039, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "trash bin", "seconds": 5.52, "prompt_eval": 5.18, "eval": 0.33, "prompt_tokens": 123}
+{"key": 562073, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "sun", "seconds": 5.28, "prompt_eval": 5.12, "eval": 0.15, "prompt_tokens": 123}
+{"key": 562095, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "stack of papers", "seconds": 5.59, "prompt_eval": 5.13, "eval": 0.45, "prompt_tokens": 123}
+{"key": 562122, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "folder", "seconds": 5.29, "prompt_eval": 5.13, "eval": 0.14, "prompt_tokens": 123}
+{"key": 562123, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "gear", "seconds": 5.32, "prompt_eval": 5.14, "eval": 0.15, "prompt_tokens": 123}
+{"key": 562124, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "robot arm", "seconds": 5.43, "prompt_eval": 5.12, "eval": 0.29, "prompt_tokens": 123}
+{"key": 562126, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "shoe icon", "seconds": 5.57, "prompt_eval": 5.11, "eval": 0.44, "prompt_tokens": 123}
+{"key": 562128, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "safety helmet", "seconds": 5.58, "prompt_eval": 5.13, "eval": 0.43, "prompt_tokens": 123}
+{"key": 562150, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "wifi symbol", "seconds": 5.46, "prompt_eval": 5.15, "eval": 0.29, "prompt_tokens": 123}
+{"key": 562153, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "umbrella", "seconds": 5.43, "prompt_eval": 5.13, "eval": 0.29, "prompt_tokens": 123}
+{"key": 562194, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "anchor", "seconds": 5.27, "prompt_eval": 5.12, "eval": 0.14, "prompt_tokens": 123}
+{"key": 562221, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "smiling face", "seconds": 5.56, "prompt_eval": 5.11, "eval": 0.43, "prompt_tokens": 123}
+{"key": 562276, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "angle bracket", "seconds": 5.42, "prompt_eval": 5.11, "eval": 0.29, "prompt_tokens": 123}
+{"key": 562301, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "envelope", "seconds": 5.46, "prompt_eval": 5.15, "eval": 0.29, "prompt_tokens": 123}
+{"key": 562316, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "thumbs up", "seconds": 5.45, "prompt_eval": 5.14, "eval": 0.29, "prompt_tokens": 123}
+{"key": 562329, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "speech bubble", "seconds": 5.44, "prompt_eval": 5.11, "eval": 0.31, "prompt_tokens": 123}
+{"key": 562390, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "microphone", "seconds": 5.44, "prompt_eval": 5.12, "eval": 0.31, "prompt_tokens": 123}
+{"key": 562435, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "printer", "seconds": 5.28, "prompt_eval": 5.12, "eval": 0.15, "prompt_tokens": 123}
+{"key": 562455, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "cat face", "seconds": 5.43, "prompt_eval": 5.12, "eval": 0.29, "prompt_tokens": 123}
+{"key": 562456, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "document", "seconds": 5.31, "prompt_eval": 5.15, "eval": 0.14, "prompt_tokens": 123}
+{"key": 562457, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "document", "seconds": 5.28, "prompt_eval": 5.12, "eval": 0.14, "prompt_tokens": 123}
+{"key": 562671, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "compass rose", "seconds": 5.42, "prompt_eval": 5.11, "eval": 0.29, "prompt_tokens": 123}
+{"key": 562717, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "television", "seconds": 5.46, "prompt_eval": 5.15, "eval": 0.3, "prompt_tokens": 123}
+{"key": 562726, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "graduation cap", "seconds": 5.58, "prompt_eval": 5.12, "eval": 0.45, "prompt_tokens": 123}
+{"key": 562805, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow", "seconds": 5.44, "prompt_eval": 5.28, "eval": 0.15, "prompt_tokens": 123}
+{"key": 562832, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow", "seconds": 5.3, "prompt_eval": 5.14, "eval": 0.15, "prompt_tokens": 123}
+{"key": 562852, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "handshake", "seconds": 5.44, "prompt_eval": 5.13, "eval": 0.3, "prompt_tokens": 123}
+{"key": 562883, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "document", "seconds": 5.29, "prompt_eval": 5.13, "eval": 0.15, "prompt_tokens": 123}
+{"key": 562884, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "coffee cup", "seconds": 5.42, "prompt_eval": 5.12, "eval": 0.29, "prompt_tokens": 123}
+{"key": 562911, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "thumbs up", "seconds": 5.43, "prompt_eval": 5.13, "eval": 0.29, "prompt_tokens": 123}
+{"key": 562917, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "mute", "seconds": 5.3, "prompt_eval": 5.14, "eval": 0.14, "prompt_tokens": 123}
+{"key": 562942, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "key", "seconds": 5.29, "prompt_eval": 5.14, "eval": 0.14, "prompt_tokens": 123}
+{"key": 562947, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "open book", "seconds": 5.44, "prompt_eval": 5.13, "eval": 0.3, "prompt_tokens": 123}
+{"key": 562954, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter e", "seconds": 5.46, "prompt_eval": 5.15, "eval": 0.3, "prompt_tokens": 123}
+{"key": 563057, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow", "seconds": 5.28, "prompt_eval": 5.12, "eval": 0.15, "prompt_tokens": 123}
+{"key": 563149, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "speech bubble", "seconds": 5.43, "prompt_eval": 5.12, "eval": 0.29, "prompt_tokens": 123}
+{"key": 563184, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "bicycle", "seconds": 5.43, "prompt_eval": 5.11, "eval": 0.3, "prompt_tokens": 123}
+{"key": 563230, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "prohibited", "seconds": 5.4, "prompt_eval": 5.11, "eval": 0.28, "prompt_tokens": 123}
+{"key": 563268, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "crown", "seconds": 5.44, "prompt_eval": 5.13, "eval": 0.29, "prompt_tokens": 123}
+{"key": 563305, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "check mark", "seconds": 5.43, "prompt_eval": 5.12, "eval": 0.29, "prompt_tokens": 123}
+{"key": 563307, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "coffee cup", "seconds": 5.43, "prompt_eval": 5.13, "eval": 0.28, "prompt_tokens": 123}
+{"key": 563346, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "sailboat", "seconds": 5.61, "prompt_eval": 5.15, "eval": 0.44, "prompt_tokens": 123}
+{"key": 563393, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "power button", "seconds": 5.43, "prompt_eval": 5.12, "eval": 0.3, "prompt_tokens": 123}
+{"key": 563491, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "bar chart", "seconds": 5.43, "prompt_eval": 5.12, "eval": 0.3, "prompt_tokens": 123}
+{"key": 563512, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "telephone", "seconds": 5.29, "prompt_eval": 5.12, "eval": 0.15, "prompt_tokens": 123}
+{"key": 563515, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow circle", "seconds": 5.41, "prompt_eval": 5.11, "eval": 0.29, "prompt_tokens": 123}
+{"key": 563520, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter a", "seconds": 5.47, "prompt_eval": 5.13, "eval": 0.32, "prompt_tokens": 123}
+{"key": 563523, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "thumbs down", "seconds": 5.45, "prompt_eval": 5.14, "eval": 0.3, "prompt_tokens": 123}
+{"key": 563689, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "stethoscope", "seconds": 5.6, "prompt_eval": 5.14, "eval": 0.45, "prompt_tokens": 123}
+{"key": 563690, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "stethoscope", "seconds": 5.59, "prompt_eval": 5.13, "eval": 0.45, "prompt_tokens": 123}
+{"key": 563844, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow", "seconds": 5.32, "prompt_eval": 5.15, "eval": 0.15, "prompt_tokens": 123}
+{"key": 563850, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "list", "seconds": 5.31, "prompt_eval": 5.13, "eval": 0.16, "prompt_tokens": 123}
+{"key": 563887, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter a", "seconds": 5.45, "prompt_eval": 5.14, "eval": 0.3, "prompt_tokens": 123}
+{"key": 563985, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "microphone", "seconds": 5.46, "prompt_eval": 5.13, "eval": 0.32, "prompt_tokens": 123}
+{"key": 564003, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "folder open", "seconds": 5.43, "prompt_eval": 5.12, "eval": 0.29, "prompt_tokens": 123}
+{"key": 564011, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "microphone", "seconds": 5.6, "prompt_eval": 5.29, "eval": 0.29, "prompt_tokens": 123}
+{"key": 564016, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "person sitting", "seconds": 5.45, "prompt_eval": 5.12, "eval": 0.31, "prompt_tokens": 123}
+{"key": 564119, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter m", "seconds": 5.43, "prompt_eval": 5.13, "eval": 0.29, "prompt_tokens": 123}
+{"key": 564126, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "shield", "seconds": 5.29, "prompt_eval": 5.12, "eval": 0.15, "prompt_tokens": 123}
+{"key": 564156, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "cloud with rain", "seconds": 5.57, "prompt_eval": 5.11, "eval": 0.44, "prompt_tokens": 123}
+{"key": 564174, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "binoculars", "seconds": 5.58, "prompt_eval": 5.12, "eval": 0.45, "prompt_tokens": 123}
+{"key": 564191, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "people group", "seconds": 5.42, "prompt_eval": 5.11, "eval": 0.29, "prompt_tokens": 123}
+{"key": 564193, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "no glasses", "seconds": 5.42, "prompt_eval": 5.11, "eval": 0.29, "prompt_tokens": 123}
+{"key": 564198, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "no money", "seconds": 5.42, "prompt_eval": 5.13, "eval": 0.28, "prompt_tokens": 123}
+{"key": 564261, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "wallet", "seconds": 5.32, "prompt_eval": 5.15, "eval": 0.15, "prompt_tokens": 123}
+{"key": 564295, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "train car", "seconds": 5.43, "prompt_eval": 5.13, "eval": 0.29, "prompt_tokens": 123}
+{"key": 564302, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "molecular structure", "seconds": 5.59, "prompt_eval": 5.15, "eval": 0.43, "prompt_tokens": 123}
+{"key": 577322, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "equals sign", "seconds": 5.43, "prompt_eval": 5.12, "eval": 0.3, "prompt_tokens": 123}
+{"key": 577404, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter b", "seconds": 5.41, "prompt_eval": 5.11, "eval": 0.29, "prompt_tokens": 123}
+{"key": 577450, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "pencil case", "seconds": 5.61, "prompt_eval": 5.16, "eval": 0.44, "prompt_tokens": 123}
+{"key": 580859, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter a", "seconds": 5.44, "prompt_eval": 5.14, "eval": 0.29, "prompt_tokens": 123}
+{"key": 584208, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "graph line", "seconds": 5.42, "prompt_eval": 5.12, "eval": 0.29, "prompt_tokens": 123}
+{"key": 587416, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "up down arrows", "seconds": 5.61, "prompt_eval": 5.11, "eval": 0.48, "prompt_tokens": 123}
+{"key": 588188, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "up arrows", "seconds": 5.43, "prompt_eval": 5.12, "eval": 0.3, "prompt_tokens": 123}
+{"key": 589324, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "headphones", "seconds": 5.49, "prompt_eval": 5.16, "eval": 0.31, "prompt_tokens": 123}
+{"key": 599607, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "bookmark", "seconds": 5.31, "prompt_eval": 5.14, "eval": 0.15, "prompt_tokens": 123}
+{"key": 602660, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "four squares", "seconds": 5.46, "prompt_eval": 5.15, "eval": 0.3, "prompt_tokens": 123}
+{"key": 606730, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "gun", "seconds": 5.29, "prompt_eval": 5.13, "eval": 0.15, "prompt_tokens": 123}
+{"key": 608469, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "video camera", "seconds": 5.42, "prompt_eval": 5.12, "eval": 0.29, "prompt_tokens": 123}
+{"key": 608721, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "camera", "seconds": 5.28, "prompt_eval": 5.12, "eval": 0.15, "prompt_tokens": 123}
+{"key": 608848, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "two circles", "seconds": 5.42, "prompt_eval": 5.12, "eval": 0.29, "prompt_tokens": 123}
+{"key": 613113, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "dots on line", "seconds": 5.56, "prompt_eval": 5.11, "eval": 0.43, "prompt_tokens": 123}
+{"key": 620988, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow", "seconds": 5.41, "prompt_eval": 5.24, "eval": 0.15, "prompt_tokens": 123}
+{"key": 621898, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "mug with handle", "seconds": 5.77, "prompt_eval": 5.15, "eval": 0.61, "prompt_tokens": 123}
+{"key": 622242, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "cloud with lightning", "seconds": 5.57, "prompt_eval": 5.12, "eval": 0.44, "prompt_tokens": 123}
+{"key": 622262, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "locked cloud", "seconds": 5.47, "prompt_eval": 5.15, "eval": 0.3, "prompt_tokens": 123}
+{"key": 622366, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "no entry", "seconds": 5.43, "prompt_eval": 5.12, "eval": 0.3, "prompt_tokens": 123}
+{"key": 625102, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "plus sign", "seconds": 5.43, "prompt_eval": 5.12, "eval": 0.3, "prompt_tokens": 123}
+{"key": 626598, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "no entry", "seconds": 5.41, "prompt_eval": 5.12, "eval": 0.28, "prompt_tokens": 123}
+{"key": 628407, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "credit card", "seconds": 5.4, "prompt_eval": 5.11, "eval": 0.28, "prompt_tokens": 123}
+{"key": 633627, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "lamp", "seconds": 5.28, "prompt_eval": 5.13, "eval": 0.14, "prompt_tokens": 123}
+{"key": 634883, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "exclamation mark", "seconds": 5.55, "prompt_eval": 5.11, "eval": 0.43, "prompt_tokens": 123}
+{"key": 634899, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "dots", "seconds": 5.27, "prompt_eval": 5.12, "eval": 0.14, "prompt_tokens": 123}
+{"key": 639987, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow", "seconds": 5.27, "prompt_eval": 5.12, "eval": 0.14, "prompt_tokens": 123}
+{"key": 645733, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "check mark", "seconds": 5.41, "prompt_eval": 5.11, "eval": 0.28, "prompt_tokens": 123}
+{"key": 646985, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "keyhole", "seconds": 5.4, "prompt_eval": 5.11, "eval": 0.28, "prompt_tokens": 123}
+{"key": 648006, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrowhead", "seconds": 5.43, "prompt_eval": 5.14, "eval": 0.28, "prompt_tokens": 123}
+{"key": 648321, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "coffee cup", "seconds": 5.4, "prompt_eval": 5.11, "eval": 0.27, "prompt_tokens": 123}
+{"key": 648704, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "coffee cup", "seconds": 5.43, "prompt_eval": 5.13, "eval": 0.29, "prompt_tokens": 123}
+{"key": 650282, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "frowning face", "seconds": 5.61, "prompt_eval": 5.15, "eval": 0.44, "prompt_tokens": 123}
+{"key": 651311, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "word field", "seconds": 5.42, "prompt_eval": 5.12, "eval": 0.29, "prompt_tokens": 123}
+{"key": 651936, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "banana bunch", "seconds": 5.41, "prompt_eval": 5.11, "eval": 0.28, "prompt_tokens": 123}
+{"key": 653305, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "document icon", "seconds": 5.41, "prompt_eval": 5.11, "eval": 0.29, "prompt_tokens": 123}
+{"key": 653318, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "document icon", "seconds": 5.42, "prompt_eval": 5.11, "eval": 0.29, "prompt_tokens": 123}
+{"key": 653573, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "file folder", "seconds": 5.43, "prompt_eval": 5.12, "eval": 0.29, "prompt_tokens": 123}
+{"key": 658317, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrowhead", "seconds": 5.43, "prompt_eval": 5.13, "eval": 0.29, "prompt_tokens": 123}
+{"key": 661098, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "locked file", "seconds": 5.41, "prompt_eval": 5.11, "eval": 0.29, "prompt_tokens": 123}
+{"key": 661745, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "folder plus", "seconds": 5.44, "prompt_eval": 5.14, "eval": 0.28, "prompt_tokens": 123}
+{"key": 662099, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "folder with magnifying glass", "seconds": 5.86, "prompt_eval": 5.14, "eval": 0.7, "prompt_tokens": 123}
+{"key": 663693, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "lines", "seconds": 5.26, "prompt_eval": 5.1, "eval": 0.14, "prompt_tokens": 123}
+{"key": 663695, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "lines", "seconds": 5.29, "prompt_eval": 5.14, "eval": 0.14, "prompt_tokens": 123}
+{"key": 665445, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "crosshair", "seconds": 5.4, "prompt_eval": 5.11, "eval": 0.27, "prompt_tokens": 123}
+{"key": 670597, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter s", "seconds": 5.41, "prompt_eval": 5.11, "eval": 0.28, "prompt_tokens": 123}
+{"key": 672736, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "circle", "seconds": 5.27, "prompt_eval": 5.12, "eval": 0.14, "prompt_tokens": 123}
+{"key": 675214, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "trash can", "seconds": 5.42, "prompt_eval": 5.11, "eval": 0.29, "prompt_tokens": 123}
+{"key": 677054, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "three squares", "seconds": 5.41, "prompt_eval": 5.11, "eval": 0.29, "prompt_tokens": 123}
+{"key": 677478, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "house", "seconds": 5.26, "prompt_eval": 5.1, "eval": 0.14, "prompt_tokens": 123}
+{"key": 678302, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "eggplant", "seconds": 5.42, "prompt_eval": 5.11, "eval": 0.29, "prompt_tokens": 123}
+{"key": 680506, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter a", "seconds": 5.44, "prompt_eval": 5.13, "eval": 0.29, "prompt_tokens": 123}
+{"key": 682098, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "downward arrow", "seconds": 5.55, "prompt_eval": 5.11, "eval": 0.42, "prompt_tokens": 123}
+{"key": 691444, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "lines", "seconds": 5.26, "prompt_eval": 5.11, "eval": 0.14, "prompt_tokens": 123}
+{"key": 691448, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "lines", "seconds": 5.28, "prompt_eval": 5.12, "eval": 0.14, "prompt_tokens": 123}
+{"key": 692934, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "microphone", "seconds": 5.42, "prompt_eval": 5.12, "eval": 0.29, "prompt_tokens": 123}
+{"key": 697519, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow", "seconds": 5.3, "prompt_eval": 5.14, "eval": 0.15, "prompt_tokens": 123}
+{"key": 701812, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "linkedin logo", "seconds": 5.41, "prompt_eval": 5.11, "eval": 0.29, "prompt_tokens": 123}
+{"key": 702331, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "list", "seconds": 5.28, "prompt_eval": 5.13, "eval": 0.14, "prompt_tokens": 123}
+{"key": 703931, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow", "seconds": 5.29, "prompt_eval": 5.13, "eval": 0.14, "prompt_tokens": 123}
+{"key": 703943, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow head", "seconds": 5.42, "prompt_eval": 5.11, "eval": 0.29, "prompt_tokens": 123}
+{"key": 704388, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow", "seconds": 5.3, "prompt_eval": 5.13, "eval": 0.14, "prompt_tokens": 123}
+{"key": 705189, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "sun", "seconds": 5.29, "prompt_eval": 5.13, "eval": 0.14, "prompt_tokens": 123}
+{"key": 709393, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "medal", "seconds": 5.45, "prompt_eval": 5.14, "eval": 0.29, "prompt_tokens": 123}
+{"key": 710102, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "cross", "seconds": 5.3, "prompt_eval": 5.13, "eval": 0.14, "prompt_tokens": 123}
+{"key": 710141, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "first aid kit", "seconds": 5.58, "prompt_eval": 5.12, "eval": 0.43, "prompt_tokens": 123}
+{"key": 711402, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "circle", "seconds": 5.31, "prompt_eval": 5.14, "eval": 0.14, "prompt_tokens": 123}
+{"key": 717685, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "music note", "seconds": 5.43, "prompt_eval": 5.12, "eval": 0.29, "prompt_tokens": 123}
+{"key": 719670, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "dog", "seconds": 5.28, "prompt_eval": 5.12, "eval": 0.15, "prompt_tokens": 123}
+{"key": 719783, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter a", "seconds": 5.42, "prompt_eval": 5.11, "eval": 0.29, "prompt_tokens": 123}
+{"key": 720001, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "bar graph", "seconds": 5.41, "prompt_eval": 5.12, "eval": 0.28, "prompt_tokens": 123}
+{"key": 720386, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow head", "seconds": 5.43, "prompt_eval": 5.13, "eval": 0.28, "prompt_tokens": 123}
+{"key": 720734, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "smiley face", "seconds": 5.57, "prompt_eval": 5.13, "eval": 0.42, "prompt_tokens": 123}
+{"key": 726614, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "face mask", "seconds": 5.43, "prompt_eval": 5.13, "eval": 0.29, "prompt_tokens": 123}
+{"key": 737143, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "telephone", "seconds": 5.31, "prompt_eval": 5.15, "eval": 0.14, "prompt_tokens": 123}
+{"key": 737459, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "laptop computer", "seconds": 5.54, "prompt_eval": 5.11, "eval": 0.42, "prompt_tokens": 123}
+{"key": 738601, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter p", "seconds": 5.47, "prompt_eval": 5.17, "eval": 0.29, "prompt_tokens": 123}
+{"key": 738996, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter a", "seconds": 5.43, "prompt_eval": 5.13, "eval": 0.28, "prompt_tokens": 123}
+{"key": 739011, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter a", "seconds": 5.41, "prompt_eval": 5.11, "eval": 0.29, "prompt_tokens": 123}
+{"key": 739144, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter p", "seconds": 5.45, "prompt_eval": 5.15, "eval": 0.28, "prompt_tokens": 123}
+{"key": 741011, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "pok\u00e9ball", "seconds": 5.7, "prompt_eval": 5.11, "eval": 0.57, "prompt_tokens": 123}
+{"key": 741935, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "power button", "seconds": 5.39, "prompt_eval": 5.1, "eval": 0.28, "prompt_tokens": 123}
+{"key": 745538, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter a", "seconds": 5.44, "prompt_eval": 5.11, "eval": 0.31, "prompt_tokens": 123}
+{"key": 745597, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "qr code", "seconds": 5.44, "prompt_eval": 5.12, "eval": 0.3, "prompt_tokens": 123}
+{"key": 745600, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "alphabet letters", "seconds": 5.46, "prompt_eval": 5.15, "eval": 0.29, "prompt_tokens": 123}
+{"key": 750423, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrowhead", "seconds": 5.45, "prompt_eval": 5.14, "eval": 0.29, "prompt_tokens": 123}
+{"key": 752254, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow circle", "seconds": 5.4, "prompt_eval": 5.11, "eval": 0.28, "prompt_tokens": 123}
+{"key": 752276, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "refresh symbol", "seconds": 5.44, "prompt_eval": 5.14, "eval": 0.29, "prompt_tokens": 123}
+{"key": 761181, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "two rectangles", "seconds": 5.41, "prompt_eval": 5.12, "eval": 0.28, "prompt_tokens": 123}
+{"key": 761431, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow down", "seconds": 5.41, "prompt_eval": 5.11, "eval": 0.28, "prompt_tokens": 123}
+{"key": 767727, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter a", "seconds": 5.42, "prompt_eval": 5.12, "eval": 0.28, "prompt_tokens": 123}
+{"key": 769593, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow", "seconds": 5.27, "prompt_eval": 5.11, "eval": 0.14, "prompt_tokens": 123}
+{"key": 769675, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "staircase", "seconds": 5.56, "prompt_eval": 5.12, "eval": 0.42, "prompt_tokens": 123}
+{"key": 772441, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "tuxedo", "seconds": 5.53, "prompt_eval": 5.1, "eval": 0.41, "prompt_tokens": 123}
+{"key": 773560, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "starburst", "seconds": 5.41, "prompt_eval": 5.12, "eval": 0.28, "prompt_tokens": 123}
+{"key": 780230, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "table lamp", "seconds": 5.4, "prompt_eval": 5.11, "eval": 0.28, "prompt_tokens": 123}
+{"key": 783012, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "check mark", "seconds": 5.41, "prompt_eval": 5.12, "eval": 0.27, "prompt_tokens": 123}
+{"key": 787085, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "arrow", "seconds": 5.27, "prompt_eval": 5.11, "eval": 0.14, "prompt_tokens": 123}
+{"key": 792947, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "no entry", "seconds": 5.4, "prompt_eval": 5.11, "eval": 0.28, "prompt_tokens": 123}
+{"key": 797118, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "video camera", "seconds": 5.41, "prompt_eval": 5.12, "eval": 0.28, "prompt_tokens": 123}
+{"key": 798959, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "letter a", "seconds": 5.41, "prompt_eval": 5.12, "eval": 0.28, "prompt_tokens": 123}
+{"key": 801508, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "moon cloud", "seconds": 5.39, "prompt_eval": 5.1, "eval": 0.27, "prompt_tokens": 123}
+{"key": 804645, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "smiley face", "seconds": 5.56, "prompt_eval": 5.13, "eval": 0.41, "prompt_tokens": 123}
+{"key": 809094, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "accordion", "seconds": 5.27, "prompt_eval": 5.1, "eval": 0.14, "prompt_tokens": 123}
+{"key": 809379, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "calendar", "seconds": 5.29, "prompt_eval": 5.13, "eval": 0.14, "prompt_tokens": 123}
+{"key": 810748, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "paperclip", "seconds": 5.43, "prompt_eval": 5.13, "eval": 0.28, "prompt_tokens": 123}
+{"key": 811891, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "hat", "seconds": 5.27, "prompt_eval": 5.11, "eval": 0.14, "prompt_tokens": 123}
+{"key": 813116, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=64,threads=4", "answer": "pound sign", "seconds": 5.56, "prompt_eval": 5.13, "eval": 0.42, "prompt_tokens": 123}
+{"key": 251778, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "compass rose", "seconds": 232.61, "prompt_eval": 22.31, "eval": 0.25, "prompt_tokens": 315}
+{"key": 280982, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "folder", "seconds": 19.76, "prompt_eval": 19.61, "eval": 0.12, "prompt_tokens": 315}
+{"key": 280986, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "notebook page", "seconds": 19.96, "prompt_eval": 19.56, "eval": 0.37, "prompt_tokens": 315}
+{"key": 302608, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "left arrow", "seconds": 19.76, "prompt_eval": 19.49, "eval": 0.25, "prompt_tokens": 315}
+{"key": 303183, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "rectangle", "seconds": 19.69, "prompt_eval": 19.54, "eval": 0.13, "prompt_tokens": 315}
+{"key": 314260, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "document scanner", "seconds": 19.79, "prompt_eval": 19.5, "eval": 0.27, "prompt_tokens": 315}
+{"key": 316203, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "open book", "seconds": 19.83, "prompt_eval": 19.54, "eval": 0.26, "prompt_tokens": 315}
+{"key": 331096, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "check mark", "seconds": 19.88, "prompt_eval": 19.57, "eval": 0.28, "prompt_tokens": 315}
+{"key": 338484, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "letter e", "seconds": 19.84, "prompt_eval": 19.55, "eval": 0.26, "prompt_tokens": 315}
+{"key": 339411, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "cloud upload", "seconds": 19.79, "prompt_eval": 19.51, "eval": 0.25, "prompt_tokens": 315}
+{"key": 358214, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "onion", "seconds": 19.83, "prompt_eval": 19.54, "eval": 0.26, "prompt_tokens": 315}
+{"key": 365318, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "coffee cup", "seconds": 19.8, "prompt_eval": 19.51, "eval": 0.26, "prompt_tokens": 315}
+{"key": 370249, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "square root", "seconds": 19.81, "prompt_eval": 19.52, "eval": 0.26, "prompt_tokens": 315}
+{"key": 388650, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "cube", "seconds": 19.71, "prompt_eval": 19.55, "eval": 0.13, "prompt_tokens": 315}
+{"key": 394341, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "house", "seconds": 19.71, "prompt_eval": 19.54, "eval": 0.14, "prompt_tokens": 315}
+{"key": 395810, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "number five", "seconds": 19.77, "prompt_eval": 19.49, "eval": 0.26, "prompt_tokens": 315}
+{"key": 403949, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "instagram logo", "seconds": 19.87, "prompt_eval": 19.57, "eval": 0.27, "prompt_tokens": 315}
+{"key": 405977, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "bib", "seconds": 19.73, "prompt_eval": 19.56, "eval": 0.14, "prompt_tokens": 315}
+{"key": 428891, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "microphone", "seconds": 19.77, "prompt_eval": 19.49, "eval": 0.26, "prompt_tokens": 315}
+{"key": 453952, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "phone call", "seconds": 19.85, "prompt_eval": 19.56, "eval": 0.26, "prompt_tokens": 315}
+{"key": 454056, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "prohibited sign", "seconds": 19.92, "prompt_eval": 19.5, "eval": 0.39, "prompt_tokens": 315}
+{"key": 466611, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "double arrow", "seconds": 19.84, "prompt_eval": 19.57, "eval": 0.25, "prompt_tokens": 315}
+{"key": 487308, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "no star", "seconds": 19.81, "prompt_eval": 19.53, "eval": 0.26, "prompt_tokens": 315}
+{"key": 503345, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "arrow", "seconds": 19.63, "prompt_eval": 19.48, "eval": 0.13, "prompt_tokens": 315}
+{"key": 515992, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "phone receiver", "seconds": 19.77, "prompt_eval": 19.5, "eval": 0.25, "prompt_tokens": 315}
+{"key": 521482, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "wine glass", "seconds": 19.79, "prompt_eval": 19.51, "eval": 0.26, "prompt_tokens": 315}
+{"key": 526373, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "question mark", "seconds": 19.73, "prompt_eval": 19.46, "eval": 0.25, "prompt_tokens": 315}
+{"key": 526554, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "warning sign", "seconds": 19.73, "prompt_eval": 19.46, "eval": 0.25, "prompt_tokens": 315}
+{"key": 526803, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "car seat", "seconds": 19.8, "prompt_eval": 19.51, "eval": 0.26, "prompt_tokens": 315}
+{"key": 528177, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "arrow left right", "seconds": 19.99, "prompt_eval": 19.58, "eval": 0.38, "prompt_tokens": 315}
+{"key": 528939, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "bed", "seconds": 19.61, "prompt_eval": 19.46, "eval": 0.13, "prompt_tokens": 315}
+{"key": 530126, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "train station", "seconds": 19.77, "prompt_eval": 19.49, "eval": 0.26, "prompt_tokens": 315}
+{"key": 530430, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "speaker", "seconds": 19.6, "prompt_eval": 19.44, "eval": 0.13, "prompt_tokens": 315}
+{"key": 530658, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "power button", "seconds": 19.75, "prompt_eval": 19.47, "eval": 0.25, "prompt_tokens": 315}
+{"key": 530825, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "coffee pot", "seconds": 19.79, "prompt_eval": 19.51, "eval": 0.25, "prompt_tokens": 315}
+{"key": 533386, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "recycling symbol", "seconds": 19.89, "prompt_eval": 19.48, "eval": 0.38, "prompt_tokens": 315}
+{"key": 534801, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "loading circle", "seconds": 19.75, "prompt_eval": 19.47, "eval": 0.26, "prompt_tokens": 315}
+{"key": 535291, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "computer monitor", "seconds": 19.8, "prompt_eval": 19.53, "eval": 0.25, "prompt_tokens": 315}
+{"key": 536114, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "book page", "seconds": 19.77, "prompt_eval": 19.49, "eval": 0.25, "prompt_tokens": 315}
+{"key": 536468, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "teardrop", "seconds": 19.86, "prompt_eval": 19.46, "eval": 0.37, "prompt_tokens": 315}
+{"key": 536729, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "pen tip", "seconds": 19.78, "prompt_eval": 19.51, "eval": 0.25, "prompt_tokens": 315}
+{"key": 537468, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "smiling cloud", "seconds": 19.85, "prompt_eval": 19.46, "eval": 0.37, "prompt_tokens": 315}
+{"key": 538538, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "teardrop", "seconds": 19.88, "prompt_eval": 19.49, "eval": 0.37, "prompt_tokens": 315}
+{"key": 541206, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "heart", "seconds": 19.66, "prompt_eval": 19.51, "eval": 0.12, "prompt_tokens": 315}
+{"key": 541510, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "refresh symbol", "seconds": 19.74, "prompt_eval": 19.45, "eval": 0.26, "prompt_tokens": 315}
+{"key": 542261, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "photo frame", "seconds": 19.73, "prompt_eval": 19.45, "eval": 0.25, "prompt_tokens": 315}
+{"key": 544326, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "thumbs up", "seconds": 19.76, "prompt_eval": 19.49, "eval": 0.25, "prompt_tokens": 315}
+{"key": 545729, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "menu", "seconds": 19.61, "prompt_eval": 19.45, "eval": 0.13, "prompt_tokens": 315}
+{"key": 545903, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "train car", "seconds": 19.73, "prompt_eval": 19.44, "eval": 0.26, "prompt_tokens": 315}
+{"key": 546262, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "exclamation mark", "seconds": 19.93, "prompt_eval": 19.53, "eval": 0.38, "prompt_tokens": 315}
+{"key": 546541, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "bicycle", "seconds": 19.75, "prompt_eval": 19.47, "eval": 0.26, "prompt_tokens": 315}
+{"key": 547297, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "document corner", "seconds": 19.74, "prompt_eval": 19.46, "eval": 0.26, "prompt_tokens": 315}
+{"key": 549525, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "speech bubble", "seconds": 19.83, "prompt_eval": 19.55, "eval": 0.26, "prompt_tokens": 315}
+{"key": 550114, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "coffee cup", "seconds": 19.73, "prompt_eval": 19.45, "eval": 0.26, "prompt_tokens": 315}
+{"key": 550321, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "circle", "seconds": 19.65, "prompt_eval": 19.5, "eval": 0.13, "prompt_tokens": 315}
+{"key": 551140, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "number two", "seconds": 19.79, "prompt_eval": 19.51, "eval": 0.26, "prompt_tokens": 315}
+{"key": 551334, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "archway", "seconds": 19.73, "prompt_eval": 19.46, "eval": 0.25, "prompt_tokens": 315}
+{"key": 552300, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "ribbon award", "seconds": 19.76, "prompt_eval": 19.48, "eval": 0.25, "prompt_tokens": 315}
+{"key": 552749, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "arrow up", "seconds": 19.82, "prompt_eval": 19.54, "eval": 0.25, "prompt_tokens": 315}
+{"key": 553743, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "paper airplane", "seconds": 19.72, "prompt_eval": 19.45, "eval": 0.25, "prompt_tokens": 315}
+{"key": 553955, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "share symbol", "seconds": 19.76, "prompt_eval": 19.48, "eval": 0.26, "prompt_tokens": 315}
+{"key": 553961, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "arrow curve", "seconds": 19.77, "prompt_eval": 19.48, "eval": 0.26, "prompt_tokens": 315}
+{"key": 554109, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "ship", "seconds": 19.61, "prompt_eval": 19.46, "eval": 0.13, "prompt_tokens": 315}
+{"key": 554220, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "shopping cart", "seconds": 19.74, "prompt_eval": 19.46, "eval": 0.26, "prompt_tokens": 315}
+{"key": 556321, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "square box", "seconds": 19.76, "prompt_eval": 19.49, "eval": 0.25, "prompt_tokens": 315}
+{"key": 559885, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "locked door", "seconds": 19.82, "prompt_eval": 19.52, "eval": 0.27, "prompt_tokens": 315}
+{"key": 560965, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "coffee cup", "seconds": 19.78, "prompt_eval": 19.51, "eval": 0.25, "prompt_tokens": 315}
+{"key": 561468, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "window", "seconds": 19.65, "prompt_eval": 19.5, "eval": 0.12, "prompt_tokens": 315}
+{"key": 562014, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "laptop computer", "seconds": 19.87, "prompt_eval": 19.47, "eval": 0.38, "prompt_tokens": 315}
+{"key": 562039, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "trash bin", "seconds": 19.72, "prompt_eval": 19.45, "eval": 0.25, "prompt_tokens": 315}
+{"key": 562073, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "sun", "seconds": 19.64, "prompt_eval": 19.49, "eval": 0.13, "prompt_tokens": 315}
+{"key": 562095, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "bookshelf", "seconds": 19.75, "prompt_eval": 19.47, "eval": 0.25, "prompt_tokens": 315}
+{"key": 562122, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "folder", "seconds": 19.64, "prompt_eval": 19.48, "eval": 0.13, "prompt_tokens": 315}
+{"key": 562123, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "gear", "seconds": 19.69, "prompt_eval": 19.47, "eval": 0.18, "prompt_tokens": 315}
+{"key": 562124, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "bug", "seconds": 19.66, "prompt_eval": 19.5, "eval": 0.12, "prompt_tokens": 315}
+{"key": 562126, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "apple", "seconds": 19.64, "prompt_eval": 19.47, "eval": 0.13, "prompt_tokens": 315}
+{"key": 562128, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "robot arm", "seconds": 19.76, "prompt_eval": 19.47, "eval": 0.25, "prompt_tokens": 315}
+{"key": 562150, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "wifi signal", "seconds": 19.82, "prompt_eval": 19.53, "eval": 0.25, "prompt_tokens": 315}
+{"key": 562153, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "wavy lines", "seconds": 19.99, "prompt_eval": 19.58, "eval": 0.39, "prompt_tokens": 315}
+{"key": 562194, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "anchor", "seconds": 19.66, "prompt_eval": 19.48, "eval": 0.14, "prompt_tokens": 315}
+{"key": 562221, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "fire flame", "seconds": 19.82, "prompt_eval": 19.54, "eval": 0.25, "prompt_tokens": 315}
+{"key": 562276, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "angle brackets", "seconds": 19.75, "prompt_eval": 19.46, "eval": 0.25, "prompt_tokens": 315}
+{"key": 562301, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "envelope", "seconds": 19.83, "prompt_eval": 19.53, "eval": 0.27, "prompt_tokens": 315}
+{"key": 562316, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "thumbs up", "seconds": 19.87, "prompt_eval": 19.58, "eval": 0.26, "prompt_tokens": 315}
+{"key": 562329, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "speech bubble", "seconds": 19.77, "prompt_eval": 19.48, "eval": 0.25, "prompt_tokens": 315}
+{"key": 562390, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "microphone", "seconds": 19.82, "prompt_eval": 19.53, "eval": 0.26, "prompt_tokens": 315}
+{"key": 562435, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "printer", "seconds": 19.7, "prompt_eval": 19.53, "eval": 0.13, "prompt_tokens": 315}
+{"key": 562455, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "cat face", "seconds": 19.79, "prompt_eval": 19.48, "eval": 0.25, "prompt_tokens": 315}
+{"key": 562456, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "document folder", "seconds": 19.77, "prompt_eval": 19.48, "eval": 0.25, "prompt_tokens": 315}
+{"key": 562457, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "document", "seconds": 19.73, "prompt_eval": 19.57, "eval": 0.13, "prompt_tokens": 315}
+{"key": 562671, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "compass rose", "seconds": 19.79, "prompt_eval": 19.51, "eval": 0.25, "prompt_tokens": 315}
+{"key": 562717, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "television", "seconds": 19.79, "prompt_eval": 19.51, "eval": 0.25, "prompt_tokens": 315}
+{"key": 562726, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "graduation cap", "seconds": 20.0, "prompt_eval": 19.58, "eval": 0.39, "prompt_tokens": 315}
+{"key": 562805, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "arrow", "seconds": 19.67, "prompt_eval": 19.51, "eval": 0.13, "prompt_tokens": 315}
+{"key": 562832, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "cross", "seconds": 19.69, "prompt_eval": 19.53, "eval": 0.13, "prompt_tokens": 315}
+{"key": 562852, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "mouse cursor", "seconds": 19.81, "prompt_eval": 19.53, "eval": 0.25, "prompt_tokens": 315}
+{"key": 562883, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "document", "seconds": 19.66, "prompt_eval": 19.51, "eval": 0.13, "prompt_tokens": 315}
+{"key": 562884, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "coffee cup", "seconds": 19.78, "prompt_eval": 19.49, "eval": 0.25, "prompt_tokens": 315}
+{"key": 562911, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "mouse pointer", "seconds": 19.8, "prompt_eval": 19.52, "eval": 0.26, "prompt_tokens": 315}
+{"key": 562917, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "mute", "seconds": 19.66, "prompt_eval": 19.49, "eval": 0.13, "prompt_tokens": 315}
+{"key": 562942, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "key", "seconds": 19.66, "prompt_eval": 19.5, "eval": 0.13, "prompt_tokens": 315}
+{"key": 562947, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "newspaper", "seconds": 19.97, "prompt_eval": 19.54, "eval": 0.38, "prompt_tokens": 315}
+{"key": 562954, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "letter e", "seconds": 19.77, "prompt_eval": 19.48, "eval": 0.26, "prompt_tokens": 315}
+{"key": 563057, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "arrow", "seconds": 19.63, "prompt_eval": 19.48, "eval": 0.13, "prompt_tokens": 315}
+{"key": 563149, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "speech bubble", "seconds": 19.87, "prompt_eval": 19.54, "eval": 0.29, "prompt_tokens": 315}
+{"key": 563184, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "motorcycle", "seconds": 19.79, "prompt_eval": 19.49, "eval": 0.25, "prompt_tokens": 315}
+{"key": 563230, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "no eye", "seconds": 19.77, "prompt_eval": 19.49, "eval": 0.25, "prompt_tokens": 315}
+{"key": 563268, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "coffee cup", "seconds": 19.84, "prompt_eval": 19.55, "eval": 0.25, "prompt_tokens": 315}
+{"key": 563305, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "check mark", "seconds": 19.79, "prompt_eval": 19.5, "eval": 0.26, "prompt_tokens": 315}
+{"key": 563307, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "chair", "seconds": 19.66, "prompt_eval": 19.49, "eval": 0.12, "prompt_tokens": 315}
+{"key": 563346, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "sailboat", "seconds": 19.97, "prompt_eval": 19.54, "eval": 0.38, "prompt_tokens": 315}
+{"key": 563393, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "qr code", "seconds": 19.79, "prompt_eval": 19.49, "eval": 0.26, "prompt_tokens": 315}
+{"key": 563491, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "bar chart", "seconds": 19.9, "prompt_eval": 19.61, "eval": 0.25, "prompt_tokens": 315}
+{"key": 563512, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "phone call", "seconds": 19.83, "prompt_eval": 19.54, "eval": 0.26, "prompt_tokens": 315}
+{"key": 563515, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "arrow circle", "seconds": 19.79, "prompt_eval": 19.49, "eval": 0.26, "prompt_tokens": 315}
+{"key": 563520, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "house", "seconds": 19.63, "prompt_eval": 19.46, "eval": 0.13, "prompt_tokens": 315}
+{"key": 563523, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "thumbs down", "seconds": 19.83, "prompt_eval": 19.55, "eval": 0.25, "prompt_tokens": 315}
+{"key": 563689, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "stethoscope", "seconds": 19.91, "prompt_eval": 19.49, "eval": 0.38, "prompt_tokens": 315}
+{"key": 563690, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "stethoscope", "seconds": 19.93, "prompt_eval": 19.5, "eval": 0.39, "prompt_tokens": 315}
+{"key": 563844, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "play button", "seconds": 19.9, "prompt_eval": 19.59, "eval": 0.26, "prompt_tokens": 315}
+{"key": 563850, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "list items", "seconds": 19.85, "prompt_eval": 19.54, "eval": 0.28, "prompt_tokens": 315}
+{"key": 563887, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "letter e", "seconds": 19.89, "prompt_eval": 19.56, "eval": 0.28, "prompt_tokens": 315}
+{"key": 563985, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "microphone", "seconds": 19.92, "prompt_eval": 19.61, "eval": 0.27, "prompt_tokens": 315}
+{"key": 564003, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "speech bubble", "seconds": 19.81, "prompt_eval": 19.51, "eval": 0.27, "prompt_tokens": 315}
+{"key": 564011, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "laptop computer", "seconds": 19.98, "prompt_eval": 19.55, "eval": 0.39, "prompt_tokens": 315}
+{"key": 564016, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "two people", "seconds": 19.85, "prompt_eval": 19.56, "eval": 0.26, "prompt_tokens": 315}
+{"key": 564119, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "letter m e", "seconds": 19.94, "prompt_eval": 19.51, "eval": 0.4, "prompt_tokens": 315}
+{"key": 564126, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "shield", "seconds": 19.69, "prompt_eval": 19.52, "eval": 0.13, "prompt_tokens": 315}
+{"key": 564156, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "cloud upload", "seconds": 19.82, "prompt_eval": 19.53, "eval": 0.26, "prompt_tokens": 315}
+{"key": 564174, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "shopping cart", "seconds": 19.77, "prompt_eval": 19.47, "eval": 0.26, "prompt_tokens": 315}
+{"key": 564191, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "people group", "seconds": 19.77, "prompt_eval": 19.47, "eval": 0.26, "prompt_tokens": 315}
+{"key": 564193, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "microphone off", "seconds": 19.93, "prompt_eval": 19.52, "eval": 0.38, "prompt_tokens": 315}
+{"key": 564198, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "no smoke", "seconds": 19.81, "prompt_eval": 19.51, "eval": 0.26, "prompt_tokens": 315}
+{"key": 564261, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "house with wallet", "seconds": 19.86, "prompt_eval": 19.45, "eval": 0.38, "prompt_tokens": 315}
+{"key": 564295, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "train station", "seconds": 19.82, "prompt_eval": 19.52, "eval": 0.26, "prompt_tokens": 315}
+{"key": 564302, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "molecular structure", "seconds": 19.9, "prompt_eval": 19.47, "eval": 0.39, "prompt_tokens": 315}
+{"key": 577322, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "equal sign", "seconds": 19.77, "prompt_eval": 19.47, "eval": 0.25, "prompt_tokens": 315}
+{"key": 577404, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "letter b", "seconds": 19.83, "prompt_eval": 19.53, "eval": 0.26, "prompt_tokens": 315}
+{"key": 577450, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "list", "seconds": 19.67, "prompt_eval": 19.51, "eval": 0.13, "prompt_tokens": 315}
+{"key": 580859, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "letter a", "seconds": 19.79, "prompt_eval": 19.5, "eval": 0.26, "prompt_tokens": 315}
+{"key": 584208, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "graph line", "seconds": 19.83, "prompt_eval": 19.53, "eval": 0.25, "prompt_tokens": 315}
+{"key": 587416, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "up down arrows", "seconds": 19.9, "prompt_eval": 19.47, "eval": 0.39, "prompt_tokens": 315}
+{"key": 588188, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "up arrows", "seconds": 19.76, "prompt_eval": 19.47, "eval": 0.26, "prompt_tokens": 315}
+{"key": 589324, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "headphones", "seconds": 19.81, "prompt_eval": 19.51, "eval": 0.26, "prompt_tokens": 315}
+{"key": 599607, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "medical file", "seconds": 19.79, "prompt_eval": 19.5, "eval": 0.26, "prompt_tokens": 315}
+{"key": 602660, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "screen", "seconds": 19.68, "prompt_eval": 19.51, "eval": 0.13, "prompt_tokens": 315}
+{"key": 606730, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "coffee cup", "seconds": 19.85, "prompt_eval": 19.57, "eval": 0.26, "prompt_tokens": 315}
+{"key": 608469, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "video camera", "seconds": 19.75, "prompt_eval": 19.46, "eval": 0.25, "prompt_tokens": 315}
+{"key": 608721, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "camera", "seconds": 19.65, "prompt_eval": 19.48, "eval": 0.13, "prompt_tokens": 315}
+{"key": 608848, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "eyes", "seconds": 19.67, "prompt_eval": 19.52, "eval": 0.13, "prompt_tokens": 315}
+{"key": 613113, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "graph paper", "seconds": 19.76, "prompt_eval": 19.47, "eval": 0.25, "prompt_tokens": 315}
+{"key": 620988, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "document arrow", "seconds": 19.75, "prompt_eval": 19.47, "eval": 0.25, "prompt_tokens": 315}
+{"key": 621898, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "check mark", "seconds": 19.81, "prompt_eval": 19.53, "eval": 0.25, "prompt_tokens": 315}
+{"key": 622242, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "storm cloud", "seconds": 19.78, "prompt_eval": 19.48, "eval": 0.25, "prompt_tokens": 315}
+{"key": 622262, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "locked cloud", "seconds": 19.77, "prompt_eval": 19.48, "eval": 0.26, "prompt_tokens": 315}
+{"key": 622366, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "no cloud", "seconds": 19.87, "prompt_eval": 19.59, "eval": 0.25, "prompt_tokens": 315}
+{"key": 625102, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "add button", "seconds": 19.85, "prompt_eval": 19.56, "eval": 0.25, "prompt_tokens": 315}
+{"key": 626598, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "scissors", "seconds": 19.79, "prompt_eval": 19.5, "eval": 0.26, "prompt_tokens": 315}
+{"key": 628407, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "credit card", "seconds": 19.9, "prompt_eval": 19.61, "eval": 0.25, "prompt_tokens": 315}
+{"key": 633627, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "table lamp", "seconds": 19.79, "prompt_eval": 19.51, "eval": 0.26, "prompt_tokens": 315}
+{"key": 634883, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "exclamation mark", "seconds": 19.93, "prompt_eval": 19.52, "eval": 0.39, "prompt_tokens": 315}
+{"key": 634899, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "dots grid", "seconds": 19.91, "prompt_eval": 19.53, "eval": 0.25, "prompt_tokens": 315}
+{"key": 639987, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "down arrow", "seconds": 19.75, "prompt_eval": 19.48, "eval": 0.25, "prompt_tokens": 315}
+{"key": 645733, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "check mark", "seconds": 19.83, "prompt_eval": 19.53, "eval": 0.26, "prompt_tokens": 315}
+{"key": 646985, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "keyhole", "seconds": 19.9, "prompt_eval": 19.61, "eval": 0.26, "prompt_tokens": 315}
+{"key": 648006, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "ethereum logo", "seconds": 19.85, "prompt_eval": 19.56, "eval": 0.26, "prompt_tokens": 315}
+{"key": 648321, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "battery charging", "seconds": 19.81, "prompt_eval": 19.52, "eval": 0.25, "prompt_tokens": 315}
+{"key": 648704, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "data transfer", "seconds": 19.86, "prompt_eval": 19.56, "eval": 0.27, "prompt_tokens": 315}
+{"key": 650282, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "frowning face", "seconds": 19.94, "prompt_eval": 19.52, "eval": 0.39, "prompt_tokens": 315}
+{"key": 651311, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "word end", "seconds": 19.8, "prompt_eval": 19.51, "eval": 0.27, "prompt_tokens": 315}
+{"key": 651936, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "wave arrow", "seconds": 19.94, "prompt_eval": 19.55, "eval": 0.26, "prompt_tokens": 315}
+{"key": 653305, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "document photo", "seconds": 19.82, "prompt_eval": 19.53, "eval": 0.27, "prompt_tokens": 315}
+{"key": 653318, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "document", "seconds": 19.74, "prompt_eval": 19.52, "eval": 0.13, "prompt_tokens": 315}
+{"key": 653573, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "document file", "seconds": 19.81, "prompt_eval": 19.52, "eval": 0.26, "prompt_tokens": 315}
+{"key": 658317, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "letter a", "seconds": 19.87, "prompt_eval": 19.57, "eval": 0.27, "prompt_tokens": 315}
+{"key": 661098, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "locked folder", "seconds": 19.92, "prompt_eval": 19.55, "eval": 0.27, "prompt_tokens": 315}
+{"key": 661745, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "folder plus", "seconds": 19.85, "prompt_eval": 19.55, "eval": 0.27, "prompt_tokens": 315}
+{"key": 662099, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "search icon", "seconds": 19.9, "prompt_eval": 19.61, "eval": 0.26, "prompt_tokens": 315}
+{"key": 663693, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "lines", "seconds": 19.7, "prompt_eval": 19.53, "eval": 0.13, "prompt_tokens": 315}
+{"key": 663695, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "lines", "seconds": 19.75, "prompt_eval": 19.58, "eval": 0.13, "prompt_tokens": 315}
+{"key": 665445, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "crosshair", "seconds": 20.11, "prompt_eval": 19.82, "eval": 0.27, "prompt_tokens": 315}
+{"key": 670597, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "letter g", "seconds": 20.01, "prompt_eval": 19.67, "eval": 0.26, "prompt_tokens": 315}
+{"key": 672736, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "circle", "seconds": 19.74, "prompt_eval": 19.57, "eval": 0.13, "prompt_tokens": 315}
+{"key": 675214, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "external hard drive", "seconds": 20.08, "prompt_eval": 19.64, "eval": 0.39, "prompt_tokens": 315}
+{"key": 677054, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "stack of blocks", "seconds": 19.91, "prompt_eval": 19.49, "eval": 0.39, "prompt_tokens": 315}
+{"key": 677478, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "house with chimney", "seconds": 19.94, "prompt_eval": 19.52, "eval": 0.39, "prompt_tokens": 315}
+{"key": 678302, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "shoe print", "seconds": 20.01, "prompt_eval": 19.59, "eval": 0.4, "prompt_tokens": 315}
+{"key": 680506, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "flower", "seconds": 19.67, "prompt_eval": 19.51, "eval": 0.13, "prompt_tokens": 315}
+{"key": 682098, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "download arrow", "seconds": 19.79, "prompt_eval": 19.51, "eval": 0.25, "prompt_tokens": 315}
+{"key": 691444, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "list", "seconds": 19.72, "prompt_eval": 19.57, "eval": 0.13, "prompt_tokens": 315}
+{"key": 691448, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "menu", "seconds": 19.68, "prompt_eval": 19.53, "eval": 0.13, "prompt_tokens": 315}
+{"key": 692934, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "microphone", "seconds": 19.83, "prompt_eval": 19.53, "eval": 0.27, "prompt_tokens": 315}
+{"key": 697519, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "left arrow", "seconds": 19.86, "prompt_eval": 19.57, "eval": 0.26, "prompt_tokens": 315}
+{"key": 701812, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "linkedin logo", "seconds": 19.8, "prompt_eval": 19.5, "eval": 0.28, "prompt_tokens": 315}
+{"key": 702331, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "number list", "seconds": 19.81, "prompt_eval": 19.52, "eval": 0.27, "prompt_tokens": 315}
+{"key": 703931, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "arrow circle", "seconds": 19.85, "prompt_eval": 19.55, "eval": 0.27, "prompt_tokens": 315}
+{"key": 703943, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "arrow back", "seconds": 19.78, "prompt_eval": 19.49, "eval": 0.27, "prompt_tokens": 315}
+{"key": 704388, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "paper arrow", "seconds": 19.8, "prompt_eval": 19.51, "eval": 0.27, "prompt_tokens": 315}
+{"key": 705189, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "sun", "seconds": 19.71, "prompt_eval": 19.55, "eval": 0.13, "prompt_tokens": 315}
+{"key": 709393, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "star rating", "seconds": 19.81, "prompt_eval": 19.52, "eval": 0.26, "prompt_tokens": 315}
+{"key": 710102, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "cross", "seconds": 19.67, "prompt_eval": 19.51, "eval": 0.13, "prompt_tokens": 315}
+{"key": 710141, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "first aid kit", "seconds": 19.96, "prompt_eval": 19.54, "eval": 0.39, "prompt_tokens": 315}
+{"key": 711402, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "circle", "seconds": 19.66, "prompt_eval": 19.51, "eval": 0.13, "prompt_tokens": 315}
+{"key": 717685, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "musical notes", "seconds": 19.99, "prompt_eval": 19.59, "eval": 0.38, "prompt_tokens": 315}
+{"key": 719670, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "guitar", "seconds": 19.85, "prompt_eval": 19.56, "eval": 0.26, "prompt_tokens": 315}
+{"key": 719783, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "compass", "seconds": 19.66, "prompt_eval": 19.51, "eval": 0.13, "prompt_tokens": 315}
+{"key": 720001, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "bar chart", "seconds": 19.79, "prompt_eval": 19.51, "eval": 0.25, "prompt_tokens": 315}
+{"key": 720386, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "person with arrows", "seconds": 20.0, "prompt_eval": 19.58, "eval": 0.4, "prompt_tokens": 315}
+{"key": 720734, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "frowning face", "seconds": 19.92, "prompt_eval": 19.51, "eval": 0.39, "prompt_tokens": 315}
+{"key": 726614, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "baby face", "seconds": 19.81, "prompt_eval": 19.52, "eval": 0.26, "prompt_tokens": 315}
+{"key": 737143, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "phone with x", "seconds": 19.97, "prompt_eval": 19.56, "eval": 0.38, "prompt_tokens": 315}
+{"key": 737459, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "laptop computer", "seconds": 19.9, "prompt_eval": 19.49, "eval": 0.38, "prompt_tokens": 315}
+{"key": 738601, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "letter p", "seconds": 19.79, "prompt_eval": 19.51, "eval": 0.26, "prompt_tokens": 315}
+{"key": 738996, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "letter a", "seconds": 19.83, "prompt_eval": 19.54, "eval": 0.26, "prompt_tokens": 315}
+{"key": 739011, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "letter p", "seconds": 19.78, "prompt_eval": 19.49, "eval": 0.26, "prompt_tokens": 315}
+{"key": 739144, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "letter p", "seconds": 19.78, "prompt_eval": 19.49, "eval": 0.25, "prompt_tokens": 315}
+{"key": 741011, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "pokeball", "seconds": 21.43, "prompt_eval": 21.02, "eval": 0.38, "prompt_tokens": 315}
+{"key": 741935, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "power button", "seconds": 19.74, "prompt_eval": 19.46, "eval": 0.25, "prompt_tokens": 315}
+{"key": 745538, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "mathematical symbols", "seconds": 20.01, "prompt_eval": 19.47, "eval": 0.51, "prompt_tokens": 315}
+{"key": 745597, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "letter n", "seconds": 19.82, "prompt_eval": 19.54, "eval": 0.26, "prompt_tokens": 315}
+{"key": 745600, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "qr code", "seconds": 19.79, "prompt_eval": 19.5, "eval": 0.27, "prompt_tokens": 315}
+{"key": 750423, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "arrow down up", "seconds": 19.99, "prompt_eval": 19.55, "eval": 0.41, "prompt_tokens": 315}
+{"key": 752254, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "refresh arrow", "seconds": 19.9, "prompt_eval": 19.61, "eval": 0.27, "prompt_tokens": 315}
+{"key": 752276, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "refresh arrow", "seconds": 19.83, "prompt_eval": 19.54, "eval": 0.27, "prompt_tokens": 315}
+{"key": 761181, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "two rectangles", "seconds": 19.84, "prompt_eval": 19.56, "eval": 0.26, "prompt_tokens": 315}
+{"key": 761431, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "arrow out", "seconds": 19.92, "prompt_eval": 19.62, "eval": 0.28, "prompt_tokens": 315}
+{"key": 767727, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "arrowhead", "seconds": 19.87, "prompt_eval": 19.56, "eval": 0.28, "prompt_tokens": 315}
+{"key": 769593, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "fireworks", "seconds": 19.88, "prompt_eval": 19.58, "eval": 0.27, "prompt_tokens": 315}
+{"key": 769675, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "staircase", "seconds": 20.06, "prompt_eval": 19.62, "eval": 0.41, "prompt_tokens": 315}
+{"key": 772441, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "tuxedo", "seconds": 19.98, "prompt_eval": 19.54, "eval": 0.41, "prompt_tokens": 315}
+{"key": 773560, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "snowflake", "seconds": 19.85, "prompt_eval": 19.54, "eval": 0.28, "prompt_tokens": 315}
+{"key": 780230, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "ladder", "seconds": 19.88, "prompt_eval": 19.58, "eval": 0.28, "prompt_tokens": 315}
+{"key": 783012, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "envelope", "seconds": 19.84, "prompt_eval": 19.54, "eval": 0.28, "prompt_tokens": 315}
+{"key": 787085, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "arrowhead", "seconds": 19.85, "prompt_eval": 19.56, "eval": 0.26, "prompt_tokens": 315}
+{"key": 792947, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "no key", "seconds": 19.89, "prompt_eval": 19.59, "eval": 0.27, "prompt_tokens": 315}
+{"key": 797118, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "video camera", "seconds": 19.86, "prompt_eval": 19.57, "eval": 0.26, "prompt_tokens": 315}
+{"key": 798959, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "speaker", "seconds": 19.74, "prompt_eval": 19.58, "eval": 0.13, "prompt_tokens": 315}
+{"key": 801508, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "moon cloud", "seconds": 19.9, "prompt_eval": 19.62, "eval": 0.26, "prompt_tokens": 315}
+{"key": 804645, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "smiley face", "seconds": 19.97, "prompt_eval": 19.56, "eval": 0.38, "prompt_tokens": 315}
+{"key": 809094, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "keyboard keys", "seconds": 19.83, "prompt_eval": 19.54, "eval": 0.26, "prompt_tokens": 315}
+{"key": 809379, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "calendar", "seconds": 19.77, "prompt_eval": 19.61, "eval": 0.13, "prompt_tokens": 315}
+{"key": 810748, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "paperclip", "seconds": 19.88, "prompt_eval": 19.56, "eval": 0.3, "prompt_tokens": 315}
+{"key": 811891, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "person", "seconds": 19.73, "prompt_eval": 19.56, "eval": 0.14, "prompt_tokens": 315}
+{"key": 813116, "model": "llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF:Q8_0@tokens=256,threads=4,size=512", "answer": "pound sign", "seconds": 20.04, "prompt_eval": 19.61, "eval": 0.4, "prompt_tokens": 315}
