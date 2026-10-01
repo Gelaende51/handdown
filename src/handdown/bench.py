@@ -469,3 +469,58 @@ class LayaChoice:
             a = res["answers"]["object"]
             out.append((a["choice"], float(a["probabilities"][a["choice"]])))
         return out
+
+
+# Long-tail labelling: the benchmark machinery over every depiction without an object.
+def vlm_jobs(conn: sqlite3.Connection) -> dict[str, tuple[list[dict[str, Any]], list[dict[str, Any]]]]:
+    """Per adapter: items (depictions without an object, by the representative
+    of their largest style group) and the job list of their sources."""
+    from .shard import SOURCE_COLS
+
+    rows = conn.execute(
+        # SQLite takes the bare columns from the row holding MAX(g.size)
+        """SELECT d.id, p.source_id, p.original_id, s.adapter, MAX(g.size) FROM depiction d
+           JOIN style_group g ON g.depiction_id = d.id JOIN pictogram p ON p.id = g.representative_id
+           JOIN source s ON s.id = p.source_id WHERE d.object_id IS NULL GROUP BY d.id ORDER BY d.id"""
+    ).fetchall()
+    jobs: dict[str, tuple[list[dict[str, Any]], list[dict[str, Any]]]] = {}
+    for adapter in sorted({r[3] for r in rows}):
+        items = [{"key": r[0], "source_id": r[1], "original_id": r[2]} for r in rows if r[3] == adapter]
+        ids = sorted({i["source_id"] for i in items})
+        marks = ",".join("?" * len(ids))
+        sources = [dict(r) for r in conn.execute(f"SELECT {', '.join(SOURCE_COLS)} FROM source WHERE id IN ({marks}) ORDER BY id", ids)]
+        jobs[adapter] = (items, sources)
+    return jobs
+
+
+def present_only(conn: sqlite3.Connection, items: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Items whose source this database has: a runner harvests only its shard's
+    sources and must not report the other shards' items as missing."""
+    have = {r[0] for r in conn.execute("SELECT id FROM source")}
+    return [i for i in items if i["source_id"] in have]
+
+
+def vlm_apply(conn: sqlite3.Connection, answers: list[dict[str, Any]]) -> dict[str, int]:
+    """Set the object of depictions that have none from a vision model's answer
+    (its head noun, resolved like pictogram names), as method 'vlm'."""
+    from .concepts import _ensure, resolve
+    from .hierarchy.names import object_head
+
+    seen: set[str] = set()
+    counts = {"answers": 0, "set": 0}
+    for a in answers:
+        if not a.get("answer"):
+            continue
+        counts["answers"] += 1
+        words = " ".join(w for w in re.findall(r"[a-z0-9]+", a["answer"].lower()) if w not in FILLER)
+        tokens, _ = object_head(words)
+        concept = resolve(tokens) if tokens else None
+        if concept is None or not concept.id.startswith("wn:"):
+            continue
+        _ensure(conn, concept, seen)
+        counts["set"] += conn.execute(
+            "UPDATE depiction SET object_id=?, method='vlm', description=? WHERE id=? AND object_id IS NULL",
+            (concept.id, f"vlm {a['model']}: {a['answer']}", a["key"]),
+        ).rowcount
+    conn.commit()
+    return counts

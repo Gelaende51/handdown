@@ -215,3 +215,45 @@ def test_llamacpp_backend_caps_image_tokens_and_reads_timings():
     answers = ask([Image.new("RGB", (8, 8), "white")])
     assert answers == [("coffee cup", {"prompt_eval": 1.5, "eval": 0.2, "prompt_tokens": 90})]
     assert seen[0]["temperature"] == 0 and seen[0]["messages"][0]["content"][1]["image_url"]["url"].startswith("data:image/png;base64,")
+
+
+def test_vlm_jobs_cover_depictions_without_object_per_adapter(tmp_path, monkeypatch):
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    c = db.connect(Config().db_path)
+    _catalog(c)  # 30 Claude-assessed depictions (with objects) and one rules depiction without pictograms
+    c.execute("INSERT INTO pictogram (id, source_id, original_id, svg_valid) VALUES (5000, 's2', 'loose', 1)")
+    c.execute("INSERT INTO depiction (id, object_id, method) VALUES (900, NULL, 'rules')")
+    c.execute("INSERT INTO style_group (depiction_id, representative_id, size) VALUES (900, 5000, 2)")
+    c.commit()
+    jobs = bench.vlm_jobs(c)
+    assert set(jobs) == {"iconify"}
+    items, sources = jobs["iconify"]
+    assert items == [{"key": 900, "source_id": "s2", "original_id": "loose"}]
+    assert [s["id"] for s in sources] == ["s2"]
+
+
+def test_present_only_keeps_items_of_harvested_sources(tmp_path, monkeypatch):
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    c = db.connect(Config().db_path)
+    _catalog(c)
+    items = [{"key": 1, "source_id": "s1", "original_id": "x"}, {"key": 2, "source_id": "elsewhere", "original_id": "y"}]
+    assert bench.present_only(c, items) == items[:1]
+
+
+def test_vlm_apply_sets_objects_only_where_missing(tmp_path, monkeypatch):
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    c = db.connect(Config().db_path)
+    c.execute("INSERT INTO depiction (id, object_id, method) VALUES (1, NULL, 'rules'), (2, NULL, 'rules'), (3, 'wn:key.n.01', 'ai'), (4, NULL, 'rules')")
+    c.commit()
+    answers = [
+        {"key": 1, "model": "m", "answer": "coffee cup icon"},
+        {"key": 2, "model": "m", "answer": "down arrow in circle"},
+        {"key": 3, "model": "m", "answer": "house"},  # already has an object: kept
+        {"key": 4, "model": "m", "error": "missing"},
+    ]
+    assert bench.vlm_apply(c, answers) == {"answers": 3, "set": 2}
+    rows = {r[0]: tuple(r[1:]) for r in c.execute("SELECT id, object_id, method, description FROM depiction")}
+    assert rows[1] == ("wn:coffee_cup.n.01", "vlm", "vlm m: coffee cup icon")
+    assert rows[2][:2] == ("wn:arrow.n.01", "vlm")
+    assert rows[3][:2] == ("wn:key.n.01", "ai") and rows[4][0] is None
+    assert c.execute("SELECT 1 FROM concept WHERE id='wn:arrow.n.01'").fetchone()

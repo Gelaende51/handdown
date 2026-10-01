@@ -79,3 +79,15 @@ the probe retrains on them.
 - Result (run 36782921650): Laya zero-shot 28 % vs rules 30 %; 69 % vs 73 %
   where Claude's object is among several candidates; p ≥ 0.9 only 37 % right.
   Not adopted for objects.
+
+## Long-tail labelling (vlm.yml)
+
+- `handdown vlm-jobs` writes per adapter the depictions without an object
+  (representative of the largest style group) and their sources
+  (`work/vlm/items-/sources-<adapter>.jsonl`, 130,012 depictions, 544 sources).
+- `vlm.yml` shards the sources over runners; each harvests its share,
+  processes only listed pictograms (`bench-prepare`) and answers them
+  (`bench-run --present-only`). Only the answers are committed.
+- `handdown vlm-apply` resolves an answer's head noun like a pictogram name
+  (`object_head`, `resolve`) and sets the object as method `vlm`, only where
+  a depiction has none.

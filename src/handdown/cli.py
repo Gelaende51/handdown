@@ -480,6 +480,7 @@ def bench_run(
     model: str = typer.Option(..., help="ollama:<tag>[@size=128,threads=4] | florence:omniparser"),
     out: str = "bench.jsonl",
     limit: int = typer.Option(None, help="only the first N sample keys (speed tests)"),
+    present_only: bool = typer.Option(False, help="skip items of sources this database lacks (sharded runs)"),
 ) -> None:
     """Runner: ask one model to name the object of every sample pictogram."""
     from pathlib import Path
@@ -487,8 +488,10 @@ def bench_run(
     from . import bench
 
     cfg = Config()
+    conn = _conn(cfg)
+    items = bench.present_only(conn, _jsonl(sample)) if present_only else _jsonl(sample)
     ask, batch, size = bench.backend(model)
-    typer.echo(bench.run(_conn(cfg), cfg, _jsonl(sample), ask, model, Path(out), batch=batch, size=size, limit=limit))
+    typer.echo(bench.run(conn, cfg, items, ask, model, Path(out), batch=batch, size=size, limit=limit))
 
 
 @app.command("bench-score")
@@ -538,6 +541,29 @@ def bench_text_score(items: str, results: list[str] = typer.Argument(None)) -> N
             f"{model:10} n={m['n']:5}  exact {m['exact']:.0%}  (answerable {m['coverage']:.0%})"
             f"  p>=0.9: {m['share_at_0.9']:.0%} of items, {m['exact_at_0.9']:.0%} correct"
         )
+
+
+@app.command("vlm-jobs")
+def vlm_jobs(out: str = "work/vlm") -> None:
+    """Job lists for labelling depictions without an object on runners (items-/sources-<adapter>.jsonl)."""
+    import json
+    from pathlib import Path
+
+    from . import bench
+
+    Path(out).mkdir(parents=True, exist_ok=True)
+    for adapter, (items, sources) in bench.vlm_jobs(_conn(Config())).items():
+        for name, rows in ((f"items-{adapter}.jsonl", items), (f"sources-{adapter}.jsonl", sources)):
+            (Path(out) / name).write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows))
+        typer.echo(f"{adapter}: {len(items)} depictions from {len(sources)} sources")
+
+
+@app.command("vlm-apply")
+def vlm_apply(answers: list[str]) -> None:
+    """Set objects of depictions without one from vision model answers (method 'vlm')."""
+    from . import bench
+
+    typer.echo(bench.vlm_apply(_conn(Config()), [r for path in answers for r in _jsonl(path)]))
 
 
 @app.command()

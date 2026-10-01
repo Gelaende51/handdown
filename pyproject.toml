@@ -46,3 +46,8 @@ testpaths = ["tests"]
 [tool.ruff.lint.per-file-ignores]
 "src/handdown/site.py" = ["E501"]  # embedded CSS/JS templates
 "src/handdown/review.py" = ["E501"]  # embedded HTML templates
+
+# PII pre-commit scan: a Wikimedia Commons file name ("HD@DH.nrw Power.svg",
+# category IEC 60417) in work/vlm/items-commons.jsonl looks like an address.
+[tool.punt.pii]
+allow_emails = ["HD@DH.nrw"]
