@@ -475,7 +475,12 @@ def bench_prepare(sample: str) -> None:
 
 
 @app.command("bench-run")
-def bench_run(sample: str, model: str = typer.Option(..., help="ollama:<tag> | florence:omniparser"), out: str = "bench.jsonl") -> None:
+def bench_run(
+    sample: str,
+    model: str = typer.Option(..., help="ollama:<tag>[@size=128,threads=4] | florence:omniparser"),
+    out: str = "bench.jsonl",
+    limit: int = typer.Option(None, help="only the first N sample keys (speed tests)"),
+) -> None:
     """Runner: ask one model to name the object of every sample pictogram."""
     from pathlib import Path
 
@@ -483,7 +488,7 @@ def bench_run(sample: str, model: str = typer.Option(..., help="ollama:<tag> | f
 
     cfg = Config()
     ask, batch, size = bench.backend(model)
-    typer.echo(bench.run(_conn(cfg), cfg, _jsonl(sample), ask, model, Path(out), batch=batch, size=size))
+    typer.echo(bench.run(_conn(cfg), cfg, _jsonl(sample), ask, model, Path(out), batch=batch, size=size, limit=limit))
 
 
 @app.command("bench-score")

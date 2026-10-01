@@ -165,3 +165,28 @@ def test_text_run_and_score(tmp_path, monkeypatch):
     assert report["fake"]["n"] == 2 and report["fake"]["exact"] == 0.5 and report["fake"]["exact_at_0.9"] == 0.5
     assert report["rules"]["n"] == 2
     assert report["fake"]["coverage"] == report["rules"]["coverage"]
+
+
+def test_backend_options_and_timings_reach_the_answers(tmp_path, monkeypatch):
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    ask, batch, size = bench.backend("ollama:qwen3-vl:4b-instruct@size=128,threads=4")
+    assert (ask.model, ask.options["num_thread"], batch, size) == ("qwen3-vl:4b-instruct", 4, 1, 128)
+    assert bench.backend("ollama:moondream")[0].options.get("num_thread") is None
+
+    cfg = Config()
+    c = db.connect(cfg.db_path)
+    c.execute("INSERT INTO platform (id, name) VALUES ('p','p')")
+    c.execute("INSERT INTO source (id, platform_id, name) VALUES ('s','p','s')")
+    norm = tmp_path / "data" / "norm" / "sq.svg"
+    norm.parent.mkdir(parents=True)
+    norm.write_text(SQUARE)
+    for i in (1, 2, 3):
+        c.execute("INSERT INTO pictogram (id, source_id, original_id, norm_path, svg_valid) VALUES (?,?,?,?,1)", (i, "s", f"i{i}", "data/norm/sq.svg"))
+    c.commit()
+    sample = [{"key": 10 + i, "source_id": "s", "original_id": f"i{i}"} for i in (3, 1, 2)]
+    out = tmp_path / "res.jsonl"
+    stats = bench.run(c, cfg, sample, lambda images: [("square", {"prompt_tokens": 70})] * len(images), "m", out, limit=2)
+    assert stats == {"answered": 2, "missing": 0}
+    rows = [json.loads(line) for line in out.read_text().splitlines()]
+    assert [r["key"] for r in rows] == [11, 12]  # the first keys, so variants answer the same images
+    assert rows[0]["answer"] == "square" and rows[0]["prompt_tokens"] == 70

@@ -27,7 +27,7 @@ PROMPT = (
     "in 1 to 3 English words, e.g. 'coffee cup', 'arrow', 'letter A'. Answer with the name only."
 )
 
-Ask = Callable[[list[Any]], list[str]]
+Ask = Callable[[list[Any]], list[Any]]  # answers, or (answer, extra fields)
 
 
 def make_sample(
@@ -85,10 +85,21 @@ def prepare(conn: sqlite3.Connection, sample: list[dict[str, Any]]) -> int:
 
 
 def run(
-    conn: sqlite3.Connection, cfg: Any, sample: list[dict[str, Any]], ask: Ask, model: str, out: Path, batch: int = 1, size: int = 256, log: Any = print
+    conn: sqlite3.Connection,
+    cfg: Any,
+    sample: list[dict[str, Any]],
+    ask: Ask,
+    model: str,
+    out: Path,
+    batch: int = 1,
+    size: int = 256,
+    limit: int | None = None,
+    log: Any = print,
 ) -> dict[str, int]:
     """Render the sample and write one answer line per key to ``out``; keys
-    already in ``out`` are skipped, so a rerun resumes."""
+    already in ``out`` are skipped, so a rerun resumes. ``limit`` takes the
+    first keys, so variants of a speed test answer the same images. An answer
+    may come with extra fields (timings) as ``(text, dict)``."""
     from .vision import _images
 
     out = Path(out)
@@ -99,10 +110,9 @@ def run(
         """SELECT b.key, p.id, p.norm_path FROM bench_sample b
            LEFT JOIN pictogram p ON p.source_id = b.source_id AND p.original_id = b.original_id ORDER BY b.key"""
     ).fetchall()
-    todo = [r for r in rows if r["key"] not in done]
+    todo = [r for r in rows[:limit] if r["key"] not in done]
     stats = {"answered": 0, "missing": 0}
     with out.open("a") as f:
-        images, keys = [], []
         present = [r for r in todo if r["id"] is not None]
         rendered, ids = _images(cfg, present, size) if present else ([], [])
         key_of = {r["id"]: r["key"] for r in present}
@@ -118,8 +128,9 @@ def run(
             t = time.monotonic()
             answers = ask(images)
             seconds = round((time.monotonic() - t) / len(part), 2)
-            for k, a in zip(keys, (answers + [""] * len(keys))[: len(keys)], strict=True):
-                f.write(json.dumps({"key": k, "model": model, "answer": a, "seconds": seconds}) + "\n")
+            for k, a in zip(keys, (list(answers) + [""] * len(keys))[: len(keys)], strict=True):
+                text, extra = a if isinstance(a, tuple) else (a, {})
+                f.write(json.dumps({"key": k, "model": model, "answer": text, "seconds": seconds, **extra}) + "\n")
                 stats["answered"] += 1
             f.flush()
             log(f"{model}: {start + len(part)}/{len(pairs)}")
@@ -141,22 +152,26 @@ def _png(image: Any) -> str:
 
 
 class Ollama:
-    """A model served by Ollama on the runner, one image per request."""
+    """A model served by Ollama on the runner, one image per request. Answers
+    carry Ollama's timings, so a speed test shows where the time goes."""
 
-    def __init__(self, model: str, host: str = "http://127.0.0.1:11434"):
+    def __init__(self, model: str, threads: int | None = None, host: str = "http://127.0.0.1:11434"):
         import httpx
 
         self.model, self.client = model, httpx.Client(base_url=host, timeout=900)
+        self.options: dict[str, Any] = {"temperature": 0, "num_predict": 32}
+        if threads:
+            self.options["num_thread"] = threads
 
-    def __call__(self, images: list[Any]) -> list[str]:
+    def __call__(self, images: list[Any]) -> list[tuple[str, dict[str, Any]]]:
         out = []
         for image in images:
-            r = self.client.post(
-                "/api/generate",
-                json={"model": self.model, "prompt": PROMPT, "images": [_png(image)], "stream": False, "options": {"temperature": 0, "num_predict": 32}},
-            )
+            body = {"model": self.model, "prompt": PROMPT, "images": [_png(image)], "stream": False, "options": self.options}
+            r = self.client.post("/api/generate", json=body)
             r.raise_for_status()
-            out.append(clean(r.json()["response"]))
+            j = r.json()
+            timings = {k: round(j.get(f"{k}_duration", 0) / 1e9, 2) for k in ("load", "prompt_eval", "eval")}
+            out.append((clean(j["response"]), {**timings, "prompt_tokens": j.get("prompt_eval_count"), "answer_tokens": j.get("eval_count")}))
         return out
 
 
@@ -189,10 +204,14 @@ class OmniParserCaption:
 
 
 def backend(spec: str) -> tuple[Ask, int, int]:
-    """(ask, batch, render size) for 'ollama:<tag>' or 'florence:omniparser'."""
-    kind, _, name = spec.partition(":")
+    """(ask, batch, render size) for 'ollama:<tag>' or 'florence:omniparser';
+    '@size=128,threads=4' after an Ollama tag sets render size and threads."""
+    kind, _, rest = spec.partition(":")
+    name, _, opts = rest.partition("@")
+    options = dict(kv.split("=", 1) for kv in opts.split(",") if kv)
     if kind == "ollama":
-        return Ollama(name), 1, 256
+        threads = int(options["threads"]) if "threads" in options else None
+        return Ollama(name, threads=threads), 1, int(options.get("size", 256))
     if kind == "florence" and name == "omniparser":
         return OmniParserCaption(), 8, 64  # OmniParser captions 64 px crops
     raise ValueError(f"unknown model spec {spec!r}")
