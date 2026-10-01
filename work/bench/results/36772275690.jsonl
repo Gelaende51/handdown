@@ -1,0 +1,605 @@
+{"key": 251778, "model": "ollama:qwen2.5vl:3b", "answer": "clock", "seconds": 92.51}
+{"key": 280982, "model": "ollama:qwen2.5vl:3b", "answer": "folder", "seconds": 89.1}
+{"key": 280986, "model": "ollama:qwen2.5vl:3b", "answer": "umbrella", "seconds": 89.23}
+{"key": 302608, "model": "ollama:qwen2.5vl:3b", "answer": "arrow", "seconds": 89.25}
+{"key": 303183, "model": "ollama:qwen2.5vl:3b", "answer": "minus", "seconds": 89.42}
+{"key": 314260, "model": "ollama:qwen2.5vl:3b", "answer": "trash can", "seconds": 89.52}
+{"key": 316203, "model": "ollama:qwen2.5vl:3b", "answer": "book", "seconds": 89.39}
+{"key": 331096, "model": "ollama:qwen2.5vl:3b", "answer": "arrow", "seconds": 90.11}
+{"key": 338484, "model": "ollama:qwen2.5vl:3b", "answer": "cc", "seconds": 89.8}
+{"key": 339411, "model": "ollama:qwen2.5vl:3b", "answer": "upload", "seconds": 88.89}
+{"key": 358214, "model": "ollama:qwen2.5vl:3b", "answer": "letter g", "seconds": 89.16}
+{"key": 365318, "model": "ollama:qwen2.5vl:3b", "answer": "elephant", "seconds": 89.35}
+{"key": 370249, "model": "ollama:qwen2.5vl:3b", "answer": "minus sign", "seconds": 89.56}
+{"key": 388650, "model": "ollama:qwen2.5vl:3b", "answer": "triangle", "seconds": 89.6}
+{"key": 394341, "model": "ollama:qwen2.5vl:3b", "answer": "tent", "seconds": 89.09}
+{"key": 395810, "model": "ollama:qwen2.5vl:3b", "answer": "shield", "seconds": 88.95}
+{"key": 403949, "model": "ollama:qwen2.5vl:3b", "answer": "camera", "seconds": 89.04}
+{"key": 405977, "model": "ollama:qwen2.5vl:3b", "answer": "cell phone", "seconds": 89.12}
+{"key": 428891, "model": "ollama:qwen2.5vl:3b", "answer": "letter h", "seconds": 89.29}
+{"key": 453952, "model": "ollama:qwen2.5vl:3b", "answer": "phone", "seconds": 89.16}
+{"key": 454056, "model": "ollama:qwen2.5vl:3b", "answer": "toothbrush", "seconds": 89.51}
+{"key": 466611, "model": "ollama:qwen2.5vl:3b", "answer": "arrow", "seconds": 89.16}
+{"key": 487308, "model": "ollama:qwen2.5vl:3b", "answer": "star", "seconds": 88.94}
+{"key": 503345, "model": "ollama:qwen2.5vl:3b", "answer": "arrow", "seconds": 89.05}
+{"key": 515992, "model": "ollama:qwen2.5vl:3b", "answer": "letter k", "seconds": 89.04}
+{"key": 521482, "model": "ollama:qwen2.5vl:3b", "answer": "wine glass", "seconds": 89.2}
+{"key": 526373, "model": "ollama:qwen2.5vl:3b", "answer": "book", "seconds": 89.5}
+{"key": 526554, "model": "ollama:qwen2.5vl:3b", "answer": "exclamation", "seconds": 89.18}
+{"key": 526803, "model": "ollama:qwen2.5vl:3b", "answer": "android robot", "seconds": 89.06}
+{"key": 528177, "model": "ollama:qwen2.5vl:3b", "answer": "volume control", "seconds": 88.93}
+{"key": 528939, "model": "ollama:qwen2.5vl:3b", "answer": "plus sign", "seconds": 89.39}
+{"key": 530126, "model": "ollama:qwen2.5vl:3b", "answer": "briefcase", "seconds": 89.65}
+{"key": 530430, "model": "ollama:qwen2.5vl:3b", "answer": "megaphone", "seconds": 89.43}
+{"key": 530658, "model": "ollama:qwen2.5vl:3b", "answer": "lightning bolt", "seconds": 89.24}
+{"key": 530825, "model": "ollama:qwen2.5vl:3b", "answer": "calendar", "seconds": 89.08}
+{"key": 533386, "model": "ollama:qwen2.5vl:3b", "answer": "clock", "seconds": 89.01}
+{"key": 534801, "model": "ollama:qwen2.5vl:3b", "answer": "clock", "seconds": 89.02}
+{"key": 535291, "model": "ollama:qwen2.5vl:3b", "answer": "computer monitor", "seconds": 88.92}
+{"key": 536114, "model": "ollama:qwen2.5vl:3b", "answer": "door", "seconds": 89.22}
+{"key": 536468, "model": "ollama:qwen2.5vl:3b", "answer": "water drop", "seconds": 89.52}
+{"key": 536729, "model": "ollama:qwen2.5vl:3b", "answer": "pencil", "seconds": 89.31}
+{"key": 537468, "model": "ollama:qwen2.5vl:3b", "answer": "ufo", "seconds": 89.38}
+{"key": 538538, "model": "ollama:qwen2.5vl:3b", "answer": "tear", "seconds": 89.54}
+{"key": 541206, "model": "ollama:qwen2.5vl:3b", "answer": "heart", "seconds": 88.68}
+{"key": 541510, "model": "ollama:qwen2.5vl:3b", "answer": "clock", "seconds": 89.26}
+{"key": 542261, "model": "ollama:qwen2.5vl:3b", "answer": "mountain", "seconds": 90.43}
+{"key": 544326, "model": "ollama:qwen2.5vl:3b", "answer": "thumbs up", "seconds": 89.63}
+{"key": 545729, "model": "ollama:qwen2.5vl:3b", "answer": "menu", "seconds": 89.32}
+{"key": 545903, "model": "ollama:qwen2.5vl:3b", "answer": "train", "seconds": 89.64}
+{"key": 546262, "model": "ollama:qwen2.5vl:3b", "answer": "bullet", "seconds": 90.04}
+{"key": 546541, "model": "ollama:qwen2.5vl:3b", "answer": "scooter", "seconds": 90.03}
+{"key": 547297, "model": "ollama:qwen2.5vl:3b", "answer": "letter f", "seconds": 89.64}
+{"key": 549525, "model": "ollama:qwen2.5vl:3b", "answer": "speech bubble", "seconds": 89.99}
+{"key": 550114, "model": "ollama:qwen2.5vl:3b", "answer": "trash can", "seconds": 89.6}
+{"key": 550321, "model": "ollama:qwen2.5vl:3b", "answer": "fish bowl", "seconds": 89.56}
+{"key": 551140, "model": "ollama:qwen2.5vl:3b", "answer": "letter f", "seconds": 88.88}
+{"key": 551334, "model": "ollama:qwen2.5vl:3b", "answer": "rainbow", "seconds": 89.08}
+{"key": 552300, "model": "ollama:qwen2.5vl:3b", "answer": "snowflake", "seconds": 88.62}
+{"key": 552749, "model": "ollama:qwen2.5vl:3b", "answer": "speech bubble", "seconds": 88.83}
+{"key": 553743, "model": "ollama:qwen2.5vl:3b", "answer": "telegram", "seconds": 89.17}
+{"key": 553955, "model": "ollama:qwen2.5vl:3b", "answer": "share icon", "seconds": 89.68}
+{"key": 553961, "model": "ollama:qwen2.5vl:3b", "answer": "arrow", "seconds": 90.05}
+{"key": 554109, "model": "ollama:qwen2.5vl:3b", "answer": "ship", "seconds": 90.1}
+{"key": 554220, "model": "ollama:qwen2.5vl:3b", "answer": "shopping cart", "seconds": 89.78}
+{"key": 556321, "model": "ollama:qwen2.5vl:3b", "answer": "square", "seconds": 90.24}
+{"key": 559885, "model": "ollama:qwen2.5vl:3b", "answer": "lock", "seconds": 89.16}
+{"key": 560965, "model": "ollama:qwen2.5vl:3b", "answer": "glass", "seconds": 89.01}
+{"key": 561468, "model": "ollama:qwen2.5vl:3b", "answer": "windows logo", "seconds": 89.29}
+{"key": 562014, "model": "ollama:qwen2.5vl:3b", "answer": "briefcase", "seconds": 89.2}
+{"key": 562039, "model": "ollama:qwen2.5vl:3b", "answer": "drain", "seconds": 88.97}
+{"key": 562073, "model": "ollama:qwen2.5vl:3b", "answer": "sun", "seconds": 88.88}
+{"key": 562095, "model": "ollama:qwen2.5vl:3b", "answer": "book", "seconds": 89.49}
+{"key": 562122, "model": "ollama:qwen2.5vl:3b", "answer": "folder", "seconds": 89.37}
+{"key": 562123, "model": "ollama:qwen2.5vl:3b", "answer": "gear", "seconds": 88.71}
+{"key": 562124, "model": "ollama:qwen2.5vl:3b", "answer": "turtle", "seconds": 88.96}
+{"key": 562126, "model": "ollama:qwen2.5vl:3b", "answer": "leaf", "seconds": 88.74}
+{"key": 562128, "model": "ollama:qwen2.5vl:3b", "answer": "fire hydrant", "seconds": 89.21}
+{"key": 562150, "model": "ollama:qwen2.5vl:3b", "answer": "wi-fi symbol", "seconds": 89.39}
+{"key": 562153, "model": "ollama:qwen2.5vl:3b", "answer": "speech bubble", "seconds": 89.07}
+{"key": 562194, "model": "ollama:qwen2.5vl:3b", "answer": "anchor", "seconds": 89.02}
+{"key": 562221, "model": "ollama:qwen2.5vl:3b", "answer": "moon", "seconds": 89.39}
+{"key": 562276, "model": "ollama:qwen2.5vl:3b", "answer": "code", "seconds": 89.19}
+{"key": 562301, "model": "ollama:qwen2.5vl:3b", "answer": "envelope", "seconds": 89.14}
+{"key": 562316, "model": "ollama:qwen2.5vl:3b", "answer": "thumbs up", "seconds": 89.27}
+{"key": 562329, "model": "ollama:qwen2.5vl:3b", "answer": "speech bubble", "seconds": 89.43}
+{"key": 562390, "model": "ollama:qwen2.5vl:3b", "answer": "microphone", "seconds": 89.34}
+{"key": 562435, "model": "ollama:qwen2.5vl:3b", "answer": "printer", "seconds": 89.35}
+{"key": 562455, "model": "ollama:qwen2.5vl:3b", "answer": "github logo", "seconds": 89.53}
+{"key": 562456, "model": "ollama:qwen2.5vl:3b", "answer": "document", "seconds": 89.26}
+{"key": 562457, "model": "ollama:qwen2.5vl:3b", "answer": "document", "seconds": 89.37}
+{"key": 562671, "model": "ollama:qwen2.5vl:3b", "answer": "basketball", "seconds": 89.45}
+{"key": 562717, "model": "ollama:qwen2.5vl:3b", "answer": "television", "seconds": 89.51}
+{"key": 562726, "model": "ollama:qwen2.5vl:3b", "answer": "graduation cap", "seconds": 89.65}
+{"key": 562805, "model": "ollama:qwen2.5vl:3b", "answer": "arrow", "seconds": 89.64}
+{"key": 562832, "model": "ollama:qwen2.5vl:3b", "answer": "cross", "seconds": 89.43}
+{"key": 562852, "model": "ollama:qwen2.5vl:3b", "answer": "arrow", "seconds": 89.47}
+{"key": 562883, "model": "ollama:qwen2.5vl:3b", "answer": "document", "seconds": 89.49}
+{"key": 562884, "model": "ollama:qwen2.5vl:3b", "answer": "coffee cup", "seconds": 89.16}
+{"key": 562911, "model": "ollama:qwen2.5vl:3b", "answer": "plus sign", "seconds": 89.13}
+{"key": 562917, "model": "ollama:qwen2.5vl:3b", "answer": "speaker", "seconds": 88.65}
+{"key": 562942, "model": "ollama:qwen2.5vl:3b", "answer": "key", "seconds": 88.86}
+{"key": 562947, "model": "ollama:qwen2.5vl:3b", "answer": "newspaper", "seconds": 89.13}
+{"key": 562954, "model": "ollama:qwen2.5vl:3b", "answer": "plus sign", "seconds": 89.05}
+{"key": 563057, "model": "ollama:qwen2.5vl:3b", "answer": "arrow", "seconds": 89.02}
+{"key": 563149, "model": "ollama:qwen2.5vl:3b", "answer": "speech bubble", "seconds": 89.43}
+{"key": 563184, "model": "ollama:qwen2.5vl:3b", "answer": "balance bike", "seconds": 88.96}
+{"key": 563230, "model": "ollama:qwen2.5vl:3b", "answer": "no", "seconds": 89.28}
+{"key": 563268, "model": "ollama:qwen2.5vl:3b", "answer": "egg", "seconds": 89.47}
+{"key": 563305, "model": "ollama:qwen2.5vl:3b", "answer": "checkmark", "seconds": 89.3}
+{"key": 563307, "model": "ollama:qwen2.5vl:3b", "answer": "chair", "seconds": 88.88}
+{"key": 563346, "model": "ollama:qwen2.5vl:3b", "answer": "sailboat", "seconds": 89.39}
+{"key": 563393, "model": "ollama:qwen2.5vl:3b", "answer": "four circles", "seconds": 89.13}
+{"key": 563491, "model": "ollama:qwen2.5vl:3b", "answer": "door", "seconds": 89.47}
+{"key": 563512, "model": "ollama:qwen2.5vl:3b", "answer": "telephone", "seconds": 89.76}
+{"key": 563515, "model": "ollama:qwen2.5vl:3b", "answer": "arrow", "seconds": 89.43}
+{"key": 563520, "model": "ollama:qwen2.5vl:3b", "answer": "store", "seconds": 89.3}
+{"key": 563523, "model": "ollama:qwen2.5vl:3b", "answer": "speech bubble", "seconds": 88.88}
+{"key": 563689, "model": "ollama:qwen2.5vl:3b", "answer": "power plug", "seconds": 89.4}
+{"key": 563690, "model": "ollama:qwen2.5vl:3b", "answer": "stethoscope", "seconds": 89.55}
+{"key": 563844, "model": "ollama:qwen2.5vl:3b", "answer": "arrow", "seconds": 88.78}
+{"key": 563850, "model": "ollama:qwen2.5vl:3b", "answer": "arrow", "seconds": 88.89}
+{"key": 563887, "model": "ollama:qwen2.5vl:3b", "answer": "internet explorer logo", "seconds": 88.82}
+{"key": 563985, "model": "ollama:qwen2.5vl:3b", "answer": "cactus", "seconds": 88.99}
+{"key": 564003, "model": "ollama:qwen2.5vl:3b", "answer": "square", "seconds": 89.18}
+{"key": 564011, "model": "ollama:qwen2.5vl:3b", "answer": "leaf", "seconds": 88.94}
+{"key": 564016, "model": "ollama:qwen2.5vl:3b", "answer": "person", "seconds": 89.0}
+{"key": 564119, "model": "ollama:qwen2.5vl:3b", "answer": "moon", "seconds": 89.33}
+{"key": 564126, "model": "ollama:qwen2.5vl:3b", "answer": "cube", "seconds": 89.04}
+{"key": 564156, "model": "ollama:qwen2.5vl:3b", "answer": "upload", "seconds": 88.88}
+{"key": 564174, "model": "ollama:qwen2.5vl:3b", "answer": "letter t", "seconds": 89.49}
+{"key": 564191, "model": "ollama:qwen2.5vl:3b", "answer": "people", "seconds": 89.45}
+{"key": 564193, "model": "ollama:qwen2.5vl:3b", "answer": "microphone", "seconds": 89.37}
+{"key": 564198, "model": "ollama:qwen2.5vl:3b", "answer": "microphone", "seconds": 89.28}
+{"key": 564261, "model": "ollama:qwen2.5vl:3b", "answer": "file", "seconds": 88.75}
+{"key": 564295, "model": "ollama:qwen2.5vl:3b", "answer": "train", "seconds": 89.14}
+{"key": 564302, "model": "ollama:qwen2.5vl:3b", "answer": "clock", "seconds": 89.07}
+{"key": 577322, "model": "ollama:qwen2.5vl:3b", "answer": "tesseract", "seconds": 89.27}
+{"key": 577404, "model": "ollama:qwen2.5vl:3b", "answer": "division", "seconds": 89.21}
+{"key": 577450, "model": "ollama:qwen2.5vl:3b", "answer": "letter f", "seconds": 89.35}
+{"key": 580859, "model": "ollama:qwen2.5vl:3b", "answer": "api", "seconds": 89.24}
+{"key": 584208, "model": "ollama:qwen2.5vl:3b", "answer": "chart", "seconds": 89.12}
+{"key": 587416, "model": "ollama:qwen2.5vl:3b", "answer": "up and down", "seconds": 89.37}
+{"key": 588188, "model": "ollama:qwen2.5vl:3b", "answer": "up", "seconds": 89.0}
+{"key": 589324, "model": "ollama:qwen2.5vl:3b", "answer": "headphones", "seconds": 88.98}
+{"key": 599607, "model": "ollama:qwen2.5vl:3b", "answer": "plus sign", "seconds": 89.39}
+{"key": 602660, "model": "ollama:qwen2.5vl:3b", "answer": "four", "seconds": 88.76}
+{"key": 606730, "model": "ollama:qwen2.5vl:3b", "answer": "coffee cup", "seconds": 88.65}
+{"key": 608469, "model": "ollama:qwen2.5vl:3b", "answer": "coffee cup", "seconds": 88.6}
+{"key": 608721, "model": "ollama:qwen2.5vl:3b", "answer": "camera", "seconds": 88.58}
+{"key": 608848, "model": "ollama:qwen2.5vl:3b", "answer": "eyes", "seconds": 88.99}
+{"key": 613113, "model": "ollama:qwen2.5vl:3b", "answer": "letter l", "seconds": 88.93}
+{"key": 620988, "model": "ollama:qwen2.5vl:3b", "answer": "back button", "seconds": 88.87}
+{"key": 621898, "model": "ollama:qwen2.5vl:3b", "answer": "cloud lock", "seconds": 88.76}
+{"key": 622242, "model": "ollama:qwen2.5vl:3b", "answer": "thunderstorm", "seconds": 88.91}
+{"key": 622262, "model": "ollama:qwen2.5vl:3b", "answer": "cloud lock", "seconds": 89.39}
+{"key": 622366, "model": "ollama:qwen2.5vl:3b", "answer": "no smoking", "seconds": 89.51}
+{"key": 625102, "model": "ollama:qwen2.5vl:3b", "answer": "plus", "seconds": 88.53}
+{"key": 626598, "model": "ollama:qwen2.5vl:3b", "answer": "scissors", "seconds": 88.91}
+{"key": 628407, "model": "ollama:qwen2.5vl:3b", "answer": "credit card", "seconds": 88.84}
+{"key": 633627, "model": "ollama:qwen2.5vl:3b", "answer": "lamp", "seconds": 88.79}
+{"key": 634883, "model": "ollama:qwen2.5vl:3b", "answer": "slash", "seconds": 88.92}
+{"key": 634899, "model": "ollama:qwen2.5vl:3b", "answer": "seven dots", "seconds": 89.6}
+{"key": 639987, "model": "ollama:qwen2.5vl:3b", "answer": "arrow", "seconds": 89.48}
+{"key": 645733, "model": "ollama:qwen2.5vl:3b", "answer": "checkmark", "seconds": 89.03}
+{"key": 646985, "model": "ollama:qwen2.5vl:3b", "answer": "light bulb", "seconds": 89.25}
+{"key": 648006, "model": "ollama:qwen2.5vl:3b", "answer": "ethereum logo", "seconds": 89.53}
+{"key": 648321, "model": "ollama:qwen2.5vl:3b", "answer": "battery", "seconds": 89.75}
+{"key": 648704, "model": "ollama:qwen2.5vl:3b", "answer": "file transfer", "seconds": 89.92}
+{"key": 650282, "model": "ollama:qwen2.5vl:3b", "answer": "confused face", "seconds": 89.64}
+{"key": 651311, "model": "ollama:qwen2.5vl:3b", "answer": "end field", "seconds": 89.31}
+{"key": 651936, "model": "ollama:qwen2.5vl:3b", "answer": "arrow", "seconds": 89.11}
+{"key": 653305, "model": "ollama:qwen2.5vl:3b", "answer": "jpeg", "seconds": 89.3}
+{"key": 653318, "model": "ollama:qwen2.5vl:3b", "answer": "json file", "seconds": 89.32}
+{"key": 653573, "model": "ollama:qwen2.5vl:3b", "answer": "pdf", "seconds": 89.69}
+{"key": 658317, "model": "ollama:qwen2.5vl:3b", "answer": "letter h", "seconds": 89.61}
+{"key": 661098, "model": "ollama:qwen2.5vl:3b", "answer": "folder lock", "seconds": 90.41}
+{"key": 661745, "model": "ollama:qwen2.5vl:3b", "answer": "folder", "seconds": 89.55}
+{"key": 662099, "model": "ollama:qwen2.5vl:3b", "answer": "folder", "seconds": 89.8}
+{"key": 663693, "model": "ollama:qwen2.5vl:3b", "answer": "menu", "seconds": 90.3}
+{"key": 663695, "model": "ollama:qwen2.5vl:3b", "answer": "menu", "seconds": 90.45}
+{"key": 665445, "model": "ollama:qwen2.5vl:3b", "answer": "plus sign", "seconds": 89.72}
+{"key": 670597, "model": "ollama:qwen2.5vl:3b", "answer": "snake", "seconds": 89.67}
+{"key": 672736, "model": "ollama:qwen2.5vl:3b", "answer": "half circle", "seconds": 89.31}
+{"key": 675214, "model": "ollama:qwen2.5vl:3b", "answer": "floppy disk", "seconds": 89.3}
+{"key": 677054, "model": "ollama:qwen2.5vl:3b", "answer": "plus sign", "seconds": 89.61}
+{"key": 677478, "model": "ollama:qwen2.5vl:3b", "answer": "house", "seconds": 89.1}
+{"key": 678302, "model": "ollama:qwen2.5vl:3b", "answer": "plant", "seconds": 88.98}
+{"key": 680506, "model": "ollama:qwen2.5vl:3b", "answer": "daisy", "seconds": 88.89}
+{"key": 682098, "model": "ollama:qwen2.5vl:3b", "answer": "download", "seconds": 88.66}
+{"key": 691444, "model": "ollama:qwen2.5vl:3b", "answer": "equal sign", "seconds": 88.84}
+{"key": 691448, "model": "ollama:qwen2.5vl:3b", "answer": "menu", "seconds": 88.61}
+{"key": 692934, "model": "ollama:qwen2.5vl:3b", "answer": "microphone", "seconds": 88.74}
+{"key": 697519, "model": "ollama:qwen2.5vl:3b", "answer": "arrow", "seconds": 88.59}
+{"key": 701812, "model": "ollama:qwen2.5vl:3b", "answer": "linkedin logo", "seconds": 88.58}
+{"key": 702331, "model": "ollama:qwen2.5vl:3b", "answer": "fraction", "seconds": 88.61}
+{"key": 703931, "model": "ollama:qwen2.5vl:3b", "answer": "clock", "seconds": 88.72}
+{"key": 703943, "model": "ollama:qwen2.5vl:3b", "answer": "arrow", "seconds": 88.63}
+{"key": 704388, "model": "ollama:qwen2.5vl:3b", "answer": "file", "seconds": 88.55}
+{"key": 705189, "model": "ollama:qwen2.5vl:3b", "answer": "sun", "seconds": 88.53}
+{"key": 709393, "model": "ollama:qwen2.5vl:3b", "answer": "award", "seconds": 88.73}
+{"key": 710102, "model": "ollama:qwen2.5vl:3b", "answer": "plus sign", "seconds": 89.1}
+{"key": 710141, "model": "ollama:qwen2.5vl:3b", "answer": "briefcase", "seconds": 88.57}
+{"key": 711402, "model": "ollama:qwen2.5vl:3b", "answer": "circle", "seconds": 89.21}
+{"key": 717685, "model": "ollama:qwen2.5vl:3b", "answer": "music note", "seconds": 88.99}
+{"key": 719670, "model": "ollama:qwen2.5vl:3b", "answer": "lion", "seconds": 88.71}
+{"key": 719783, "model": "ollama:qwen2.5vl:3b", "answer": "diamond", "seconds": 88.49}
+{"key": 720001, "model": "ollama:qwen2.5vl:3b", "answer": "bar graph", "seconds": 88.42}
+{"key": 720386, "model": "ollama:qwen2.5vl:3b", "answer": "code editor", "seconds": 88.53}
+{"key": 720734, "model": "ollama:qwen2.5vl:3b", "answer": "sad face", "seconds": 88.86}
+{"key": 726614, "model": "ollama:qwen2.5vl:3b", "answer": "alpaca", "seconds": 88.88}
+{"key": 737143, "model": "ollama:qwen2.5vl:3b", "answer": "phone", "seconds": 88.46}
+{"key": 737459, "model": "ollama:qwen2.5vl:3b", "answer": "computer", "seconds": 88.4}
+{"key": 738601, "model": "ollama:qwen2.5vl:3b", "answer": "headphones", "seconds": 88.54}
+{"key": 738996, "model": "ollama:qwen2.5vl:3b", "answer": "doorbell", "seconds": 88.45}
+{"key": 739011, "model": "ollama:qwen2.5vl:3b", "answer": "pinterest pin", "seconds": 88.43}
+{"key": 739144, "model": "ollama:qwen2.5vl:3b", "answer": "russian ruble", "seconds": 88.5}
+{"key": 741011, "model": "ollama:qwen2.5vl:3b", "answer": "pokeball", "seconds": 88.42}
+{"key": 741935, "model": "ollama:qwen2.5vl:3b", "answer": "power button", "seconds": 88.46}
+{"key": 745538, "model": "ollama:qwen2.5vl:3b", "answer": "qr code", "seconds": 88.36}
+{"key": 745597, "model": "ollama:qwen2.5vl:3b", "answer": "qr code", "seconds": 88.61}
+{"key": 745600, "model": "ollama:qwen2.5vl:3b", "answer": "barcode", "seconds": 88.53}
+{"key": 750423, "model": "ollama:qwen2.5vl:3b", "answer": "recycling", "seconds": 88.39}
+{"key": 752254, "model": "ollama:qwen2.5vl:3b", "answer": "cycle", "seconds": 88.28}
+{"key": 752276, "model": "ollama:qwen2.5vl:3b", "answer": "cycle", "seconds": 88.42}
+{"key": 761181, "model": "ollama:qwen2.5vl:3b", "answer": "door", "seconds": 88.4}
+{"key": 761431, "model": "ollama:qwen2.5vl:3b", "answer": "arrow", "seconds": 88.47}
+{"key": 767727, "model": "ollama:qwen2.5vl:3b", "answer": "arrow", "seconds": 88.42}
+{"key": 769593, "model": "ollama:qwen2.5vl:3b", "answer": "stairs", "seconds": 88.65}
+{"key": 769675, "model": "ollama:qwen2.5vl:3b", "answer": "stairs", "seconds": 88.59}
+{"key": 772441, "model": "ollama:qwen2.5vl:3b", "answer": "tuxedo", "seconds": 89.38}
+{"key": 773560, "model": "ollama:qwen2.5vl:3b", "answer": "snowflake", "seconds": 88.6}
+{"key": 780230, "model": "ollama:qwen2.5vl:3b", "answer": "tesseract", "seconds": 88.62}
+{"key": 783012, "model": "ollama:qwen2.5vl:3b", "answer": "arrow", "seconds": 88.79}
+{"key": 787085, "model": "ollama:qwen2.5vl:3b", "answer": "tron", "seconds": 88.46}
+{"key": 251778, "model": "ollama:qwen3-vl:4b-instruct", "answer": "fan blade", "seconds": 91.91}
+{"key": 280982, "model": "ollama:qwen3-vl:4b-instruct", "answer": "folder", "seconds": 86.84}
+{"key": 280986, "model": "ollama:qwen3-vl:4b-instruct", "answer": "folder", "seconds": 87.12}
+{"key": 302608, "model": "ollama:qwen3-vl:4b-instruct", "answer": "arrow left", "seconds": 86.43}
+{"key": 303183, "model": "ollama:qwen3-vl:4b-instruct", "answer": "rectangle", "seconds": 86.71}
+{"key": 314260, "model": "ollama:qwen3-vl:4b-instruct", "answer": "trash bin", "seconds": 85.25}
+{"key": 316203, "model": "ollama:qwen3-vl:4b-instruct", "answer": "open book", "seconds": 85.15}
+{"key": 331096, "model": "ollama:qwen3-vl:4b-instruct", "answer": "down arrow", "seconds": 85.26}
+{"key": 338484, "model": "ollama:qwen3-vl:4b-instruct", "answer": "cc symbol", "seconds": 85.5}
+{"key": 339411, "model": "ollama:qwen3-vl:4b-instruct", "answer": "cloud upload", "seconds": 85.31}
+{"key": 358214, "model": "ollama:qwen3-vl:4b-instruct", "answer": "number eight", "seconds": 85.18}
+{"key": 365318, "model": "ollama:qwen3-vl:4b-instruct", "answer": "elephant", "seconds": 85.47}
+{"key": 370249, "model": "ollama:qwen3-vl:4b-instruct", "answer": "minus sign", "seconds": 85.15}
+{"key": 388650, "model": "ollama:qwen3-vl:4b-instruct", "answer": "dice", "seconds": 84.9}
+{"key": 394341, "model": "ollama:qwen3-vl:4b-instruct", "answer": "tent", "seconds": 84.92}
+{"key": 395810, "model": "ollama:qwen3-vl:4b-instruct", "answer": "html5", "seconds": 85.08}
+{"key": 403949, "model": "ollama:qwen3-vl:4b-instruct", "answer": "instagram logo", "seconds": 85.1}
+{"key": 405977, "model": "ollama:qwen3-vl:4b-instruct", "answer": "bib", "seconds": 84.91}
+{"key": 428891, "model": "ollama:qwen3-vl:4b-instruct", "answer": "microphone", "seconds": 85.13}
+{"key": 453952, "model": "ollama:qwen3-vl:4b-instruct", "answer": "phone call", "seconds": 85.12}
+{"key": 454056, "model": "ollama:qwen3-vl:4b-instruct", "answer": "phone off", "seconds": 85.09}
+{"key": 466611, "model": "ollama:qwen3-vl:4b-instruct", "answer": "double arrow", "seconds": 85.07}
+{"key": 487308, "model": "ollama:qwen3-vl:4b-instruct", "answer": "star with slash", "seconds": 85.24}
+{"key": 503345, "model": "ollama:qwen3-vl:4b-instruct", "answer": "arrow", "seconds": 85.06}
+{"key": 515992, "model": "ollama:qwen3-vl:4b-instruct", "answer": "letter vk", "seconds": 85.26}
+{"key": 521482, "model": "ollama:qwen3-vl:4b-instruct", "answer": "wine glass", "seconds": 85.19}
+{"key": 526373, "model": "ollama:qwen3-vl:4b-instruct", "answer": "question mark", "seconds": 84.99}
+{"key": 526554, "model": "ollama:qwen3-vl:4b-instruct", "answer": "exclamation mark", "seconds": 85.28}
+{"key": 526803, "model": "ollama:qwen3-vl:4b-instruct", "answer": "android", "seconds": 84.98}
+{"key": 528177, "model": "ollama:qwen3-vl:4b-instruct", "answer": "skip backward", "seconds": 85.19}
+{"key": 528939, "model": "ollama:qwen3-vl:4b-instruct", "answer": "bed", "seconds": 84.96}
+{"key": 530126, "model": "ollama:qwen3-vl:4b-instruct", "answer": "briefcase", "seconds": 85.07}
+{"key": 530430, "model": "ollama:qwen3-vl:4b-instruct", "answer": "megaphone", "seconds": 85.18}
+{"key": 530658, "model": "ollama:qwen3-vl:4b-instruct", "answer": "lightning bolt", "seconds": 85.37}
+{"key": 530825, "model": "ollama:qwen3-vl:4b-instruct", "answer": "calendar", "seconds": 84.91}
+{"key": 533386, "model": "ollama:qwen3-vl:4b-instruct", "answer": "refresh symbol", "seconds": 84.99}
+{"key": 534801, "model": "ollama:qwen3-vl:4b-instruct", "answer": "dashed circle", "seconds": 85.17}
+{"key": 535291, "model": "ollama:qwen3-vl:4b-instruct", "answer": "computer monitor", "seconds": 85.1}
+{"key": 536114, "model": "ollama:qwen3-vl:4b-instruct", "answer": "book", "seconds": 84.86}
+{"key": 536468, "model": "ollama:qwen3-vl:4b-instruct", "answer": "water drop", "seconds": 85.0}
+{"key": 536729, "model": "ollama:qwen3-vl:4b-instruct", "answer": "pencil", "seconds": 85.1}
+{"key": 537468, "model": "ollama:qwen3-vl:4b-instruct", "answer": "ufo", "seconds": 84.97}
+{"key": 538538, "model": "ollama:qwen3-vl:4b-instruct", "answer": "drop", "seconds": 85.13}
+{"key": 541206, "model": "ollama:qwen3-vl:4b-instruct", "answer": "heart", "seconds": 85.07}
+{"key": 541510, "model": "ollama:qwen3-vl:4b-instruct", "answer": "clock arrow", "seconds": 84.96}
+{"key": 542261, "model": "ollama:qwen3-vl:4b-instruct", "answer": "image", "seconds": 85.04}
+{"key": 544326, "model": "ollama:qwen3-vl:4b-instruct", "answer": "thumbs up", "seconds": 85.0}
+{"key": 545729, "model": "ollama:qwen3-vl:4b-instruct", "answer": "menu icon", "seconds": 85.09}
+{"key": 545903, "model": "ollama:qwen3-vl:4b-instruct", "answer": "train station", "seconds": 85.03}
+{"key": 546262, "model": "ollama:qwen3-vl:4b-instruct", "answer": "exclamation mark", "seconds": 85.35}
+{"key": 546541, "model": "ollama:qwen3-vl:4b-instruct", "answer": "motor scooter", "seconds": 85.1}
+{"key": 547297, "model": "ollama:qwen3-vl:4b-instruct", "answer": "document", "seconds": 85.06}
+{"key": 549525, "model": "ollama:qwen3-vl:4b-instruct", "answer": "speech bubble", "seconds": 85.29}
+{"key": 550114, "model": "ollama:qwen3-vl:4b-instruct", "answer": "popcorn bucket", "seconds": 85.42}
+{"key": 550321, "model": "ollama:qwen3-vl:4b-instruct", "answer": "fish bowl", "seconds": 85.17}
+{"key": 551140, "model": "ollama:qwen3-vl:4b-instruct", "answer": "quotation marks", "seconds": 85.33}
+{"key": 551334, "model": "ollama:qwen3-vl:4b-instruct", "answer": "rainbow", "seconds": 85.17}
+{"key": 552300, "model": "ollama:qwen3-vl:4b-instruct", "answer": "ribbon badge", "seconds": 85.29}
+{"key": 552749, "model": "ollama:qwen3-vl:4b-instruct", "answer": "signal bars", "seconds": 85.15}
+{"key": 553743, "model": "ollama:qwen3-vl:4b-instruct", "answer": "paper airplane", "seconds": 85.03}
+{"key": 553955, "model": "ollama:qwen3-vl:4b-instruct", "answer": "share icon", "seconds": 85.0}
+{"key": 553961, "model": "ollama:qwen3-vl:4b-instruct", "answer": "arrow", "seconds": 84.9}
+{"key": 554109, "model": "ollama:qwen3-vl:4b-instruct", "answer": "ship", "seconds": 84.92}
+{"key": 554220, "model": "ollama:qwen3-vl:4b-instruct", "answer": "shopping cart", "seconds": 84.93}
+{"key": 556321, "model": "ollama:qwen3-vl:4b-instruct", "answer": "square frame", "seconds": 85.03}
+{"key": 559885, "model": "ollama:qwen3-vl:4b-instruct", "answer": "padlock", "seconds": 85.03}
+{"key": 560965, "model": "ollama:qwen3-vl:4b-instruct", "answer": "glass cup", "seconds": 85.13}
+{"key": 561468, "model": "ollama:qwen3-vl:4b-instruct", "answer": "windows logo", "seconds": 85.01}
+{"key": 562014, "model": "ollama:qwen3-vl:4b-instruct", "answer": "briefcase", "seconds": 85.04}
+{"key": 562039, "model": "ollama:qwen3-vl:4b-instruct", "answer": "trash can", "seconds": 85.01}
+{"key": 562073, "model": "ollama:qwen3-vl:4b-instruct", "answer": "sun", "seconds": 84.92}
+{"key": 562095, "model": "ollama:qwen3-vl:4b-instruct", "answer": "book", "seconds": 84.91}
+{"key": 562122, "model": "ollama:qwen3-vl:4b-instruct", "answer": "folder", "seconds": 84.97}
+{"key": 562123, "model": "ollama:qwen3-vl:4b-instruct", "answer": "gear", "seconds": 85.11}
+{"key": 562124, "model": "ollama:qwen3-vl:4b-instruct", "answer": "bug", "seconds": 84.86}
+{"key": 562126, "model": "ollama:qwen3-vl:4b-instruct", "answer": "ladybug", "seconds": 85.09}
+{"key": 562128, "model": "ollama:qwen3-vl:4b-instruct", "answer": "bug", "seconds": 84.86}
+{"key": 562150, "model": "ollama:qwen3-vl:4b-instruct", "answer": "wifi symbol", "seconds": 84.94}
+{"key": 562153, "model": "ollama:qwen3-vl:4b-instruct", "answer": "wifi signal", "seconds": 85.01}
+{"key": 562194, "model": "ollama:qwen3-vl:4b-instruct", "answer": "anchor", "seconds": 84.95}
+{"key": 562221, "model": "ollama:qwen3-vl:4b-instruct", "answer": "fire", "seconds": 84.86}
+{"key": 562276, "model": "ollama:qwen3-vl:4b-instruct", "answer": "angle brackets", "seconds": 85.18}
+{"key": 562301, "model": "ollama:qwen3-vl:4b-instruct", "answer": "envelope", "seconds": 84.94}
+{"key": 562316, "model": "ollama:qwen3-vl:4b-instruct", "answer": "thumbs up", "seconds": 85.06}
+{"key": 562329, "model": "ollama:qwen3-vl:4b-instruct", "answer": "speech bubble", "seconds": 85.01}
+{"key": 562390, "model": "ollama:qwen3-vl:4b-instruct", "answer": "microphone", "seconds": 85.29}
+{"key": 562435, "model": "ollama:qwen3-vl:4b-instruct", "answer": "printer", "seconds": 85.02}
+{"key": 562455, "model": "ollama:qwen3-vl:4b-instruct", "answer": "github logo", "seconds": 85.1}
+{"key": 562456, "model": "ollama:qwen3-vl:4b-instruct", "answer": "documents", "seconds": 85.0}
+{"key": 562457, "model": "ollama:qwen3-vl:4b-instruct", "answer": "document", "seconds": 84.86}
+{"key": 562671, "model": "ollama:qwen3-vl:4b-instruct", "answer": "basketball", "seconds": 85.09}
+{"key": 562717, "model": "ollama:qwen3-vl:4b-instruct", "answer": "television", "seconds": 84.92}
+{"key": 562726, "model": "ollama:qwen3-vl:4b-instruct", "answer": "graduation cap", "seconds": 85.12}
+{"key": 562805, "model": "ollama:qwen3-vl:4b-instruct", "answer": "arrow", "seconds": 84.91}
+{"key": 562832, "model": "ollama:qwen3-vl:4b-instruct", "answer": "cross", "seconds": 84.85}
+{"key": 562852, "model": "ollama:qwen3-vl:4b-instruct", "answer": "arrow", "seconds": 84.98}
+{"key": 562883, "model": "ollama:qwen3-vl:4b-instruct", "answer": "document", "seconds": 84.85}
+{"key": 562884, "model": "ollama:qwen3-vl:4b-instruct", "answer": "coffee cup", "seconds": 85.01}
+{"key": 562911, "model": "ollama:qwen3-vl:4b-instruct", "answer": "thumbs up", "seconds": 84.98}
+{"key": 562917, "model": "ollama:qwen3-vl:4b-instruct", "answer": "mute", "seconds": 84.88}
+{"key": 562942, "model": "ollama:qwen3-vl:4b-instruct", "answer": "key", "seconds": 84.89}
+{"key": 562947, "model": "ollama:qwen3-vl:4b-instruct", "answer": "newspaper", "seconds": 85.14}
+{"key": 562954, "model": "ollama:qwen3-vl:4b-instruct", "answer": "letter e", "seconds": 84.96}
+{"key": 563057, "model": "ollama:qwen3-vl:4b-instruct", "answer": "lightning bolt", "seconds": 85.16}
+{"key": 563149, "model": "ollama:qwen3-vl:4b-instruct", "answer": "speech bubble", "seconds": 85.29}
+{"key": 563184, "model": "ollama:qwen3-vl:4b-instruct", "answer": "motorcycle", "seconds": 85.05}
+{"key": 563230, "model": "ollama:qwen3-vl:4b-instruct", "answer": "eye closed", "seconds": 85.03}
+{"key": 563268, "model": "ollama:qwen3-vl:4b-instruct", "answer": "tulip", "seconds": 85.11}
+{"key": 563305, "model": "ollama:qwen3-vl:4b-instruct", "answer": "checkmark", "seconds": 84.96}
+{"key": 563307, "model": "ollama:qwen3-vl:4b-instruct", "answer": "armchair", "seconds": 85.0}
+{"key": 563346, "model": "ollama:qwen3-vl:4b-instruct", "answer": "sailboat", "seconds": 85.11}
+{"key": 563393, "model": "ollama:qwen3-vl:4b-instruct", "answer": "zero point", "seconds": 84.99}
+{"key": 563491, "model": "ollama:qwen3-vl:4b-instruct", "answer": "bar chart", "seconds": 85.02}
+{"key": 563512, "model": "ollama:qwen3-vl:4b-instruct", "answer": "phone call", "seconds": 85.0}
+{"key": 563515, "model": "ollama:qwen3-vl:4b-instruct", "answer": "arrow", "seconds": 85.01}
+{"key": 563520, "model": "ollama:qwen3-vl:4b-instruct", "answer": "shop house", "seconds": 85.15}
+{"key": 563523, "model": "ollama:qwen3-vl:4b-instruct", "answer": "thumbs down", "seconds": 84.98}
+{"key": 563689, "model": "ollama:qwen3-vl:4b-instruct", "answer": "stethoscope", "seconds": 85.16}
+{"key": 563690, "model": "ollama:qwen3-vl:4b-instruct", "answer": "stethoscope", "seconds": 85.1}
+{"key": 563844, "model": "ollama:qwen3-vl:4b-instruct", "answer": "exit arrow", "seconds": 85.04}
+{"key": 563850, "model": "ollama:qwen3-vl:4b-instruct", "answer": "three dots", "seconds": 84.99}
+{"key": 563887, "model": "ollama:qwen3-vl:4b-instruct", "answer": "internet explorer", "seconds": 85.0}
+{"key": 563985, "model": "ollama:qwen3-vl:4b-instruct", "answer": "cactus", "seconds": 85.09}
+{"key": 564003, "model": "ollama:qwen3-vl:4b-instruct", "answer": "square with dot", "seconds": 85.14}
+{"key": 564011, "model": "ollama:qwen3-vl:4b-instruct", "answer": "file folder", "seconds": 85.01}
+{"key": 564016, "model": "ollama:qwen3-vl:4b-instruct", "answer": "people group", "seconds": 85.05}
+{"key": 564119, "model": "ollama:qwen3-vl:4b-instruct", "answer": "letter m", "seconds": 85.04}
+{"key": 564126, "model": "ollama:qwen3-vl:4b-instruct", "answer": "cube", "seconds": 85.08}
+{"key": 564156, "model": "ollama:qwen3-vl:4b-instruct", "answer": "cloud upload", "seconds": 85.08}
+{"key": 564174, "model": "ollama:qwen3-vl:4b-instruct", "answer": "binoculars", "seconds": 85.25}
+{"key": 564191, "model": "ollama:qwen3-vl:4b-instruct", "answer": "people group", "seconds": 84.94}
+{"key": 564193, "model": "ollama:qwen3-vl:4b-instruct", "answer": "microphone off", "seconds": 85.27}
+{"key": 564198, "model": "ollama:qwen3-vl:4b-instruct", "answer": "microphone mute", "seconds": 85.11}
+{"key": 564261, "model": "ollama:qwen3-vl:4b-instruct", "answer": "wallet", "seconds": 85.23}
+{"key": 564295, "model": "ollama:qwen3-vl:4b-instruct", "answer": "train", "seconds": 84.87}
+{"key": 564302, "model": "ollama:qwen3-vl:4b-instruct", "answer": "speaker icon", "seconds": 85.03}
+{"key": 577322, "model": "ollama:qwen3-vl:4b-instruct", "answer": "centered square", "seconds": 85.1}
+{"key": 577404, "model": "ollama:qwen3-vl:4b-instruct", "answer": "letter ab", "seconds": 85.06}
+{"key": 577450, "model": "ollama:qwen3-vl:4b-instruct", "answer": "list", "seconds": 84.87}
+{"key": 580859, "model": "ollama:qwen3-vl:4b-instruct", "answer": "api", "seconds": 84.83}
+{"key": 584208, "model": "ollama:qwen3-vl:4b-instruct", "answer": "graph line", "seconds": 84.92}
+{"key": 587416, "model": "ollama:qwen3-vl:4b-instruct", "answer": "arrow pair", "seconds": 84.99}
+{"key": 588188, "model": "ollama:qwen3-vl:4b-instruct", "answer": "arrows up", "seconds": 85.09}
+{"key": 589324, "model": "ollama:qwen3-vl:4b-instruct", "answer": "headphones", "seconds": 85.03}
+{"key": 599607, "model": "ollama:qwen3-vl:4b-instruct", "answer": "medical file", "seconds": 84.91}
+{"key": 602660, "model": "ollama:qwen3-vl:4b-instruct", "answer": "window frames", "seconds": 84.98}
+{"key": 606730, "model": "ollama:qwen3-vl:4b-instruct", "answer": "coffee cup", "seconds": 85.0}
+{"key": 608469, "model": "ollama:qwen3-vl:4b-instruct", "answer": "video camera", "seconds": 84.93}
+{"key": 608721, "model": "ollama:qwen3-vl:4b-instruct", "answer": "camera", "seconds": 84.93}
+{"key": 608848, "model": "ollama:qwen3-vl:4b-instruct", "answer": "eyes", "seconds": 84.84}
+{"key": 613113, "model": "ollama:qwen3-vl:4b-instruct", "answer": "scatter plot", "seconds": 85.13}
+{"key": 620988, "model": "ollama:qwen3-vl:4b-instruct", "answer": "clipboard arrow", "seconds": 84.96}
+{"key": 621898, "model": "ollama:qwen3-vl:4b-instruct", "answer": "cloud checkmark", "seconds": 85.16}
+{"key": 622242, "model": "ollama:qwen3-vl:4b-instruct", "answer": "storm cloud", "seconds": 84.98}
+{"key": 622262, "model": "ollama:qwen3-vl:4b-instruct", "answer": "cloud lock", "seconds": 84.95}
+{"key": 622366, "model": "ollama:qwen3-vl:4b-instruct", "answer": "cloud off", "seconds": 85.03}
+{"key": 625102, "model": "ollama:qwen3-vl:4b-instruct", "answer": "comment add", "seconds": 85.0}
+{"key": 626598, "model": "ollama:qwen3-vl:4b-instruct", "answer": "scissors", "seconds": 85.04}
+{"key": 628407, "model": "ollama:qwen3-vl:4b-instruct", "answer": "credit card", "seconds": 85.07}
+{"key": 633627, "model": "ollama:qwen3-vl:4b-instruct", "answer": "table lamp", "seconds": 85.08}
+{"key": 634883, "model": "ollama:qwen3-vl:4b-instruct", "answer": "exclamation mark", "seconds": 85.09}
+{"key": 634899, "model": "ollama:qwen3-vl:4b-instruct", "answer": "dot matrix", "seconds": 84.93}
+{"key": 639987, "model": "ollama:qwen3-vl:4b-instruct", "answer": "down arrow", "seconds": 84.96}
+{"key": 645733, "model": "ollama:qwen3-vl:4b-instruct", "answer": "checkmark", "seconds": 85.04}
+{"key": 646985, "model": "ollama:qwen3-vl:4b-instruct", "answer": "keyhole", "seconds": 85.08}
+{"key": 648006, "model": "ollama:qwen3-vl:4b-instruct", "answer": "ethereum", "seconds": 84.88}
+{"key": 648321, "model": "ollama:qwen3-vl:4b-instruct", "answer": "charging station", "seconds": 85.0}
+{"key": 648704, "model": "ollama:qwen3-vl:4b-instruct", "answer": "data transfer", "seconds": 85.02}
+{"key": 650282, "model": "ollama:qwen3-vl:4b-instruct", "answer": "face", "seconds": 84.95}
+{"key": 651311, "model": "ollama:qwen3-vl:4b-instruct", "answer": "end field", "seconds": 85.05}
+{"key": 651936, "model": "ollama:qwen3-vl:4b-instruct", "answer": "arrows curve", "seconds": 85.47}
+{"key": 653305, "model": "ollama:qwen3-vl:4b-instruct", "answer": "jpeg file", "seconds": 85.03}
+{"key": 653318, "model": "ollama:qwen3-vl:4b-instruct", "answer": "json file", "seconds": 85.07}
+{"key": 653573, "model": "ollama:qwen3-vl:4b-instruct", "answer": "pdf file", "seconds": 85.17}
+{"key": 658317, "model": "ollama:qwen3-vl:4b-instruct", "answer": "letter j", "seconds": 85.16}
+{"key": 661098, "model": "ollama:qwen3-vl:4b-instruct", "answer": "locked folder", "seconds": 85.12}
+{"key": 661745, "model": "ollama:qwen3-vl:4b-instruct", "answer": "folder plus", "seconds": 85.12}
+{"key": 662099, "model": "ollama:qwen3-vl:4b-instruct", "answer": "folder search", "seconds": 85.01}
+{"key": 663693, "model": "ollama:qwen3-vl:4b-instruct", "answer": "text lines", "seconds": 85.05}
+{"key": 663695, "model": "ollama:qwen3-vl:4b-instruct", "answer": "text lines", "seconds": 85.04}
+{"key": 665445, "model": "ollama:qwen3-vl:4b-instruct", "answer": "cross mark", "seconds": 84.98}
+{"key": 670597, "model": "ollama:qwen3-vl:4b-instruct", "answer": "letter g", "seconds": 85.01}
+{"key": 672736, "model": "ollama:qwen3-vl:4b-instruct", "answer": "shark fin", "seconds": 85.11}
+{"key": 675214, "model": "ollama:qwen3-vl:4b-instruct", "answer": "hard drive", "seconds": 85.01}
+{"key": 677054, "model": "ollama:qwen3-vl:4b-instruct", "answer": "square pyramid", "seconds": 85.08}
+{"key": 677478, "model": "ollama:qwen3-vl:4b-instruct", "answer": "house", "seconds": 84.8}
+{"key": 678302, "model": "ollama:qwen3-vl:4b-instruct", "answer": "cactus plant", "seconds": 85.18}
+{"key": 680506, "model": "ollama:qwen3-vl:4b-instruct", "answer": "flower", "seconds": 84.95}
+{"key": 682098, "model": "ollama:qwen3-vl:4b-instruct", "answer": "download arrow", "seconds": 85.03}
+{"key": 691444, "model": "ollama:qwen3-vl:4b-instruct", "answer": "lines horizontal", "seconds": 84.99}
+{"key": 691448, "model": "ollama:qwen3-vl:4b-instruct", "answer": "list", "seconds": 84.86}
+{"key": 692934, "model": "ollama:qwen3-vl:4b-instruct", "answer": "microphone", "seconds": 85.01}
+{"key": 697519, "model": "ollama:qwen3-vl:4b-instruct", "answer": "arrow", "seconds": 84.87}
+{"key": 701812, "model": "ollama:qwen3-vl:4b-instruct", "answer": "linkedin logo", "seconds": 85.03}
+{"key": 702331, "model": "ollama:qwen3-vl:4b-instruct", "answer": "numbered list", "seconds": 85.19}
+{"key": 703931, "model": "ollama:qwen3-vl:4b-instruct", "answer": "arrow circle", "seconds": 84.94}
+{"key": 703943, "model": "ollama:qwen3-vl:4b-instruct", "answer": "arrow exit", "seconds": 84.98}
+{"key": 704388, "model": "ollama:qwen3-vl:4b-instruct", "answer": "arrow out", "seconds": 85.02}
+{"key": 705189, "model": "ollama:qwen3-vl:4b-instruct", "answer": "camera lens", "seconds": 85.0}
+{"key": 709393, "model": "ollama:qwen3-vl:4b-instruct", "answer": "award ribbon", "seconds": 85.04}
+{"key": 710102, "model": "ollama:qwen3-vl:4b-instruct", "answer": "cross", "seconds": 84.86}
+{"key": 710141, "model": "ollama:qwen3-vl:4b-instruct", "answer": "first aid kit", "seconds": 85.16}
+{"key": 711402, "model": "ollama:qwen3-vl:4b-instruct", "answer": "circle", "seconds": 84.76}
+{"key": 717685, "model": "ollama:qwen3-vl:4b-instruct", "answer": "music note", "seconds": 85.01}
+{"key": 719670, "model": "ollama:qwen3-vl:4b-instruct", "answer": "lion head", "seconds": 84.91}
+{"key": 719783, "model": "ollama:qwen3-vl:4b-instruct", "answer": "diamond shape", "seconds": 84.95}
+{"key": 720001, "model": "ollama:qwen3-vl:4b-instruct", "answer": "signal bars", "seconds": 85.0}
+{"key": 720386, "model": "ollama:qwen3-vl:4b-instruct", "answer": "code bracket", "seconds": 85.02}
+{"key": 720734, "model": "ollama:qwen3-vl:4b-instruct", "answer": "neutral face", "seconds": 85.06}
+{"key": 726614, "model": "ollama:qwen3-vl:4b-instruct", "answer": "alpaca", "seconds": 85.12}
+{"key": 737143, "model": "ollama:qwen3-vl:4b-instruct", "answer": "phone call", "seconds": 84.99}
+{"key": 737459, "model": "ollama:qwen3-vl:4b-instruct", "answer": "laptop phone", "seconds": 85.1}
+{"key": 738601, "model": "ollama:qwen3-vl:4b-instruct", "answer": "letter p", "seconds": 85.11}
+{"key": 738996, "model": "ollama:qwen3-vl:4b-instruct", "answer": "hand tap", "seconds": 85.0}
+{"key": 739011, "model": "ollama:qwen3-vl:4b-instruct", "answer": "pinterest logo", "seconds": 84.92}
+{"key": 739144, "model": "ollama:qwen3-vl:4b-instruct", "answer": "letter p", "seconds": 84.94}
+{"key": 741011, "model": "ollama:qwen3-vl:4b-instruct", "answer": "pok\u00e9 ball", "seconds": 85.19}
+{"key": 741935, "model": "ollama:qwen3-vl:4b-instruct", "answer": "power button", "seconds": 84.98}
+{"key": 745538, "model": "ollama:qwen3-vl:4b-instruct", "answer": "barcode scanner", "seconds": 84.86}
+{"key": 745597, "model": "ollama:qwen3-vl:4b-instruct", "answer": "qr code", "seconds": 84.86}
+{"key": 745600, "model": "ollama:qwen3-vl:4b-instruct", "answer": "qr code", "seconds": 85.09}
+{"key": 750423, "model": "ollama:qwen3-vl:4b-instruct", "answer": "arrow cycle", "seconds": 84.94}
+{"key": 752254, "model": "ollama:qwen3-vl:4b-instruct", "answer": "arrow circle", "seconds": 84.91}
+{"key": 752276, "model": "ollama:qwen3-vl:4b-instruct", "answer": "refresh arrow", "seconds": 84.94}
+{"key": 761181, "model": "ollama:qwen3-vl:4b-instruct", "answer": "pause button", "seconds": 84.89}
+{"key": 761431, "model": "ollama:qwen3-vl:4b-instruct", "answer": "arrow out", "seconds": 84.9}
+{"key": 767727, "model": "ollama:qwen3-vl:4b-instruct", "answer": "arrow", "seconds": 84.75}
+{"key": 769593, "model": "ollama:qwen3-vl:4b-instruct", "answer": "accordion", "seconds": 84.76}
+{"key": 769675, "model": "ollama:qwen3-vl:4b-instruct", "answer": "staircase", "seconds": 85.12}
+{"key": 772441, "model": "ollama:qwen3-vl:4b-instruct", "answer": "tuxedo", "seconds": 85.03}
+{"key": 773560, "model": "ollama:qwen3-vl:4b-instruct", "answer": "snowflake", "seconds": 84.95}
+{"key": 780230, "model": "ollama:qwen3-vl:4b-instruct", "answer": "letter t", "seconds": 84.98}
+{"key": 783012, "model": "ollama:qwen3-vl:4b-instruct", "answer": "folder", "seconds": 84.86}
+{"key": 787085, "model": "ollama:qwen3-vl:4b-instruct", "answer": "diamond", "seconds": 84.81}
+{"key": 792947, "model": "ollama:qwen3-vl:4b-instruct", "answer": "no pills", "seconds": 84.98}
+{"key": 797118, "model": "ollama:qwen3-vl:4b-instruct", "answer": "video camera", "seconds": 84.99}
+{"key": 798959, "model": "ollama:qwen3-vl:4b-instruct", "answer": "visual studio", "seconds": 85.01}
+{"key": 801508, "model": "ollama:qwen3-vl:4b-instruct", "answer": "moon cloud", "seconds": 84.95}
+{"key": 804645, "model": "ollama:qwen3-vl:4b-instruct", "answer": "winking face", "seconds": 85.44}
+{"key": 809094, "model": "ollama:qwen3-vl:4b-instruct", "answer": "accordion", "seconds": 84.97}
+{"key": 809379, "model": "ollama:qwen3-vl:4b-instruct", "answer": "calendar", "seconds": 84.79}
+{"key": 810748, "model": "ollama:qwen3-vl:4b-instruct", "answer": "paperclip", "seconds": 85.01}
+{"key": 811891, "model": "ollama:qwen3-vl:4b-instruct", "answer": "person", "seconds": 84.76}
+{"key": 813116, "model": "ollama:qwen3-vl:4b-instruct", "answer": "pound sign", "seconds": 84.99}
+{"key": 251778, "model": "ollama:gemma3:4b", "answer": "y-shaped clock", "seconds": 167.73}
+{"key": 280982, "model": "ollama:gemma3:4b", "answer": "folder icon", "seconds": 167.24}
+{"key": 280986, "model": "ollama:gemma3:4b", "answer": "folder icon", "seconds": 167.22}
+{"key": 302608, "model": "ollama:gemma3:4b", "answer": "left arrow", "seconds": 160.87}
+{"key": 303183, "model": "ollama:gemma3:4b", "answer": "square box", "seconds": 161.68}
+{"key": 314260, "model": "ollama:gemma3:4b", "answer": "square box", "seconds": 158.93}
+{"key": 316203, "model": "ollama:gemma3:4b", "answer": "open book", "seconds": 162.94}
+{"key": 331096, "model": "ollama:gemma3:4b", "answer": "downward arrow", "seconds": 167.04}
+{"key": 338484, "model": "ollama:gemma3:4b", "answer": "double c", "seconds": 166.7}
+{"key": 339411, "model": "ollama:gemma3:4b", "answer": "cloud upload", "seconds": 163.92}
+{"key": 358214, "model": "ollama:gemma3:4b", "answer": "drupal logo", "seconds": 167.38}
+{"key": 365318, "model": "ollama:gemma3:4b", "answer": "elephant icon", "seconds": 160.59}
+{"key": 370249, "model": "ollama:gemma3:4b", "answer": "delete icon", "seconds": 167.71}
+{"key": 388650, "model": "ollama:gemma3:4b", "answer": "hexagon triangle", "seconds": 163.48}
+{"key": 394341, "model": "ollama:gemma3:4b", "answer": "house icon", "seconds": 163.51}
+{"key": 395810, "model": "ollama:gemma3:4b", "answer": "css logo", "seconds": 169.67}
+{"key": 403949, "model": "ollama:gemma3:4b", "answer": "instagram logo", "seconds": 171.38}
+{"key": 405977, "model": "ollama:gemma3:4b", "answer": "cat head", "seconds": 169.33}
+{"key": 428891, "model": "ollama:gemma3:4b", "answer": "water tap", "seconds": 166.54}
+{"key": 453952, "model": "ollama:gemma3:4b", "answer": "phone call", "seconds": 165.58}
+{"key": 454056, "model": "ollama:gemma3:4b", "answer": "call blocked", "seconds": 165.38}
+{"key": 466611, "model": "ollama:gemma3:4b", "answer": "left arrow", "seconds": 164.31}
+{"key": 487308, "model": "ollama:gemma3:4b", "answer": "star with slash", "seconds": 159.08}
+{"key": 503345, "model": "ollama:gemma3:4b", "answer": "downward arrow", "seconds": 160.68}
+{"key": 515992, "model": "ollama:gemma3:4b", "answer": "vk logo", "seconds": 167.64}
+{"key": 521482, "model": "ollama:gemma3:4b", "answer": "wine glass", "seconds": 166.43}
+{"key": 526373, "model": "ollama:gemma3:4b", "answer": "open book", "seconds": 169.25}
+{"key": 526554, "model": "ollama:gemma3:4b", "answer": "warning symbol", "seconds": 168.25}
+{"key": 526803, "model": "ollama:gemma3:4b", "answer": "android logo", "seconds": 177.34}
+{"key": 528177, "model": "ollama:gemma3:4b", "answer": "two arrows", "seconds": 174.34}
+{"key": 528939, "model": "ollama:gemma3:4b", "answer": "bed frame", "seconds": 169.78}
+{"key": 530126, "model": "ollama:gemma3:4b", "answer": "briefcase", "seconds": 165.68}
+{"key": 530430, "model": "ollama:gemma3:4b", "answer": "megaphone", "seconds": 167.75}
+{"key": 530658, "model": "ollama:gemma3:4b", "answer": "lightning bolt", "seconds": 167.99}
+{"key": 530825, "model": "ollama:gemma3:4b", "answer": "calendar", "seconds": 167.44}
+{"key": 533386, "model": "ollama:gemma3:4b", "answer": "spinning wheel", "seconds": 163.46}
+{"key": 534801, "model": "ollama:gemma3:4b", "answer": "circular frame", "seconds": 164.63}
+{"key": 535291, "model": "ollama:gemma3:4b", "answer": "computer monitor", "seconds": 164.61}
+{"key": 536114, "model": "ollama:gemma3:4b", "answer": "open door", "seconds": 163.89}
+{"key": 536468, "model": "ollama:gemma3:4b", "answer": "water drop", "seconds": 164.21}
+{"key": 536729, "model": "ollama:gemma3:4b", "answer": "pencil", "seconds": 159.18}
+{"key": 537468, "model": "ollama:gemma3:4b", "answer": "ufo", "seconds": 163.01}
+{"key": 538538, "model": "ollama:gemma3:4b", "answer": "water drop", "seconds": 170.26}
+{"key": 541206, "model": "ollama:gemma3:4b", "answer": "heart symbol", "seconds": 168.12}
+{"key": 541510, "model": "ollama:gemma3:4b", "answer": "clock icon", "seconds": 167.18}
+{"key": 542261, "model": "ollama:gemma3:4b", "answer": "photo gallery", "seconds": 161.9}
+{"key": 544326, "model": "ollama:gemma3:4b", "answer": "like button", "seconds": 159.83}
+{"key": 545729, "model": "ollama:gemma3:4b", "answer": "three lines", "seconds": 159.22}
+{"key": 545903, "model": "ollama:gemma3:4b", "answer": "subway car", "seconds": 159.91}
+{"key": 546262, "model": "ollama:gemma3:4b", "answer": "exclamation point", "seconds": 159.99}
+{"key": 546541, "model": "ollama:gemma3:4b", "answer": "electric scooter", "seconds": 166.04}
+{"key": 547297, "model": "ollama:gemma3:4b", "answer": "letter f", "seconds": 163.72}
+{"key": 549525, "model": "ollama:gemma3:4b", "answer": "location marker", "seconds": 158.21}
+{"key": 550114, "model": "ollama:gemma3:4b", "answer": "ice cream cone", "seconds": 157.47}
+{"key": 550321, "model": "ollama:gemma3:4b", "answer": "half circle", "seconds": 161.71}
+{"key": 551140, "model": "ollama:gemma3:4b", "answer": "quotation marks", "seconds": 157.31}
+{"key": 551334, "model": "ollama:gemma3:4b", "answer": "archway", "seconds": 157.6}
+{"key": 552300, "model": "ollama:gemma3:4b", "answer": "award ribbon", "seconds": 162.2}
+{"key": 552749, "model": "ollama:gemma3:4b", "answer": "steps", "seconds": 165.73}
+{"key": 553743, "model": "ollama:gemma3:4b", "answer": "paper airplane", "seconds": 158.63}
+{"key": 553955, "model": "ollama:gemma3:4b", "answer": "switch diagram", "seconds": 160.76}
+{"key": 553961, "model": "ollama:gemma3:4b", "answer": "arrow forward", "seconds": 158.45}
+{"key": 554109, "model": "ollama:gemma3:4b", "answer": "small boat", "seconds": 161.28}
+{"key": 554220, "model": "ollama:gemma3:4b", "answer": "shopping cart", "seconds": 162.41}
+{"key": 556321, "model": "ollama:gemma3:4b", "answer": "stop sign", "seconds": 161.04}
+{"key": 559885, "model": "ollama:gemma3:4b", "answer": "lock icon", "seconds": 158.99}
+{"key": 560965, "model": "ollama:gemma3:4b", "answer": "glass of water", "seconds": 158.77}
+{"key": 561468, "model": "ollama:gemma3:4b", "answer": "windows logo", "seconds": 162.85}
+{"key": 562014, "model": "ollama:gemma3:4b", "answer": "briefcase", "seconds": 162.23}
+{"key": 562039, "model": "ollama:gemma3:4b", "answer": "trash can", "seconds": 163.58}
+{"key": 562073, "model": "ollama:gemma3:4b", "answer": "sun", "seconds": 165.8}
+{"key": 562095, "model": "ollama:gemma3:4b", "answer": "open book", "seconds": 164.08}
+{"key": 562122, "model": "ollama:gemma3:4b", "answer": "file folder", "seconds": 165.49}
+{"key": 562123, "model": "ollama:gemma3:4b", "answer": "gear icon", "seconds": 169.09}
+{"key": 562124, "model": "ollama:gemma3:4b", "answer": "octopus", "seconds": 165.95}
+{"key": 562126, "model": "ollama:gemma3:4b", "answer": "ladybug", "seconds": 166.6}
+{"key": 562128, "model": "ollama:gemma3:4b", "answer": "japanese torii gate", "seconds": 164.71}
+{"key": 562150, "model": "ollama:gemma3:4b", "answer": "wi-fi symbol", "seconds": 160.3}
+{"key": 562153, "model": "ollama:gemma3:4b", "answer": "sunrise", "seconds": 158.21}
+{"key": 562194, "model": "ollama:gemma3:4b", "answer": "anchor", "seconds": 163.88}
+{"key": 562221, "model": "ollama:gemma3:4b", "answer": "flame icon", "seconds": 161.23}
+{"key": 562276, "model": "ollama:gemma3:4b", "answer": "angle brackets", "seconds": 155.93}
+{"key": 562301, "model": "ollama:gemma3:4b", "answer": "email icon", "seconds": 156.45}
+{"key": 562316, "model": "ollama:gemma3:4b", "answer": "thumbs up", "seconds": 159.86}
+{"key": 562329, "model": "ollama:gemma3:4b", "answer": "speech bubble", "seconds": 163.2}
+{"key": 562390, "model": "ollama:gemma3:4b", "answer": "microphone", "seconds": 158.0}
+{"key": 562435, "model": "ollama:gemma3:4b", "answer": "printer icon", "seconds": 161.68}
+{"key": 562455, "model": "ollama:gemma3:4b", "answer": "github cat logo", "seconds": 159.79}
+{"key": 562456, "model": "ollama:gemma3:4b", "answer": "document folder", "seconds": 158.07}
+{"key": 562457, "model": "ollama:gemma3:4b", "answer": "menu icon", "seconds": 161.46}
+{"key": 562671, "model": "ollama:gemma3:4b", "answer": "basketball", "seconds": 160.87}
+{"key": 562717, "model": "ollama:gemma3:4b", "answer": "television", "seconds": 158.89}
+{"key": 562726, "model": "ollama:gemma3:4b", "answer": "graduation cap", "seconds": 156.39}
+{"key": 562805, "model": "ollama:gemma3:4b", "answer": "arrow", "seconds": 156.64}
+{"key": 562832, "model": "ollama:gemma3:4b", "answer": "crossroads", "seconds": 156.89}
+{"key": 562852, "model": "ollama:gemma3:4b", "answer": "back arrow", "seconds": 167.76}
+{"key": 562883, "model": "ollama:gemma3:4b", "answer": "document file", "seconds": 157.55}
+{"key": 562884, "model": "ollama:gemma3:4b", "answer": "coffee cup", "seconds": 158.2}
+{"key": 562911, "model": "ollama:gemma3:4b", "answer": "letter e", "seconds": 156.28}
+{"key": 562917, "model": "ollama:gemma3:4b", "answer": "mute icon", "seconds": 160.29}
+{"key": 562942, "model": "ollama:gemma3:4b", "answer": "key", "seconds": 160.6}
+{"key": 562947, "model": "ollama:gemma3:4b", "answer": "open book", "seconds": 159.3}
+{"key": 562954, "model": "ollama:gemma3:4b", "answer": "letter f", "seconds": 164.71}
+{"key": 563057, "model": "ollama:gemma3:4b", "answer": "arrow", "seconds": 157.12}
+{"key": 563149, "model": "ollama:gemma3:4b", "answer": "speech bubble", "seconds": 165.42}
+{"key": 563184, "model": "ollama:gemma3:4b", "answer": "toy bicycle", "seconds": 166.88}
+{"key": 563230, "model": "ollama:gemma3:4b", "answer": "delete symbol", "seconds": 166.01}
+{"key": 563268, "model": "ollama:gemma3:4b", "answer": "tulip", "seconds": 162.86}
+{"key": 563305, "model": "ollama:gemma3:4b", "answer": "checkmark", "seconds": 156.7}
+{"key": 563307, "model": "ollama:gemma3:4b", "answer": "armchair", "seconds": 160.9}
+{"key": 563346, "model": "ollama:gemma3:4b", "answer": "sailboat", "seconds": 162.28}
+{"key": 563393, "model": "ollama:gemma3:4b", "answer": "korean flag", "seconds": 163.18}
+{"key": 563491, "model": "ollama:gemma3:4b", "answer": "stack of books", "seconds": 162.17}
+{"key": 563512, "model": "ollama:gemma3:4b", "answer": "telephone icon", "seconds": 161.66}
+{"key": 563515, "model": "ollama:gemma3:4b", "answer": "left turn arrow", "seconds": 167.17}
+{"key": 563520, "model": "ollama:gemma3:4b", "answer": "shop icon", "seconds": 167.65}
+{"key": 563523, "model": "ollama:gemma3:4b", "answer": "heart icon", "seconds": 166.73}
+{"key": 563689, "model": "ollama:gemma3:4b", "answer": "stethoscope", "seconds": 162.63}
+{"key": 563690, "model": "ollama:gemma3:4b", "answer": "stethoscope", "seconds": 164.58}
+{"key": 563844, "model": "ollama:gemma3:4b", "answer": "right exit", "seconds": 161.45}
+{"key": 563850, "model": "ollama:gemma3:4b", "answer": "more options", "seconds": 161.15}
+{"key": 563887, "model": "ollama:gemma3:4b", "answer": "internet explorer", "seconds": 165.72}
+{"key": 563985, "model": "ollama:gemma3:4b", "answer": "sagittarius symbol", "seconds": 165.29}
+{"key": 564003, "model": "ollama:gemma3:4b", "answer": "information icon", "seconds": 162.19}
+{"key": 564011, "model": "ollama:gemma3:4b", "answer": "hamburger icon", "seconds": 156.61}
+{"key": 564016, "model": "ollama:gemma3:4b", "answer": "two people", "seconds": 159.22}
+{"key": 564119, "model": "ollama:gemma3:4b", "answer": "letter m", "seconds": 155.69}
