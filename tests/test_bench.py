@@ -260,3 +260,55 @@ def test_vlm_apply_sets_objects_only_where_missing(tmp_path, monkeypatch):
     # every answer is logged, applied or not
     logged = {r[0]: (r[1], json.loads(r[2])["applied"]) for r in c.execute("SELECT subject_id, raw, context FROM classification WHERE method='vlm'")}
     assert logged == {1: ("coffee cup icon", True), 2: ("down arrow in circle", True), 3: ("house", False)}
+
+
+def test_ask_passes_model_and_reasoning(tmp_path, monkeypatch):
+    import subprocess
+
+    from handdown import ai
+
+    calls = []
+
+    def fake_run(args, **kw):
+        calls.append((args, kw["env"].get("MAX_THINKING_TOKENS")))
+        out = json.dumps({"type": "result", "result": '{"1": {"object": "cup"}}', "usage": {}, "total_cost_usd": 0.01})
+        return subprocess.CompletedProcess(args, 0, stdout=out + "\n", stderr="")
+
+    monkeypatch.setattr(subprocess, "run", fake_run)
+    ai.ask(b"png", "t", "s", tmp_path)
+    ai.ask(b"png", "t", "s", tmp_path, model="haiku", effort="high")
+    (default, off), (high, budget) = calls
+    assert default[default.index("--model") + 1] == "sonnet" and off == "0" and "--effort" not in default
+    assert high[high.index("--model") + 1] == "haiku" and high[high.index("--effort") + 1] == "high" and budget is None
+
+
+def test_run_claude_splits_usage_per_image(tmp_path, monkeypatch):
+    from handdown import ai
+
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    cfg = Config()
+    c = db.connect(cfg.db_path)
+    c.execute("INSERT INTO platform (id, name) VALUES ('p','p')")
+    c.execute("INSERT INTO source (id, platform_id, name) VALUES ('s','p','s')")
+    norm = tmp_path / "data" / "norm" / "sq.svg"
+    norm.parent.mkdir(parents=True)
+    norm.write_text(SQUARE)
+    for i in (1, 2, 3):
+        c.execute("INSERT INTO pictogram (id, source_id, original_id, norm_path, svg_valid) VALUES (?,?,?,?,1)", (i, "s", f"i{i}", "data/norm/sq.svg"))
+    c.commit()
+    sample = [{"key": 10 + i, "source_id": "s", "original_id": f"i{i}"} for i in (1, 2, 3)]
+    usage = {"input_tokens": 100, "output_tokens": 40, "cache_read_input_tokens": 0, "cache_creation_input_tokens": 0}
+    seen = []
+
+    def fake_ask(image, text, system, workdir, model, effort):
+        seen.append((model, effort))
+        return {"1": {"object": "Square"}, "2": {"object": "box"}}, {"usage": usage, "total_cost_usd": 0.02, "session_id": "s1"}
+
+    monkeypatch.setattr(ai, "ask", fake_ask)
+    out = tmp_path / "claude.jsonl"
+    stats = bench.run_claude(c, cfg, sample, "haiku", "high", out, batch=2, workdir=tmp_path / "w")
+    assert stats == {"answered": 3, "calls": 2, "cost_usd": 0.04}
+    rows = [json.loads(line) for line in out.read_text().splitlines()]
+    assert [r["answer"] for r in rows] == ["square", "box", "square"] and all(r["model"] == "claude:haiku@effort=high" for r in rows)
+    assert rows[0]["output_tokens"] == 20 and rows[0]["cost_usd"] == 0.01 and rows[2]["output_tokens"] == 40
+    assert seen == [("haiku", "high")] * 2

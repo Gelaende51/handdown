@@ -546,3 +546,72 @@ def vlm_apply(conn: sqlite3.Connection, answers: list[dict[str, Any]], run: str 
         )
     conn.commit()
     return counts
+
+
+def run_claude(
+    conn: sqlite3.Connection,
+    cfg: Any,
+    sample: list[dict[str, Any]],
+    model: str,
+    effort: str | None,
+    out: Path,
+    batch: int = 24,
+    limit: int | None = None,
+    workdir: Path = Path("data/bench-claude"),
+    log: Any = print,
+) -> dict[str, Any]:
+    """Claude on the sample as in production (numbered sheets of ``batch``
+    pictograms, the hierarchy prompt); per image: the object, seconds, tokens
+    and list-price cost (the call's usage split evenly). Resumes like ``run``."""
+    from . import ai
+
+    out = Path(out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    workdir.mkdir(parents=True, exist_ok=True)
+    done = {json.loads(line)["key"] for line in out.read_text().splitlines()} if out.exists() else set()
+    _sample_table(conn, sample)
+    rows = conn.execute(
+        """SELECT b.key, p.norm_path FROM bench_sample b
+           JOIN pictogram p ON p.source_id = b.source_id AND p.original_id = b.original_id ORDER BY b.key"""
+    ).fetchall()
+    rows = [r for r in rows[:limit] if r["key"] not in done and r["norm_path"] and cfg.resolve(r["norm_path"]).exists()]
+    name = f"claude:{model}@effort={effort or 'off'}"
+    stats: dict[str, Any] = {"answered": 0, "calls": 0, "cost_usd": 0.0}
+    with out.open("a") as f:
+        for start in range(0, len(rows), batch):
+            part = rows[start : start + batch]
+            image = ai.sheet([cfg.resolve(r["norm_path"]).read_text() for r in part], cols=6)
+            t = time.monotonic()
+            answer, result = ai.ask(
+                image, ai.HIERARCHY_PROMPT, "You look at pictograms and report what you see. Reply with JSON only.", workdir, model=model, effort=effort
+            )
+            n = len(part)
+            seconds = round((time.monotonic() - t) / n, 2)
+            usage = result.get("usage") or {}
+            cost = result.get("total_cost_usd") or 0.0
+            per = {
+                "input_tokens": usage.get("input_tokens", 0) / n,
+                "output_tokens": usage.get("output_tokens", 0) / n,
+                "cache_read_tokens": usage.get("cache_read_input_tokens", 0) / n,
+                "cache_write_tokens": usage.get("cache_creation_input_tokens", 0) / n,
+            }
+            for i, r in enumerate(part, 1):
+                a = answer.get(str(i))
+                obj = clean(a["object"]) if isinstance(a, dict) and isinstance(a.get("object"), str) else ""
+                line = {
+                    "key": r["key"],
+                    "model": name,
+                    "answer": obj,
+                    "seconds": seconds,
+                    **{k: round(v, 1) for k, v in per.items()},
+                    "cost_usd": round(cost / n, 5),
+                }
+                f.write(json.dumps(line) + "\n")
+                stats["answered"] += 1
+            f.flush()
+            ai._log_run(conn, "bench", result)
+            conn.commit()
+            stats["calls"] += 1
+            stats["cost_usd"] = round(stats["cost_usd"] + cost, 4)
+            log(f"{name}: {start + n}/{len(rows)}, ${stats['cost_usd']:.3f}")
+    return stats

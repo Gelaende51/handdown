@@ -543,6 +543,24 @@ def bench_text_score(items: str, results: list[str] = typer.Argument(None)) -> N
         )
 
 
+@app.command("bench-claude")
+def bench_claude(
+    sample: str,
+    model: str = typer.Option("sonnet"),
+    effort: str = typer.Option(None, help="low | medium | high | max; reasoning off if not given"),
+    out: str = typer.Option(...),
+    limit: int = typer.Option(None),
+    batch: int = 24,
+) -> None:
+    """Claude on the benchmark sample, as in production (sheets of 24); logs tokens and list-price cost per image."""
+    from pathlib import Path
+
+    from . import bench
+
+    cfg = Config()
+    typer.echo(bench.run_claude(_conn(cfg), cfg, _jsonl(sample), model, effort, Path(out), batch=batch, limit=limit))
+
+
 @app.command("vlm-jobs")
 def vlm_jobs(out: str = "work/vlm") -> None:
     """Job lists for labelling depictions without an object on runners (items-/sources-<adapter>.jsonl)."""

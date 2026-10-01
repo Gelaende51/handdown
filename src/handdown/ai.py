@@ -94,7 +94,9 @@ def sheet(svgs: list[str], cols: int = 4) -> bytes:
     return buf.getvalue()
 
 
-def ask(image: bytes, text: str, system: str, workdir: Path) -> tuple[dict[str, Any], dict[str, Any]]:
+def ask(image: bytes, text: str, system: str, workdir: Path, model: str = MODEL, effort: str | None = None) -> tuple[dict[str, Any], dict[str, Any]]:
+    """One headless Claude call with an image. Reasoning is off unless
+    ``effort`` (low | medium | high | max) is given."""
     msg = {
         "type": "user",
         "message": {
@@ -105,13 +107,16 @@ def ask(image: bytes, text: str, system: str, workdir: Path) -> tuple[dict[str, 
             ],
         },
     }
-    env = {**os.environ, "MAX_THINKING_TOKENS": "0"}
+    env = {k: v for k, v in os.environ.items() if k != "MAX_THINKING_TOKENS"}
+    if effort is None:
+        env["MAX_THINKING_TOKENS"] = "0"
     proc = subprocess.run(
         [
             "claude",
             "-p",
             "--model",
-            MODEL,
+            model,
+            *(["--effort", effort] if effort else []),
             "--tools",
             "",
             "--setting-sources",
