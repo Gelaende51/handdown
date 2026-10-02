@@ -482,7 +482,10 @@ def vlm_jobs(conn: sqlite3.Connection) -> dict[str, tuple[list[dict[str, Any]], 
         # SQLite takes the bare columns from the row holding MAX(g.size)
         """SELECT d.id, p.source_id, p.original_id, s.adapter, MAX(g.size) FROM depiction d
            JOIN style_group g ON g.depiction_id = d.id JOIN pictogram p ON p.id = g.representative_id
-           JOIN source s ON s.id = p.source_id WHERE d.object_id IS NULL GROUP BY d.id ORDER BY d.id"""
+           JOIN source s ON s.id = p.source_id WHERE d.object_id IS NULL
+             -- answered before (also when unresolvable: those go to vlm_backup); ids as of the answer
+             AND d.id NOT IN (SELECT subject_id FROM classification WHERE method = 'vlm' AND subject = 'depiction')
+           GROUP BY d.id ORDER BY d.id"""
     ).fetchall()
     jobs: dict[str, tuple[list[dict[str, Any]], list[dict[str, Any]]]] = {}
     for adapter in sorted({r[3] for r in rows}):
@@ -511,7 +514,23 @@ def vlm_apply(conn: sqlite3.Connection, answers: list[dict[str, Any]], run: str 
     seen: set[str] = set()
     counts = {"answers": 0, "set": 0}
     for a in answers:
-        if not a.get("answer"):
+        if not a.get("answer"):  # logged too, so the backup finds it
+            provenance.record(
+                conn,
+                [
+                    dict(
+                        pictogram_id=provenance._representative(conn, a["key"]),
+                        subject="depiction",
+                        subject_id=a["key"],
+                        field="object",
+                        method="vlm",
+                        model=a.get("model"),
+                        input="image",
+                        run=a.get("run") or run,
+                        context={"applied": False, "error": a.get("error") or "empty"},
+                    )
+                ],
+            )
             continue
         counts["answers"] += 1
         words = " ".join(w for w in re.findall(r"[a-z0-9]+", a["answer"].lower()) if w not in FILLER)
@@ -622,4 +641,95 @@ def run_claude(
             stats["calls"] += 1
             stats["cost_usd"] = round(stats["cost_usd"] + cost, 4)
             log(f"{name}: {start + n}/{len(rows)}, ${stats['cost_usd']:.3f}")
+    return stats
+
+
+def vlm_slice(items: list[dict[str, Any]], sources: list[dict[str, Any]], shard: int, shards: int) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """A runner's contiguous share of the items, sorted by source so it needs
+    few sources, and the job list of just those sources."""
+    ordered = sorted(items, key=lambda i: (i["source_id"], i["key"]))
+    size = -(-len(ordered) // shards)
+    part = ordered[shard * size : (shard + 1) * size]
+    need = {i["source_id"] for i in part}
+    return part, [s for s in sources if s["id"] in need]
+
+
+def vlm_backup(
+    conn: sqlite3.Connection,
+    cfg: Any,
+    model: str = "opus",
+    effort: str | None = "high",
+    limit: int | None = None,
+    batch: int = 24,
+    workdir: Path = Path("data/vlm-backup"),
+    log: Any = print,
+) -> dict[str, Any]:
+    """Claude names the object where the vision model gave none (unresolvable
+    answer, or the pictogram was missing on the runner): sheets of ``batch``,
+    the hierarchy prompt, method 'ai'. Raises ``ai.QuotaExceeded`` at the limit;
+    a rerun continues where it stopped."""
+    from . import ai
+    from .concepts import _ensure, resolve
+    from .hierarchy.names import object_head
+
+    rows = conn.execute(
+        # SQLite takes the bare columns from the row holding MAX(g.size)
+        """SELECT d.id, g.representative_id AS rid, p.norm_path, MAX(g.size) FROM depiction d
+           JOIN style_group g ON g.depiction_id = d.id JOIN pictogram p ON p.id = g.representative_id
+           WHERE d.object_id IS NULL
+             AND d.id IN (SELECT subject_id FROM classification WHERE method = 'vlm' AND subject = 'depiction' AND value IS NULL)
+             AND d.id NOT IN (SELECT subject_id FROM classification WHERE method = 'ai' AND subject = 'depiction')
+           GROUP BY d.id ORDER BY d.id"""
+    ).fetchall()
+    rows = [r for r in rows[:limit] if r["norm_path"] and cfg.resolve(r["norm_path"]).exists()]
+    name = f"{model}@effort={effort or 'off'}"
+    seen: set[str] = set()
+    stats: dict[str, Any] = {"asked": 0, "set": 0, "cost_usd": 0.0}
+    workdir.mkdir(parents=True, exist_ok=True)
+    for start in range(0, len(rows), batch):
+        part = rows[start : start + batch]
+        image = ai.sheet([cfg.resolve(r["norm_path"]).read_text() for r in part], cols=6)
+        try:
+            answer, result = ai.ask(
+                image, ai.HIERARCHY_PROMPT, "You look at pictograms and report what you see. Reply with JSON only.", workdir, model=model, effort=effort
+            )
+        except ai.QuotaExceeded:
+            raise
+        except (RuntimeError, ValueError, OSError, subprocess.TimeoutExpired) as e:
+            log(f"backup batch at {start} failed: {str(e)[:200]}")
+            continue
+        run = ai._log_run(conn, "vlm-backup", result)
+        stats["cost_usd"] = round(stats["cost_usd"] + (result.get("total_cost_usd") or 0), 4)
+        for i, r in enumerate(part, 1):
+            a = answer.get(str(i))
+            raw = a.get("object") if isinstance(a, dict) and isinstance(a.get("object"), str) else None
+            tokens, _ = object_head(raw) if raw else ([], [])
+            concept = resolve(tokens) if tokens else None
+            value = concept.id if concept is not None and concept.id.startswith("wn:") else None
+            if value:
+                _ensure(conn, concept, seen)
+                stats["set"] += conn.execute(
+                    "UPDATE depiction SET object_id=?, method='ai', description=? WHERE id=? AND object_id IS NULL", (value, raw, r["id"])
+                ).rowcount
+            provenance.record(
+                conn,
+                [
+                    dict(
+                        pictogram_id=r["rid"],
+                        subject="depiction",
+                        subject_id=r["id"],
+                        field="object",
+                        value=value,
+                        raw=raw,
+                        method="ai",
+                        model=name,
+                        input="image",
+                        run=run,
+                        context={"backup_for": "vlm", "answer": a},
+                    )
+                ],
+            )
+            stats["asked"] += 1
+        conn.commit()
+        log(f"backup: {start + len(part)}/{len(rows)}, {stats['set']} set, ${stats['cost_usd']:.3f}")
     return stats

@@ -576,6 +576,36 @@ def vlm_jobs(out: str = "work/vlm") -> None:
         typer.echo(f"{adapter}: {len(items)} depictions from {len(sources)} sources")
 
 
+@app.command("vlm-slice")
+def vlm_slice(
+    items: str, sources: str, shard: str = typer.Option(..., help="i/N"), out_items: str = "slice-items.jsonl", out_sources: str = "slice-sources.jsonl"
+) -> None:
+    """Runner: this shard's contiguous share of the items and the job list of just their sources."""
+    import json
+    from pathlib import Path
+
+    from . import bench
+
+    i, n = (int(x) for x in shard.split("/"))
+    part, need = bench.vlm_slice(_jsonl(items), _jsonl(sources), i, n)
+    for path, rows in ((out_items, part), (out_sources, need)):
+        Path(path).write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows))
+    typer.echo(f"shard {shard}: {len(part)} depictions from {len(need)} sources")
+
+
+@app.command("vlm-backup")
+def vlm_backup(model: str = "opus", effort: str = typer.Option("high", help="off for no reasoning"), limit: int = typer.Option(None)) -> None:
+    """Claude names the objects the vision model left (unresolvable or missing); exits 75 at the usage limit."""
+    from . import ai, bench
+
+    cfg = Config()
+    try:
+        typer.echo(bench.vlm_backup(_conn(cfg), cfg, model, None if effort == "off" else effort, limit=limit))
+    except ai.QuotaExceeded as e:
+        typer.echo(f"usage limit reached, stopping: {e}")
+        raise typer.Exit(75) from e  # EX_TEMPFAIL: run again after the reset
+
+
 @app.command("vlm-apply")
 def vlm_apply(answers: list[str]) -> None:
     """Set objects of depictions without one from vision model answers (method 'vlm')."""

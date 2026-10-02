@@ -85,9 +85,17 @@ the probe retrains on them.
 - `handdown vlm-jobs` writes per adapter the depictions without an object
   (representative of the largest style group) and their sources
   (`work/vlm/items-/sources-<adapter>.jsonl`, 130,012 depictions, 544 sources).
-- `vlm.yml` shards the sources over runners; each harvests its share,
-  processes only listed pictograms (`bench-prepare`) and answers them
-  (`bench-run --present-only`). Only the answers are committed.
+- `vlm.yml` gives each runner a contiguous slice of about 250 depictions
+  (sorted by source, `vlm-slice`) and the job list of just their sources;
+  it harvests those, processes only the listed pictograms (`bench-prepare`)
+  and answers them (`bench-run --present-only`). Only the answers are
+  committed. Model: Qwen3-VL 4B on Ollama (decision in
+  `docs/vision-benchmark.md`); a runner stopped by the 6-hour limit still
+  uploads its answers, and `vlm-jobs` leaves out every depiction already
+  answered.
+- `handdown vlm-backup` sends what the model left (answer with no WordNet
+  object, or pictogram missing on the runner) to Claude Opus with high
+  reasoning in sheets of 24, as method `ai`; it exits 75 at the usage limit.
 - `handdown vlm-apply` resolves an answer's head noun like a pictogram name
   (`object_head`, `resolve`) and sets the object as method `vlm`, only where
   a depiction has none.

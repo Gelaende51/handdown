@@ -259,7 +259,7 @@ def test_vlm_apply_sets_objects_only_where_missing(tmp_path, monkeypatch):
     assert c.execute("SELECT 1 FROM concept WHERE id='wn:arrow.n.01'").fetchone()
     # every answer is logged, applied or not
     logged = {r[0]: (r[1], json.loads(r[2])["applied"]) for r in c.execute("SELECT subject_id, raw, context FROM classification WHERE method='vlm'")}
-    assert logged == {1: ("coffee cup icon", True), 2: ("down arrow in circle", True), 3: ("house", False)}
+    assert logged == {1: ("coffee cup icon", True), 2: ("down arrow in circle", True), 3: ("house", False), 4: (None, False)}  # 4: missing on the runner
 
 
 def test_ask_passes_model_and_reasoning(tmp_path, monkeypatch):
@@ -312,3 +312,60 @@ def test_run_claude_splits_usage_per_image(tmp_path, monkeypatch):
     assert [r["answer"] for r in rows] == ["square", "box", "square"] and all(r["model"] == "claude:haiku@effort=high" for r in rows)
     assert rows[0]["output_tokens"] == 20 and rows[0]["cost_usd"] == 0.01 and rows[2]["output_tokens"] == 40
     assert seen == [("haiku", "high")] * 2
+
+
+def test_vlm_slice_takes_contiguous_items_and_only_their_sources():
+    items = [{"key": k, "source_id": s, "original_id": str(k)} for k, s in ((1, "b"), (2, "a"), (3, "a"), (4, "c"), (5, "b"))]
+    sources = [{"id": s} for s in "abc"]
+    first, second = bench.vlm_slice(items, sources, 0, 2), bench.vlm_slice(items, sources, 1, 2)
+    # sorted by source, so a slice needs few sources
+    assert [i["key"] for i in first[0]] == [2, 3, 1] and [s["id"] for s in first[1]] == ["a", "b"]
+    assert [i["key"] for i in second[0]] == [5, 4] and [s["id"] for s in second[1]] == ["b", "c"]
+
+
+def test_vlm_jobs_skip_depictions_already_answered(tmp_path, monkeypatch):
+    from handdown import provenance
+
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    c = db.connect(Config().db_path)
+    _catalog(c)
+    for did, pid in ((900, 5000), (901, 5001)):
+        c.execute("INSERT INTO pictogram (id, source_id, original_id, svg_valid) VALUES (?, 's2', ?, 1)", (pid, f"p{pid}"))
+        c.execute("INSERT INTO depiction (id, object_id, method) VALUES (?, NULL, 'rules')", (did,))
+        c.execute("INSERT INTO style_group (depiction_id, representative_id, size) VALUES (?, ?, 1)", (did, pid))
+    provenance.record(c, [dict(subject="depiction", subject_id=900, field="object", raw="api", method="vlm", model="m", input="image")])
+    c.commit()
+    assert [i["key"] for i in bench.vlm_jobs(c)["iconify"][0]] == [901]
+
+
+def test_vlm_backup_asks_claude_for_what_the_vision_model_left(tmp_path, monkeypatch):
+    from handdown import ai
+
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    cfg = Config()
+    c = db.connect(cfg.db_path)
+    c.execute("INSERT INTO platform (id, name) VALUES ('p','p')")
+    c.execute("INSERT INTO source (id, platform_id, name) VALUES ('s','p','s')")
+    norm = tmp_path / "data" / "norm" / "sq.svg"
+    norm.parent.mkdir(parents=True)
+    norm.write_text(SQUARE)
+    for did in (1, 2, 3):
+        c.execute("INSERT INTO pictogram (id, source_id, original_id, norm_path, svg_valid) VALUES (?, 's', ?, 'data/norm/sq.svg', 1)", (did, f"i{did}"))
+        c.execute("INSERT INTO depiction (id, object_id, method) VALUES (?, NULL, 'rules')", (did,))
+        c.execute("INSERT INTO style_group (depiction_id, representative_id, size) VALUES (?, ?, 1)", (did, did))
+    # 1: unresolvable answer, 2: missing on the runner, 3: never answered (not for the backup)
+    bench.vlm_apply(c, [{"key": 1, "model": "q", "answer": "html5"}, {"key": 2, "model": "q", "error": "missing"}], run="r1")
+    seen = []
+
+    def fake_ask(image, text, system, workdir, model, effort):
+        seen.append((model, effort))
+        return {"1": {"object": "shield"}, "2": {"object": "floppy disk"}}, {"usage": {}, "total_cost_usd": 0.01, "session_id": "b1"}
+
+    monkeypatch.setattr(ai, "ask", fake_ask)
+    stats = bench.vlm_backup(c, cfg, "opus", "high", workdir=tmp_path / "w")
+    assert stats == {"asked": 2, "set": 2, "cost_usd": 0.01} and seen == [("opus", "high")]
+    rows = {r[0]: tuple(r[1:]) for r in c.execute("SELECT id, object_id, method FROM depiction")}
+    assert rows[1] == ("wn:shield.n.01", "ai") and rows[2] == ("wn:diskette.n.01", "ai") and rows[3] == (None, "rules")
+    logged = c.execute("SELECT subject_id, model, run FROM classification WHERE method='ai' ORDER BY subject_id").fetchall()
+    assert [tuple(r) for r in logged] == [(1, "opus@effort=high", "b1"), (2, "opus@effort=high", "b1")]
+    assert bench.vlm_backup(c, cfg, "opus", "high", workdir=tmp_path / "w")["asked"] == 0  # done once
