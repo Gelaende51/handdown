@@ -160,3 +160,12 @@ def test_symbols_link_to_wikipedia_by_label(tmp_path, monkeypatch):
     assert symbols.link_wikipedia(c, listing) == 1
     assert tuple(c.execute("SELECT wikidata_qid, wikipedia FROM symbol WHERE id='sym:heart-love'").fetchone()) == ("Q1131868", "Heart symbol")
     assert c.execute("SELECT wikidata_qid FROM symbol WHERE id='sym:mug'").fetchone()[0] is None
+
+
+def test_wikidata_symbols_takes_the_output_file_as_an_argument():
+    from typer.testing import CliRunner
+
+    from handdown.cli import app
+
+    result = CliRunner().invoke(app, ["wikidata-symbols", "--help"])
+    assert result.exit_code == 0 and "OUT" in result.output.upper()

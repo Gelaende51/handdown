@@ -719,7 +719,7 @@ def symbols(min_sources: int = 3) -> None:
 
 
 @app.command("wikidata-symbols")
-def wikidata_symbols(out: str = "work/wikidata/symbols.jsonl") -> None:
+def wikidata_symbols(out: str = typer.Argument("work/wikidata/symbols.jsonl")) -> None:
     """Runner: Wikidata items that are symbols, with their English Wikipedia article (needs query.wikidata.org)."""
     from pathlib import Path
 
@@ -729,7 +729,7 @@ def wikidata_symbols(out: str = "work/wikidata/symbols.jsonl") -> None:
 
 
 @app.command("link-symbols")
-def link_symbols(listing: str = "work/wikidata/symbols.jsonl") -> None:
+def link_symbols(listing: str = typer.Argument("work/wikidata/symbols.jsonl")) -> None:
     """Link symbols to their Wikidata item and Wikipedia article by name."""
     from . import symbols as sym
 
