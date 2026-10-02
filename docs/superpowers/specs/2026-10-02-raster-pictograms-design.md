@@ -48,10 +48,11 @@ meaning.
 
 ## Classification of both versions
 
-- `bench-run --variant original` renders the original instead of the
-  black-and-white version. For raster pictograms the vision model answers
-  both; both answers go to the `classification` log with
-  `context.variant`, and the object is taken from the original.
+- `bench-run --variants norm,original` also renders the original of each
+  raster pictogram in colour. `vlm-jobs` includes every raster depiction (also
+  those with an object), so both versions are answered; `vlm-apply` logs the
+  original's answer under `<model>@variant=original` and takes the object
+  from it.
 - `handdown raster-disagreements` lists pictograms whose two answers resolve
   to different objects, for review.
 

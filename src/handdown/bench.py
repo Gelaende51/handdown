@@ -95,46 +95,61 @@ def run(
     batch: int = 1,
     size: int = 256,
     limit: int | None = None,
+    variants: tuple[str, ...] = ("norm",),
     log: Any = print,
 ) -> dict[str, int]:
-    """Render the sample and write one answer line per key to ``out``; keys
-    already in ``out`` are skipped, so a rerun resumes. ``limit`` takes the
-    first keys, so variants of a speed test answer the same images. An answer
-    may come with extra fields (timings) as ``(text, dict)``."""
+    """Render the sample and write one answer line per key and version to
+    ``out``; lines already in ``out`` are skipped, so a rerun resumes. Versions:
+    ``norm`` (the catalog's black-and-white pictogram) and ``original`` (the
+    harvested raster image in colour, raster pictograms only; its lines carry
+    ``"variant": "original"``). ``limit`` takes the first keys, so variants of a
+    speed test answer the same images. An answer may come with extra fields
+    (timings) as ``(text, dict)``."""
+    from .raster import render_rgb
     from .vision import _images
 
     out = Path(out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    done = {json.loads(line)["key"] for line in out.read_text().splitlines()} if out.exists() else set()
+    done = set()
+    if out.exists():
+        for line in out.read_text().splitlines():
+            r = json.loads(line)
+            done.add((r["key"], r.get("variant", "norm")))
     _sample_table(conn, sample)
     rows = conn.execute(
-        """SELECT b.key, p.id, p.norm_path FROM bench_sample b
-           LEFT JOIN pictogram p ON p.source_id = b.source_id AND p.original_id = b.original_id ORDER BY b.key"""
-    ).fetchall()
-    todo = [r for r in rows[:limit] if r["key"] not in done]
+        """SELECT b.key, p.id, p.norm_path, p.format, r.svg AS raw FROM bench_sample b
+           LEFT JOIN pictogram p ON p.source_id = b.source_id AND p.original_id = b.original_id
+           LEFT JOIN raw_svg r ON r.pictogram_id = p.id AND p.format = 'raster' ORDER BY b.key"""
+    ).fetchall()[:limit]
     stats = {"answered": 0, "missing": 0}
     with out.open("a") as f:
-        present = [r for r in todo if r["id"] is not None]
-        rendered, ids = _images(cfg, present, size) if present else ([], [])
-        key_of = {r["id"]: r["key"] for r in present}
-        for r in todo:
-            if r["id"] not in ids:
-                f.write(json.dumps({"key": r["key"], "model": model, "error": "missing"}) + "\n")
-                stats["missing"] += 1
-        f.flush()
-        pairs = [(key_of[pid], img) for pid, img in zip(ids, rendered, strict=True)]
-        for start in range(0, len(pairs), batch):
-            part = pairs[start : start + batch]
-            keys, images = [k for k, _ in part], [img for _, img in part]
-            t = time.monotonic()
-            answers = ask(images)
-            seconds = round((time.monotonic() - t) / len(part), 2)
-            for k, a in zip(keys, (list(answers) + [""] * len(keys))[: len(keys)], strict=True):
-                text, extra = a if isinstance(a, tuple) else (a, {})
-                f.write(json.dumps({"key": k, "model": model, "answer": text, "seconds": seconds, **extra}) + "\n")
-                stats["answered"] += 1
+        for variant in variants:
+            mark = {"variant": variant} if variant != "norm" else {}
+            if variant == "norm":
+                todo = [r for r in rows if (r["key"], "norm") not in done]
+                present = [r for r in todo if r["id"] is not None]
+                rendered, ids = _images(cfg, present, size) if present else ([], [])
+                key_of = {r["id"]: r["key"] for r in present}
+                for r in todo:
+                    if r["id"] not in ids:
+                        f.write(json.dumps({"key": r["key"], "model": model, "error": "missing"}) + "\n")
+                        stats["missing"] += 1
+                pairs = [(key_of[pid], img) for pid, img in zip(ids, rendered, strict=True)]
+            else:  # the raster original, in colour
+                pairs = [(r["key"], render_rgb(r["raw"], size)) for r in rows if r["raw"] and (r["key"], variant) not in done]
             f.flush()
-            log(f"{model}: {start + len(part)}/{len(pairs)}")
+            for start in range(0, len(pairs), batch):
+                part = pairs[start : start + batch]
+                keys, images = [k for k, _ in part], [img for _, img in part]
+                t = time.monotonic()
+                answers = ask(images)
+                seconds = round((time.monotonic() - t) / len(part), 2)
+                for k, a in zip(keys, (list(answers) + [""] * len(keys))[: len(keys)], strict=True):
+                    text, extra = a if isinstance(a, tuple) else (a, {})
+                    f.write(json.dumps({"key": k, "model": model, "answer": text, "seconds": seconds, **mark, **extra}) + "\n")
+                    stats["answered"] += 1
+                f.flush()
+                log(f"{model} {variant}: {start + len(part)}/{len(pairs)}")
     return stats
 
 
@@ -474,15 +489,18 @@ class LayaChoice:
 
 # Long-tail labelling: the benchmark machinery over every depiction without an object.
 def vlm_jobs(conn: sqlite3.Connection) -> dict[str, tuple[list[dict[str, Any]], list[dict[str, Any]]]]:
-    """Per adapter: items (depictions without an object, by the representative
-    of their largest style group) and the job list of their sources."""
+    """Per adapter: items (depictions without an object, and every depiction of
+    a raster pictogram; by the representative of their largest style group)
+    and the job list of their sources."""
     from .shard import SOURCE_COLS
 
     rows = conn.execute(
         # SQLite takes the bare columns from the row holding MAX(g.size)
         """SELECT d.id, p.source_id, p.original_id, s.adapter, MAX(g.size) FROM depiction d
            JOIN style_group g ON g.depiction_id = d.id JOIN pictogram p ON p.id = g.representative_id
-           JOIN source s ON s.id = p.source_id WHERE d.object_id IS NULL
+           JOIN source s ON s.id = p.source_id
+           -- raster pictograms also with an object: both versions are compared (raster_disagreements)
+           WHERE (d.object_id IS NULL OR p.format = 'raster')
              -- answered before (also when unresolvable: those go to vlm_backup); ids as of the answer
              AND d.id NOT IN (SELECT subject_id FROM classification WHERE method = 'vlm' AND subject = 'depiction')
            GROUP BY d.id ORDER BY d.id"""
@@ -513,7 +531,9 @@ def vlm_apply(conn: sqlite3.Connection, answers: list[dict[str, Any]], run: str 
 
     seen: set[str] = set()
     counts = {"answers": 0, "set": 0}
-    for a in answers:
+    # the original (colour) answer of a raster pictogram decides; the black-and-white one is logged beside it
+    for a in sorted(answers, key=lambda a: a.get("variant") != "original"):
+        model = a.get("model") if a.get("variant") in (None, "norm") else f"{a.get('model')}@variant={a['variant']}"
         if not a.get("answer"):  # logged too, so the backup finds it
             provenance.record(
                 conn,
@@ -524,7 +544,7 @@ def vlm_apply(conn: sqlite3.Connection, answers: list[dict[str, Any]], run: str 
                         subject_id=a["key"],
                         field="object",
                         method="vlm",
-                        model=a.get("model"),
+                        model=model,
                         input="image",
                         run=a.get("run") or run,
                         context={"applied": False, "error": a.get("error") or "empty"},
@@ -557,7 +577,7 @@ def vlm_apply(conn: sqlite3.Connection, answers: list[dict[str, Any]], run: str 
                     value=value,
                     raw=a["answer"],
                     method="vlm",
-                    model=a["model"],
+                    model=model,
                     input="image",
                     run=a.get("run") or run,
                     context={"applied": bool(applied), **timings},
@@ -733,3 +753,24 @@ def vlm_backup(
         conn.commit()
         log(f"backup: {start + len(part)}/{len(rows)}, {stats['set']} set, ${stats['cost_usd']:.3f}")
     return stats
+
+
+def raster_disagreements(conn: sqlite3.Connection) -> list[dict[str, Any]]:
+    """Raster pictograms whose original (colour) and black-and-white versions
+    the same model named as different objects; ``near`` marks related ones
+    (e.g. cup and mug). Shows where the 1-bit conversion lost meaning."""
+    rows = conn.execute(
+        """SELECT o.subject_id, o.source_id, o.original_id, o.value AS original, m.value AS monochrome,
+                  o.raw AS original_raw, m.raw AS monochrome_raw, m.model, o.run
+           FROM classification o JOIN classification m
+             ON m.subject = o.subject AND m.subject_id = o.subject_id AND m.method = o.method AND m.field = o.field
+            AND o.model = m.model || '@variant=original' AND IFNULL(o.run, '') = IFNULL(m.run, '')
+           WHERE o.field = 'object' AND o.model LIKE '%@variant=original' AND o.value IS NOT m.value
+           ORDER BY o.subject_id"""
+    ).fetchall()
+    out = []
+    for r in rows:
+        d = dict(r)
+        d["near"] = bool(d["monochrome_raw"] and d["original"] and match(d["monochrome_raw"], d["original"]) == "near")
+        out.append(d)
+    return out

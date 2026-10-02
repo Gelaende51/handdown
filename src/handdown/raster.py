@@ -100,3 +100,12 @@ def monochrome(raw: str) -> NormResult:
         has_text=False,
         extra={"size": [w, h], "threshold_ink": round(float(ink.mean()), 3)},
     )
+
+
+def render_rgb(svg: str, size: int) -> Image.Image:
+    """A colour render on white (the classifiers' view of an original)."""
+    import resvg_py
+
+    png = resvg_py.svg_to_bytes(svg_string=svg, width=size, height=size, background="#ffffff", skip_system_fonts=True)
+    img = Image.open(io.BytesIO(bytes(png))).convert("RGB")
+    return img if img.size == (size, size) else img.resize((size, size))

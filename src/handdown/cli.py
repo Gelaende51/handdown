@@ -481,6 +481,7 @@ def bench_run(
     out: str = "bench.jsonl",
     limit: int = typer.Option(None, help="only the first N sample keys (speed tests)"),
     present_only: bool = typer.Option(False, help="skip items of sources this database lacks (sharded runs)"),
+    variants: str = typer.Option("norm", help="norm, original or norm,original (raster originals in colour too)"),
 ) -> None:
     """Runner: ask one model to name the object of every sample pictogram."""
     from pathlib import Path
@@ -491,7 +492,7 @@ def bench_run(
     conn = _conn(cfg)
     items = bench.present_only(conn, _jsonl(sample)) if present_only else _jsonl(sample)
     ask, batch, size = bench.backend(model)
-    typer.echo(bench.run(conn, cfg, items, ask, model, Path(out), batch=batch, size=size, limit=limit))
+    typer.echo(bench.run(conn, cfg, items, ask, model, Path(out), batch=batch, size=size, limit=limit, variants=tuple(variants.split(","))))
 
 
 @app.command("bench-score")
@@ -604,6 +605,22 @@ def vlm_backup(model: str = "opus", effort: str = typer.Option("high", help="off
     except ai.QuotaExceeded as e:
         typer.echo(f"usage limit reached, stopping: {e}")
         raise typer.Exit(75) from e  # EX_TEMPFAIL: run again after the reset
+
+
+@app.command("raster-disagreements")
+def raster_disagreements(out: str = "data/raster-disagreements.jsonl") -> None:
+    """Raster pictograms named differently in colour and in black and white (the 1-bit version lost meaning)."""
+    import json
+    from pathlib import Path
+
+    from . import bench
+
+    rows = bench.raster_disagreements(_conn(Config()))
+    Path(out).write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows))
+    near = sum(r["near"] for r in rows)
+    typer.echo(f"{len(rows)} disagreements ({near} near, {len(rows) - near} different objects) -> {out}")
+    for r in [r for r in rows if not r["near"]][:15]:
+        typer.echo(f"  {r['source_id']} {r['original_id']}: colour {r['original_raw']!r}, black and white {r['monochrome_raw']!r}")
 
 
 @app.command("vlm-apply")

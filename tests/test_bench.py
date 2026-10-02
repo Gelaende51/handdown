@@ -369,3 +369,65 @@ def test_vlm_backup_asks_claude_for_what_the_vision_model_left(tmp_path, monkeyp
     logged = c.execute("SELECT subject_id, model, run FROM classification WHERE method='ai' ORDER BY subject_id").fetchall()
     assert [tuple(r) for r in logged] == [(1, "opus@effort=high", "b1"), (2, "opus@effort=high", "b1")]
     assert bench.vlm_backup(c, cfg, "opus", "high", workdir=tmp_path / "w")["asked"] == 0  # done once
+
+
+def _raster_catalog(tmp_path, c, cfg):
+    import io as _io
+
+    from PIL import Image, ImageDraw
+
+    from handdown import pipeline, raster
+
+    c.execute("INSERT INTO platform (id, name) VALUES ('p','p')")
+    c.execute("INSERT INTO source (id, platform_id, name, adapter, harvest_status) VALUES ('s','p','s','git-svg','harvested')")
+    img = Image.new("RGB", (64, 64), "white")
+    ImageDraw.Draw(img).ellipse((8, 8, 56, 56), fill=(220, 20, 20))
+    buf = _io.BytesIO()
+    img.save(buf, "PNG")
+    c.execute("INSERT INTO pictogram (id, source_id, original_id, format) VALUES (1, 's', 'red.png', 'raster'), (2, 's', 'sq.svg', 'svg')")
+    c.execute("INSERT INTO raw_svg VALUES (1, ?), (2, ?)", (raster.to_svg(buf.getvalue()), SQUARE))
+    c.commit()
+    pipeline.process(c, cfg, workers=1)
+    c.execute("INSERT INTO depiction (id, object_id, method) VALUES (10, 'wn:ball.n.01', 'rules'), (20, NULL, 'rules')")
+    c.execute("INSERT INTO style_group (depiction_id, representative_id, size) VALUES (10, 1, 1), (20, 2, 1)")
+    c.commit()
+
+
+def test_raster_pictograms_are_asked_twice_in_colour_and_black_and_white(tmp_path, monkeypatch):
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    cfg = Config()
+    c = db.connect(cfg.db_path)
+    _raster_catalog(tmp_path, c, cfg)
+    jobs = bench.vlm_jobs(c)["git-svg"][0]
+    assert {i["key"] for i in jobs} == {10, 20}  # the raster depiction although it has an object
+    colours = []
+
+    def ask(images):
+        colours.extend(img.getpixel((128, 128)) for img in images)
+        return ["ball"] * len(images)
+
+    out = tmp_path / "a.jsonl"
+    bench.run(c, cfg, jobs, ask, "m", out, variants=("norm", "original"))
+    rows = [json.loads(line) for line in out.read_text().splitlines()]
+    assert sorted((r["key"], r.get("variant", "norm")) for r in rows) == [(10, "norm"), (10, "original"), (20, "norm")]
+    assert (220, 20, 20) in [tuple(px[:3]) for px in colours] and (0, 0, 0) in [tuple(px[:3]) for px in colours]
+    bench.run(c, cfg, jobs, ask, "m", out, variants=("norm", "original"))  # resumes per key and version
+    assert len(out.read_text().splitlines()) == 3
+
+
+def test_vlm_apply_takes_the_original_and_logs_both_versions(tmp_path, monkeypatch):
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    cfg = Config()
+    c = db.connect(cfg.db_path)
+    _raster_catalog(tmp_path, c, cfg)
+    c.execute("UPDATE depiction SET object_id=NULL WHERE id=10")
+    answers = [
+        {"key": 10, "model": "m", "answer": "car"},
+        {"key": 10, "model": "m", "answer": "apple", "variant": "original"},
+    ]
+    bench.vlm_apply(c, answers, run="r")
+    assert c.execute("SELECT object_id FROM depiction WHERE id=10").fetchone()[0] == "wn:apple.n.01"
+    logged = {r[0]: r[1] for r in c.execute("SELECT model, value FROM classification WHERE method='vlm'")}
+    assert logged == {"m": "wn:car.n.01", "m@variant=original": "wn:apple.n.01"}
+    report = bench.raster_disagreements(c)
+    assert [(d["subject_id"], d["original"], d["monochrome"]) for d in report] == [(10, "wn:apple.n.01", "wn:car.n.01")]
