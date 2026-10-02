@@ -175,21 +175,23 @@ def run(conn: sqlite3.Connection, log: Any = print) -> dict[str, int]:
 DOC_DIRS = {"docs", "doc", "screenshots", "screenshot", "examples", "example", "demo", "website", "site", "media"}
 
 
-def recheck_rasters(conn: sqlite3.Connection, fetch_tree: Any, min_files: int = 20, log: Any = print) -> dict[str, int]:
+def recheck_rasters(conn: sqlite3.Connection, fetch_tree: Any, min_files: int = 20, log: Any = print, adapter: str = "git-svg") -> dict[str, int]:
     """Repositories rejected at harvest time for having too few SVGs are
     accepted again when their file tree holds at least ``min_files`` raster
     icons (one per icon, sizes counted once; docs, screenshots and vendored
-    code left out). ``fetch_tree(repo)`` returns GitHub tree entries."""
+    code left out). ``fetch_tree(name)`` returns tree entries ({path, type,
+    size}) of a GitHub repository (git-svg) or npm package (npm-svg)."""
     from pathlib import PurePosixPath
 
     from .adapters.tarball import MAX_RASTER, RASTER_EXT, _raster_key, _skip
 
     rows = conn.execute(
-        "SELECT id, adapter_args, notes FROM source WHERE harvest_status = 'rejected' AND adapter = 'git-svg' AND notes LIKE '%SVG files%' ORDER BY id"
+        "SELECT id, adapter_args, notes FROM source WHERE harvest_status = 'rejected' AND adapter = ? AND notes LIKE '%SVG files%' ORDER BY id", (adapter,)
     ).fetchall()
+    key = "package" if adapter == "npm-svg" else "repo"
     counts = {"checked": 0, "accepted": 0}
     for r in rows:
-        repo = json.loads(r["adapter_args"] or "{}").get("repo")
+        repo = json.loads(r["adapter_args"] or "{}").get(key)
         if not repo:
             continue
         try:

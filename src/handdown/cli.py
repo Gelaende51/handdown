@@ -624,26 +624,42 @@ def raster_disagreements(out: str = "data/raster-disagreements.jsonl") -> None:
 
 
 @app.command("recheck-rasters")
-def recheck_rasters(min_files: int = 20) -> None:
-    """Accept repositories rejected for too few SVGs when their GitHub file tree holds raster icon sets."""
+def recheck_rasters(min_files: int = 20, adapter: str = typer.Option("git-svg", help="git-svg (GitHub tree API) or npm-svg (package tarball)")) -> None:
+    """Accept repositories or packages rejected for too few SVGs when they hold raster icon sets."""
+    import io
     import os
     import subprocess
+    import tarfile
 
     import httpx
 
     from . import triage
 
-    token = os.environ.get("GH_TOKEN") or subprocess.run(["gh", "auth", "token"], capture_output=True, text=True).stdout.strip()
-    client = httpx.Client(
-        headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json"}, timeout=60, follow_redirects=True
-    )  # renamed repositories redirect
+    if adapter == "npm-svg":
+        client = httpx.Client(timeout=120, follow_redirects=True)
 
-    def fetch_tree(repo: str) -> list[dict]:
-        r = client.get(f"https://api.github.com/repos/{repo}/git/trees/HEAD", params={"recursive": "1"})
-        r.raise_for_status()
-        return r.json().get("tree", [])
+        def fetch_tree(package: str) -> list[dict]:
+            meta = client.get(f"https://registry.npmjs.org/{package}/latest")
+            meta.raise_for_status()
+            dist = meta.json().get("dist", {})
+            if (dist.get("unpackedSize") or 0) > 150 * 1024 * 1024:
+                raise ValueError("package larger than 150 MB")
+            data = client.get(dist["tarball"])
+            data.raise_for_status()
+            with tarfile.open(fileobj=io.BytesIO(data.content)) as tar:  # listed, not extracted
+                return [{"path": m.name, "type": "blob", "size": m.size} for m in tar if m.isfile()]
 
-    typer.echo(triage.recheck_rasters(_conn(Config()), fetch_tree, min_files=min_files))
+    else:
+        token = os.environ.get("GH_TOKEN") or subprocess.run(["gh", "auth", "token"], capture_output=True, text=True).stdout.strip()
+        # renamed repositories redirect
+        client = httpx.Client(headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json"}, timeout=60, follow_redirects=True)
+
+        def fetch_tree(repo: str) -> list[dict]:
+            r = client.get(f"https://api.github.com/repos/{repo}/git/trees/HEAD", params={"recursive": "1"})
+            r.raise_for_status()
+            return r.json().get("tree", [])
+
+    typer.echo(triage.recheck_rasters(_conn(Config()), fetch_tree, min_files=min_files, adapter=adapter))
 
 
 @app.command("off-topic")

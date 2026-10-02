@@ -246,3 +246,18 @@ def test_seed_queries_include_raster_sets():
 
     q = seed_queries()
     assert ("github", "pixel art icons") in q and ("npm", "keywords:png-icons") in q
+
+
+def test_recheck_rasters_also_covers_npm_packages(tmp_path, monkeypatch):
+    from handdown import triage
+
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    conn = db.connect(Config().db_path)
+    record_candidate(
+        conn, None, id="npm:png-set", platform_id="npm", name="png-set", adapter="npm-svg", adapter_args={"package": "png-set"}, harvest_status="rejected"
+    )
+    conn.execute("UPDATE source SET notes='only 0 SVG files' WHERE id='npm:png-set'")
+    files = [{"path": f"package/png/i{n}.png", "type": "blob", "size": 500} for n in range(22)]
+    out = triage.recheck_rasters(conn, lambda pkg: files, min_files=20, adapter="npm-svg")
+    assert out == {"checked": 1, "accepted": 1}
+    assert conn.execute("SELECT harvest_status FROM source WHERE id='npm:png-set'").fetchone()[0] == "accepted"
