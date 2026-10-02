@@ -59,3 +59,9 @@ def test_backend_spec_for_the_gateway(monkeypatch):
     monkeypatch.setenv("AI_GATEWAY_API_KEY", "k")
     ask, batch, size = bench.backend("gateway:google/gemini-x@size=128,answer=16")
     assert isinstance(ask, bench.Gateway) and ask.model == "google/gemini-x" and ask.answer_tokens == 16 and (batch, size) == (1, 128)
+
+
+def test_backend_spec_for_nous(monkeypatch):
+    monkeypatch.setenv("NOUS_API_KEY", "k")
+    ask, _, _ = bench.backend("nous:Hermes-4-70B")
+    assert ask.model == "Hermes-4-70B" and str(ask.client.base_url).startswith("https://inference-api.nousresearch.com/v1")

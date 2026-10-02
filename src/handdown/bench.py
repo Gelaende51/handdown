@@ -192,6 +192,8 @@ class Ollama:
 
 
 GATEWAY = "https://ai-gateway.vercel.sh/v1"
+# OpenAI-compatible hosted APIs: spec prefix -> (base URL, environment variable with the key)
+HOSTED = {"gateway": (GATEWAY, "AI_GATEWAY_API_KEY"), "nous": ("https://inference-api.nousresearch.com/v1", "NOUS_API_KEY")}
 
 
 class CreditExhausted(RuntimeError):
@@ -199,17 +201,18 @@ class CreditExhausted(RuntimeError):
 
 
 class Gateway:
-    """A hosted model through Vercel's AI Gateway (OpenAI-compatible, key in
-    AI_GATEWAY_API_KEY), one image per request. Unlike the runner's own models
-    this sends the rendered pictogram to the model's provider."""
+    """A hosted model through an OpenAI-compatible API (``HOSTED``: Vercel's AI
+    Gateway, Nous Portal), one image per request. Unlike the runner's own
+    models this sends the rendered pictogram to the model's provider."""
 
-    def __init__(self, model: str, answer_tokens: int = 64, client: Any = None, wait: Callable[[float], None] = time.sleep):
+    def __init__(self, model: str, answer_tokens: int = 64, client: Any = None, wait: Callable[[float], None] = time.sleep, provider: str = "gateway"):
         import os
 
         import httpx
 
         self.model, self.answer_tokens, self.wait = model, answer_tokens, wait
-        self.client = client or httpx.Client(base_url=GATEWAY, timeout=120, headers={"Authorization": f"Bearer {os.environ['AI_GATEWAY_API_KEY']}"})
+        base, key = HOSTED[provider]
+        self.client = client or httpx.Client(base_url=base, timeout=120, headers={"Authorization": f"Bearer {os.environ[key]}"})
 
     def _post(self, body: dict[str, Any]) -> dict[str, Any]:
         for attempt in range(6):
@@ -351,7 +354,8 @@ class OmniParserCaption:
 
 def backend(spec: str) -> tuple[Ask, int, int]:
     """(ask, batch, render size) for 'ollama:<tag>', 'llamacpp:<hf repo>[:quant]',
-    'gateway:<provider>/<model>' (Vercel AI Gateway) or 'florence:omniparser';
+    'gateway:<provider>/<model>' (Vercel AI Gateway), 'nous:<model>' (Nous Portal)
+    or 'florence:omniparser';
     options after '@': size (render px), threads, tokens (llama.cpp image
     tokens), answer (gateway answer tokens), e.g. '@size=128,threads=4,tokens=64'."""
     kind, _, rest = spec.partition(":")
@@ -364,8 +368,8 @@ def backend(spec: str) -> tuple[Ask, int, int]:
         tokens = int(options["tokens"]) if "tokens" in options else None
         threads = int(options["threads"]) if "threads" in options else None
         return LlamaServer(name, tokens=tokens, threads=threads), 1, int(options.get("size", 256))
-    if kind == "gateway":
-        return Gateway(name, answer_tokens=int(options.get("answer", 64))), 1, int(options.get("size", 256))
+    if kind in HOSTED:
+        return Gateway(name, answer_tokens=int(options.get("answer", 64)), provider=kind), 1, int(options.get("size", 256))
     if kind == "florence" and name == "omniparser":
         return OmniParserCaption(), 8, 64  # OmniParser captions 64 px crops
     raise ValueError(f"unknown model spec {spec!r}")
