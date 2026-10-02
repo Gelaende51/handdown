@@ -30,7 +30,8 @@ VOCABULARY = {
     "figure": ["man", "woman", "child", "adult", "group", "wheelchair user"],
     "pose": ["standing", "sitting", "walking", "running", "lying", "bending", "reaching"],
 }
-PROMPT = """Each numbered cell shows one pictogram (large and at 16 px); its published name follows its number below.
+PROMPT = """Each numbered cell shows one pictogram large, plus a small copy of the same pictogram at 16 px in the cell's corner;
+the small copy is only a size preview: never describe, count or read it. The pictogram's published name follows its number below.
 For each pictogram:
 - "text": every separate run of text or characters drawn in it (letters, digits, words, CJK characters), one entry per group:
   {{"text": "...", "script": "latin|han|hiragana|katakana|hangul|arabic|cyrillic|greek|digits|symbols|other", "position": "..."}};
