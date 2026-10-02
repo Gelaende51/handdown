@@ -496,7 +496,26 @@ def bench_run(
     conn = _conn(cfg)
     items = bench.present_only(conn, _jsonl(sample)) if present_only else _jsonl(sample)
     ask, batch, size = bench.backend(model)
-    typer.echo(bench.run(conn, cfg, items, ask, model, Path(out), batch=batch, size=size, limit=limit, variants=tuple(variants.split(","))))
+    try:
+        typer.echo(bench.run(conn, cfg, items, ask, model, Path(out), batch=batch, size=size, limit=limit, variants=tuple(variants.split(","))))
+    except bench.CreditExhausted as e:
+        typer.echo(f"gateway credit used up, stopping (answers so far are kept): {e}")
+        raise typer.Exit(75) from e
+
+
+@app.command("gateway-models")
+def gateway_models(out: str = typer.Argument("work/bench/gateway-models.jsonl")) -> None:
+    """List the Vercel AI Gateway's models with prices (needs AI_GATEWAY_API_KEY; runs on Actions)."""
+    import json
+    from pathlib import Path
+
+    from . import bench
+
+    rows = bench.gateway_models()
+    Path(out).parent.mkdir(parents=True, exist_ok=True)
+    Path(out).write_text("".join(json.dumps(r) + "\n" for r in rows))
+    vision = [r for r in rows if "vision" in r["tags"]]
+    typer.echo(f"{len(rows)} models, {len(vision)} with vision, free: {[r['id'] for r in rows if r['free']]}")
 
 
 @app.command("bench-score")

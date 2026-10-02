@@ -191,6 +191,80 @@ class Ollama:
         return out
 
 
+GATEWAY = "https://ai-gateway.vercel.sh/v1"
+
+
+class CreditExhausted(RuntimeError):
+    """The gateway refuses for lack of credit (HTTP 402): stop instead of writing errors."""
+
+
+class Gateway:
+    """A hosted model through Vercel's AI Gateway (OpenAI-compatible, key in
+    AI_GATEWAY_API_KEY), one image per request. Unlike the runner's own models
+    this sends the rendered pictogram to the model's provider."""
+
+    def __init__(self, model: str, answer_tokens: int = 64, client: Any = None, wait: Callable[[float], None] = time.sleep):
+        import os
+
+        import httpx
+
+        self.model, self.answer_tokens, self.wait = model, answer_tokens, wait
+        self.client = client or httpx.Client(base_url=GATEWAY, timeout=120, headers={"Authorization": f"Bearer {os.environ['AI_GATEWAY_API_KEY']}"})
+
+    def _post(self, body: dict[str, Any]) -> dict[str, Any]:
+        for attempt in range(6):
+            r = self.client.post("/chat/completions", json=body)
+            if r.status_code == 402:
+                raise CreditExhausted(r.text[:300])
+            if r.status_code in (429, 500, 502, 503, 504) and attempt < 5:
+                self.wait(float(r.headers.get("retry-after") or 2 ** (attempt + 2)))
+                continue
+            r.raise_for_status()
+            return r.json()
+        raise AssertionError("unreachable")
+
+    def __call__(self, images: list[Any]) -> list[tuple[str, dict[str, Any]]]:
+        out = []
+        for image in images:
+            content = [{"type": "text", "text": PROMPT}, {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{_png(image)}"}}]
+            body = {"model": self.model, "messages": [{"role": "user", "content": content}], "max_tokens": self.answer_tokens, "temperature": 0}
+            j = self._post(body)
+            usage = j.get("usage") or {}
+            extra = {"prompt_tokens": usage.get("prompt_tokens"), "answer_tokens": usage.get("completion_tokens")}
+            if "cost" in usage:
+                extra["cost_usd"] = usage["cost"]
+            out.append((clean(j["choices"][0]["message"].get("content") or ""), extra))
+        return out
+
+
+def gateway_models(client: Any = None) -> list[dict[str, Any]]:
+    """The gateway's models with type, tags and price per token; free ones have
+    a price of 0 for input and output."""
+    import os
+
+    import httpx
+
+    client = client or httpx.Client(base_url=GATEWAY, timeout=60, headers={"Authorization": f"Bearer {os.environ.get('AI_GATEWAY_API_KEY', '')}"})
+    r = client.get("/models")
+    r.raise_for_status()
+    rows = []
+    for m in r.json().get("data", []):
+        price = m.get("pricing") or {}
+        rows.append(
+            {
+                "id": m["id"],
+                "type": m.get("type"),
+                "tags": m.get("tags") or [],
+                "input": price.get("input"),
+                "output": price.get("output"),
+                "image": price.get("image") or price.get("input_image"),
+                "free": all(float(price.get(k) or 0) == 0 for k in ("input", "output")) and bool(price),
+                "context": m.get("context_window"),
+            }
+        )
+    return rows
+
+
 class LlamaServer:
     """A GGUF vision model served by llama.cpp's ``llama-server`` (started on the
     first call), with the image capped at ``tokens`` tokens: Ollama scales every
@@ -276,9 +350,10 @@ class OmniParserCaption:
 
 
 def backend(spec: str) -> tuple[Ask, int, int]:
-    """(ask, batch, render size) for 'ollama:<tag>', 'llamacpp:<hf repo>[:quant]'
-    or 'florence:omniparser'; options after '@': size (render px), threads,
-    tokens (llama.cpp image tokens), e.g. '@size=128,threads=4,tokens=64'."""
+    """(ask, batch, render size) for 'ollama:<tag>', 'llamacpp:<hf repo>[:quant]',
+    'gateway:<provider>/<model>' (Vercel AI Gateway) or 'florence:omniparser';
+    options after '@': size (render px), threads, tokens (llama.cpp image
+    tokens), answer (gateway answer tokens), e.g. '@size=128,threads=4,tokens=64'."""
     kind, _, rest = spec.partition(":")
     name, _, opts = rest.partition("@")
     options = dict(kv.split("=", 1) for kv in opts.split(",") if kv)
@@ -289,6 +364,8 @@ def backend(spec: str) -> tuple[Ask, int, int]:
         tokens = int(options["tokens"]) if "tokens" in options else None
         threads = int(options["threads"]) if "threads" in options else None
         return LlamaServer(name, tokens=tokens, threads=threads), 1, int(options.get("size", 256))
+    if kind == "gateway":
+        return Gateway(name, answer_tokens=int(options.get("answer", 64))), 1, int(options.get("size", 256))
     if kind == "florence" and name == "omniparser":
         return OmniParserCaption(), 8, 64  # OmniParser captions 64 px crops
     raise ValueError(f"unknown model spec {spec!r}")
