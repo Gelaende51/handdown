@@ -360,3 +360,51 @@ CREATE UNIQUE INDEX IF NOT EXISTS classification_once ON classification(
     method, IFNULL(model, ''), IFNULL(run, ''), IFNULL(pictogram_id, -1), IFNULL(subject_id, -1), field, IFNULL(value, '')
 );
 CREATE INDEX IF NOT EXISTS classification_pictogram ON classification(source_id, original_id);
+
+-- Symbols and ideas: the two top rungs (docs/superpowers/specs/2026-10-02-symbols-and-ideas-design.md).
+-- A symbol is a sign (heart symbol, the floppy-disk save icon) realised by a set of depictions;
+-- ideas are the concepts symbols stand for.
+CREATE TABLE IF NOT EXISTS symbol (
+    id TEXT PRIMARY KEY,            -- sym:<slug>
+    label TEXT NOT NULL,
+    description TEXT,
+    object_id TEXT,                 -- the drawn object it is formed around
+    lead_id TEXT,                   -- its leading idea (NULL: a literal symbol)
+    wikidata_qid TEXT,
+    wikipedia TEXT,                 -- English Wikipedia article title
+    method TEXT NOT NULL DEFAULT 'rules',  -- rules | ai | manual
+    size INTEGER,                   -- depictions
+    source_count INTEGER
+);
+CREATE TABLE IF NOT EXISTS symbol_depiction (
+    symbol_id TEXT NOT NULL REFERENCES symbol(id) ON DELETE CASCADE,
+    depiction_id INTEGER NOT NULL REFERENCES depiction(id) ON DELETE CASCADE,
+    form TEXT NOT NULL,             -- canonical | variant | stylisation | metaphor
+    method TEXT NOT NULL DEFAULT 'rules',
+    confidence REAL,
+    PRIMARY KEY (symbol_id, depiction_id)
+);
+CREATE INDEX IF NOT EXISTS symbol_depiction_depiction ON symbol_depiction(depiction_id);
+CREATE TABLE IF NOT EXISTS symbol_idea (
+    symbol_id TEXT NOT NULL REFERENCES symbol(id) ON DELETE CASCADE,
+    concept_id TEXT NOT NULL,       -- the idea
+    kind TEXT NOT NULL,             -- convention | resemblance | metaphor | index
+    method TEXT NOT NULL DEFAULT 'rules',
+    confidence REAL,
+    PRIMARY KEY (symbol_id, concept_id)
+);
+CREATE INDEX IF NOT EXISTS symbol_idea_concept ON symbol_idea(concept_id);
+CREATE TABLE IF NOT EXISTS symbol_relation (    -- siblings: within the symbol rung
+    symbol_a TEXT NOT NULL REFERENCES symbol(id) ON DELETE CASCADE,
+    symbol_b TEXT NOT NULL REFERENCES symbol(id) ON DELETE CASCADE,
+    relation TEXT NOT NULL,         -- variant of | derived from | composed of | opposite of | same idea
+    method TEXT NOT NULL DEFAULT 'rules',
+    PRIMARY KEY (symbol_a, symbol_b, relation)
+);
+CREATE TABLE IF NOT EXISTS idea_relation (      -- siblings: within the idea rung
+    concept_a TEXT NOT NULL,
+    concept_b TEXT NOT NULL,        -- for 'broader': concept_b is broader than concept_a
+    relation TEXT NOT NULL,         -- broader | related
+    source TEXT NOT NULL,           -- wordnet | wikidata | ai | manual
+    PRIMARY KEY (concept_a, concept_b, relation)
+);

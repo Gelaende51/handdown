@@ -708,6 +708,16 @@ def link_parts() -> None:
     typer.echo(extract.link_parts(_conn(Config())))
 
 
+@app.command()
+def symbols(min_sources: int = 3) -> None:
+    """Form symbols from depictions (object + leading idea) and relate symbols and ideas."""
+    from . import symbols as sym
+
+    conn = _conn(Config())
+    typer.echo(sym.form(conn, min_sources=min_sources, log=lambda *_: None))
+    typer.echo(f"idea relations: {sym.idea_relations(conn)}")
+
+
 @app.command("vlm-apply")
 def vlm_apply(answers: list[str]) -> None:
     """Set objects of depictions without one from vision model answers (method 'vlm')."""
