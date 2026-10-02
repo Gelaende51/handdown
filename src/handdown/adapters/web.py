@@ -30,7 +30,8 @@ from .base import Item, SourceInfo
 
 ASSET = re.compile(r"\.(svg|png|gif|zip)$", re.I)
 EXCLUDE = r"(logo|favicon|banner|sprite|button|avatar|header|footer|social|share|flag-icon)"
-MAX_ASSET = 20 * 1024 * 1024  # zips can hold a whole set
+MAX_ASSET = 20 * 1024 * 1024
+MAX_ZIP = 300 * 1024 * 1024  # a zip can hold a whole symbol set (Blissymbolics: 6,000+ files)
 
 
 class WebAdapter:
@@ -120,7 +121,7 @@ class WebAdapter:
             if n >= max_items:
                 break
             r = self._get(source_id, url)
-            if r is None or len(r.content) > MAX_ASSET:
+            if r is None or len(r.content) > (MAX_ZIP if url.lower().endswith(".zip") else MAX_ASSET):
                 continue
             members = [(url, PurePosixPath(urlparse(url).path).name, r.content)]
             if url.lower().endswith(".zip"):
