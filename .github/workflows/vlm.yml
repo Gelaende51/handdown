@@ -16,11 +16,14 @@ on:
       adapter:
         description: "Adapter: iconify | git-svg | npm-svg | font | commons"
         required: true
+      list:
+        description: "Job list name if not the adapter, e.g. git-svg.1 (large lists come in parts)"
+        default: ""
       model:
         description: "Model spec"
         default: "ollama:qwen3-vl:4b-instruct@threads=4"
       per_shard:
-        description: "Depictions per runner (at ~55-85 s each, 250 fit the 6-hour job limit)"
+        description: "Depictions per runner (at ~55-85 s each, 250 fit the 6-hour job limit; ~120 for raster-heavy lists, asked twice)"
         default: "250"
 
 permissions:
@@ -37,7 +40,7 @@ jobs:
       - id: m
         run: |
           n=$(python3 -c 'import math,sys; print(max(1, math.ceil(sum(1 for _ in open(sys.argv[1])) / int(sys.argv[2]))))' \
-            "work/vlm/items-${{ inputs.adapter }}.jsonl" "${{ inputs.per_shard }}")
+            "work/vlm/items-${{ inputs.list || inputs.adapter }}.jsonl" "${{ inputs.per_shard }}")
           if [ "$n" -gt 256 ]; then echo "::error::$n shards exceed the 256-job matrix limit: raise per_shard"; exit 1; fi
           echo "shards=$n" >> "$GITHUB_OUTPUT"
           echo "matrix=$(python3 -c 'import json,sys; print(json.dumps(list(range(int(sys.argv[1])))))' "$n")" >> "$GITHUB_OUTPUT"
@@ -86,7 +89,7 @@ jobs:
           path: ~/.cache/llama.cpp
           key: llamacpp-${{ inputs.model }}
       - run: |
-          uv run handdown vlm-slice "work/vlm/items-${{ inputs.adapter }}.jsonl" "work/vlm/sources-${{ inputs.adapter }}.jsonl" \
+          uv run handdown vlm-slice "work/vlm/items-${{ inputs.list || inputs.adapter }}.jsonl" "work/vlm/sources-${{ inputs.list || inputs.adapter }}.jsonl" \
             --shard "${{ matrix.shard }}/${{ needs.plan.outputs.shards }}" --out-items slice-items.jsonl --out-sources slice-sources.jsonl
       - run: uv run handdown import-sources slice-sources.jsonl
       - run: uv run handdown harvest "${{ inputs.adapter }}" --status accepted --no-registry
@@ -120,10 +123,10 @@ jobs:
       - name: Commit the answers
         run: |
           mkdir -p work/vlm/answers
-          cat answers/*/answers.jsonl > "work/vlm/answers/${{ inputs.adapter }}-${{ github.run_id }}.jsonl" || true
+          cat answers/*/answers.jsonl > "work/vlm/answers/${{ inputs.list || inputs.adapter }}-${{ github.run_id }}.jsonl" || true
           git config user.name "Vault51"
           git config user.email "Gelaende51@users.noreply.github.com"
           git add work/vlm/answers
           if git diff --cached --quiet; then echo "no answers"; exit 0; fi
-          git commit -m "VLM: answers for ${{ inputs.adapter }} (run ${{ github.run_id }})"
+          git commit -m "VLM: answers for ${{ inputs.list || inputs.adapter }} (run ${{ github.run_id }})"
           git pull --rebase && git push
