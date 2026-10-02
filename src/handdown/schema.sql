@@ -423,3 +423,25 @@ CREATE TABLE IF NOT EXISTS pictogram_tag (
 ) WITHOUT ROWID;
 CREATE INDEX IF NOT EXISTS pictogram_tag_pictogram ON pictogram_tag(pictogram_id);
 CREATE TABLE IF NOT EXISTS tag_count (tag TEXT PRIMARY KEY, n INTEGER NOT NULL);
+-- Text inside pictograms and descriptions (describe.py): each text group is a compound part of the pictogram
+CREATE TABLE IF NOT EXISTS pictogram_text (
+    pictogram_id INTEGER NOT NULL,
+    group_no INTEGER NOT NULL,
+    text TEXT NOT NULL,
+    script TEXT,                    -- latin, han, arabic, digits, …
+    position TEXT,                  -- where in the pictogram
+    method TEXT NOT NULL DEFAULT 'ai',
+    model TEXT,
+    PRIMARY KEY (pictogram_id, group_no, method)
+);
+CREATE TABLE IF NOT EXISTS pictogram_description (
+    pictogram_id INTEGER PRIMARY KEY,
+    tags TEXT,                      -- JSON: the accepted tags
+    residual TEXT,                  -- visual information no tag captures
+    description TEXT,               -- the whole composition
+    interpretation TEXT,            -- what it conveys
+    model TEXT,
+    run TEXT,
+    created_at TEXT
+);
+CREATE VIRTUAL TABLE IF NOT EXISTS pictogram_search USING fts5(pictogram_id UNINDEXED, name, text, description);

@@ -222,6 +222,11 @@ def build(conn, cfg, workers: int = 2, min_count: int = 20, chunk: int = 20000, 
         tag = ROLE_TAGS.get(role) or (f"frame:{FRAME_SHAPES[label]}" if role == "frame" and label in FRAME_SHAPES else None)
         if tag:
             parts[pid].add(tag)
+    described: dict[int, set[str]] = defaultdict(set)  # Claude's description pass (describe.py)
+    for pid, tags_json in conn.execute("SELECT pictogram_id, tags FROM pictogram_description"):
+        described[pid] |= {"described", *json.loads(tags_json or "[]")}
+    for pid, script in conn.execute("SELECT pictogram_id, script FROM pictogram_text"):
+        described[pid] |= {"feature:text"} | ({f"text:{script}"} if script else set())
     conn.execute("DELETE FROM pictogram_tag")
     conn.execute("DELETE FROM tag_count")
     pool = mp.get_context("forkserver").Pool(workers) if workers > 1 else None
@@ -243,7 +248,7 @@ def build(conn, cfg, workers: int = 2, min_count: int = 20, chunk: int = 20000, 
             results = pool.imap_unordered(_corners, tasks, chunksize=200) if pool else map(_corners, tasks)
             for pid, corners in results:
                 view, varieties = depiction.get(pid, (None, []))
-                staged[pid] = pictogram_tags(dicts[pid], corners, view, varieties) | parts.get(pid, set())
+                staged[pid] = pictogram_tags(dicts[pid], corners, view, varieties) | parts.get(pid, set()) | described.get(pid, set())
             n += len(rows)
             log(f"  {n} pictograms")
     finally:
@@ -253,6 +258,7 @@ def build(conn, cfg, workers: int = 2, min_count: int = 20, chunk: int = 20000, 
     from .hierarchy.names import VARIETY_WORDS
 
     standard = set(ROLE_TAGS.values()) | {f"feature:{v}" for v in [*SYNONYMS.values(), *VARIETY_WORDS.values()]}
+    standard |= {t for ts in described.values() for t in ts}  # chosen from the vocabulary by Claude
     keep = {t for t, k in counts.items() if not t.startswith("feature:") or t in standard or k >= min_count}  # rare free text stays out
     conn.executemany("INSERT INTO pictogram_tag (tag, pictogram_id) VALUES (?, ?)", ((t, pid) for pid, ts in staged.items() for t in ts if t in keep))
     conn.executemany("INSERT INTO tag_count VALUES (?, ?)", ((t, counts[t]) for t in keep))

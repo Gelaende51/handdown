@@ -178,7 +178,7 @@ class Catalog:
 def page(title: str, crumbs: str, body: str) -> bytes:
     return (
         f"<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'>"
-        f"<title>{esc(title)} · handdown</title><style>{CSS}</style><main><nav class=m><a href='/'>ideas</a> · <a href='/sources'>sources</a> · <a href='/browse'>tags</a></nav>"
+        f"<title>{esc(title)} · handdown</title><style>{CSS}</style><main><nav class=m><a href='/'>ideas</a> · <a href='/sources'>sources</a> · <a href='/browse'>tags</a> · <a href='/search'>search</a></nav>"
         f"<div class=crumbs><a href='/'>handdown</a> {crumbs}</div>"
         f"<p id=msg class=m></p>{body}{DIALOG}</main><script>{JS}</script>"
     ).encode()
@@ -224,6 +224,8 @@ class Handler(BaseHTTPRequestHandler):
                 return self._send(200, self.sources(cat))
             if kind == "browse":
                 return self._send(200, self.browse(cat))
+            if kind == "search":
+                return self._send(200, self.search(cat))
             if kind == "svg" and re.fullmatch(r"[0-9a-f]{64}\.svg", ident):
                 f = self.cfg.norm_path(ident[:-4])
                 return self._send(200, f.read_bytes(), "image/svg+xml") if f.exists() else self._send(404, b"not found")
@@ -463,11 +465,29 @@ class Handler(BaseHTTPRequestHandler):
         sizes = "".join(f"<span class=t><img src='/svg/{esc(p['sha256'])}.svg' style='width:{s}px;height:{s}px' alt=''></span>" for s in (16, 24, 48, 96))
         means = ", ".join(f"<a href='/idea/{q(m)}'>{esc(cat.label(m))}</a>" for m in snap.get("meanings", []))
         parts = ", ".join(f"{esc(x['role'])}: {esc(x['label'])}" for x in snap.get("composite", []))
+        texts = cat.conn.execute("SELECT group_no, text, script, position FROM pictogram_text WHERE pictogram_id=? ORDER BY group_no", (p["id"],)).fetchall()
+        text_html = "".join(
+            f"<li>text part {t['group_no'] + 1}: <b>{esc(t['text'])}</b> <span class=m>{esc(t['script'])}, {esc(t['position'])}</span></li>" for t in texts
+        )
+        d = cat.conn.execute("SELECT * FROM pictogram_description WHERE pictogram_id=?", (p["id"],)).fetchone()
+        tag_rows = [r[0] for r in cat.conn.execute("SELECT tag FROM pictogram_tag WHERE pictogram_id=? ORDER BY tag", (p["id"],))]
+        tag_html = " ".join(f"<a class=chip href='/browse?tag={q(t)}'>{esc(t)}</a>" for t in tag_rows)
+        described = (
+            f"<h2>Description</h2><p>{esc(d['description'])}</p><p><i>{esc(d['interpretation'])}</i></p>"
+            + (f"<p class=m>residual: {esc(d['residual'])}</p>" if d["residual"] else "")
+            + f"<p class=m>by {esc(d['model'])}</p>"
+            if d
+            else ""
+        )
         body = (
             f"<h1>{esc(p['original_name'])} {flag('image', p['id'])}</h1><div class='row big'>{sizes}</div>"
             f"<p>source: <a href='/source/{q(p['source_id'])}'>{esc(p['sname'])}</a> ({esc(p['license_spdx'])}) · "
             f"<a href='{esc(p['original_url'])}' rel=noreferrer>original</a></p>"
             f"<p>means: {means or '–'}</p><p>composite: {parts or '–'}</p>"
+            + (f"<ul>{text_html}</ul>" if texts else "")
+            + (f"<p>{tag_html}</p>" if tag_rows else "")
+            + described
+            + ""
             f"<p class=m>view {esc(snap.get('view'))} · features {esc(snap.get('varieties'))} · method {esc(snap.get('method'))}</p>"
         )
         return page(p["original_name"] or str(p["id"]), crumbs, body)
@@ -536,6 +556,23 @@ class Handler(BaseHTTPRequestHandler):
             f"<p>{chips or '<span class=m>no tag chosen</span>'}</p>{results}<div class=facets>{facets}</div>"
         )
         return page("tags", "› tags", body)
+
+    def search(self, cat: Catalog) -> bytes:
+        from . import describe
+
+        query = self.query.get("q", [""])[0]
+        rows = describe.search(cat.conn, query) if query else []
+        hits = "".join(
+            f"<div class=card><a href='/image/{r['pictogram_id']}'><span class=t><img src='/svg/{esc(r['sha256'])}.svg' alt=''></span></a> "
+            f"<a href='/image/{r['pictogram_id']}'>{esc(r['original_name'])}</a> <span class=m>{esc(r['snippet'])}</span></div>"
+            for r in rows
+            if r["sha256"]
+        )
+        n_described = cat.conn.execute("SELECT COUNT(*) FROM pictogram_search").fetchone()[0]
+        form = f"<form><input name=q value='{esc(query)}' placeholder='text, name or description'> <button>search</button></form>"
+        note = f"<p class=m>Searches the text inside pictograms, their names, descriptions and interpretations ({n_described:,} pictograms indexed so far).</p>"
+        result = f"<p>{len(rows)} found</p>{hits}" if query else ""
+        return page("search", "› search", f"<h1>Search</h1>{note}{form}{result}")
 
     # ---- sourcing map ------------------------------------------------------
     def sources(self, cat: Catalog) -> bytes:

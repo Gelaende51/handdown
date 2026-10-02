@@ -754,6 +754,21 @@ def tags_cmd(workers: int = 2, min_count: int = 20) -> None:
     typer.echo(tags.build(_conn(cfg), cfg, workers=workers, min_count=min_count, log=lambda *_: None))
 
 
+@app.command()
+def describe(sample: int = 300, seed: int = 0, batch: int = 10) -> None:
+    """Claude reads text, tags and describes a sample of pictograms; exits 75 at the usage limit."""
+    from . import ai
+    from . import describe as d
+
+    cfg = Config()
+    conn = _conn(cfg)
+    try:
+        typer.echo(d.run(conn, cfg, d.sample(conn, n=sample, seed=seed), batch=batch))
+    except ai.QuotaExceeded as e:
+        typer.echo(f"usage limit reached, stopping: {e}")
+        raise typer.Exit(75) from e
+
+
 @app.command("vlm-apply")
 def vlm_apply(answers: list[str]) -> None:
     """Set objects of depictions without one from vision model answers (method 'vlm')."""
