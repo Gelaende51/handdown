@@ -1,0 +1,62 @@
+# An Ollama server on a runner, reachable only inside your Tailscale network
+# (hostname handdown-ollama), for trying models and prompts on handdown work.
+# Start and connect from the host with scripts/ollama-session.sh. CPU only;
+# the session ends after `minutes`, or after `idle` minutes without a request.
+name: ollama-session
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: "Ollama models to pull (space-separated)"
+        default: "qwen3-vl:4b-instruct"
+      minutes:
+        description: "Longest session (minutes, at most 340)"
+        default: "340"
+      idle:
+        description: "End after this many minutes without a request"
+        default: "30"
+
+permissions:
+  contents: read
+
+concurrency: ollama-session  # one session at a time
+
+jobs:
+  serve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - name: Join the tailnet (ephemeral node)
+        uses: tailscale/github-action@v3
+        with:
+          authkey: ${{ secrets.TS_AUTHKEY }}
+          hostname: handdown-ollama
+      - name: Install Ollama
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          sudo systemctl stop ollama 2>/dev/null || true
+      - name: Serve on the tailnet address only
+        run: |
+          ip=$(tailscale ip -4)
+          echo "OLLAMA_HOST=$ip:11434" >> "$GITHUB_ENV"
+          OLLAMA_HOST="$ip:11434" OLLAMA_KEEP_ALIVE=30m nohup ollama serve > ollama.log 2>&1 &
+          for i in $(seq 30); do curl -sf "http://$ip:11434/api/version" && break; sleep 2; done
+      - name: Pull models
+        env:
+          MODELS: ${{ inputs.model }}
+        run: for m in $MODELS; do ollama pull "$m"; done
+      - name: Serve until idle or out of time
+        env:
+          MINUTES: ${{ inputs.minutes }}
+          IDLE: ${{ inputs.idle }}
+        run: |
+          echo "ready: http://handdown-ollama:11434 (Ollama API, OpenAI-compatible under /v1)"
+          start=$(date +%s); last=$start; seen=$(grep -c '\[GIN\]' ollama.log || true)
+          while true; do
+            sleep 60
+            now=$(date +%s); n=$(grep -c '\[GIN\]' ollama.log || true)
+            if [ "$n" != "$seen" ]; then seen=$n; last=$now; fi
+            if [ $((now - last)) -ge $((IDLE * 60)) ]; then echo "idle for $IDLE minutes: ending"; break; fi
+            if [ $((now - start)) -ge $((MINUTES * 60)) ]; then echo "time is up: ending"; break; fi
+          done
+          echo "$((n)) requests served"
