@@ -38,7 +38,9 @@ class ArasaacAdapter:
     def sources(self, statuses: tuple[str, ...] = ("accepted",)) -> Iterator[SourceInfo]:
         rows = self.conn.execute(f"SELECT * FROM source WHERE adapter='arasaac' AND harvest_status IN ({','.join('?' * len(statuses))})", statuses).fetchall()
         for r in rows:
-            yield SourceInfo(id=r["id"], name=r["name"], platform_id=r["platform_id"], url=r["url"], license_spdx=LICENSE, extra=json.loads(r["adapter_args"] or "{}"))
+            yield SourceInfo(
+                id=r["id"], name=r["name"], platform_id=r["platform_id"], url=r["url"], license_spdx=LICENSE, extra=json.loads(r["adapter_args"] or "{}")
+            )
 
     def _image(self, source_id: str, url: str, params: dict[str, str] | None = None) -> str | None:
         try:

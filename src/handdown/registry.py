@@ -103,4 +103,8 @@ def adapter(name: str, cfg: Config, conn: sqlite3.Connection):
         from .adapters.arasaac import ArasaacAdapter
 
         return ArasaacAdapter(cfg, conn)
+    if name == "web":
+        from .adapters.web import WebAdapter
+
+        return WebAdapter(cfg, conn)
     raise SystemExit(f"unknown adapter: {name}")

@@ -634,7 +634,9 @@ def recheck_rasters(min_files: int = 20) -> None:
     from . import triage
 
     token = os.environ.get("GH_TOKEN") or subprocess.run(["gh", "auth", "token"], capture_output=True, text=True).stdout.strip()
-    client = httpx.Client(headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json"}, timeout=60, follow_redirects=True)  # renamed repositories redirect
+    client = httpx.Client(
+        headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json"}, timeout=60, follow_redirects=True
+    )  # renamed repositories redirect
 
     def fetch_tree(repo: str) -> list[dict]:
         r = client.get(f"https://api.github.com/repos/{repo}/git/trees/HEAD", params={"recursive": "1"})

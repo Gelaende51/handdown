@@ -22,7 +22,9 @@ def test_arasaac_colour_original_and_official_black_and_white(tmp_path, monkeypa
     monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
     cfg = Config()
     conn = db.connect(cfg.db_path)
-    record_candidate(conn, None, id="arasaac:all", platform_id="arasaac", name="ARASAAC", adapter="arasaac", adapter_args={"language": "en"}, harvest_status="accepted")
+    record_candidate(
+        conn, None, id="arasaac:all", platform_id="arasaac", name="ARASAAC", adapter="arasaac", adapter_args={"language": "en"}, harvest_status="accepted"
+    )
     asked = []
 
     def handler(req):
