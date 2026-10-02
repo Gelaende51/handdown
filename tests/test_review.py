@@ -136,3 +136,57 @@ def test_old_routes_still_answer(app):
     obj = conn.execute("SELECT object_id FROM depiction WHERE object_id IS NOT NULL LIMIT 1").fetchone()[0]
     assert get(f"{base}/meaning/{urllib.request.quote(meaning, safe='')}")[0] == 200
     assert get(f"{base}/object/{urllib.request.quote(obj, safe='')}")[0] == 200
+
+
+@pytest.fixture
+def sourcing(tmp_path, monkeypatch):
+    from handdown import db, review
+    from handdown.config import Config
+
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    cfg = Config()
+    c = db.connect(cfg.db_path)
+    c.execute("INSERT INTO platform (id, name, kind, found_via) VALUES ('github', 'GitHub', 'code-host', 'seed'), ('iconify', 'Iconify', 'aggregator', 'seed')")
+    c.execute(
+        "INSERT INTO search_log (id, query, engine, seed) VALUES (1, 'topic:icons', 'github', 'seed'), (2, 'readme:a/list', 'readme', 'source:gh:a/list')"
+    )
+    c.execute(
+        "INSERT INTO source (id, platform_id, name, harvest_status, adapter, license_spdx, found_via) VALUES "
+        "('gh:a/list', 'github', 'awesome list', 'rejected', 'git-svg', 'MIT', 'search:1'), "
+        "('gh:b/icons', 'github', 'b icons', 'harvested', 'git-svg', 'MIT', 'search:2'), "
+        "('iconify:mdi', 'iconify', 'Material Design Icons', 'harvested', 'iconify', 'Apache-2.0', 'platform:iconify')"
+    )
+    for pid, src in ((1, "gh:b/icons"), (2, "gh:b/icons"), (3, "iconify:mdi")):
+        c.execute(
+            "INSERT INTO pictogram (id, source_id, original_id, original_name, sha256, measured_at, svg_valid) VALUES (?, ?, ?, ?, ?, 't', 1)",
+            (pid, src, f"i{pid}", f"icon {pid}", f"{pid:064x}"),
+        )
+    c.execute("INSERT INTO depiction (id, object_id, method) VALUES (10, NULL, 'rules')")
+    gid = c.execute("INSERT INTO style_group (depiction_id, representative_id, size) VALUES (10, 1, 1) RETURNING id").fetchone()[0]
+    c.execute("INSERT INTO style_member VALUES (?, 1)", (gid,))
+    c.commit()
+    server = review.make_server(cfg, port=0)
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    yield f"http://127.0.0.1:{server.server_address[1]}", c
+    server.shutdown()
+
+
+def test_sourcing_map_shows_platforms_and_where_they_were_found(sourcing):
+    base, _ = sourcing
+    _, page = get(base + "/sources")
+    assert "/platform/github" in page and "/platform/iconify" in page
+    assert "readme" in page.lower() and "github" in page  # discovery channels and platform-to-platform edges
+    _, page = get(base + "/platform/github")
+    assert "/source/gh%3Ab%2Ficons" in page and "harvested" in page and "rejected" in page
+
+
+def test_source_page_links_discovery_pictograms_and_progress(sourcing):
+    base, _ = sourcing
+    _, page = get(base + "/source/gh%3Ab%2Ficons")
+    assert "/source/gh%3Aa%2Flist" in page  # found in the README of the awesome list
+    assert "/image/1" in page and "/image/2" in page
+    assert "grouped" in page and "1 of 2" in page  # one of two pictograms is in a style group
+    _, page = get(base + "/source/gh%3Aa%2Flist")
+    assert "/source/gh%3Ab%2Ficons" in page  # what this source led to
+    _, page = get(base + "/image/1")
+    assert "/source/gh%3Ab%2Ficons" in page

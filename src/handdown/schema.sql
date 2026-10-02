@@ -408,3 +408,10 @@ CREATE TABLE IF NOT EXISTS idea_relation (      -- siblings: within the idea run
     source TEXT NOT NULL,           -- wordnet | wikidata | ai | manual
     PRIMARY KEY (concept_a, concept_b, relation)
 );
+CREATE INDEX IF NOT EXISTS style_member_pictogram ON style_member(pictogram_id);
+-- Per-source progress through the hierarchy for the review app's sourcing map (handdown source-stats)
+CREATE TABLE IF NOT EXISTS source_progress (
+    source_id TEXT PRIMARY KEY,
+    n INTEGER, valid INTEGER, dup INTEGER, off INTEGER, grouped INTEGER, object INTEGER, symbol INTEGER, embedded INTEGER,
+    computed_at TEXT
+);

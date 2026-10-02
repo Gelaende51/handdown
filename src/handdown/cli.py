@@ -736,6 +736,15 @@ def link_symbols(listing: str = "work/wikidata/symbols.jsonl") -> None:
     typer.echo(f"{sym.link_wikipedia(_conn(Config()), listing)} symbols linked")
 
 
+@app.command("source-stats")
+def source_stats_cmd() -> None:
+    """Recompute each source's progress through the hierarchy for the review app's sourcing map."""
+    from . import review
+
+    stats = review.source_stats(_conn(Config()), refresh=True)
+    typer.echo(f"{len(stats)} sources")
+
+
 @app.command("vlm-apply")
 def vlm_apply(answers: list[str]) -> None:
     """Set objects of depictions without one from vision model answers (method 'vlm')."""
