@@ -1,9 +1,14 @@
 # Long-tail labelling: a vision model names the object of every depiction
-# without one (job lists from `handdown vlm-jobs`). Each runner re-harvests its
-# share of the sources and processes only the listed pictograms; pictograms
-# never leave the runner, only the answers (text) are committed to
-# work/vlm/answers/<adapter>-<run id>.jsonl. Apply locally with:
+# without one (job lists from `handdown vlm-jobs`). Each runner takes a
+# contiguous slice of about `per_shard` depictions, re-harvests just their
+# sources and processes only those pictograms; pictograms never leave the
+# runner, only the answers (text) are committed to
+# work/vlm/answers/<adapter>-<run id>.jsonl. A runner stopped by the job time
+# limit still uploads what it answered; the rest returns with the next
+# `vlm-jobs`. Apply locally with:
 #   uv run handdown vlm-apply work/vlm/answers/*.jsonl
+#   uv run handdown vlm-backup            # Claude for what the model left
+#   uv run handdown raster-disagreements  # colour vs black and white
 name: vlm
 on:
   workflow_dispatch:
@@ -12,11 +17,11 @@ on:
         description: "Adapter: iconify | git-svg | npm-svg | font | commons"
         required: true
       model:
-        description: "Model spec, e.g. llamacpp:Qwen/Qwen3-VL-4B-Instruct-GGUF@tokens=64,threads=4"
-        required: true
-      shards:
-        description: "Number of runners"
-        default: "20"
+        description: "Model spec"
+        default: "ollama:qwen3-vl:4b-instruct@threads=4"
+      per_shard:
+        description: "Depictions per runner (at ~55-85 s each, 250 fit the 6-hour job limit)"
+        default: "250"
 
 permissions:
   contents: read
@@ -26,9 +31,16 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.m.outputs.matrix }}
+      shards: ${{ steps.m.outputs.shards }}
     steps:
+      - uses: actions/checkout@v4
       - id: m
-        run: echo "matrix=$(python3 -c 'import json,sys; print(json.dumps(list(range(int(sys.argv[1])))))' '${{ inputs.shards }}')" >> "$GITHUB_OUTPUT"
+        run: |
+          n=$(python3 -c 'import math,sys; print(max(1, math.ceil(sum(1 for _ in open(sys.argv[1])) / int(sys.argv[2]))))' \
+            "work/vlm/items-${{ inputs.adapter }}.jsonl" "${{ inputs.per_shard }}")
+          if [ "$n" -gt 256 ]; then echo "::error::$n shards exceed the 256-job matrix limit: raise per_shard"; exit 1; fi
+          echo "shards=$n" >> "$GITHUB_OUTPUT"
+          echo "matrix=$(python3 -c 'import json,sys; print(json.dumps(list(range(int(sys.argv[1])))))' "$n")" >> "$GITHUB_OUTPUT"
 
   label:
     needs: plan
@@ -54,24 +66,33 @@ jobs:
             ollama:*)
               curl -fsSL https://ollama.com/install.sh | sh
               for i in $(seq 30); do curl -sf http://127.0.0.1:11434/api/version && break; sleep 2; done
+              # the install script's systemd service does not always come up: serve it ourselves
               if ! curl -sf http://127.0.0.1:11434/api/version; then
                 nohup ollama serve > ollama.log 2>&1 &
                 for i in $(seq 30); do curl -sf http://127.0.0.1:11434/api/version && break; sleep 2; done
               fi
               tag="${MODEL#ollama:}"
-              ollama pull "${tag%%@*}" ;;
+              for i in 1 2 3; do
+                out=$(ollama pull "${tag%%@*}" 2>&1) && break
+                echo "::warning title=ollama pull ${i}::$(echo "$out" | tail -2 | tr '\n' ' ')"
+                [ "$i" = 3 ] && exit 1; sleep 20
+              done ;;
           esac
-      # model weights only (no pictograms): spares Hugging Face 20 downloads per run
+      # model weights only (no pictograms): spares Hugging Face a download per runner
       - if: startsWith(inputs.model, 'llamacpp:')
         uses: actions/cache@v4
         with:
           path: ~/.cache/llama.cpp
           key: llamacpp-${{ inputs.model }}
-      - run: uv run handdown import-sources "work/vlm/sources-${{ inputs.adapter }}.jsonl" --shard "${{ matrix.shard }}/${{ inputs.shards }}"
+      - run: |
+          uv run handdown vlm-slice "work/vlm/items-${{ inputs.adapter }}.jsonl" "work/vlm/sources-${{ inputs.adapter }}.jsonl" \
+            --shard "${{ matrix.shard }}/${{ needs.plan.outputs.shards }}" --out-items slice-items.jsonl --out-sources slice-sources.jsonl
+      - run: uv run handdown import-sources slice-sources.jsonl
       - run: uv run handdown harvest "${{ inputs.adapter }}" --status accepted --no-registry
-      - run: uv run handdown bench-prepare "work/vlm/items-${{ inputs.adapter }}.jsonl"
+      - run: uv run handdown bench-prepare slice-items.jsonl
       - run: uv run handdown process --workers 4
-      - run: uv run handdown bench-run "work/vlm/items-${{ inputs.adapter }}.jsonl" --model "$MODEL" --out answers.jsonl --present-only
+      # raster pictograms are asked twice: the original in colour and the black-and-white version
+      - run: uv run handdown bench-run slice-items.jsonl --model "$MODEL" --out answers.jsonl --present-only --variants norm,original
       - if: always()
         run: uv run handdown errors --annotate
       # Only the answers leave the runner, never the pictograms
