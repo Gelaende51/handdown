@@ -60,7 +60,7 @@ def form(conn: sqlite3.Connection, min_sources: int = 3, log: Any = print) -> di
     ):
         sources[did].add(sid)
     keys: dict[int, tuple[str, str | None]] = {}
-    for did, obj, name_c, size in conn.execute("SELECT id, object_id, name_concept_id, size FROM depiction"):
+    for did, obj, name_c in conn.execute("SELECT id, object_id, name_concept_id FROM depiction"):
         base = obj or name_c
         if not base or did in taken:
             continue
