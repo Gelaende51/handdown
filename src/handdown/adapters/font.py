@@ -8,8 +8,10 @@ import json
 import re
 import sqlite3
 import unicodedata
+import zipfile
 from collections.abc import Iterator
 from pathlib import Path
+from urllib.parse import urljoin
 
 import httpx
 from fontTools.pens.boundsPen import BoundsPen
@@ -59,10 +61,36 @@ class FontAdapter:
         dest.write_bytes(data)
         return dest
 
+    def _font_url(self, args: dict) -> str:
+        """``url`` names the file; ``page`` a download page whose first link
+        matching ``link`` (a font or zip by default) is taken."""
+        if "url" in args:
+            return args["url"]
+        r = httpx.get(args["page"], headers={"User-Agent": USER_AGENT}, timeout=60, follow_redirects=True)
+        r.raise_for_status()
+        pattern = args.get("link", r"\.(?:ttf|otf|zip)(?:\?[^\"']*)?$")
+        for href in re.findall(r"""href=["']([^"']+)["']""", r.text):
+            if re.search(pattern, href, re.I):
+                return urljoin(args["page"], href)
+        raise ValueError(f"no font link on {args['page']}")
+
+    @staticmethod
+    def _unzip(path: Path) -> Path:
+        """The first font file in a zip archive, extracted next to it."""
+        with zipfile.ZipFile(path) as z:
+            name = next((n for n in z.namelist() if n.lower().endswith((".ttf", ".otf"))), None)
+            if name is None:
+                raise ValueError(f"no font file in {path.name}")
+            dest = path.with_name(path.stem + Path(name).suffix)
+            dest.write_bytes(z.read(name))
+        return dest
+
     def items(self, source_id: str) -> Iterator[Item]:
         row = self.conn.execute("SELECT adapter_args FROM source WHERE id=?", (source_id,)).fetchone()
         args = json.loads(row["adapter_args"] or "{}")
-        path = self._download(source_id, args["url"])
+        path = self._download(source_id, self._font_url(args))
+        if path.suffix.lower() == ".zip":
+            path = self._unzip(path)
         font = TTFont(path, lazy=True)
         glyphs = font.getGlyphSet()
         upm = font["head"].unitsPerEm
