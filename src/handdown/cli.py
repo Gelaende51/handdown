@@ -769,6 +769,12 @@ def describe(sample: int = 300, seed: int = 0, batch: int = 10) -> None:
         raise typer.Exit(75) from e
 
 
+@app.command("reprocess-source")
+def reprocess_source(source: str) -> None:
+    """Send a source's pictograms through the pipeline again (process, then hierarchy) after a normalization fix."""
+    typer.echo(pipeline.reprocess_source(_conn(Config()), source))
+
+
 @app.command("vlm-apply")
 def vlm_apply(answers: list[str]) -> None:
     """Set objects of depictions without one from vision model answers (method 'vlm')."""

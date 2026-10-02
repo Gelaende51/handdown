@@ -44,6 +44,8 @@ def init(conn: sqlite3.Connection) -> None:
     for table, column, decl in MIGRATIONS:
         if column not in {r[1] for r in conn.execute(f"PRAGMA table_info({table})")}:
             conn.execute(f"ALTER TABLE {table} ADD COLUMN {column} {decl}")
+    # indexes on migrated columns: only after the migrations (a fresh schema script does not have the columns)
+    conn.execute("CREATE INDEX IF NOT EXISTS pictogram_derived ON pictogram(derived_from, part_no)")
     conn.execute(
         "INSERT OR IGNORE INTO meta(key, value) VALUES ('schema_version', ?)",
         (SCHEMA_VERSION,),

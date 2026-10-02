@@ -281,3 +281,33 @@ def dedupe(conn: sqlite3.Connection) -> int:
     )
     conn.commit()
     return cur.rowcount
+
+
+def reprocess_source(conn: sqlite3.Connection, source_id: str) -> dict[str, int]:
+    """Make a source's pictograms go through the pipeline again (after a
+    normalization fix): measurements reset, their places in style groups and
+    depictions removed (the hierarchy is incremental and would keep them),
+    empty groups and depictions dropped, rule compositions removed."""
+    ids = [r[0] for r in conn.execute("SELECT id FROM pictogram WHERE source_id = ?", (source_id,))]
+    conn.execute("CREATE TEMP TABLE IF NOT EXISTS reprocess_ids (id INTEGER PRIMARY KEY)")
+    conn.execute("DELETE FROM reprocess_ids")
+    conn.executemany("INSERT INTO reprocess_ids VALUES (?)", [(i,) for i in ids])
+    out = {"pictograms": len(ids)}
+    conn.execute("UPDATE pictogram SET measured_at = NULL, normalized_at = NULL WHERE id IN (SELECT id FROM reprocess_ids)")
+    out["memberships"] = conn.execute("DELETE FROM style_member WHERE pictogram_id IN (SELECT id FROM reprocess_ids)").rowcount
+    out["groups_removed"] = conn.execute("DELETE FROM style_group WHERE id NOT IN (SELECT style_group_id FROM style_member)").rowcount
+    conn.execute(
+        """UPDATE style_group SET size = (SELECT COUNT(*) FROM style_member m WHERE m.style_group_id = style_group.id),
+               representative_id = (SELECT MIN(pictogram_id) FROM style_member m WHERE m.style_group_id = style_group.id)
+           WHERE id IN (SELECT style_group_id FROM style_member) AND (representative_id IN (SELECT id FROM reprocess_ids)
+                OR size != (SELECT COUNT(*) FROM style_member m WHERE m.style_group_id = style_group.id))"""
+    )
+    out["depictions_removed"] = conn.execute("DELETE FROM depiction WHERE id NOT IN (SELECT depiction_id FROM style_group)").rowcount
+    for table in ("composition_part", "composition_relation"):
+        conn.execute(
+            f"DELETE FROM {table} WHERE pictogram_id IN"
+            " (SELECT pictogram_id FROM composition WHERE method = 'rules' AND pictogram_id IN (SELECT id FROM reprocess_ids))"
+        )
+    out["compositions_removed"] = conn.execute("DELETE FROM composition WHERE method = 'rules' AND pictogram_id IN (SELECT id FROM reprocess_ids)").rowcount
+    conn.commit()
+    return out

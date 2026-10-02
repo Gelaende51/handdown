@@ -496,6 +496,10 @@ def _to_mono(root: ET.Element) -> None:
 
 
 def normalize(text: str) -> NormResult:
+    from . import sf_symbols
+
+    if sf_symbols.is_template(text):  # one variant, not the whole artboard of variants and notes
+        text = sf_symbols.extract(text)
     root = _parse(text)
     removed: list[str] = []
     _sanitize(root, removed)
