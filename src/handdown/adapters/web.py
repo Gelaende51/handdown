@@ -2,7 +2,8 @@
 
 A conservative crawl: from the start pages it follows links that stay on the
 same site under the start path, up to ``depth`` and ``max_pages``, and takes
-SVG, PNG and GIF files and zip archives of them (opened, their images taken).
+SVG, PNG and GIF files and zip archives of them (opened, their images taken)
+linked from those pages, also from other hosts (downloads, CDNs).
 Logos, favicons and banners are left out. Adapter args:
 ``start`` (list of pages or files, default the source URL), ``depth`` (2), ``max_pages`` (300),
 ``max_items`` (20000), ``scope`` (path prefix, default the start path),
@@ -106,13 +107,13 @@ class WebAdapter:
                 continue
             for link in self._links(url, r.text):
                 p = urlparse(link)
-                if link in seen or p.netloc != host:
+                if link in seen:
                     continue
                 seen.add(link)
-                if ASSET.search(p.path):
+                if ASSET.search(p.path):  # files may sit on a download or CDN host
                     if not exclude.search(PurePosixPath(p.path).name):
                         assets.append(link)
-                elif d < depth and p.path.startswith(scope) and p.scheme in ("http", "https"):
+                elif d < depth and p.netloc == host and p.path.startswith(scope) and p.scheme in ("http", "https"):
                     queue.append((link, d + 1))
         n = 0
         for url in assets:

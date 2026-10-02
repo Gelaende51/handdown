@@ -74,7 +74,7 @@ def test_web_adapter_crawls_one_site_section_for_images_and_zips(tmp_path, monke
     assert items["https://site.example/picto/files/drink.svg"].format == "svg"
     assert items["https://site.example/picto/icons/sleep.png"].format == "raster" and items["https://site.example/picto/icons/sleep.png"].name == "sleep"
     assert "/picto/deeper.html" not in fetched  # depth 1
-    assert "/about/" not in fetched and "https://other.example/a.png" not in fetched  # same section of the same site
+    assert "/about/" not in fetched  # pages: same section of the same site (files may come from elsewhere)
     assert "/img/logo.png" not in fetched  # logos are not pictograms
 
 
@@ -97,3 +97,36 @@ def test_start_urls_may_name_files_directly(tmp_path, monkeypatch):
     ad = WebAdapter(cfg, conn, delay=0)
     ad.client = httpx.Client(transport=httpx.MockTransport(lambda req: httpx.Response(200, content=SVG.encode())))
     assert sorted(i.name for i in ad.items("web:ghs")) == ["GHS01", "GHS02"]
+
+
+def test_files_may_come_from_another_host_but_pages_stay_on_the_site(tmp_path, monkeypatch):
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    cfg = Config()
+    conn = db.connect(cfg.db_path)
+    record_candidate(
+        conn,
+        None,
+        id="web:dl",
+        platform_id="x",
+        name="DL",
+        adapter="web",
+        url="https://site.example/assets/",
+        adapter_args={"depth": 1},
+        harvest_status="accepted",
+    )
+    page = '<a href="https://files.example/set.zip">zip</a> <a href="https://other.example/more/">elsewhere</a>'
+    archive = io.BytesIO()
+    with zipfile.ZipFile(archive, "w") as z:
+        z.writestr("a.svg", SVG)
+    fetched = []
+
+    def handler(req):
+        fetched.append(str(req.url))
+        if req.url.host == "site.example":
+            return httpx.Response(200, text=page, headers={"content-type": "text/html"})
+        return httpx.Response(200, content=archive.getvalue())
+
+    ad = WebAdapter(cfg, conn, delay=0)
+    ad.client = httpx.Client(transport=httpx.MockTransport(handler))
+    assert [i.name for i in ad.items("web:dl")] == ["a"]
+    assert "https://other.example/more/" not in fetched
