@@ -445,3 +445,4 @@ CREATE TABLE IF NOT EXISTS pictogram_description (
     created_at TEXT
 );
 CREATE VIRTUAL TABLE IF NOT EXISTS pictogram_search USING fts5(pictogram_id UNINDEXED, name, text, description);
+CREATE INDEX IF NOT EXISTS pictogram_derived ON pictogram(derived_from, part_no);
