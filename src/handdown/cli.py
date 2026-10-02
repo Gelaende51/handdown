@@ -623,6 +623,27 @@ def raster_disagreements(out: str = "data/raster-disagreements.jsonl") -> None:
         typer.echo(f"  {r['source_id']} {r['original_id']}: colour {r['original_raw']!r}, black and white {r['monochrome_raw']!r}")
 
 
+@app.command("recheck-rasters")
+def recheck_rasters(min_files: int = 20) -> None:
+    """Accept repositories rejected for too few SVGs when their GitHub file tree holds raster icon sets."""
+    import os
+    import subprocess
+
+    import httpx
+
+    from . import triage
+
+    token = os.environ.get("GH_TOKEN") or subprocess.run(["gh", "auth", "token"], capture_output=True, text=True).stdout.strip()
+    client = httpx.Client(headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json"}, timeout=60, follow_redirects=True)  # renamed repositories redirect
+
+    def fetch_tree(repo: str) -> list[dict]:
+        r = client.get(f"https://api.github.com/repos/{repo}/git/trees/HEAD", params={"recursive": "1"})
+        r.raise_for_status()
+        return r.json().get("tree", [])
+
+    typer.echo(triage.recheck_rasters(_conn(Config()), fetch_tree, min_files=min_files))
+
+
 @app.command("vlm-apply")
 def vlm_apply(answers: list[str]) -> None:
     """Set objects of depictions without one from vision model answers (method 'vlm')."""

@@ -63,7 +63,7 @@ def test_pixel_art_stays_crisp_and_large_images_shrink():
     assert "pixelated" in svg
     assert set(np.unique(np.round(render(svg, 64), 2))) <= {0.0, 1.0}
     big = raster.to_svg(_png(_disk(2048)))
-    assert raster.decode(big).size == (1024, 1024)
+    assert raster.decode(big).size == (512, 512)
 
 
 def test_first_frame_of_a_gif_and_icons_in_ico():

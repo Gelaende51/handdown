@@ -17,7 +17,8 @@ meaning.
   sheets, the review app and the vault work unchanged. Images up to 64 px are
   rendered with `image-rendering: pixelated`, so pixel icons stay crisp.
 - `raw_svg` holds the original (converted to PNG, first frame of an animated
-  GIF, at most 1024 px on the long side); `format = 'raster'`.
+  GIF, at most 512 px on the long side, as classifiers see 256 px renders);
+  `format = 'raster'`.
 - `process` turns it into the normalized pictogram: composited on white,
   grayscale, Otsu threshold to 1 bit. Icons whose shape is in the alpha
   channel (light glyphs meant for dark backgrounds) use the alpha mask.
@@ -40,8 +41,9 @@ meaning.
   Sclera, Gerd Arntz (Isotype), the Olympic pictograms, ISO 7010 at
   freesvg.org, JIS Z 8210 (ecomo), GHS (PubChem), the disability access
   symbols (Graphic Artists Guild), Blissymbolics.
-- **ARASAAC** (API, CC BY-NC-SA): the black-and-white variant of each
-  pictogram, with its keywords.
+- **ARASAAC** (API, CC BY-NC-SA, adapter `arasaac`): each pictogram twice, the
+  colour image (300 px) as original and ARASAAC's own black-and-white version,
+  with keywords, meanings, categories and WordNet 3.1 synsets.
 - **Needs the operator**: Noun Project and OpenSymbols require API keys;
   SVG Repo and piktogramm.de (Otl Aicher, licensed commercially) are recorded
   as references, not harvested, until their terms allow it.
@@ -60,7 +62,7 @@ meaning.
 
 - Functionality: pixel-only sources join the catalog; tracing can follow later
   from the stored originals.
-- Resources: originals are stored inline (≤ 1024 px PNG); the database grows
+- Resources: originals are stored inline (≤ 512 px PNG); the database grows
   by roughly the size of the harvested images.
 - Licenses: several raster sources are non-commercial (ARASAAC, Sclera); the
   license is recorded per source or item, as for SVG sources.

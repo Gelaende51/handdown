@@ -71,7 +71,7 @@ RASTER_EXT = (".png", ".gif", ".bmp", ".ico")
 MAX_RASTER = 2 * 1024 * 1024
 # size folders and suffixes of one icon drawn at several sizes ("16/save.png", "save-32x32.png", retina copies with an @2x suffix)
 SIZE_DIR = re.compile(r"^(\d{1,4}(x\d{1,4})?(@\dx)?|\d{1,4}px|scalable|(drawable|mipmap)-\w+|[xm]*hdpi|ldpi)$", re.I)
-SIZE_SUFFIX = re.compile(r"([-_.]?(\d{1,4}x\d{1,4}|\d{1,4}px|\d{2,4})|@\dx)$", re.I)
+SIZE_SUFFIX = re.compile(r"([-_.@]?(\d{1,4}x\d{1,4}|\d{1,4}px)|[-_.](16|20|22|24|32|36|48|64|72|96|128|144|192|256|512|1024)|@\dx)$", re.I)
 
 
 def _raster_key(rel: PurePosixPath) -> tuple[tuple[str, ...], str]:

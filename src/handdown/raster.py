@@ -15,7 +15,7 @@ from PIL import Image
 
 from .normalize import NormResult
 
-MAX_SIDE = 1024  # originals are kept up to this size
+MAX_SIDE = 512  # originals are kept up to this size (classifiers see 256 px renders)
 PIXEL_ART = 64  # up to this size, render without smoothing
 MARKER = 'data-handdown="raster"'
 USES = ("gradient", "partial_opacity", "stroke", "text", "clip", "mask", "transform", "use")

@@ -211,3 +211,31 @@ def test_iconify_restricts_to_job_list(tmp_path, monkeypatch):
     assert len(list(IconifyAdapter(cfg, conn).sources())) == 3  # no job list: everything
     record_candidate(conn, None, id="iconify:b", platform_id="iconify", name="b", adapter="iconify", harvest_status="accepted")
     assert [s.id for s in IconifyAdapter(cfg, conn).sources()] == ["iconify:b"]
+
+
+def test_recheck_rasters_accepts_repositories_with_raster_icon_sets(tmp_path, monkeypatch):
+    from handdown import triage
+
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    conn = db.connect(Config().db_path)
+    for repo, note in (("a/pngs", "only 0 SVG files"), ("b/docs", "only 1 SVG files"), ("c/skip", "triage: score -7")):
+        record_candidate(
+            conn, None, id=f"gh:{repo}", platform_id="github", name=repo, adapter="git-svg", adapter_args={"repo": repo}, harvest_status="rejected"
+        )
+        conn.execute("UPDATE source SET notes=? WHERE id=?", (note, f"gh:{repo}"))
+    trees = {
+        "a/pngs": [{"path": f"icons/32/i{n}.png", "type": "blob", "size": 900} for n in range(25)] + [{"path": "README.md", "type": "blob", "size": 10}],
+        "b/docs": [{"path": "docs/screenshot.png", "type": "blob", "size": 90000}, {"path": "node_modules/x/a.png", "type": "blob", "size": 10}] * 15,
+    }
+    asked = []
+
+    def fetch_tree(repo):
+        asked.append(repo)
+        return trees[repo]
+
+    out = triage.recheck_rasters(conn, fetch_tree, min_files=20)
+    assert out == {"checked": 2, "accepted": 1}
+    assert sorted(asked) == ["a/pngs", "b/docs"]  # only harvest-time rejections, not irrelevant repositories
+    row = conn.execute("SELECT harvest_status, notes FROM source WHERE id='gh:a/pngs'").fetchone()
+    assert row[0] == "accepted" and "25 raster icons" in row[1]
+    assert conn.execute("SELECT harvest_status FROM source WHERE id='gh:b/docs'").fetchone()[0] == "rejected"

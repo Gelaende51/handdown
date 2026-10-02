@@ -99,4 +99,8 @@ def adapter(name: str, cfg: Config, conn: sqlite3.Connection):
         from .adapters.font import FontAdapter
 
         return FontAdapter(cfg, conn)
+    if name == "arasaac":
+        from .adapters.arasaac import ArasaacAdapter
+
+        return ArasaacAdapter(cfg, conn)
     raise SystemExit(f"unknown adapter: {name}")

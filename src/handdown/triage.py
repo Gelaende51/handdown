@@ -170,3 +170,46 @@ def run(conn: sqlite3.Connection, log: Any = print) -> dict[str, int]:
         log(f"  mined {len(link_lists)} link lists: +{mined} candidates")
         counts["mined"] = mined
     return counts
+
+
+DOC_DIRS = {"docs", "doc", "screenshots", "screenshot", "examples", "example", "demo", "website", "site", "media"}
+
+
+def recheck_rasters(conn: sqlite3.Connection, fetch_tree: Any, min_files: int = 20, log: Any = print) -> dict[str, int]:
+    """Repositories rejected at harvest time for having too few SVGs are
+    accepted again when their file tree holds at least ``min_files`` raster
+    icons (one per icon, sizes counted once; docs, screenshots and vendored
+    code left out). ``fetch_tree(repo)`` returns GitHub tree entries."""
+    from pathlib import PurePosixPath
+
+    from .adapters.tarball import MAX_RASTER, RASTER_EXT, _raster_key, _skip
+
+    rows = conn.execute(
+        "SELECT id, adapter_args, notes FROM source WHERE harvest_status = 'rejected' AND adapter = 'git-svg' AND notes LIKE '%SVG files%' ORDER BY id"
+    ).fetchall()
+    counts = {"checked": 0, "accepted": 0}
+    for r in rows:
+        repo = json.loads(r["adapter_args"] or "{}").get("repo")
+        if not repo:
+            continue
+        try:
+            tree = fetch_tree(repo)
+        except Exception as e:
+            log(f"  {repo}: {type(e).__name__}: {str(e)[:120]}")
+            continue
+        counts["checked"] += 1
+        keys = set()
+        for t in tree:
+            p = PurePosixPath(t.get("path", ""))
+            if t.get("type") != "blob" or not p.name.lower().endswith(RASTER_EXT) or (t.get("size") or 0) > MAX_RASTER:
+                continue
+            if _skip(p.parts[:-1]) or any(part.lower() in DOC_DIRS for part in p.parts[:-1]):
+                continue
+            keys.add(_raster_key(p))
+        if len(keys) >= min_files:
+            conn.execute(
+                "UPDATE source SET harvest_status = 'accepted', notes = notes || ? WHERE id = ?", (f" | raster re-check: {len(keys)} raster icons", r["id"])
+            )
+            counts["accepted"] += 1
+    conn.commit()
+    return counts
