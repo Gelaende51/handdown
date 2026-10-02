@@ -679,12 +679,25 @@ def off_topic(source: str, patterns: list[str], reason: str = typer.Option(None,
 
 
 @app.command("extract-parts")
-def extract_parts(workers: int = 2, limit: int = typer.Option(None)) -> None:
+def extract_parts(
+    workers: int = 2,
+    limit: int = typer.Option(None),
+    ai_path: bool = typer.Option(False, "--ai", help="Claude cuts out overlapping parts (SVG path data); exits 75 at the usage limit"),
+    batch: int = 8,
+) -> None:
     """Cut the parts of rule-classified composites out as pictograms (run process, concepts, hierarchy, link-parts after)."""
+    from . import ai
     from .composition import extract
 
     cfg = Config()
-    typer.echo(extract.run(_conn(cfg), cfg, workers=workers, limit=limit))
+    if not ai_path:
+        typer.echo(extract.run(_conn(cfg), cfg, workers=workers, limit=limit))
+        return
+    try:
+        typer.echo(extract.ai_run(_conn(cfg), cfg, limit=limit, batch=batch))
+    except ai.QuotaExceeded as e:
+        typer.echo(f"usage limit reached, stopping: {e}")
+        raise typer.Exit(75) from e
 
 
 @app.command("link-parts")

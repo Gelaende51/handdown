@@ -115,3 +115,31 @@ def test_a_cut_out_part_links_through_its_own_style_group(tmp_path, monkeypatch)
     c.commit()
     assert extract.link_parts(c)["from_extraction"] == 1
     assert c.execute("SELECT depiction_id FROM composition_part WHERE part_no=0").fetchone()[0] == 70
+
+
+def test_ai_extracts_overlapping_parts_and_rejects_invented_geometry(tmp_path, monkeypatch):
+    from handdown import ai
+
+    c, cfg = _composite_catalog(tmp_path, monkeypatch, svg=CROSSING)
+    extract.run(c, cfg, workers=1)  # rules: not separable
+    asked = []
+
+    def fake_ask(image, text, system, workdir, model, effort):
+        asked.append((model, effort, text))
+        answer = {
+            "1": {
+                "0": "M5 5h14v14H5z",  # the square without the slash: inside the composite's ink
+                "1": "M30 30h10v10H30z",  # outside the drawing: rejected
+            }
+        }
+        return answer, {"usage": {}, "total_cost_usd": 0.01, "session_id": "x1"}
+
+    monkeypatch.setattr(ai, "ask", fake_ask)
+    stats = extract.ai_run(c, cfg, limit=10, workdir=tmp_path / "w")
+    assert stats == {"composites": 1, "parts": 2, "extracted": 1, "rejected": 1, "cost_usd": 0.01}
+    assert asked[0][:2] == ("sonnet", None) and "M5 5h14v14H5z" in asked[0][2]  # the SVG path data goes with the image
+    rows = c.execute("SELECT original_id, extraction FROM pictogram WHERE source_id=? ORDER BY original_id", (extract.DERIVED,)).fetchall()
+    assert [tuple(r) for r in rows] == [("s/bell-off.svg#part0/ai", "ai")]
+    logged = c.execute("SELECT model, run, value IS NOT NULL FROM classification WHERE field='part' AND method='ai' ORDER BY id").fetchall()
+    assert [tuple(r) for r in logged] == [("sonnet@effort=off", "x1", 1), ("sonnet@effort=off", "x1", 0)]  # the rejected answer is logged too
+    assert extract.ai_run(c, cfg, limit=10, workdir=tmp_path / "w")["composites"] == 0  # asked once

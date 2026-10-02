@@ -215,11 +215,48 @@ def _work(args: tuple) -> tuple[int, list[Extracted] | None, str | None]:
         return pid, None, f"{type(e).__name__}: {e}"
 
 
+def _part_name(conn, label: str | None, concept_id: str | None, role: str) -> str:
+    concept = conn.execute("SELECT label FROM concept WHERE id=?", (concept_id,)).fetchone() if concept_id else None
+    return label or (concept[0] if concept else None) or role
+
+
+def _insert_part(conn, pid: int, src: str, oid: str, p: Extracted, name: str, method: str, model: str, run: str | None) -> None:
+    """One extracted part as a pictogram of the derived source, logged with its origin."""
+    from .. import db, provenance
+
+    derived_id = f"{src}/{oid}#part{p.part_no}" + ("/ai" if method == "ai" else "")
+    new = conn.execute(
+        """INSERT INTO pictogram (source_id, original_id, original_name, format, derived_from, part_no, extraction, harvested_at)
+           VALUES (?,?,?,?,?,?,?,?)
+           ON CONFLICT (source_id, original_id) DO UPDATE SET original_name=excluded.original_name, format=excluded.format,
+               extraction=excluded.extraction, measured_at=NULL
+           RETURNING id""",
+        (DERIVED, derived_id, name, "raster" if raster.is_raster(p.svg or "") else "svg", pid, p.part_no, p.method, db.now()),
+    ).fetchone()[0]
+    conn.execute("INSERT OR REPLACE INTO raw_svg VALUES (?, ?)", (new, p.svg))
+    provenance.record(
+        conn,
+        [
+            dict(
+                pictogram_id=pid,
+                subject="pictogram",
+                subject_id=pid,
+                field="part",
+                value=derived_id,
+                raw=name,
+                method=method,
+                model=model,
+                input="image",
+                run=run,
+                context={"part_no": p.part_no, "role": p.role, "extraction": p.method},
+            )
+        ],
+    )
+
+
 def store(conn, pid: int, parts: list[Extracted], method: str = "rules", model: str = "composition.extract") -> dict[str, int]:
     """Extracted parts as pictograms of the derived source; every part of the
     composite records how (or why not) it was cut out."""
-    from .. import db, provenance
-
     stored = {r[0]: (r[1], r[2]) for r in conn.execute("SELECT part_no, label, concept_id FROM composition_part WHERE pictogram_id=?", (pid,))}
     if sorted(stored) != [p.part_no for p in parts]:
         conn.execute("UPDATE composition_part SET extraction='skipped: parts changed' WHERE pictogram_id=?", (pid,))
@@ -232,36 +269,8 @@ def store(conn, pid: int, parts: list[Extracted], method: str = "rules", model: 
             conn.execute("UPDATE composition_part SET extraction=? WHERE pictogram_id=? AND part_no=?", (f"not separable: {p.reason}", pid, p.part_no))
             counts["not_separable"] += 1
             continue
-        concept = conn.execute("SELECT label FROM concept WHERE id=?", (concept_id,)).fetchone() if concept_id else None
-        name = label or (concept[0] if concept else None) or p.role
-        derived_id = f"{src}/{oid}#part{p.part_no}" + ("/ai" if method == "ai" else "")
-        new = conn.execute(
-            """INSERT INTO pictogram (source_id, original_id, original_name, format, derived_from, part_no, extraction, harvested_at)
-               VALUES (?,?,?,?,?,?,?,?)
-               ON CONFLICT (source_id, original_id) DO UPDATE SET original_name=excluded.original_name, format=excluded.format,
-                   extraction=excluded.extraction, measured_at=NULL
-               RETURNING id""",
-            (DERIVED, derived_id, name, "raster" if raster.is_raster(p.svg or "") else "svg", pid, p.part_no, p.method, db.now()),
-        ).fetchone()[0]
-        conn.execute("INSERT OR REPLACE INTO raw_svg VALUES (?, ?)", (new, p.svg))
+        _insert_part(conn, pid, src, oid, p, _part_name(conn, label, concept_id, p.role), method, model, None)
         conn.execute("UPDATE composition_part SET extraction=? WHERE pictogram_id=? AND part_no=?", (p.method, pid, p.part_no))
-        provenance.record(
-            conn,
-            [
-                dict(
-                    pictogram_id=pid,
-                    subject="pictogram",
-                    subject_id=pid,
-                    field="part",
-                    value=derived_id,
-                    raw=name,
-                    method=method,
-                    model=model,
-                    input="image",
-                    context={"part_no": p.part_no, "role": p.role, "extraction": p.method},
-                )
-            ],
-        )
         counts["extracted"] += 1
     return counts
 
@@ -327,3 +336,116 @@ def link_parts(conn) -> dict[str, int]:
     ).rowcount
     conn.commit()
     return {"from_extraction": n_ext, "from_concept": n_con}
+
+
+# ---- AI path: parts that overlap -------------------------------------------------
+
+AI_PROMPT = """Each numbered cell shows one composite pictogram. Below, each cell's number is followed by its SVG and the parts to cut out of it.
+For each requested part, return SVG path data in the same viewBox (absolute coordinates) that draws only that part:
+remove the other parts, and close the gaps they cut into it. Keep the part's own shapes as drawn; do not add details.
+Reply with JSON only: {"<cell>": {"<part number>": "<path data>", ...}, ...}"""
+OVERLAPPING = "r.relation IN ('crossing', 'merged', 'touching', 'over') OR r.relation LIKE '%cutout%' OR r.relation LIKE '%touching%'"
+
+
+def _ai_candidates(conn, limit: int | None) -> list[int]:
+    rows = conn.execute(
+        f"""SELECT c.pictogram_id FROM composition c JOIN pictogram p ON p.id = c.pictogram_id
+            WHERE c.method = 'rules' AND p.format IS NOT 'raster' AND p.source_id != ? AND p.norm_path IS NOT NULL  -- rasters have no path data
+              AND (EXISTS (SELECT 1 FROM composition_part cp WHERE cp.pictogram_id = c.pictogram_id
+                           AND cp.extraction LIKE 'not separable%' AND cp.role != 'text')
+                   OR EXISTS (SELECT 1 FROM composition_relation r WHERE r.pictogram_id = c.pictogram_id AND ({OVERLAPPING})))
+              AND NOT EXISTS (SELECT 1 FROM classification k WHERE k.subject = 'pictogram' AND k.subject_id = c.pictogram_id
+                              AND k.field = 'part' AND k.method = 'ai')
+            ORDER BY c.pictogram_id LIMIT ?""",
+        (DERIVED, limit or -1),
+    ).fetchall()
+    return [r[0] for r in rows]
+
+
+def _plausible(part_svg: str, composite_ink: np.ndarray) -> bool:
+    """The part renders, and its ink lies within the composite's (no invented geometry)."""
+    try:
+        got = render(part_svg, EXTRACT) > 0.5
+    except Exception:
+        return False
+    if got.sum() < 20:
+        return False
+    return (got & ndimage.binary_dilation(composite_ink, iterations=3)).sum() / got.sum() >= 0.85
+
+
+def ai_run(conn, cfg, limit: int | None = None, batch: int = 8, model: str = "sonnet", effort: str | None = None, workdir=None, log=print) -> dict:
+    """Claude cuts the parts of overlapping composites out as SVG path data.
+    Raises ``ai.QuotaExceeded`` at the usage limit; a rerun continues."""
+    import re
+    import subprocess
+    from pathlib import Path
+
+    from .. import ai, provenance
+
+    _ensure_source(conn)
+    workdir = Path(workdir or "data/extract-ai")
+    workdir.mkdir(parents=True, exist_ok=True)
+    name = f"{model}@effort={effort or 'off'}"
+    pids = _ai_candidates(conn, limit)
+    stats = {"composites": 0, "parts": 0, "extracted": 0, "rejected": 0, "cost_usd": 0.0}
+    for start in range(0, len(pids), batch):
+        chunk = pids[start : start + batch]
+        cells = []
+        for pid in chunk:
+            src, oid, path = conn.execute("SELECT source_id, original_id, norm_path FROM pictogram WHERE id=?", (pid,)).fetchone()
+            svg = cfg.resolve(path).read_text()
+            parts = conn.execute(
+                "SELECT part_no, role, label, concept_id FROM composition_part WHERE pictogram_id=? AND role != 'text' ORDER BY part_no", (pid,)
+            ).fetchall()
+            cells.append((pid, src, oid, svg, [(r[0], r[1], _part_name(conn, r[2], r[3], r[1])) for r in parts]))
+        text = (
+            AI_PROMPT
+            + "\n\n"
+            + "\n\n".join(
+                f"{i}. {svg}\nparts: " + "; ".join(f"{no}: {role} ({label})" for no, role, label in parts) for i, (_, _, _, svg, parts) in enumerate(cells, 1)
+            )
+        )
+        image = ai.sheet([c[3] for c in cells], cols=4)
+        try:
+            answer, result = ai.ask(image, text, "You edit SVG pictograms. Reply with JSON only.", workdir, model=model, effort=effort)
+        except ai.QuotaExceeded:
+            raise
+        except (RuntimeError, ValueError, OSError, subprocess.TimeoutExpired) as e:
+            log(f"  batch at {start} failed: {str(e)[:200]}")
+            continue
+        run = ai._log_run(conn, "extract-ai", result)
+        stats["cost_usd"] = round(stats["cost_usd"] + (result.get("total_cost_usd") or 0), 4)
+        for i, (pid, src, oid, svg, parts) in enumerate(cells, 1):
+            stats["composites"] += 1
+            got = answer.get(str(i)) if isinstance(answer, dict) else None
+            ink = render(svg, EXTRACT) > 0.5
+            vb = re.search(r'viewBox="([^"]+)"', svg)
+            for no, role, label in parts:
+                stats["parts"] += 1
+                d = got.get(str(no)) if isinstance(got, dict) else None
+                part_svg = f'<svg xmlns="{SVG_NS}" viewBox="{vb.group(1) if vb else "0 0 24 24"}"><path d="{d}"/></svg>' if isinstance(d, str) and d else None
+                if part_svg and _plausible(part_svg, ink):
+                    _insert_part(conn, pid, src, oid, Extracted(no, role, label, "ai", part_svg), label, "ai", name, run)
+                    stats["extracted"] += 1
+                else:
+                    provenance.record(
+                        conn,
+                        [
+                            dict(
+                                pictogram_id=pid,
+                                subject="pictogram",
+                                subject_id=pid,
+                                field="part",
+                                raw=d if isinstance(d, str) else None,
+                                method="ai",
+                                model=name,
+                                input="image",
+                                run=run,
+                                context={"part_no": no, "role": role, "rejected": True},
+                            )
+                        ],
+                    )
+                    stats["rejected"] += 1
+        conn.commit()
+        log(f"  {start + len(chunk)}/{len(pids)} {stats}")
+    return stats
