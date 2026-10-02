@@ -1,14 +1,15 @@
 # Vision benchmark: free models name the object of 500 Claude-assessed
 # pictograms (docs/superpowers/specs/2026-09-30-vision-benchmark-design.md).
-# Pictograms never leave the runner: only the answers (text) are uploaded and
-# committed to work/bench/results/<run id>.jsonl. Score locally with:
+# Only the answers (text) are uploaded and committed to
+# work/bench/results/<run id>.jsonl; hosted models (gateway:, Vercel AI
+# Gateway) see the rendered pictograms, the runner's own models do not. Score locally with:
 #   uv run handdown bench-score work/bench/results/*.jsonl
 name: bench
 on:
   workflow_dispatch:
     inputs:
       models:
-        description: "Space-separated model specs (ollama:<tag> | llamacpp:<hf repo> | florence:omniparser), options after @: size, threads, tokens"
+        description: "Space-separated model specs (ollama:<tag> | llamacpp:<hf repo> | gateway:<provider>/<model> | florence:omniparser), options after @: size, threads, tokens"
         default: "ollama:qwen2.5vl:3b ollama:qwen3-vl:4b-instruct ollama:gemma3:4b ollama:moondream florence:omniparser"
       limit:
         description: "Only the first N sample pictograms (speed tests); empty for all 500"
@@ -42,6 +43,8 @@ jobs:
     env:
       MODEL: ${{ matrix.model }}
       LIMIT: ${{ inputs.limit }}
+      # only jobs of hosted models get the key
+      AI_GATEWAY_API_KEY: ${{ startsWith(matrix.model, 'gateway:') && secrets.AI_GATEWAY_API_KEY || '' }}
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6

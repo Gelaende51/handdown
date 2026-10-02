@@ -16,6 +16,10 @@ on:
       shards:
         description: "Number of parallel runners"
         default: "20"
+      parts:
+        description: "Only the parts cut out of composites: classify composites, cut the parts out, embed just those"
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -62,7 +66,16 @@ jobs:
       - run: uv run handdown harvest "${{ inputs.adapter }}" --status accepted --status harvested --status blocked-network --status candidate --no-registry
       - run: uv run handdown process --workers 4
       - run: uv run handdown dedupe
-      - run: uv run handdown embed --labels work/vision/labels.jsonl
+      # Parts exist only in a catalog that cut them out: the runner repeats the cut; the host imports a part only when its image is the same
+      - if: inputs.parts
+        run: NLTK_ALLOW_PROXIED_URLOPEN=1 uv run python -c "import nltk; [nltk.download(p, download_dir='data/nltk', quiet=True) for p in ('wordnet', 'omw-2.0')]"
+      - if: inputs.parts
+        run: uv run handdown compose --workers 4
+      - if: inputs.parts
+        run: uv run handdown extract-parts --workers 4
+      - if: inputs.parts
+        run: uv run handdown process --workers 4
+      - run: uv run handdown embed --labels work/vision/labels.jsonl ${{ inputs.parts && '--parts-only' || '' }}
       - if: always()
         run: uv run handdown errors --annotate
       # export-vision refuses to write unencrypted data on Actions
