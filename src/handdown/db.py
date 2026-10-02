@@ -10,7 +10,16 @@ from pathlib import Path
 from typing import Any
 
 SCHEMA_VERSION = "1"
-MIGRATIONS = [("style_group", "assessed_at", "TEXT"), ("pictogram", "topic", "TEXT")]
+MIGRATIONS = [
+    ("style_group", "assessed_at", "TEXT"),
+    ("pictogram", "topic", "TEXT"),
+    # parts cut out of composites (composition/extract.py)
+    ("pictogram", "derived_from", "INTEGER"),
+    ("pictogram", "part_no", "INTEGER"),
+    ("pictogram", "extraction", "TEXT"),
+    ("composition_part", "extraction", "TEXT"),
+    ("composition_part", "depiction_id", "INTEGER"),
+]
 
 
 def now() -> str:

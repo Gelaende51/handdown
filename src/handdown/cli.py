@@ -678,6 +678,23 @@ def off_topic(source: str, patterns: list[str], reason: str = typer.Option(None,
     typer.echo(f"{n} pictograms of {source} {'off-topic: ' + reason if reason else 'on topic'}")
 
 
+@app.command("extract-parts")
+def extract_parts(workers: int = 2, limit: int = typer.Option(None)) -> None:
+    """Cut the parts of rule-classified composites out as pictograms (run process, concepts, hierarchy, link-parts after)."""
+    from .composition import extract
+
+    cfg = Config()
+    typer.echo(extract.run(_conn(cfg), cfg, workers=workers, limit=limit))
+
+
+@app.command("link-parts")
+def link_parts() -> None:
+    """Link every composite part to the depiction it shows."""
+    from .composition import extract
+
+    typer.echo(extract.link_parts(_conn(Config())))
+
+
 @app.command("vlm-apply")
 def vlm_apply(answers: list[str]) -> None:
     """Set objects of depictions without one from vision model answers (method 'vlm')."""

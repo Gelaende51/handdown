@@ -51,7 +51,9 @@ def _store(conn: sqlite3.Connection, pid: int, c: Composition, base_tokens: list
             concept = partners.pop(0)
         s = p.get("size") or {}
         conn.execute(
-            "INSERT INTO composition_part VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+            """INSERT INTO composition_part (pictogram_id, part_no, role, label, concept_id, position, count,
+                                             area_ratio, extent_ratio, glyph_share, px16, size_class)
+               VALUES (?,?,?,?,?,?,?,?,?,?,?,?)""",
             (
                 pid,
                 no,
@@ -89,7 +91,9 @@ def run(conn: sqlite3.Connection, cfg: Config, limit: int | None = None, workers
             rows = conn.execute(
                 """SELECT p.id, p.original_name, p.raw_tags, p.norm_path, p.has_text, s.domain
                    FROM pictogram p JOIN source s ON s.id = p.source_id
-                   WHERE p.id > ? AND p.duplicate_of IS NULL AND p.svg_valid = 1 ORDER BY p.id LIMIT ?""",
+                   WHERE p.id > ? AND p.duplicate_of IS NULL AND p.svg_valid = 1
+                     AND p.derived_from IS NULL  -- parts cut out of composites (extract.py) are not analysed again
+                   ORDER BY p.id LIMIT ?""",
                 (last, CHUNK),
             ).fetchall()
             if not rows:

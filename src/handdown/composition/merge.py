@@ -56,10 +56,12 @@ def classify(name: NameEvidence, shape: ShapeEvidence, has_text: bool, sign_doma
     for i, p in enumerate(shape.parts):
         if p.role_hint == "base" and "base" in (e["role"] for e in c.parts):
             index[i] = next(k for k, e in enumerate(c.parts) if e["role"] == "base")
+            c.parts[index[i]]["shape_parts"].append(i)
             continue
         label = shape.frame if p.role_hint == "frame" else "slash" if p.role_hint == "negation" else None
         index[i] = len(c.parts)
-        c.parts.append({"role": p.role_hint, "label": label, "size": p.size, "position": None, "count": 1})
+        # shape_parts: which shape parts (connected ink areas) make up this part, for extraction
+        c.parts.append({"role": p.role_hint, "label": label, "size": p.size, "position": None, "count": 1, "shape_parts": [i]})
     if shape.repetition > 1 and c.parts:
         c.parts[0]["count"] = shape.repetition
     shape_role_set = {p["role"] for p in c.parts}

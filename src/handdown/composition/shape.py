@@ -45,6 +45,7 @@ class ShapeEvidence:
     frame: str | None = None
     repetition: int = 1
     relations: list[tuple[int, int, str]] = field(default_factory=list)
+    labels: Any = None  # connected-component labels of the render (part labels are their numbers)
 
 
 def size_metrics(part: ShapePart, base: ShapePart, glyph: tuple[int, int, int, int], size: int = SIZE) -> dict[str, Any]:
@@ -167,6 +168,7 @@ def shape_evidence(svg: str, expect_negation: bool = False) -> ShapeEvidence:
     if not ink.any():
         return ev
     labels, _ = ndimage.label(ink)
+    ev.labels = labels
     ys, xs = np.nonzero(ink)
     glyph = (int(ys.min()), int(ys.max()) + 1, int(xs.min()), int(xs.max()) + 1)
     glyph_extent = max(glyph[1] - glyph[0], glyph[3] - glyph[2])
