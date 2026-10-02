@@ -239,3 +239,10 @@ def test_recheck_rasters_accepts_repositories_with_raster_icon_sets(tmp_path, mo
     row = conn.execute("SELECT harvest_status, notes FROM source WHERE id='gh:a/pngs'").fetchone()
     assert row[0] == "accepted" and "25 raster icons" in row[1]
     assert conn.execute("SELECT harvest_status FROM source WHERE id='gh:b/docs'").fetchone()[0] == "rejected"
+
+
+def test_seed_queries_include_raster_sets():
+    from handdown.discover import seed_queries
+
+    q = seed_queries()
+    assert ("github", "pixel art icons") in q and ("npm", "keywords:png-icons") in q

@@ -115,6 +115,20 @@ GITHUB_TOPICS = [
 ]
 
 
+RASTER_QUERIES = [
+    "png icons",
+    "pixel icons",
+    "pixel art icons",
+    "16x16 icons",
+    "icon pack png",
+    "pictogram png",
+    "aac symbols",
+    "communication symbols",
+    "isotype pictograms",
+    "sign pictograms png",
+]
+
+
 def seed_queries() -> list[tuple[str, str]]:
     """(engine, query) pairs, most productive first."""
     out: list[tuple[str, str]] = []
@@ -130,6 +144,11 @@ def seed_queries() -> list[tuple[str, str]]:
     for d in DOMAINS[:20]:
         out.append(("npm", f"{d} icons svg".strip()))
     for kw in ("icons", "svg-icons", "pictograms", "icon-font", "iconset", "emoji-svg"):
+        out.append(("npm", f"keywords:{kw}"))
+    # pixel pictograms (raster.py): sets that exist only as PNG/GIF
+    for q in RASTER_QUERIES:
+        out.append(("github", q))
+    for kw in ("png-icons", "pixel-icons"):
         out.append(("npm", f"keywords:{kw}"))
     return out
 
