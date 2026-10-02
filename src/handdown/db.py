@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Any
 
 SCHEMA_VERSION = "1"
-MIGRATIONS = [("style_group", "assessed_at", "TEXT")]
+MIGRATIONS = [("style_group", "assessed_at", "TEXT"), ("pictogram", "topic", "TEXT")]
 
 
 def now() -> str:

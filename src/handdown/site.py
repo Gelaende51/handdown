@@ -165,7 +165,7 @@ def export(conn: sqlite3.Connection, cfg: Config, min_sources: int = 2, log: Any
     domains = dict(
         conn.execute(
             """SELECT c.concept_id, s.domain FROM depiction_cluster c JOIN cluster_member m ON m.cluster_id=c.id
-           JOIN pictogram p ON p.id=m.pictogram_id JOIN source s ON s.id=p.source_id
+           JOIN pictogram p ON p.id=m.pictogram_id JOIN source s ON s.id=p.source_id WHERE p.topic IS NULL
            GROUP BY c.concept_id, s.domain ORDER BY COUNT(*)"""
         ).fetchall()
     )
@@ -239,7 +239,7 @@ def _concept_body(
             """SELECT p.id, p.original_name, p.original_url, p.norm_path, p.sha256, p.style, s.name AS sname, s.license_spdx,
                       (SELECT value FROM rating r WHERE r.pictogram_id=p.id AND r.metric='combined' ORDER BY is_override DESC LIMIT 1) AS comb
                FROM cluster_member m JOIN pictogram p ON p.id=m.pictogram_id JOIN source s ON s.id=p.source_id
-               WHERE m.cluster_id=? ORDER BY comb DESC""",
+               WHERE m.cluster_id=? AND p.topic IS NULL ORDER BY comb DESC""",
             (c["id"],),
         ).fetchall()
         scores: dict[int, dict[str, float]] = defaultdict(dict)

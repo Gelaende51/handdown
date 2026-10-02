@@ -646,6 +646,15 @@ def recheck_rasters(min_files: int = 20) -> None:
     typer.echo(triage.recheck_rasters(_conn(Config()), fetch_tree, min_files=min_files))
 
 
+@app.command("off-topic")
+def off_topic(source: str, patterns: list[str], reason: str = typer.Option(None, help="why; leave out to put them on topic again")) -> None:
+    """Mark a source's pictograms (original ids matching glob patterns) as off-topic reference, kept but not labelled or exported."""
+    from . import topic
+
+    n = topic.mark(_conn(Config()), source, patterns, reason)
+    typer.echo(f"{n} pictograms of {source} {'off-topic: ' + reason if reason else 'on topic'}")
+
+
 @app.command("vlm-apply")
 def vlm_apply(answers: list[str]) -> None:
     """Set objects of depictions without one from vision model answers (method 'vlm')."""

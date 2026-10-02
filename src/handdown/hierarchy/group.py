@@ -82,7 +82,7 @@ def run(conn: sqlite3.Connection, log: Any = print) -> dict[str, int]:
             """SELECT p.id, p.source_id, p.original_name, p.raw_tags, p.style, f.vec FROM pictogram_concept pc
                JOIN pictogram p ON p.id = pc.pictogram_id JOIN feature f ON f.pictogram_id = p.id
                WHERE pc.concept_id = ? AND pc.method IN ('dictionary', 'manual', 'ai')
-                 AND p.duplicate_of IS NULL AND p.color_class IN ('native', 'derivable', 'threshold')""",
+                 AND p.duplicate_of IS NULL AND p.topic IS NULL AND p.color_class IN ('native', 'derivable', 'threshold')""",
             (cid,),
         ).fetchall()
         rows = [r for r in rows if r["id"] not in kept and any(np.frombuffer(r["vec"], dtype=np.float16))]

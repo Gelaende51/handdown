@@ -500,7 +500,7 @@ def vlm_jobs(conn: sqlite3.Connection) -> dict[str, tuple[list[dict[str, Any]], 
            JOIN style_group g ON g.depiction_id = d.id JOIN pictogram p ON p.id = g.representative_id
            JOIN source s ON s.id = p.source_id
            -- raster pictograms also with an object: both versions are compared (raster_disagreements)
-           WHERE (d.object_id IS NULL OR p.format = 'raster')
+           WHERE (d.object_id IS NULL OR p.format = 'raster') AND p.topic IS NULL  -- off-topic: reference only (topic.py)
              -- answered before (also when unresolvable: those go to vlm_backup); ids as of the answer
              AND d.id NOT IN (SELECT subject_id FROM classification WHERE method = 'vlm' AND subject = 'depiction')
            GROUP BY d.id ORDER BY d.id"""
