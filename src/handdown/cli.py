@@ -563,18 +563,25 @@ def bench_claude(
 
 
 @app.command("vlm-jobs")
-def vlm_jobs(out: str = "work/vlm") -> None:
-    """Job lists for labelling depictions without an object on runners (items-/sources-<adapter>.jsonl)."""
+def vlm_jobs(out: str = "work/vlm", max_items: int = 50000) -> None:
+    """Job lists for labelling on runners: items-/sources-<list>.jsonl, where a list is an adapter or, above
+    ``max_items`` depictions, a numbered part of it (git-svg.1, git-svg.2)."""
     import json
     from pathlib import Path
 
     from . import bench
 
     Path(out).mkdir(parents=True, exist_ok=True)
+    for old in Path(out).glob("*-*.jsonl"):
+        if old.name.startswith(("items-", "sources-")):
+            old.unlink()  # parts of an earlier split must not linger
     for adapter, (items, sources) in bench.vlm_jobs(_conn(Config())).items():
-        for name, rows in ((f"items-{adapter}.jsonl", items), (f"sources-{adapter}.jsonl", sources)):
-            (Path(out) / name).write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows))
-        typer.echo(f"{adapter}: {len(items)} depictions from {len(sources)} sources")
+        parts = bench.split_parts(items, sources, max_items)
+        for n, (part, need) in enumerate(parts, 1):
+            name = adapter if len(parts) == 1 else f"{adapter}.{n}"
+            for prefix, rows in (("items", part), ("sources", need)):
+                (Path(out) / f"{prefix}-{name}.jsonl").write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows))
+            typer.echo(f"{name}: {len(part)} depictions from {len(need)} sources")
 
 
 @app.command("vlm-slice")

@@ -774,3 +774,16 @@ def raster_disagreements(conn: sqlite3.Connection) -> list[dict[str, Any]]:
         d["near"] = bool(d["monochrome_raw"] and d["original"] and match(d["monochrome_raw"], d["original"]) == "near")
         out.append(d)
     return out
+
+
+def split_parts(items: list[dict[str, Any]], sources: list[dict[str, Any]], max_items: int) -> list[tuple[list[dict[str, Any]], list[dict[str, Any]]]]:
+    """Job lists too long for one workflow run (256 runners at most) split
+    into parts of at most ``max_items``, sorted by source so a part needs few
+    sources; each part with the job list of just its sources."""
+    ordered = sorted(items, key=lambda i: (i["source_id"], i["key"]))
+    parts = [ordered[i : i + max_items] for i in range(0, len(ordered), max_items)] or [[]]
+    out = []
+    for part in parts:
+        need = {i["source_id"] for i in part}
+        out.append((part, [s for s in sources if s["id"] in need]))
+    return out

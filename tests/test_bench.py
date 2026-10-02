@@ -431,3 +431,13 @@ def test_vlm_apply_takes_the_original_and_logs_both_versions(tmp_path, monkeypat
     assert logged == {"m": "wn:car.n.01", "m@variant=original": "wn:apple.n.01"}
     report = bench.raster_disagreements(c)
     assert [(d["subject_id"], d["original"], d["monochrome"]) for d in report] == [(10, "wn:apple.n.01", "wn:car.n.01")]
+
+
+def test_job_lists_split_into_parts():
+    items = [{"key": k, "source_id": f"s{k % 3}", "original_id": str(k)} for k in range(10)]
+    sources = [{"id": f"s{n}"} for n in range(3)]
+    parts = bench.split_parts(items, sources, max_items=4)
+    assert [len(p[0]) for p in parts] == [4, 4, 2]
+    assert [i["key"] for p in parts for i in p[0]] == sorted(range(10), key=lambda k: (f"s{k % 3}", k))  # by source, contiguous
+    assert all({s["id"] for s in p[1]} == {i["source_id"] for i in p[0]} for p in parts)
+    assert bench.split_parts(items, sources, max_items=50) == [(sorted(items, key=lambda i: (i["source_id"], i["key"])), sources)]
