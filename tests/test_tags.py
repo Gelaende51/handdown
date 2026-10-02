@@ -28,6 +28,8 @@ def test_corner_style_from_paths():
     assert tags.corner_style(fillet) == "rounded"
     star = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-6 4 2 8-6-5-6 5 2-8-6-4h7z"/></svg>'
     assert tags.corner_style(star) == "sharp"
+    percent = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect width="20" height="20" rx="15%"/></svg>'
+    assert tags.corner_style(percent) == "rounded"  # lengths with units
 
 
 def test_pictogram_tags_from_measurements_and_depiction():

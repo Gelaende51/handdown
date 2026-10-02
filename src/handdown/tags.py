@@ -68,6 +68,12 @@ def canon_feature(text: str | None) -> str | None:
     return f"feature:{SYNONYMS.get(phrase, phrase)}"
 
 
+def _length(value: str | None) -> float:
+    """An SVG length ("4", "4px", "15%"), 0 when absent or unreadable."""
+    m = re.match(r"\s*(-?\d*\.?\d+)", value or "")
+    return float(m.group(1)) if m else 0.0
+
+
 def _turn(a: tuple[float, float], b: tuple[float, float]) -> float:
     """Turning angle in degrees between two directions."""
     la, lb = math.hypot(*a), math.hypot(*b)
@@ -95,7 +101,7 @@ def corner_style(svg: str, sharp_turn: float = 35.0) -> str | None:
         if tag in ("circle", "ellipse"):
             curves += 4
         elif tag == "rect":
-            if float(el.get("rx") or el.get("ry") or 0) > 0:
+            if _length(el.get("rx")) or _length(el.get("ry")):
                 curves += 4
             else:
                 sharp += 4
