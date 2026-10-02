@@ -170,3 +170,31 @@ def idea_relations(conn: sqlite3.Connection, ideas: list[str] | None = None) -> 
     conn.executemany("INSERT OR IGNORE INTO idea_relation VALUES (?, ?, ?, ?)", rows)
     conn.commit()
     return len(set(rows))
+
+
+def link_wikipedia(conn: sqlite3.Connection, listing: Any) -> int:
+    """Set the Wikidata item and English Wikipedia article of symbols whose
+    names match a Wikidata symbol's label or alias ("heart symbol", "save
+    icon"). Ambiguous matches are skipped."""
+    import json
+    from pathlib import Path
+
+    index: dict[str, set[str]] = defaultdict(set)
+    entries = {}
+    for line in Path(listing).read_text().splitlines():
+        e = json.loads(line)
+        entries[e["qid"]] = e
+        for name in [e["label"], e["wikipedia"], *e.get("aliases", [])]:
+            index[name.lower().strip()].add(e["qid"])
+    labels = dict(conn.execute("SELECT id, label FROM concept"))
+    n = 0
+    for sid, obj, lead in conn.execute("SELECT id, object_id, lead_id FROM symbol WHERE wikidata_qid IS NULL").fetchall():
+        names = [labels.get(c) for c in (lead, obj) if c and labels.get(c)]
+        candidates = [f"{x} {suffix}" for x in names for suffix in ("symbol", "icon", "sign")]
+        hits = {q for name in candidates for q in index.get(name.lower(), set())}
+        if len(hits) == 1:
+            e = entries[hits.pop()]
+            conn.execute("UPDATE symbol SET wikidata_qid = ?, wikipedia = ? WHERE id = ?", (e["qid"], e["wikipedia"], sid))
+            n += 1
+    conn.commit()
+    return n

@@ -16,6 +16,7 @@ import sqlite3
 import time
 from pathlib import Path
 from typing import Any
+from urllib.parse import unquote
 
 import httpx
 
@@ -108,3 +109,52 @@ def apply(conn: sqlite3.Connection, path: Path, log: Any = print) -> int:
     conn.commit()
     log(f"{n} concepts linked to Wikidata")
     return n
+
+
+SYMBOL = "Q80071"  # symbol: the class tree whose members are the catalog's symbols (symbols.py)
+
+
+def fetch_symbols(out: Path, client: httpx.Client | None = None, chunk: int = 200, log: Any = print) -> int:
+    """Wikidata items that are symbols (instance or subclass of a class below
+    *symbol*) and have an English Wikipedia article, with label and aliases
+    (JSONL). The class tree is read first and the members fetched in chunks of
+    classes, which keeps each query under the service's time limit."""
+    c = client or _client()
+
+    def query(q: str) -> list[dict]:
+        for attempt in range(5):
+            r = c.get(SPARQL, params={"query": q, "format": "json"})
+            if r.status_code in (429, 500, 502, 503, 504):
+                time.sleep(5 * 2**attempt)
+                continue
+            r.raise_for_status()
+            return r.json()["results"]["bindings"]
+        r.raise_for_status()
+        return []
+
+    classes = sorted({b["c"]["value"].rsplit("/", 1)[1] for b in query(f"SELECT DISTINCT ?c WHERE {{ ?c wdt:P279* wd:{SYMBOL} }}")})
+    log(f"{len(classes)} classes below symbol")
+    items: dict[str, dict] = {}
+    for i in range(0, len(classes), chunk):
+        values = " ".join(f"wd:{q}" for q in classes[i : i + chunk])
+        rows = query(
+            f"""SELECT ?item ?article ?label (GROUP_CONCAT(DISTINCT ?alias; separator="|") AS ?aliases) WHERE {{
+                  VALUES ?c {{ {values} }}
+                  ?item wdt:P31|wdt:P279 ?c .
+                  ?article schema:about ?item ; schema:isPartOf <https://en.wikipedia.org/> .
+                  OPTIONAL {{ ?item rdfs:label ?label FILTER(LANG(?label) = "en") }}
+                  OPTIONAL {{ ?item skos:altLabel ?alias FILTER(LANG(?alias) = "en") }}
+                }} GROUP BY ?item ?article ?label"""
+        )
+        for b in rows:
+            qid = b["item"]["value"].rsplit("/", 1)[1]
+            title = b["article"]["value"].rsplit("/wiki/", 1)[1].replace("_", " ")
+            aliases = [a for a in b.get("aliases", {}).get("value", "").split("|") if a]
+            items[qid] = {"qid": qid, "label": b.get("label", {}).get("value", title), "aliases": aliases, "wikipedia": unquote(title)}
+        time.sleep(1)
+        log(f"  {min(i + chunk, len(classes))}/{len(classes)} classes, {len(items)} items")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    with out.open("w") as f:
+        for qid in sorted(items):
+            f.write(json.dumps(items[qid], ensure_ascii=False, sort_keys=True) + "\n")
+    return len(items)

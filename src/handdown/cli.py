@@ -718,6 +718,24 @@ def symbols(min_sources: int = 3) -> None:
     typer.echo(f"idea relations: {sym.idea_relations(conn)}")
 
 
+@app.command("wikidata-symbols")
+def wikidata_symbols(out: str = "work/wikidata/symbols.jsonl") -> None:
+    """Runner: Wikidata items that are symbols, with their English Wikipedia article (needs query.wikidata.org)."""
+    from pathlib import Path
+
+    from . import wikidata
+
+    typer.echo(f"{wikidata.fetch_symbols(Path(out))} symbols -> {out}")
+
+
+@app.command("link-symbols")
+def link_symbols(listing: str = "work/wikidata/symbols.jsonl") -> None:
+    """Link symbols to their Wikidata item and Wikipedia article by name."""
+    from . import symbols as sym
+
+    typer.echo(f"{sym.link_wikipedia(_conn(Config()), listing)} symbols linked")
+
+
 @app.command("vlm-apply")
 def vlm_apply(answers: list[str]) -> None:
     """Set objects of depictions without one from vision model answers (method 'vlm')."""

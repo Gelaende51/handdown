@@ -114,3 +114,49 @@ def test_rerun_keeps_claude_and_manual_symbols(tmp_path, monkeypatch):
     symbols.form(c, min_sources=3)
     assert c.execute("SELECT COUNT(*) FROM symbol WHERE id='sym:heart-symbol'").fetchone()[0] == 1
     assert c.execute("SELECT COUNT(*) FROM symbol WHERE label='floppy disk (save)'").fetchone()[0] == 1
+
+
+def test_wikidata_symbol_list_is_fetched_in_class_chunks(tmp_path):
+    import json
+
+    import httpx
+
+    from handdown import wikidata
+
+    queries = []
+
+    def handler(req):
+        q = req.url.params.get("query", "")
+        queries.append(q)
+        if "wdt:P279* wd:Q80071" in q and "VALUES" not in q:
+            return httpx.Response(200, json={"results": {"bindings": [{"c": {"value": f"http://www.wikidata.org/entity/Q{n}"}} for n in (80071, 1, 2)]}})
+        rows = [
+            {
+                "item": {"value": "http://www.wikidata.org/entity/Q1131868"},
+                "article": {"value": "https://en.wikipedia.org/wiki/Heart_symbol"},
+                "label": {"value": "heart symbol"},
+                "aliases": {"value": "love heart|♥"},
+            }
+        ]
+        return httpx.Response(200, json={"results": {"bindings": rows}})
+
+    out = tmp_path / "symbols.jsonl"
+    n = wikidata.fetch_symbols(out, client=httpx.Client(transport=httpx.MockTransport(handler)), chunk=2, log=lambda *_: None)
+    rows = [json.loads(line) for line in out.read_text().splitlines()]
+    assert n == 1 and rows == [{"qid": "Q1131868", "label": "heart symbol", "aliases": ["love heart", "♥"], "wikipedia": "Heart symbol"}]
+    assert sum("VALUES" in q for q in queries) == 2  # 3 classes in chunks of 2
+
+
+def test_symbols_link_to_wikipedia_by_label(tmp_path, monkeypatch):
+    import json
+
+    c = _catalog(tmp_path, monkeypatch)
+    c.execute("INSERT INTO concept (id, label) VALUES ('wn:heart.n.01', 'heart'), ('term:love', 'love')")
+    c.execute("INSERT INTO symbol (id, label, object_id, lead_id, method) VALUES ('sym:heart-love', 'heart (love)', 'wn:heart.n.01', 'term:love', 'rules')")
+    c.execute("INSERT INTO symbol (id, label, object_id, method) VALUES ('sym:mug', 'mug', 'wn:mug.n.04', 'rules')")
+    c.commit()
+    listing = tmp_path / "symbols.jsonl"
+    listing.write_text(json.dumps({"qid": "Q1131868", "label": "heart symbol", "aliases": ["love heart"], "wikipedia": "Heart symbol"}) + "\n")
+    assert symbols.link_wikipedia(c, listing) == 1
+    assert tuple(c.execute("SELECT wikidata_qid, wikipedia FROM symbol WHERE id='sym:heart-love'").fetchone()) == ("Q1131868", "Heart symbol")
+    assert c.execute("SELECT wikidata_qid FROM symbol WHERE id='sym:mug'").fetchone()[0] is None
