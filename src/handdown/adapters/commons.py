@@ -17,12 +17,15 @@ from urllib.parse import unquote
 
 import httpx
 
-from .. import db
+from .. import db, raster
 from ..config import USER_AGENT, Config
 from .base import Item, SourceInfo
 
 API = "https://commons.wikimedia.org/w/api.php"
 MAX_SVG = 2_000_000
+FORMATS = ("svg", "png", "gif")  # JPEG on Commons is photographs
+MIMES = {"image/svg+xml": "svg", "image/png": "png", "image/gif": "gif"}
+THUMB = 512  # rasters wider than this are fetched as Commons thumbnails
 
 
 def _text(value: object) -> str | None:
@@ -73,7 +76,7 @@ class CommonsAdapter:
             return self._get(**params)
         return data
 
-    def _members(self, category: str, depth: int, limit: int) -> list[str]:
+    def _members(self, category: str, depth: int, limit: int, formats: tuple[str, ...] = FORMATS) -> list[str]:
         files: list[str] = []
         seen = {category}
         queue = [(category, 0)]
@@ -87,7 +90,7 @@ class CommonsAdapter:
                     if t.startswith("Category:") and d < depth and t not in seen:
                         seen.add(t)
                         queue.append((t, d + 1))
-                    elif t.lower().endswith(".svg"):
+                    elif t.lower().endswith(tuple("." + f for f in formats)):
                         files.append(t)
                 if "continue" not in data:
                     break
@@ -98,22 +101,31 @@ class CommonsAdapter:
         row = self.conn.execute("SELECT url, adapter_args FROM source WHERE id=?", (source_id,)).fetchone()
         args = json.loads(row["adapter_args"] or "{}")
         category = args.get("category") or "Category:" + unquote(row["url"].rsplit("Category:", 1)[1]).replace("_", " ")
-        titles = self._members(category, int(args.get("depth", 2)), int(args.get("limit", 20000)))
+        formats = tuple(args.get("formats", FORMATS))  # e.g. ["png", "gif"] to add rasters to a harvested category
+        titles = self._members(category, int(args.get("depth", 2)), int(args.get("limit", 20000)), formats)
         for i in range(0, len(titles), 50):
             data = self._get(
                 action="query",
                 prop="imageinfo|categories",
                 iiprop="url|extmetadata|mime|size",
+                iiurlwidth=str(THUMB),  # rasters come as thumbnails
                 clshow="!hidden",
                 cllimit="max",
                 titles="|".join(titles[i : i + 50]),
             )
             for page in data.get("query", {}).get("pages", []):
                 info = (page.get("imageinfo") or [{}])[0]
-                if info.get("mime") != "image/svg+xml" or info.get("size", 0) > MAX_SVG:
+                kind = MIMES.get(info.get("mime", ""))
+                if kind not in formats or (kind == "svg" and info.get("size", 0) > MAX_SVG):
                     continue
+                is_raster = kind != "svg"
+                url = info.get("thumburl") if is_raster and info.get("width", 0) > THUMB else info["url"]
+                thumb = is_raster and info.get("width", 0) > THUMB
+                dims = (info.get("thumbwidth", 0), info.get("thumbheight", 0)) if thumb else (info.get("width", 0), info.get("height", 0))
+                if is_raster and not raster.icon_like(*dims):
+                    continue  # banners, maps, photographs of signs
                 try:
-                    r = self._fetch(info["url"])
+                    r = self._fetch(url)
                 except httpx.HTTPError as e:
                     db.log_error(self.conn, source_id, page["title"], "harvest", repr(e))
                     continue
@@ -123,12 +135,18 @@ class CommonsAdapter:
                 meta = info.get("extmetadata") or {}
                 val = {k: _text((v or {}).get("value")) for k, v in meta.items()}.get
                 title = page["title"].removeprefix("File:")
+                try:
+                    svg = raster.to_svg(r.content) if is_raster else r.text
+                except OSError as e:  # PIL cannot read it
+                    db.log_error(self.conn, source_id, page["title"], "harvest", repr(e))
+                    continue
                 yield Item(
                     license=val("LicenseShortName"),
                     author=val("Artist"),
                     original_id=title,
-                    name=re.sub(r"\.svg$", "", title, flags=re.I),
-                    svg=r.text,
+                    name=re.sub(r"\.(svg|png|gif)$", "", title, flags=re.I),
+                    svg=svg,
+                    format="raster" if is_raster else "svg",
                     url=info.get("descriptionurl"),
                     categories=[c["title"].removeprefix("Category:") for c in page.get("categories", [])],
                     description=json.dumps(

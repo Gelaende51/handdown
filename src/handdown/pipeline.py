@@ -12,7 +12,7 @@ from typing import Any
 
 import numpy as np
 
-from . import db
+from . import db, raster
 from .adapters.base import Adapter, SourceInfo
 from .config import Config
 from .metrics import METHOD_VERSION, measure
@@ -133,7 +133,8 @@ def harvest(
 def _work(args: tuple[int, str, str, str | None]) -> tuple[int, dict[str, Any] | None, str | None]:
     pid, raw, norm_root, old_sha = args
     try:
-        r = normalize(raw)
+        # pixel pictograms: the 1-bit version of the wrapped original (raster.py)
+        r = raster.monochrome(raw) if raster.is_raster(raw) else normalize(raw)
         sha = hashlib.sha256(r.svg.encode()).hexdigest()
         if sha == old_sha:
             return pid, {"unchanged": True}, None  # same drawing: keep measurements
@@ -232,7 +233,7 @@ def _store(conn: sqlite3.Connection, pid: int, res: dict[str, Any], now: str) ->
             r.node_count,
             r.path_count,
             int(r.has_text),
-            int(not r.uses["stroke"] and not r.uses["mask"] and not r.uses["text"]),
+            int(not r.uses["stroke"] and not r.uses["mask"] and not r.uses["text"] and not r.uses.get("raster")),  # rasters need tracing first
             now,
             now,
             pid,

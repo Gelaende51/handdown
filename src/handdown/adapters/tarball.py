@@ -3,6 +3,7 @@ API rate limit) and npm packages. Only SVG files are extracted."""
 
 from __future__ import annotations
 
+import io
 import json
 import re
 import sqlite3
@@ -12,7 +13,9 @@ from concurrent.futures import Future, ThreadPoolExecutor
 from pathlib import Path, PurePosixPath
 
 import httpx
+from PIL import Image
 
+from .. import raster
 from ..config import USER_AGENT, Config
 from .base import Item, SourceInfo
 
@@ -62,6 +65,17 @@ def guess_license(text: str) -> str | None:
         if re.search(pat, text, re.I):
             return spdx
     return None
+
+
+RASTER_EXT = (".png", ".gif", ".bmp", ".ico")
+MAX_RASTER = 2 * 1024 * 1024
+# size folders and suffixes of one icon drawn at several sizes ("16/save.png", "save-32x32.png", retina copies with an @2x suffix)
+SIZE_DIR = re.compile(r"^(\d{1,4}(x\d{1,4})?(@\dx)?|\d{1,4}px|scalable|(drawable|mipmap)-\w+|[xm]*hdpi|ldpi)$", re.I)
+SIZE_SUFFIX = re.compile(r"([-_.]?(\d{1,4}x\d{1,4}|\d{1,4}px|\d{2,4})|@\dx)$", re.I)
+
+
+def _raster_key(rel: PurePosixPath) -> tuple[tuple[str, ...], str]:
+    return tuple(p.lower() for p in rel.parts[:-1] if not SIZE_DIR.match(p)), SIZE_SUFFIX.sub("", rel.stem.lower())
 
 
 def _skip(parts: tuple[str, ...]) -> bool:
@@ -153,10 +167,11 @@ class TarballAdapter:
         dest = self.cfg.raw / re.sub(r"[^\w.-]+", "_", source_id)
         license_text = ""
         found: list[Item] = []
+        rasters: dict[tuple[tuple[str, ...], str], tuple[tarfile.TarInfo, PurePosixPath]] = {}
         with tarfile.open(tgz) as tar:
-            for m in tar:
-                if not m.isfile():
-                    continue
+            members = [m for m in tar if m.isfile()]
+            svg_stems = {PurePosixPath(m.name).stem.lower() for m in members if m.name.lower().endswith(".svg")}
+            for m in members:
                 p = PurePosixPath(m.name)
                 rel = PurePosixPath(*p.parts[1:]) if len(p.parts) > 1 else p  # drop top-level dir
                 if ".." in rel.parts or rel.is_absolute():
@@ -164,6 +179,12 @@ class TarballAdapter:
                 low = rel.name.lower()
                 if len(rel.parts) <= 2 and low.startswith(("license", "licence", "copying")) and not license_text:
                     license_text = tar.extractfile(m).read(200_000).decode("utf-8", "replace")  # type: ignore[union-attr]
+                    continue
+                if low.endswith(RASTER_EXT) and m.size <= MAX_RASTER and not _skip(rel.parts[:-1]) and rel.stem.lower() not in svg_stems:
+                    if not include or any(str(rel).startswith(i) for i in include):
+                        key = _raster_key(rel)  # one icon in several sizes: keep the largest file
+                        if key not in rasters or m.size > rasters[key][0].size:
+                            rasters[key] = (m, rel)
                     continue
                 if not low.endswith(".svg") or m.size > MAX_SVG or _skip(rel.parts[:-1]):
                     continue
@@ -187,7 +208,36 @@ class TarballAdapter:
                         categories=[c for c in rel.parts[:-1] if c.lower() not in ("svg", "svgs", "icons", "src", "dist", "assets")],
                     )
                 )
-        self.meta[source_id] = {"license": guess_license(license_text) if license_text else None, "svgs": len(found)}
+            svgs = len(found)
+            for m, rel in rasters.values():
+                data = tar.extractfile(m).read()  # type: ignore[union-attr]
+                try:
+                    with Image.open(io.BytesIO(data)) as img:
+                        size = img.size
+                    if not raster.icon_like(*size):
+                        continue
+                    svg = raster.to_svg(data)
+                except (OSError, ValueError, Image.DecompressionBombError):
+                    continue  # not an image PIL can read
+                out = dest / rel
+                out.parent.mkdir(parents=True, exist_ok=True)
+                out.write_bytes(data)
+                found.append(
+                    Item(
+                        original_id=str(rel),
+                        name=rel.stem,
+                        svg=svg,
+                        format="raster",
+                        url=self.file_url(args, str(rel)),
+                        raw_path=str(out.relative_to(self.cfg.root)) if out.is_relative_to(self.cfg.root) else str(out),
+                        categories=[
+                            c
+                            for c in rel.parts[:-1]
+                            if c.lower() not in ("png", "pngs", "icons", "src", "dist", "assets", "img", "images") and not SIZE_DIR.match(c)
+                        ],
+                    )
+                )
+        self.meta[source_id] = {"license": guess_license(license_text) if license_text else None, "svgs": svgs, "rasters": len(found) - svgs}
         if license_text:
             (dest / "LICENSE.txt").parent.mkdir(parents=True, exist_ok=True)
             (dest / "LICENSE.txt").write_text(license_text)

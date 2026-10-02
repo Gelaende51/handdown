@@ -54,9 +54,52 @@ def test_tarball_extracts_svgs_only_and_blocks_traversal(tmp_path, monkeypatch):
     items = {i.original_id: i for i in ad.items("gh:a/b")}
     assert set(items) == {"icons/home.svg", "icons/sub/car.svg"}
     assert items["icons/sub/car.svg"].categories == ["sub"]
-    assert ad.meta["gh:a/b"] == {"license": "MIT", "svgs": 2}
+    assert ad.meta["gh:a/b"] == {"license": "MIT", "svgs": 2, "rasters": 0}
     assert not (tmp_path / "evil.svg").exists()
     assert not tgz.exists()  # tarball removed after extraction
+
+
+def _png(w, h):
+    from PIL import Image, ImageDraw
+
+    img = Image.new("RGB", (w, h), "white")
+    ImageDraw.Draw(img).rectangle((w // 4, h // 4, 3 * w // 4, 3 * h // 4), fill="black")
+    buf = io.BytesIO()
+    img.save(buf, "PNG")
+    return buf.getvalue()
+
+
+def test_tarball_takes_raster_icons_where_no_svg_exists(tmp_path, monkeypatch):
+    from handdown import raster
+
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    cfg = Config()
+    conn = db.connect(cfg.db_path)
+    record_candidate(conn, None, id="gh:a/b", platform_id="github", name="b", adapter="git-svg", adapter_args={"repo": "a/b"}, harvest_status="accepted")
+    tgz = cfg.raw / "gh_a_b.tar.gz"
+    tgz.parent.mkdir(parents=True)
+    tgz.write_bytes(
+        _tarball(
+            {
+                "b-main/icons/home.svg": SVG,
+                "b-main/png/home.png": _png(32, 32),  # the vector exists: skipped
+                "b-main/png/16/save.png": _png(16, 16),
+                "b-main/png/32x32/save.png": _png(32, 32),  # the largest size is kept
+                "b-main/png/apps/save.png": _png(24, 24),  # another folder, another icon
+                "b-main/img/ok.gif": _png(24, 24),
+                "b-main/img/banner.png": _png(1200, 200),
+                "b-main/docs/screenshot.png": _png(1920, 1080),
+            }
+        )
+    )
+    ad = GitSvgAdapter(cfg, conn)
+    items = {i.original_id: i for i in ad.items("gh:a/b")}
+    assert set(items) == {"icons/home.svg", "png/32x32/save.png", "png/apps/save.png", "img/ok.gif"}
+    save = items["png/32x32/save.png"]
+    assert save.format == "raster" and raster.is_raster(save.svg) and save.name == "save"
+    assert raster.decode(save.svg).size == (32, 32)
+    assert items["icons/home.svg"].format == "svg"
+    assert ad.meta["gh:a/b"]["rasters"] == 3
 
 
 def _row(**kw):
@@ -76,7 +119,7 @@ def test_triage_decisions():
     assert "too large" in decide(big, iconify)[1]
 
 
-def test_commons_adapter_with_mock_api(tmp_path, monkeypatch):
+def _commons(tmp_path, monkeypatch, args):
     import httpx
 
     from handdown.adapters.commons import CommonsAdapter
@@ -92,43 +135,60 @@ def test_commons_adapter_with_mock_api(tmp_path, monkeypatch):
         name="X",
         adapter="commons",
         url="https://commons.wikimedia.org/wiki/Category:X_signs",
-        adapter_args={"depth": 1},
+        adapter_args=args,
         harvest_status="blocked-network",
     )
+    fetched = []
 
     def handler(req: httpx.Request) -> httpx.Response:
         p = dict(req.url.params)
         if req.url.host == "upload.example":
-            return httpx.Response(200, text=SVG.decode())
+            fetched.append(req.url.path)
+            return httpx.Response(200, content=_png(64, 64) if "thumb" in req.url.path else SVG)
         if p.get("list") == "categorymembers":
             if p["cmtitle"] == "Category:X signs":
-                return httpx.Response(200, json={"query": {"categorymembers": [{"title": "File:A.svg"}, {"title": "File:B.png"}, {"title": "Category:Sub"}]}})
+                members = [{"title": "File:A.svg"}, {"title": "File:B.png"}, {"title": "File:Photo.jpg"}, {"title": "Category:Sub"}]
+                return httpx.Response(200, json={"query": {"categorymembers": members}})
             return httpx.Response(200, json={"query": {"categorymembers": [{"title": "File:C.svg"}]}})
-        pages = [
-            {
-                "title": t,
-                "imageinfo": [
-                    {
-                        "mime": "image/svg+xml",
-                        "size": 100,
-                        "url": f"https://upload.example/{t}",
-                        "descriptionurl": f"https://commons/{t}",
-                        "extmetadata": {"LicenseShortName": {"value": "CC0"}, "Artist": {"value": "<a href='x'>Jane</a>"}},
-                    }
-                ],
-                "categories": [{"title": "Category:X signs"}],
+        assert p.get("iiurlwidth") == "512"  # rasters come as thumbnails
+        pages = []
+        for t in p["titles"].split("|"):
+            png = t.endswith(".png")
+            info = {
+                "mime": "image/png" if png else "image/svg+xml",
+                "size": 100,
+                "width": 2000 if png else 24,
+                "height": 2000 if png else 24,
+                "url": f"https://upload.example/{t}",
+                "thumburl": f"https://upload.example/thumb/{t}",
+                "thumbwidth": 512,
+                "thumbheight": 512,
+                "descriptionurl": f"https://commons/{t}",
+                "extmetadata": {"LicenseShortName": {"value": "CC0"}, "Artist": {"value": "<a href='x'>Jane</a>"}},
             }
-            for t in p["titles"].split("|")
-        ]
+            pages.append({"title": t, "imageinfo": [info], "categories": [{"title": "Category:X signs"}]})
         return httpx.Response(200, json={"query": {"pages": pages}})
 
     ad = CommonsAdapter(cfg, conn, delay=0)
     ad.client = httpx.Client(transport=httpx.MockTransport(handler))
-    items = list(ad.items("commons:x"))
-    assert sorted(i.name for i in items) == ["A", "C"]
-    meta = json.loads(items[0].description)
+    return list(ad.items("commons:x")), fetched
+
+
+def test_commons_adapter_with_mock_api(tmp_path, monkeypatch):
+    from handdown import raster
+
+    items, _ = _commons(tmp_path, monkeypatch, {"depth": 1})
+    by = {i.name: i for i in items}
+    assert sorted(by) == ["A", "B", "C"]  # the photo (JPEG) is not a pictogram source
+    meta = json.loads(by["A"].description)
     assert meta["license"] == "CC0" and meta["artist"] == "Jane"
-    assert items[0].categories == ["X signs"]
+    assert by["A"].categories == ["X signs"] and by["A"].format == "svg"
+    assert by["B"].format == "raster" and raster.decode(by["B"].svg).size == (64, 64)
+
+
+def test_commons_formats_limit_a_rerun_to_rasters(tmp_path, monkeypatch):
+    items, fetched = _commons(tmp_path, monkeypatch, {"depth": 1, "formats": ["png", "gif"]})
+    assert [i.name for i in items] == ["B"] and fetched == ["/thumb/File:B.png"]
 
 
 def test_commons_text_handles_numbers_and_language_dicts():
