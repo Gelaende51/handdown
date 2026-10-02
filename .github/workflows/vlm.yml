@@ -51,14 +51,15 @@ jobs:
     timeout-minutes: 350
     strategy:
       fail-fast: false
-      # 4 of the plan's 20 concurrent jobs stay free, so harvest runs started later do not wait for the whole labelling run
-      max-parallel: 16
+      # the account runs 20 jobs at once: two bulk runs side by side leave 4 free for CI and short jobs (gateway-models, ollama-session)
+      max-parallel: 8
       matrix:
         shard: ${{ fromJSON(needs.plan.outputs.matrix) }}
     env:
       MODEL: ${{ inputs.model }}
       # only runs of hosted models get the key
       AI_GATEWAY_API_KEY: ${{ startsWith(inputs.model, 'gateway:') && secrets.AI_GATEWAY_API_KEY || '' }}
+      NOUS_API_KEY: ${{ startsWith(inputs.model, 'nous:') && secrets.NOUS_API_KEY || '' }}
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6

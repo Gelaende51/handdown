@@ -47,7 +47,8 @@ jobs:
     timeout-minutes: 350
     strategy:
       fail-fast: false
-      max-parallel: 20
+      # the account runs 20 jobs at once: two bulk runs side by side leave 4 free for CI and short jobs (gateway-models, ollama-session)
+      max-parallel: 8
       matrix:
         shard: ${{ fromJSON(needs.plan.outputs.matrix) }}
     steps:

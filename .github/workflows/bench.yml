@@ -45,6 +45,7 @@ jobs:
       LIMIT: ${{ inputs.limit }}
       # only jobs of hosted models get the key
       AI_GATEWAY_API_KEY: ${{ startsWith(matrix.model, 'gateway:') && secrets.AI_GATEWAY_API_KEY || '' }}
+      NOUS_API_KEY: ${{ startsWith(matrix.model, 'nous:') && secrets.NOUS_API_KEY || '' }}
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
