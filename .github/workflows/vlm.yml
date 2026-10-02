@@ -48,7 +48,8 @@ jobs:
     timeout-minutes: 350
     strategy:
       fail-fast: false
-      max-parallel: 20
+      # 4 of the plan's 20 concurrent jobs stay free, so harvest runs started later do not wait for the whole labelling run
+      max-parallel: 16
       matrix:
         shard: ${{ fromJSON(needs.plan.outputs.matrix) }}
     env:
