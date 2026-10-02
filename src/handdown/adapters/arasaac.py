@@ -11,6 +11,7 @@ import json
 import sqlite3
 import time
 from collections.abc import Iterator
+from concurrent.futures import Future, ThreadPoolExecutor
 
 import httpx
 
@@ -28,10 +29,11 @@ class ArasaacAdapter:
     name = "arasaac"
     min_items = 1
 
-    def __init__(self, cfg: Config, conn: sqlite3.Connection, delay: float = 0.05):
+    def __init__(self, cfg: Config, conn: sqlite3.Connection, delay: float = 0.05, workers: int = 6):
         self.cfg = cfg
         self.conn = conn
         self.delay = delay
+        self.workers = workers  # parallel image requests: the black-and-white version is rendered on demand
         self.client = httpx.Client(headers={"User-Agent": USER_AGENT}, timeout=120, follow_redirects=True)
         self.meta: dict[str, dict] = {}
 
@@ -42,15 +44,15 @@ class ArasaacAdapter:
                 id=r["id"], name=r["name"], platform_id=r["platform_id"], url=r["url"], license_spdx=LICENSE, extra=json.loads(r["adapter_args"] or "{}")
             )
 
-    def _image(self, source_id: str, url: str, params: dict[str, str] | None = None) -> str | None:
+    def _image(self, url: str, params: dict[str, str] | None = None) -> tuple[str | None, str | None]:
+        """(wrapped image, error); runs in worker threads, so errors are returned, not logged."""
         try:
             r = self.client.get(url, params=params)
             time.sleep(self.delay)
             r.raise_for_status()
-            return raster.to_svg(r.content)
+            return raster.to_svg(r.content), None
         except (httpx.HTTPError, OSError) as e:
-            db.log_error(self.conn, source_id, url, "harvest", repr(e))
-            return None
+            return None, repr(e)
 
     def items(self, source_id: str) -> Iterator[Item]:
         row = self.conn.execute("SELECT adapter_args FROM source WHERE id=?", (source_id,)).fetchone()
@@ -59,8 +61,30 @@ class ArasaacAdapter:
         r = self.client.get(f"{API}/pictograms/all/{language}")
         r.raise_for_status()
         pictos = r.json()[: args.get("limit")]
-        n = 0
-        for p in pictos:
+        self._n = 0
+        pool = ThreadPoolExecutor(self.workers)
+
+        def window(batch: list[dict]) -> list[tuple[Future, Future]]:
+            return [
+                (
+                    pool.submit(self._image, f"{STATIC}/{p['_id']}/{p['_id']}_300.png"),
+                    pool.submit(self._image, f"{API}/pictograms/{p['_id']}", {"color": "false", "resolution": "500"}),
+                )
+                for p in batch
+            ]
+
+        # windows of 100 pictograms: finished images do not pile up in memory
+        batches = [pictos[i : i + 100] for i in range(0, len(pictos), 100)]
+        pending = window(batches[0]) if batches else []
+        for k, batch in enumerate(batches):
+            current, pending = pending, (window(batches[k + 1]) if k + 1 < len(batches) else [])
+            yield from self._emit(source_id, zip(batch, current, strict=True), args)
+        pool.shutdown()
+        self.meta[source_id] = {"license": LICENSE, "pictograms": len(pictos), "images": self._n}
+
+    def _emit(self, source_id: str, pairs: Iterator[tuple[dict, tuple[Future, Future]]], args: dict) -> Iterator[Item]:
+        language = args.get("language", "en")
+        for p, (colour_f, bw_f) in pairs:
             pid = p["_id"]
             words = [k["keyword"] for k in p.get("keywords", []) if k.get("keyword")]
             meta = {k: p.get(k) for k in ("keywords", "synsets", "categories", "tags", "schematic", "sex", "violence", "desc", "lastUpdated")}
@@ -74,12 +98,9 @@ class ArasaacAdapter:
                 license=LICENSE,
                 author=AUTHOR,
             )
-            colour = self._image(source_id, f"{STATIC}/{pid}/{pid}_300.png")
-            if colour:
-                n += 1
-                yield Item(original_id=str(pid), svg=colour, **common)
-            bw = self._image(source_id, f"{API}/pictograms/{pid}", {"color": "false", "resolution": "500"})
-            if bw:
-                n += 1
-                yield Item(original_id=f"{pid}/bw", svg=bw, **{**common, "tags": common["tags"] + ["official black and white"]})
-        self.meta[source_id] = {"license": LICENSE, "pictograms": len(pictos), "images": n}
+            for (svg, err), oid, extra in ((colour_f.result(), str(pid), []), (bw_f.result(), f"{pid}/bw", ["official black and white"])):
+                if err:
+                    db.log_error(self.conn, source_id, oid, "harvest", err)
+                elif svg:
+                    self._n += 1
+                    yield Item(original_id=oid, svg=svg, **{**common, "tags": common["tags"] + extra})

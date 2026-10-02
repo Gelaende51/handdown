@@ -61,3 +61,27 @@ def test_arasaac_colour_original_and_official_black_and_white(tmp_path, monkeypa
     assert json.loads(colour.description)["keywords"][0]["meaning"] == "fruit of the apple tree"
     assert "official black and white" in bw.tags
     assert any(u.startswith("https://static.arasaac.org/pictograms/2340/2340_300.png") for u in asked)
+
+
+def test_arasaac_fetches_in_parallel_and_keeps_the_order(tmp_path, monkeypatch):
+    import threading
+
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    cfg = Config()
+    conn = db.connect(cfg.db_path)
+    record_candidate(
+        conn, None, id="arasaac:all", platform_id="arasaac", name="ARASAAC", adapter="arasaac", adapter_args={"language": "en"}, harvest_status="accepted"
+    )
+    threads = set()
+
+    def handler(req):
+        if req.url.path == "/v1/pictograms/all/en":
+            return httpx.Response(200, json=[{"_id": n, "keywords": [{"keyword": f"w{n}"}]} for n in range(1, 13)])
+        threads.add(threading.get_ident())
+        return httpx.Response(200, content=_png((0, 0, 0, 255)))
+
+    ad = ArasaacAdapter(cfg, conn, delay=0, workers=4)
+    ad.client = httpx.Client(transport=httpx.MockTransport(handler))
+    ids = [i.original_id for i in ad.items("arasaac:all")]
+    assert ids == [x for n in range(1, 13) for x in (str(n), f"{n}/bw")]
+    assert len(threads) > 1
