@@ -39,6 +39,8 @@ table{border-collapse:collapse;width:100%;font-size:13px}th,td{text-align:left;p
 td.n{text-align:right;font-variant-numeric:tabular-nums}.wide{overflow-x:auto}
 .st{font-size:11px;border-radius:3px;padding:1px 5px;background:#eee}.st.harvested{background:#dcf2dc}.st.rejected{background:#f6dede}
 .st.accepted{background:#e2ebfb}.st.failed,.st.blocked-network,.st.blocked-credentials{background:#fbecd2}
+.chip{display:inline-block;border:1px solid #2457c5;border-radius:12px;padding:1px 8px;margin:2px;font-size:12px}
+.facets{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}.facets ul{margin:0;padding-left:16px}
 .split{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:16px;align-items:start}
 @media (max-width:760px){.split{grid-template-columns:1fr}}
 aside.siblings{border:1px dashed #2457c5;border-radius:8px;padding:8px 12px;background:#f2f6fd}
@@ -176,7 +178,7 @@ class Catalog:
 def page(title: str, crumbs: str, body: str) -> bytes:
     return (
         f"<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'>"
-        f"<title>{esc(title)} · handdown</title><style>{CSS}</style><main><nav class=m><a href='/'>ideas</a> · <a href='/sources'>sources</a></nav>"
+        f"<title>{esc(title)} · handdown</title><style>{CSS}</style><main><nav class=m><a href='/'>ideas</a> · <a href='/sources'>sources</a> · <a href='/browse'>tags</a></nav>"
         f"<div class=crumbs><a href='/'>handdown</a> {crumbs}</div>"
         f"<p id=msg class=m></p>{body}{DIALOG}</main><script>{JS}</script>"
     ).encode()
@@ -220,6 +222,8 @@ class Handler(BaseHTTPRequestHandler):
             self.query = urllib.parse.parse_qs(path.query)
             if kind == "sources":
                 return self._send(200, self.sources(cat))
+            if kind == "browse":
+                return self._send(200, self.browse(cat))
             if kind == "svg" and re.fullmatch(r"[0-9a-f]{64}\.svg", ident):
                 f = self.cfg.norm_path(ident[:-4])
                 return self._send(200, f.read_bytes(), "image/svg+xml") if f.exists() else self._send(404, b"not found")
@@ -339,7 +343,8 @@ class Handler(BaseHTTPRequestHandler):
         ]
         title = cat.label(cid)
         body = (
-            f"<h1>{esc(title)} {flag('idea', cid)}</h1><div class=split><div><p class=m>symbols standing for it</p>{''.join(cards)}</div>"
+            f"<h1>{esc(title)} {flag('idea', cid)}</h1><p class=m><a href='/browse?idea={q(cid)}'>filter by tags</a></p>"
+            f"<div class=split><div><p class=m>symbols standing for it</p>{''.join(cards)}</div>"
             f"{self.sibling_panel(cat, 'idea_relation', cid)}</div>"
         )
         return page(title, f"› idea › {esc(title)}", body)
@@ -369,7 +374,8 @@ class Handler(BaseHTTPRequestHandler):
         )
         obj = f"drawn object: <a href='/object/{q(s['object_id'])}'>{esc(cat.label(s['object_id']))}</a>" if s["object_id"] else ""
         body = (
-            f"<h1>{esc(s['label'])} {flag('symbol', sid)}</h1><p>stands for: {kinds or '–'}</p><p class=m>{obj}{wiki} · formed by {esc(s['method'])}</p>"
+            f"<h1>{esc(s['label'])} {flag('symbol', sid)}</h1><p>stands for: {kinds or '–'}</p><p class=m>{obj}{wiki} · formed by {esc(s['method'])}"
+            f" · <a href='/browse?symbol={q(sid)}'>filter by tags</a></p>"
             f"<div class=split><div>{''.join(cards)}</div>{self.sibling_panel(cat, 'symbol_relation', sid)}</div>"
         )
         return page(s["label"], crumbs, body)
@@ -465,6 +471,71 @@ class Handler(BaseHTTPRequestHandler):
             f"<p class=m>view {esc(snap.get('view'))} · features {esc(snap.get('varieties'))} · method {esc(snap.get('method'))}</p>"
         )
         return page(p["original_name"] or str(p["id"]), crumbs, body)
+
+    # ---- tags ----------------------------------------------------------------
+    def browse(self, cat: Catalog) -> bytes:
+        chosen = [t for t in self.query.get("tag", []) if t][:8]
+        scope = {k: self.query[k][0] for k in ("source", "symbol", "idea") if self.query.get(k)}
+        params = [("tag", t) for t in chosen] + list(scope.items())
+
+        def url(ps: list[tuple[str, str]]) -> str:
+            return "/browse" + ("?" + urllib.parse.urlencode(ps) if ps else "")
+
+        scope_sql = {
+            "source": "SELECT id FROM pictogram WHERE source_id = ?",
+            "symbol": """SELECT m.pictogram_id FROM symbol_depiction sd JOIN style_group g ON g.depiction_id = sd.depiction_id
+                         JOIN style_member m ON m.style_group_id = g.id WHERE sd.symbol_id = ?""",
+            "idea": """SELECT m.pictogram_id FROM symbol_idea i JOIN symbol_depiction sd ON sd.symbol_id = i.symbol_id
+                       JOIN style_group g ON g.depiction_id = sd.depiction_id JOIN style_member m ON m.style_group_id = g.id WHERE i.concept_id = ?""",
+        }
+        parts = ["SELECT pictogram_id FROM pictogram_tag WHERE tag = ?" for _ in chosen] + [scope_sql[k] for k in scope]
+        args = [*chosen, *scope.values()]
+        cap = 50000
+        total = None
+        if parts:
+            cat.conn.execute("CREATE TEMP TABLE IF NOT EXISTS browse_ids (id INTEGER PRIMARY KEY)")
+            cat.conn.execute("DELETE FROM browse_ids")
+            cat.conn.execute(f"INSERT OR IGNORE INTO browse_ids SELECT * FROM ({' INTERSECT '.join(parts)}) LIMIT {cap + 1}", args)
+            total = cat.conn.execute("SELECT COUNT(*) FROM browse_ids").fetchone()[0]
+        if total is not None and total <= cap:
+            counts = cat.conn.execute(
+                "SELECT tag, COUNT(*) FROM pictogram_tag WHERE pictogram_id IN (SELECT id FROM browse_ids) GROUP BY tag ORDER BY 2 DESC"
+            ).fetchall()
+            note = "counts within this selection"
+        else:
+            counts = cat.conn.execute("SELECT tag, n FROM tag_count ORDER BY n DESC").fetchall()
+            note = "counts over the whole catalog" + (" (the selection is larger than 50,000)" if total else "")
+        groups: dict[str, list[tuple[str, int]]] = {}
+        for tag, n in counts:
+            if tag in chosen:
+                continue
+            groups.setdefault(tag.split(":", 1)[0], []).append((tag, n))
+        facets = "".join(
+            f"<div><h2>{esc(ns)}</h2><ul>"
+            + "".join(f"<li><a href='{esc(url([*params, ('tag', t)]))}'>{esc(t.split(':', 1)[-1])}</a> <span class=m>{n:,}</span></li>" for t, n in items[:15])
+            + "</ul></div>"
+            for ns, items in sorted(groups.items())
+        )
+        chips = "".join(
+            f"<span class=chip>{esc(t)} <a href='{esc(url([p for p in params if p != ('tag', t)]))}' title='remove'>×</a></span>" for t in chosen
+        ) + "".join(
+            f"<span class=chip>{esc(k)}: {esc(v)} <a href='{esc(url([p for p in params if p != (k, v)]))}' title='remove'>×</a></span>"
+            for k, v in scope.items()
+        )
+        results = ""
+        if total:
+            page_no = max(0, int(self.query.get("page", ["0"])[0]))
+            pics = cat.conn.execute(
+                "SELECT p.id, p.sha256, p.original_name FROM browse_ids b JOIN pictogram p ON p.id = b.id ORDER BY p.id LIMIT 200 OFFSET ?", (page_no * 200,)
+            ).fetchall()
+            more = f" <a href='{esc(url([*params, ('page', str(page_no + 1))]))}'>next ›</a>" if (page_no + 1) * 200 < min(total, cap) else ""
+            results = f"<h2>{total:,}{'+' if total > cap else ''} pictograms</h2>{tiles(pics)}<p>{more}</p>"
+        body = (
+            "<h1>Tags</h1><p class=m>Standardised tags from measurements (style, frame, symmetry, corners, ends), name rules (direction, view) "
+            f"and Claude's features (normalised). Choose tags to narrow the pictograms; {note}.</p>"
+            f"<p>{chips or '<span class=m>no tag chosen</span>'}</p>{results}<div class=facets>{facets}</div>"
+        )
+        return page("tags", "› tags", body)
 
     # ---- sourcing map ------------------------------------------------------
     def sources(self, cat: Catalog) -> bytes:
@@ -586,7 +657,7 @@ class Handler(BaseHTTPRequestHandler):
             f"<h2>Progress through the hierarchy</h2><p class=m>as of {esc(progress_time(cat.conn))} UTC</p><table>{figures}</table>"
             + (f"<h2>Led to</h2><p>{led_html}</p>" if led else "")
             + (f"<h2>Recent harvest errors</h2><ul>{err_html}</ul>" if errors else "")
-            + f"<h2>Pictograms</h2>{tiles(pics)}<p>{pager}</p>"
+            + f"<h2>Pictograms</h2><p class=m><a href='/browse?source={q(sid)}'>filter by tags</a></p>{tiles(pics)}<p>{pager}</p>"
         )
         crumbs = f"› <a href='/sources'>sources</a> › <a href='/platform/{q(s['platform_id'])}'>{esc(s['platform_id'])}</a> › {esc(s['name'])}"
         return page(s["name"], crumbs, body)

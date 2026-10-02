@@ -745,6 +745,15 @@ def source_stats_cmd() -> None:
     typer.echo(f"{len(stats)} sources")
 
 
+@app.command("tags")
+def tags_cmd(workers: int = 2, min_count: int = 20) -> None:
+    """Standardised tags for every unique, on-topic pictogram (filters in the review app's /browse)."""
+    from . import tags
+
+    cfg = Config()
+    typer.echo(tags.build(_conn(cfg), cfg, workers=workers, min_count=min_count, log=lambda *_: None))
+
+
 @app.command("vlm-apply")
 def vlm_apply(answers: list[str]) -> None:
     """Set objects of depictions without one from vision model answers (method 'vlm')."""

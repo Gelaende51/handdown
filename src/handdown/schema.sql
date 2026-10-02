@@ -415,3 +415,11 @@ CREATE TABLE IF NOT EXISTS source_progress (
     n INTEGER, valid INTEGER, dup INTEGER, off INTEGER, grouped INTEGER, object INTEGER, symbol INTEGER, embedded INTEGER,
     computed_at TEXT
 );
+-- Standardised tags for filtering (tags.py, handdown tags)
+CREATE TABLE IF NOT EXISTS pictogram_tag (
+    tag TEXT NOT NULL,              -- namespace:value, e.g. style:outline, frame:circle, feature:badge
+    pictogram_id INTEGER NOT NULL,
+    PRIMARY KEY (tag, pictogram_id)
+) WITHOUT ROWID;
+CREATE INDEX IF NOT EXISTS pictogram_tag_pictogram ON pictogram_tag(pictogram_id);
+CREATE TABLE IF NOT EXISTS tag_count (tag TEXT PRIMARY KEY, n INTEGER NOT NULL);
