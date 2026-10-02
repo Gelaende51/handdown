@@ -124,15 +124,18 @@ def _images(cfg: Any, rows: list[sqlite3.Row], size: int = 224) -> tuple[list[An
     return images, ids
 
 
-def embed(conn: sqlite3.Connection, cfg: Any, labels: list[dict[str, Any]], models: Any, batch: int = 64, log: Any = print) -> int:
-    """Embed every unique valid pictogram and store its top labels."""
+def embed(conn: sqlite3.Connection, cfg: Any, labels: list[dict[str, Any]], models: Any, batch: int = 64, log: Any = print, parts_only: bool = False) -> int:
+    """Embed every unique valid pictogram (or only the parts cut out of composites) and store its top labels."""
     import numpy as np
 
     by_kind = {k: [lab["id"] for lab in labels if lab["kind"] == k] for k in ("object", "view", "feature")}
     if hasattr(models, "label_rows"):
         label_rows, scale, bias = models.label_rows()
         store_label_embeddings(conn, label_rows, scale, bias)
-    rows = conn.execute("SELECT id, norm_path FROM pictogram WHERE duplicate_of IS NULL AND svg_valid = 1 AND norm_path IS NOT NULL ORDER BY id").fetchall()
+    parts = " AND derived_from IS NOT NULL" if parts_only else ""
+    rows = conn.execute(
+        f"SELECT id, norm_path FROM pictogram WHERE duplicate_of IS NULL AND svg_valid = 1 AND norm_path IS NOT NULL{parts} ORDER BY id"
+    ).fetchall()
     n = 0
     for start in range(0, len(rows), batch):
         images, ids = _images(cfg, rows[start : start + batch])
@@ -201,6 +204,7 @@ def import_vision(conn: sqlite3.Connection, cfg: Any, path: Any, identity: Any) 
     from pathlib import Path
 
     from . import shard
+    from .composition.extract import DERIVED
 
     path = Path(path)
     plain = shard.decrypt_to(path, Path(identity) if identity else None, cfg) if path.name.endswith(".age") else path
@@ -220,9 +224,13 @@ def import_vision(conn: sqlite3.Connection, cfg: Any, path: Any, identity: Any) 
                         conn.execute("INSERT OR REPLACE INTO meta VALUES ('siglip_scale', ?)", (rec["scale"],))
                         conn.execute("INSERT OR REPLACE INTO meta VALUES ('siglip_bias', ?)", (rec["bias"],))
                     continue
-                row = conn.execute("SELECT id FROM pictogram WHERE source_id=? AND original_id=?", (rec["source_id"], rec["original_id"])).fetchone()
+                row = conn.execute("SELECT id, sha256 FROM pictogram WHERE source_id=? AND original_id=?", (rec["source_id"], rec["original_id"])).fetchone()
                 if row is None:
                     stats["unknown"] += 1
+                    continue
+                # parts are cut out again on the runner: same id but another cut means another image
+                if rec["source_id"] == DERIVED and rec.get("sha256") != row[1]:
+                    stats["changed"] = stats.get("changed", 0) + 1
                     continue
                 pid = row[0]
                 for model, b64 in rec["emb"].items():

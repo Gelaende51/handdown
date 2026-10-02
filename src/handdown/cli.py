@@ -370,7 +370,11 @@ def vision_vocab(out: str = typer.Argument("work/vision/labels.jsonl")) -> None:
 
 
 @app.command()
-def embed(labels: str = "work/vision/labels.jsonl", batch: int = 64) -> None:
+def embed(
+    labels: str = "work/vision/labels.jsonl",
+    batch: int = 64,
+    parts_only: bool = typer.Option(False, "--parts-only", help="only the parts cut out of composites (extract-parts)"),
+) -> None:
     """DINOv2 embeddings + SigLIP labels for every pictogram (runners: needs torch)."""
     import json
     from pathlib import Path
@@ -379,7 +383,7 @@ def embed(labels: str = "work/vision/labels.jsonl", batch: int = 64) -> None:
 
     cfg = Config()
     labs = [json.loads(line) for line in Path(labels).read_text().splitlines() if line]
-    n = vision.embed(_conn(cfg), cfg, labs, vision.TorchModels(labs), batch=batch, log=typer.echo)
+    n = vision.embed(_conn(cfg), cfg, labs, vision.TorchModels(labs), batch=batch, log=typer.echo, parts_only=parts_only)
     typer.echo(f"{n} pictograms embedded")
 
 

@@ -20,6 +20,6 @@ def mark(conn: sqlite3.Connection, source_id: str, patterns: list[str], reason: 
         for pid, oid in conn.execute("SELECT id, original_id FROM pictogram WHERE source_id = ?", (source_id,))
         if any(fnmatch.fnmatchcase(oid, p) for p in patterns)
     ]
-    conn.executemany("UPDATE pictogram SET topic = ? WHERE id = ?", [(value, pid) for pid in ids])
+    conn.executemany("UPDATE pictogram SET topic = ? WHERE id = ? OR derived_from = ?", [(value, pid, pid) for pid in ids])  # parts follow their composite
     conn.commit()
     return len(ids)

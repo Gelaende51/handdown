@@ -226,12 +226,12 @@ def _insert_part(conn, pid: int, src: str, oid: str, p: Extracted, name: str, me
 
     derived_id = f"{src}/{oid}#part{p.part_no}" + ("/ai" if method == "ai" else "")
     new = conn.execute(
-        """INSERT INTO pictogram (source_id, original_id, original_name, format, derived_from, part_no, extraction, harvested_at)
-           VALUES (?,?,?,?,?,?,?,?)
+        """INSERT INTO pictogram (source_id, original_id, original_name, format, derived_from, part_no, extraction, harvested_at, topic)
+           VALUES (?,?,?,?,?,?,?,?,(SELECT topic FROM pictogram WHERE id = ?))
            ON CONFLICT (source_id, original_id) DO UPDATE SET original_name=excluded.original_name, format=excluded.format,
-               extraction=excluded.extraction, measured_at=NULL
+               extraction=excluded.extraction, topic=excluded.topic, measured_at=NULL
            RETURNING id""",
-        (DERIVED, derived_id, name, "raster" if raster.is_raster(p.svg or "") else "svg", pid, p.part_no, p.method, db.now()),
+        (DERIVED, derived_id, name, "raster" if raster.is_raster(p.svg or "") else "svg", pid, p.part_no, p.method, db.now(), pid),
     ).fetchone()[0]
     conn.execute("INSERT OR REPLACE INTO raw_svg VALUES (?, ?)", (new, p.svg))
     provenance.record(
