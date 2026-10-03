@@ -85,6 +85,9 @@ def prepare(conn: sqlite3.Connection, sample: list[dict[str, Any]]) -> int:
     return n
 
 
+RENDER_CHUNK = 32
+
+
 def run(
     conn: sqlite3.Connection,
     cfg: Any,
@@ -117,9 +120,8 @@ def run(
             done.add((r["key"], r.get("variant", "norm")))
     _sample_table(conn, sample)
     rows = conn.execute(
-        """SELECT b.key, p.id, p.norm_path, p.format, r.svg AS raw FROM bench_sample b
-           LEFT JOIN pictogram p ON p.source_id = b.source_id AND p.original_id = b.original_id
-           LEFT JOIN raw_svg r ON r.pictogram_id = p.id AND p.format = 'raster' ORDER BY b.key"""
+        """SELECT b.key, p.id, p.norm_path, p.format FROM bench_sample b
+           LEFT JOIN pictogram p ON p.source_id = b.source_id AND p.original_id = b.original_id ORDER BY b.key"""
     ).fetchall()[:limit]
     # depiction ids change when the hierarchy is rebuilt: answers carry the pictogram they were asked about
     who = {r["key"]: {"source_id": r["source_id"], "original_id": r["original_id"]} for r in sample if "source_id" in r}
@@ -127,31 +129,39 @@ def run(
     with out.open("a") as f:
         for variant in variants:
             mark = {"variant": variant} if variant != "norm" else {}
-            if variant == "norm":
-                todo = [r for r in rows if (r["key"], "norm") not in done]
-                present = [r for r in todo if r["id"] is not None]
-                rendered, ids = _images(cfg, present, size) if present else ([], [])
-                key_of = {r["id"]: r["key"] for r in present}
-                for r in todo:
-                    if r["id"] not in ids:
-                        f.write(json.dumps({"key": r["key"], **who.get(r["key"], {}), "model": model, "error": "missing"}) + "\n")
-                        stats["missing"] += 1
-                pairs = [(key_of[pid], img) for pid, img in zip(ids, rendered, strict=True)]
-            else:  # the raster original, in colour
-                pairs = [(r["key"], render_rgb(r["raw"], size)) for r in rows if r["raw"] and (r["key"], variant) not in done]
-            f.flush()
-            for start in range(0, len(pairs), batch):
-                part = pairs[start : start + batch]
-                keys, images = [k for k, _ in part], [img for _, img in part]
-                t = time.monotonic()
-                answers = ask(images)
-                seconds = round((time.monotonic() - t) / len(part), 2)
-                for k, a in zip(keys, (list(answers) + [""] * len(keys))[: len(keys)], strict=True):
-                    text, extra = a if isinstance(a, tuple) else (a, {})
-                    f.write(json.dumps({"key": k, **who.get(k, {}), "model": model, "answer": text, "seconds": seconds, **mark, **extra}) + "\n")
-                    stats["answered"] += 1
+            # the raster original, in colour, exists for raster pictograms only
+            todo = [r for r in rows if (r["key"], variant) not in done and (variant == "norm" or r["format"] == "raster")]
+            # rendered a chunk at a time: a long list (the host's fast pass) does not fit in memory at once
+            for c0 in range(0, len(todo), RENDER_CHUNK):
+                chunk = todo[c0 : c0 + RENDER_CHUNK]
+                if variant == "norm":
+                    present = [r for r in chunk if r["id"] is not None]
+                    rendered, ids = _images(cfg, present, size) if present else ([], [])
+                    key_of = {r["id"]: r["key"] for r in present}
+                    for r in chunk:
+                        if r["id"] not in ids:
+                            f.write(json.dumps({"key": r["key"], **who.get(r["key"], {}), "model": model, "error": "missing"}) + "\n")
+                            stats["missing"] += 1
+                    pairs = [(key_of[pid], img) for pid, img in zip(ids, rendered, strict=True)]
+                else:
+                    pairs = []
+                    for r in chunk:
+                        raw = conn.execute("SELECT svg FROM raw_svg WHERE pictogram_id = ?", (r["id"],)).fetchone()
+                        if raw and raw[0]:
+                            pairs.append((r["key"], render_rgb(raw[0], size)))
                 f.flush()
-                log(f"{model} {variant}: {start + len(part)}/{len(pairs)}")
+                for start in range(0, len(pairs), batch):
+                    part = pairs[start : start + batch]
+                    keys, images = [k for k, _ in part], [img for _, img in part]
+                    t = time.monotonic()
+                    answers = ask(images)
+                    seconds = round((time.monotonic() - t) / len(part), 2)
+                    for k, a in zip(keys, (list(answers) + [""] * len(keys))[: len(keys)], strict=True):
+                        text, extra = a if isinstance(a, tuple) else (a, {})
+                        f.write(json.dumps({"key": k, **who.get(k, {}), "model": model, "answer": text, "seconds": seconds, **mark, **extra}) + "\n")
+                        stats["answered"] += 1
+                    f.flush()
+                log(f"{model} {variant}: {min(c0 + RENDER_CHUNK, len(todo))}/{len(todo)}")
     return stats
 
 
