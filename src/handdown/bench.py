@@ -225,10 +225,21 @@ class Gateway:
     Gateway, Nous Portal), one image per request. Unlike the runner's own
     models this sends the rendered pictogram to the model's provider."""
 
-    def __init__(self, model: str, answer_tokens: int = 64, client: Any = None, wait: Callable[[float], None] = time.sleep, provider: str = "gateway"):
+    def __init__(
+        self,
+        model: str,
+        answer_tokens: int = 64,
+        client: Any = None,
+        wait: Callable[[float], None] = time.sleep,
+        provider: str = "gateway",
+        think: bool = True,
+    ):
         import os
 
         self.model, self.answer_tokens, self.wait = model, answer_tokens, wait
+        # think=off asks for no reasoning (OpenRouter-style field, which Nous and the gateway pass on);
+        # reasoning models otherwise spend the answer budget thinking and return nothing
+        self.reasoning: dict[str, Any] | None = None if think else {"enabled": False}
         key = HOSTED[provider][1]
         if key and not client and not os.environ.get(key):
             raise KeyError(f"{key} is not set")
@@ -239,6 +250,10 @@ class Gateway:
             r = self.client.post("/chat/completions", json=body)
             if r.status_code == 402:
                 raise CreditExhausted(r.text[:300])
+            if r.status_code == 400 and "reasoning" in body:  # the model takes no reasoning switch: ask without it
+                self.reasoning = None
+                body = {k: v for k, v in body.items() if k != "reasoning"}
+                continue
             if r.status_code in (429, 500, 502, 503, 504) and attempt < 5:
                 self.wait(float(r.headers.get("retry-after") or 2 ** (attempt + 2)))
                 continue
@@ -251,6 +266,8 @@ class Gateway:
         for image in images:
             content = [{"type": "text", "text": PROMPT}, {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{_png(image)}"}}]
             body = {"model": self.model, "messages": [{"role": "user", "content": content}], "max_tokens": self.answer_tokens, "temperature": 0}
+            if self.reasoning:
+                body["reasoning"] = self.reasoning
             j = self._post(body)
             usage = j.get("usage") or {}
             extra = {"prompt_tokens": usage.get("prompt_tokens"), "answer_tokens": usage.get("completion_tokens")}
@@ -382,7 +399,8 @@ def backend(spec: str) -> tuple[Ask, int, int]:
     API key), 'hermes:<model>' (Nous Portal through Hermes Agent's proxy) or
     'florence:omniparser';
     options after '@': size (render px), threads, tokens (llama.cpp image
-    tokens), answer (gateway answer tokens), e.g. '@size=128,threads=4,tokens=64'."""
+    tokens), answer (hosted answer tokens), think=off (hosted, no reasoning),
+    e.g. '@size=128,threads=4,tokens=64'."""
     kind, _, rest = spec.partition(":")
     name, _, opts = rest.partition("@")
     options = dict(kv.split("=", 1) for kv in opts.split(",") if kv)
@@ -394,7 +412,8 @@ def backend(spec: str) -> tuple[Ask, int, int]:
         threads = int(options["threads"]) if "threads" in options else None
         return LlamaServer(name, tokens=tokens, threads=threads), 1, int(options.get("size", 256))
     if kind in HOSTED:
-        return Gateway(name, answer_tokens=int(options.get("answer", 64)), provider=kind), 1, int(options.get("size", 256))
+        think = options.get("think", "on") != "off"
+        return Gateway(name, answer_tokens=int(options.get("answer", 64)), provider=kind, think=think), 1, int(options.get("size", 256))
     if kind == "florence" and name == "omniparser":
         return OmniParserCaption(), 8, 64  # OmniParser captions 64 px crops
     raise ValueError(f"unknown model spec {spec!r}")

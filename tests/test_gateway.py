@@ -94,3 +94,22 @@ def test_media_models_without_token_prices_are_not_free():
         ]
     }
     assert [r["free"] for r in bench.hosted_models(_client(lambda request: httpx.Response(200, json=data)))] == [False, True]
+
+
+def test_think_off_asks_without_reasoning_and_drops_the_switch_where_refused():
+    bodies = []
+    replies = iter(
+        [
+            httpx.Response(200, json={"choices": [{"message": {"content": "mug"}}]}),
+            httpx.Response(400, text="unknown field"),
+            httpx.Response(200, json={"choices": [{"message": {"content": "cup"}}]}),
+        ]
+    )
+
+    def handler(request):
+        bodies.append(json.loads(request.content))
+        return next(replies)
+
+    ask = bench.Gateway("m", client=_client(handler), think=False)
+    assert ask([Image.new("RGB", (8, 8))])[0][0] == "mug" and bodies[0]["reasoning"] == {"enabled": False}
+    assert ask([Image.new("RGB", (8, 8))])[0][0] == "cup" and "reasoning" not in bodies[2]
