@@ -282,7 +282,10 @@ def hosted_models(client: Any = None, provider: str = "gateway") -> list[dict[st
                 "input": cost_in,
                 "output": cost_out,
                 "image": price.get("image") or price.get("input_image"),
-                "free": m["id"].endswith(":free") or (bool(price) and all(float(v or 0) == 0 for v in (cost_in, cost_out))),
+                # media models priced per image or second list no token price: not free
+                "free": m["id"].endswith(":free")
+                or "free" in tags
+                or (m.get("type") in (None, "language") and bool(price) and all(float(v or 0) == 0 for v in (cost_in, cost_out))),
                 "context": m.get("context_window"),
             }
         )

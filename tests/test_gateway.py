@@ -84,3 +84,13 @@ def test_hermes_proxy_needs_no_key_and_bypasses_the_http_proxy(monkeypatch):
     assert str(ask.client.base_url) == "http://127.0.0.1:9999/v1/" and "authorization" not in ask.client.headers
     with pytest.raises(KeyError):
         bench.backend("gateway:x/y")
+
+
+def test_media_models_without_token_prices_are_not_free():
+    data = {
+        "data": [
+            {"id": "x/video", "type": "video", "pricing": {"video_duration_seconds": "0.1"}},
+            {"id": "y/laya-free", "type": "language", "tags": ["free"], "pricing": {}},
+        ]
+    }
+    assert [r["free"] for r in bench.hosted_models(_client(lambda request: httpx.Response(200, json=data)))] == [False, True]
