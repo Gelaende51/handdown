@@ -251,7 +251,7 @@ def test_vlm_apply_sets_objects_only_where_missing(tmp_path, monkeypatch):
         {"key": 3, "model": "m", "answer": "house"},  # already has an object: kept
         {"key": 4, "model": "m", "error": "missing"},
     ]
-    assert bench.vlm_apply(c, answers) == {"answers": 3, "set": 2}
+    assert bench.vlm_apply(c, answers) == {"answers": 3, "set": 2, "gone": 0}
     rows = {r[0]: tuple(r[1:]) for r in c.execute("SELECT id, object_id, method, description FROM depiction")}
     assert rows[1] == ("wn:coffee_cup.n.01", "vlm", "vlm m: coffee cup icon")
     assert rows[2][:2] == ("wn:arrow.n.01", "vlm")
@@ -441,3 +441,24 @@ def test_job_lists_split_into_parts():
     assert [i["key"] for p in parts for i in p[0]] == sorted(range(10), key=lambda k: (f"s{k % 3}", k))  # by source, contiguous
     assert all({s["id"] for s in p[1]} == {i["source_id"] for i in p[0]} for p in parts)
     assert bench.split_parts(items, sources, max_items=50) == [(sorted(items, key=lambda i: (i["source_id"], i["key"])), sources)]
+
+
+def test_vlm_apply_follows_pictograms_to_their_depictions_after_a_rebuild(tmp_path, monkeypatch):
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    c = db.connect(Config().db_path)
+    c.execute("INSERT INTO platform (id, name) VALUES ('p', 'p')")
+    c.execute("INSERT INTO source (id, platform_id, name) VALUES ('s', 'p', 's')")
+    c.execute("INSERT INTO pictogram (id, source_id, original_id) VALUES (10, 's', 'cup.svg'), (11, 's', 'gone.svg')")
+    # the run asked about depiction 1 (cup.svg); after a rebuild cup.svg is in depiction 7 and 1 is another one
+    c.execute("INSERT INTO depiction (id, object_id, method) VALUES (1, NULL, 'rules'), (7, NULL, 'rules')")
+    c.execute("INSERT INTO style_group (id, depiction_id, representative_id, size) VALUES (70, 7, 10, 1)")
+    c.execute("INSERT INTO style_member (style_group_id, pictogram_id) VALUES (70, 10)")
+    c.commit()
+    answers = [{"key": 1, "model": "m", "answer": "coffee cup"}, {"key": 2, "model": "m", "answer": "house"}]
+    items = [{"key": 1, "source_id": "s", "original_id": "cup.svg"}, {"key": 2, "source_id": "s", "original_id": "gone.svg"}]
+    assert bench.vlm_apply(c, answers, items=items) == {"answers": 1, "set": 1, "gone": 1}
+    assert [r[0] for r in c.execute("SELECT id FROM depiction WHERE object_id IS NOT NULL")] == [7]
+    # answers written by newer runs carry the pictogram themselves
+    c.execute("UPDATE depiction SET object_id = NULL")
+    assert bench.vlm_apply(c, [{"key": 1, "source_id": "s", "original_id": "cup.svg", "model": "m", "answer": "mug"}])["set"] == 1
+    assert [r[0] for r in c.execute("SELECT id FROM depiction WHERE object_id IS NOT NULL")] == [7]

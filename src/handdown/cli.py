@@ -806,15 +806,19 @@ def reprocess_source(source: str) -> None:
 
 
 @app.command("vlm-apply")
-def vlm_apply(answers: list[str]) -> None:
+def vlm_apply(
+    answers: list[str],
+    items: str = typer.Option(None, help="job list the run was given (git show <run commit>:work/vlm/items-<list>.jsonl), for answers without pictogram ids"),
+) -> None:
     """Set objects of depictions without one from vision model answers (method 'vlm')."""
     from pathlib import Path
 
     from . import bench
 
     conn = _conn(Config())
+    listed = _jsonl(items) if items else None
     for path in answers:  # the file names the run (work/vlm/answers/<adapter>-<run id>.jsonl)
-        typer.echo(f"{path}: {bench.vlm_apply(conn, _jsonl(path), run=Path(path).stem)}")
+        typer.echo(f"{path}: {bench.vlm_apply(conn, _jsonl(path), run=Path(path).stem, items=listed)}")
 
 
 @app.command("provenance-backfill")

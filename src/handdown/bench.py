@@ -121,6 +121,8 @@ def run(
            LEFT JOIN pictogram p ON p.source_id = b.source_id AND p.original_id = b.original_id
            LEFT JOIN raw_svg r ON r.pictogram_id = p.id AND p.format = 'raster' ORDER BY b.key"""
     ).fetchall()[:limit]
+    # depiction ids change when the hierarchy is rebuilt: answers carry the pictogram they were asked about
+    who = {r["key"]: {"source_id": r["source_id"], "original_id": r["original_id"]} for r in sample if "source_id" in r}
     stats = {"answered": 0, "missing": 0}
     with out.open("a") as f:
         for variant in variants:
@@ -132,7 +134,7 @@ def run(
                 key_of = {r["id"]: r["key"] for r in present}
                 for r in todo:
                     if r["id"] not in ids:
-                        f.write(json.dumps({"key": r["key"], "model": model, "error": "missing"}) + "\n")
+                        f.write(json.dumps({"key": r["key"], **who.get(r["key"], {}), "model": model, "error": "missing"}) + "\n")
                         stats["missing"] += 1
                 pairs = [(key_of[pid], img) for pid, img in zip(ids, rendered, strict=True)]
             else:  # the raster original, in colour
@@ -146,7 +148,7 @@ def run(
                 seconds = round((time.monotonic() - t) / len(part), 2)
                 for k, a in zip(keys, (list(answers) + [""] * len(keys))[: len(keys)], strict=True):
                     text, extra = a if isinstance(a, tuple) else (a, {})
-                    f.write(json.dumps({"key": k, "model": model, "answer": text, "seconds": seconds, **mark, **extra}) + "\n")
+                    f.write(json.dumps({"key": k, **who.get(k, {}), "model": model, "answer": text, "seconds": seconds, **mark, **extra}) + "\n")
                     stats["answered"] += 1
                 f.flush()
                 log(f"{model} {variant}: {start + len(part)}/{len(pairs)}")
@@ -652,15 +654,43 @@ def present_only(conn: sqlite3.Connection, items: list[dict[str, Any]]) -> list[
     return [i for i in items if i["source_id"] in have]
 
 
-def vlm_apply(conn: sqlite3.Connection, answers: list[dict[str, Any]], run: str | None = None) -> dict[str, int]:
+def current_depiction(conn: sqlite3.Connection, source_id: str, original_id: str) -> int | None:
+    """The depiction a pictogram belongs to now (ids change when the hierarchy is rebuilt)."""
+    row = conn.execute(
+        """SELECT g.depiction_id FROM pictogram p JOIN style_member m ON m.pictogram_id = p.id
+           JOIN style_group g ON g.id = m.style_group_id WHERE p.source_id = ? AND p.original_id = ?""",
+        (source_id, original_id),
+    ).fetchone()
+    return row[0] if row else None
+
+
+def vlm_apply(conn: sqlite3.Connection, answers: list[dict[str, Any]], run: str | None = None, items: list[dict[str, Any]] | None = None) -> dict[str, int]:
     """Set the object of depictions that have none from a vision model's answer
     (its head noun, resolved like pictogram names), as method 'vlm'. Every
-    answer is logged with its origin, applied or not."""
+    answer is logged with its origin, applied or not.
+
+    An answer is applied to the depiction its pictogram belongs to now: the
+    pictogram comes from the answer itself or, for answers without it, from
+    ``items`` (the job list the run was given, which maps keys to pictograms).
+    Answers whose pictogram has no depiction any more are counted as gone."""
     from .concepts import _ensure, resolve
     from .hierarchy.names import object_head
 
     seen: set[str] = set()
-    counts = {"answers": 0, "set": 0}
+    counts = {"answers": 0, "set": 0, "gone": 0}
+    by_key = {i["key"]: i for i in items or []}
+    resolved = []
+    for a in answers:
+        ident = a if "source_id" in a else by_key.get(a["key"])
+        if ident is None:
+            resolved.append(a)  # nothing to resolve by: the key is taken as it is
+            continue
+        dep = current_depiction(conn, ident["source_id"], ident["original_id"])
+        if dep is None:
+            counts["gone"] += 1
+            continue
+        resolved.append({**a, "key": dep})
+    answers = resolved
     # the original (colour) answer of a raster pictogram decides; the black-and-white one is logged beside it
     for a in sorted(answers, key=lambda a: a.get("variant") != "original"):
         model = a.get("model") if a.get("variant") in (None, "norm") else f"{a.get('model')}@variant={a['variant']}"
