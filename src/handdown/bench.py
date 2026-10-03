@@ -620,6 +620,25 @@ class LayaChoice:
 
 
 # Long-tail labelling: the benchmark machinery over every depiction without an object.
+FAST = "vlm-fast"  # provisional labels of the fast first pass (hosted LongCat): the runners' model may replace them
+
+
+def fast_jobs(conn: sqlite3.Connection) -> list[dict[str, Any]]:
+    """Items for the fast first pass on the host: depictions without an object
+    that no vision model was asked about yet, from every source including the
+    composite parts only this catalog has; parts first, then the largest
+    depictions."""
+    rows = conn.execute(
+        """SELECT d.id, p.source_id, p.original_id, s.adapter, MAX(g.size) AS size FROM depiction d
+           JOIN style_group g ON g.depiction_id = d.id JOIN pictogram p ON p.id = g.representative_id
+           JOIN source s ON s.id = p.source_id
+           WHERE d.object_id IS NULL AND p.topic IS NULL
+             AND d.id NOT IN (SELECT subject_id FROM classification WHERE method IN ('vlm', 'vlm-fast') AND subject = 'depiction')
+           GROUP BY d.id ORDER BY s.adapter != 'derived', size DESC, d.id"""
+    ).fetchall()
+    return [{"key": r[0], "source_id": r[1], "original_id": r[2]} for r in rows]
+
+
 def vlm_jobs(conn: sqlite3.Connection) -> dict[str, tuple[list[dict[str, Any]], list[dict[str, Any]]]]:
     """Per adapter: items (depictions without an object, and every depiction of
     a raster pictogram; by the representative of their largest style group)
@@ -632,7 +651,8 @@ def vlm_jobs(conn: sqlite3.Connection) -> dict[str, tuple[list[dict[str, Any]], 
            JOIN style_group g ON g.depiction_id = d.id JOIN pictogram p ON p.id = g.representative_id
            JOIN source s ON s.id = p.source_id
            -- raster pictograms also with an object: both versions are compared (raster_disagreements)
-           WHERE (d.object_id IS NULL OR p.format = 'raster') AND p.topic IS NULL  -- off-topic: reference only (topic.py)
+           -- provisional labels of the fast pass are asked again: the runners' model is better
+           WHERE (d.object_id IS NULL OR p.format = 'raster' OR d.method = 'vlm-fast') AND p.topic IS NULL  -- off-topic: reference only (topic.py)
              AND s.adapter != 'derived'  -- composite parts exist only here: a runner cannot harvest them
              -- answered before (also when unresolvable: those go to vlm_backup); ids as of the answer
              AND d.id NOT IN (SELECT subject_id FROM classification WHERE method = 'vlm' AND subject = 'depiction')
@@ -665,7 +685,9 @@ def current_depiction(conn: sqlite3.Connection, source_id: str, original_id: str
     return row[0] if row else None
 
 
-def vlm_apply(conn: sqlite3.Connection, answers: list[dict[str, Any]], run: str | None = None, items: list[dict[str, Any]] | None = None) -> dict[str, int]:
+def vlm_apply(
+    conn: sqlite3.Connection, answers: list[dict[str, Any]], run: str | None = None, items: list[dict[str, Any]] | None = None, fast: bool = False
+) -> dict[str, int]:
     """Set the object of depictions that have none from a vision model's answer
     (its head noun, resolved like pictogram names), as method 'vlm'. Every
     answer is logged with its origin, applied or not.
@@ -673,7 +695,12 @@ def vlm_apply(conn: sqlite3.Connection, answers: list[dict[str, Any]], run: str 
     An answer is applied to the depiction its pictogram belongs to now: the
     pictogram comes from the answer itself or, for answers without it, from
     ``items`` (the job list the run was given, which maps keys to pictograms).
-    Answers whose pictogram has no depiction any more are counted as gone."""
+    Answers whose pictogram has no depiction any more are counted as gone.
+
+    ``fast``: answers of the fast first pass, stored as method 'vlm-fast'
+    (provisional); the runners' answers replace those."""
+    method = FAST if fast else "vlm"
+    replaceable = "object_id IS NULL" if fast else "(object_id IS NULL OR method = 'vlm-fast')"
     from .concepts import _ensure, resolve
     from .hierarchy.names import object_head
 
@@ -704,7 +731,7 @@ def vlm_apply(conn: sqlite3.Connection, answers: list[dict[str, Any]], run: str 
                         subject="depiction",
                         subject_id=a["key"],
                         field="object",
-                        method="vlm",
+                        method=method,
                         model=model,
                         input="image",
                         run=a.get("run") or run,
@@ -722,8 +749,8 @@ def vlm_apply(conn: sqlite3.Connection, answers: list[dict[str, Any]], run: str 
         if value:
             _ensure(conn, concept, seen)
             applied = conn.execute(
-                "UPDATE depiction SET object_id=?, method='vlm', description=? WHERE id=? AND object_id IS NULL",
-                (value, f"vlm {a['model']}: {a['answer']}", a["key"]),
+                f"UPDATE depiction SET object_id=?, method=?, description=? WHERE id=? AND {replaceable}",
+                (value, method, f"{method} {a['model']}: {a['answer']}", a["key"]),
             ).rowcount
             counts["set"] += applied
         timings = {k: v for k, v in a.items() if k not in ("key", "model", "answer", "run")}
@@ -737,7 +764,7 @@ def vlm_apply(conn: sqlite3.Connection, answers: list[dict[str, Any]], run: str 
                     field="object",
                     value=value,
                     raw=a["answer"],
-                    method="vlm",
+                    method=method,
                     model=model,
                     input="image",
                     run=a.get("run") or run,

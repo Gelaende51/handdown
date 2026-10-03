@@ -486,6 +486,7 @@ def bench_run(
     limit: int = typer.Option(None, help="only the first N sample keys (speed tests)"),
     present_only: bool = typer.Option(False, help="skip items of sources this database lacks (sharded runs)"),
     variants: str = typer.Option("norm", help="norm, original or norm,original (raster originals in colour too)"),
+    shard: str = typer.Option(None, help="i/n: only every n-th item from i (several providers side by side)"),
 ) -> None:
     """Runner: ask one model to name the object of every sample pictogram."""
     from pathlib import Path
@@ -495,6 +496,9 @@ def bench_run(
     cfg = Config()
     conn = _conn(cfg)
     items = bench.present_only(conn, _jsonl(sample)) if present_only else _jsonl(sample)
+    if shard:
+        i, n = (int(x) for x in shard.split("/"))
+        items = items[i::n]
     ask, batch, size = bench.backend(model)
     try:
         typer.echo(bench.run(conn, cfg, items, ask, model, Path(out), batch=batch, size=size, limit=limit, variants=tuple(variants.split(","))))
@@ -590,6 +594,20 @@ def bench_claude(
 
     cfg = Config()
     typer.echo(bench.run_claude(_conn(cfg), cfg, _jsonl(sample), model, effort, Path(out), batch=batch, limit=limit))
+
+
+@app.command("fast-jobs")
+def fast_jobs(out: str = typer.Argument("data/fast/items.jsonl")) -> None:
+    """Items for the fast first pass on the host (scripts/label-host.sh): depictions nobody asked about yet, composite parts first."""
+    import json
+    from pathlib import Path
+
+    from . import bench
+
+    items = bench.fast_jobs(_conn(Config()))
+    Path(out).parent.mkdir(parents=True, exist_ok=True)
+    Path(out).write_text("".join(json.dumps(i) + "\n" for i in items))
+    typer.echo(f"{len(items)} depictions -> {out}")
 
 
 @app.command("vlm-jobs")
@@ -809,6 +827,7 @@ def reprocess_source(source: str) -> None:
 def vlm_apply(
     answers: list[str],
     items: str = typer.Option(None, help="job list the run was given (git show <run commit>:work/vlm/items-<list>.jsonl), for answers without pictogram ids"),
+    fast: bool = typer.Option(False, "--fast", help="answers of the fast first pass (hosted LongCat): provisional, the runners' answers replace them"),
 ) -> None:
     """Set objects of depictions without one from vision model answers (method 'vlm')."""
     from pathlib import Path
@@ -818,7 +837,7 @@ def vlm_apply(
     conn = _conn(Config())
     listed = _jsonl(items) if items else None
     for path in answers:  # the file names the run (work/vlm/answers/<adapter>-<run id>.jsonl)
-        typer.echo(f"{path}: {bench.vlm_apply(conn, _jsonl(path), run=Path(path).stem, items=listed)}")
+        typer.echo(f"{path}: {bench.vlm_apply(conn, _jsonl(path), run=Path(path).stem, items=listed, fast=fast)}")
 
 
 @app.command("provenance-backfill")

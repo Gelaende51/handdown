@@ -468,3 +468,28 @@ def test_vlm_apply_follows_pictograms_to_their_depictions_after_a_rebuild(tmp_pa
     c.execute("UPDATE depiction SET object_id = NULL")
     assert bench.vlm_apply(c, [{"key": 1, "source_id": "s", "original_id": "cup.svg", "model": "m", "answer": "mug"}])["set"] == 1
     assert [r[0] for r in c.execute("SELECT id FROM depiction WHERE object_id IS NOT NULL")] == [7]
+
+
+def test_fast_pass_labels_are_provisional(tmp_path, monkeypatch):
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    c = db.connect(Config().db_path)
+    c.execute("INSERT INTO platform (id, name) VALUES ('p', 'p'), ('derived', 'derived')")
+    c.execute(
+        "INSERT INTO source (id, platform_id, name, adapter) VALUES ('s', 'p', 's', 'iconify'), ('derived:composite-parts', 'derived', 'parts', 'derived')"
+    )
+    c.execute("INSERT INTO pictogram (id, source_id, original_id) VALUES (10, 's', 'a'), (11, 's', 'b'), (12, 'derived:composite-parts', 's/c#part0')")
+    c.execute("INSERT INTO depiction (id, object_id, method) VALUES (1, NULL, 'rules'), (2, NULL, 'rules'), (3, NULL, 'rules')")
+    c.execute("INSERT INTO style_group (depiction_id, representative_id, size) VALUES (1, 10, 5), (2, 11, 1), (3, 12, 1)")
+    c.commit()
+    # the fast pass takes everything nobody asked about, composite parts first
+    assert [i["key"] for i in bench.fast_jobs(c)] == [3, 1, 2]
+    bench.vlm_apply(c, [{"key": 1, "model": "hermes:longcat", "answer": "mug"}], fast=True)
+    assert tuple(c.execute("SELECT object_id, method FROM depiction WHERE id = 1").fetchone()) == ("wn:mug.n.01", "vlm-fast")
+    assert 1 not in [i["key"] for i in bench.fast_jobs(c)]
+    # the runners are still asked about it, and their answer replaces the provisional one
+    assert 1 in [i["key"] for i in bench.vlm_jobs(c)["iconify"][0]]
+    bench.vlm_apply(c, [{"key": 1, "model": "ollama:qwen3-vl", "answer": "coffee cup"}])
+    assert tuple(c.execute("SELECT object_id, method FROM depiction WHERE id = 1").fetchone()) == ("wn:coffee_cup.n.01", "vlm")
+    # but a fast answer never replaces the runners' one
+    bench.vlm_apply(c, [{"key": 1, "model": "hermes:longcat", "answer": "glass"}], fast=True)
+    assert c.execute("SELECT object_id FROM depiction WHERE id = 1").fetchone()[0] == "wn:coffee_cup.n.01"
