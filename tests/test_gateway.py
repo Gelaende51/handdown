@@ -121,3 +121,17 @@ def test_zen_works_without_a_login_and_prefers_your_own_key(monkeypatch):
     assert ask.client.headers["authorization"] == "Bearer public" and str(ask.client.base_url) == "https://opencode.ai/zen/v1/"
     monkeypatch.setenv("OPENCODE_API_KEY", "mine")
     assert bench.backend("zen:x")[0].client.headers["authorization"] == "Bearer mine"
+
+
+def test_gateway_retries_timeouts():
+    calls = []
+
+    def handler(request):
+        calls.append(1)
+        if len(calls) < 3:
+            raise httpx.ReadTimeout("slow", request=request)
+        return httpx.Response(200, json={"choices": [{"message": {"content": "bell"}}]})
+
+    waits = []
+    ask = bench.Gateway("m", client=_client(handler), wait=waits.append)
+    assert ask([Image.new("RGB", (8, 8))])[0][0] == "bell" and waits == [4, 8]

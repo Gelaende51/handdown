@@ -262,8 +262,16 @@ class Gateway:
         self.client = client or hosted_client(provider)
 
     def _post(self, body: dict[str, Any]) -> dict[str, Any]:
+        import httpx
+
         for attempt in range(6):
-            r = self.client.post("/chat/completions", json=body)
+            try:
+                r = self.client.post("/chat/completions", json=body)
+            except httpx.TransportError:  # timeouts and dropped connections: the provider is busy, not the request wrong
+                if attempt == 5:
+                    raise
+                self.wait(2 ** (attempt + 2))
+                continue
             if r.status_code == 402:
                 raise CreditExhausted(r.text[:300])
             if r.status_code == 400 and "reasoning" in body:  # the model takes no reasoning switch: ask without it
