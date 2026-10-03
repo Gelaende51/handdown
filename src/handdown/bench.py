@@ -633,6 +633,7 @@ def vlm_jobs(conn: sqlite3.Connection) -> dict[str, tuple[list[dict[str, Any]], 
            JOIN source s ON s.id = p.source_id
            -- raster pictograms also with an object: both versions are compared (raster_disagreements)
            WHERE (d.object_id IS NULL OR p.format = 'raster') AND p.topic IS NULL  -- off-topic: reference only (topic.py)
+             AND s.adapter != 'derived'  -- composite parts exist only here: a runner cannot harvest them
              -- answered before (also when unresolvable: those go to vlm_backup); ids as of the answer
              AND d.id NOT IN (SELECT subject_id FROM classification WHERE method = 'vlm' AND subject = 'depiction')
            GROUP BY d.id ORDER BY d.id"""

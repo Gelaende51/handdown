@@ -224,6 +224,12 @@ def test_vlm_jobs_cover_depictions_without_object_per_adapter(tmp_path, monkeypa
     c.execute("INSERT INTO pictogram (id, source_id, original_id, svg_valid) VALUES (5000, 's2', 'loose', 1)")
     c.execute("INSERT INTO depiction (id, object_id, method) VALUES (900, NULL, 'rules')")
     c.execute("INSERT INTO style_group (depiction_id, representative_id, size) VALUES (900, 5000, 2)")
+    # a part cut out of a composite: only this catalog has it, so no runner can be asked about it
+    c.execute("INSERT INTO platform (id, name) VALUES ('derived', 'derived')")
+    c.execute("INSERT INTO source (id, platform_id, name, adapter) VALUES ('derived:composite-parts', 'derived', 'parts', 'derived')")
+    c.execute("INSERT INTO pictogram (id, source_id, original_id, svg_valid) VALUES (5001, 'derived:composite-parts', 's2/x#part0', 1)")
+    c.execute("INSERT INTO depiction (id, object_id, method) VALUES (901, NULL, 'rules')")
+    c.execute("INSERT INTO style_group (depiction_id, representative_id, size) VALUES (901, 5001, 1)")
     c.commit()
     jobs = bench.vlm_jobs(c)
     assert set(jobs) == {"iconify"}
