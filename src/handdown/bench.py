@@ -199,7 +199,10 @@ HOSTED: dict[str, tuple[str, str | None]] = {
     "gateway": (GATEWAY, "AI_GATEWAY_API_KEY"),
     "nous": ("https://inference-api.nousresearch.com/v1", "NOUS_API_KEY"),
     "hermes": ("http://host.containers.internal:8645/v1", None),
+    # OpenCode Zen: free models also without a login, with the shared key "public" (what opencode itself sends)
+    "zen": ("https://opencode.ai/zen/v1", "OPENCODE_API_KEY"),
 }
+ANONYMOUS_KEYS = {"zen": "public"}
 
 
 def hosted_client(provider: str, timeout: float = 120) -> Any:
@@ -213,7 +216,8 @@ def hosted_client(provider: str, timeout: float = 120) -> Any:
         base = os.environ.get("HERMES_PROXY_URL", base)
         # a proxy on the host (or localhost) is not reached through the container's HTTP proxy
         return httpx.Client(base_url=base, timeout=timeout, trust_env=False)
-    return httpx.Client(base_url=base, timeout=timeout, headers={"Authorization": f"Bearer {os.environ.get(key or '', '')}"})
+    token = os.environ.get(key or "") or ANONYMOUS_KEYS.get(provider, "")
+    return httpx.Client(base_url=base, timeout=timeout, headers={"Authorization": f"Bearer {token}"})
 
 
 class CreditExhausted(RuntimeError):
@@ -241,7 +245,7 @@ class Gateway:
         # reasoning models otherwise spend the answer budget thinking and return nothing
         self.reasoning: dict[str, Any] | None = None if think else {"enabled": False}
         key = HOSTED[provider][1]
-        if key and not client and not os.environ.get(key):
+        if key and not client and not os.environ.get(key) and provider not in ANONYMOUS_KEYS:
             raise KeyError(f"{key} is not set")
         self.client = client or hosted_client(provider)
 
@@ -396,7 +400,8 @@ class OmniParserCaption:
 def backend(spec: str) -> tuple[Ask, int, int]:
     """(ask, batch, render size) for 'ollama:<tag>', 'llamacpp:<hf repo>[:quant]',
     'gateway:<provider>/<model>' (Vercel AI Gateway), 'nous:<model>' (Nous Portal
-    API key), 'hermes:<model>' (Nous Portal through Hermes Agent's proxy) or
+    API key), 'hermes:<model>' (Nous Portal through Hermes Agent's proxy),
+    'zen:<model>' (OpenCode Zen) or
     'florence:omniparser';
     options after '@': size (render px), threads, tokens (llama.cpp image
     tokens), answer (hosted answer tokens), think=off (hosted, no reasoning),

@@ -113,3 +113,11 @@ def test_think_off_asks_without_reasoning_and_drops_the_switch_where_refused():
     ask = bench.Gateway("m", client=_client(handler), think=False)
     assert ask([Image.new("RGB", (8, 8))])[0][0] == "mug" and bodies[0]["reasoning"] == {"enabled": False}
     assert ask([Image.new("RGB", (8, 8))])[0][0] == "cup" and "reasoning" not in bodies[2]
+
+
+def test_zen_works_without_a_login_and_prefers_your_own_key(monkeypatch):
+    monkeypatch.delenv("OPENCODE_API_KEY", raising=False)
+    ask, _, _ = bench.backend("zen:longcat-2.5-preview-free")
+    assert ask.client.headers["authorization"] == "Bearer public" and str(ask.client.base_url) == "https://opencode.ai/zen/v1/"
+    monkeypatch.setenv("OPENCODE_API_KEY", "mine")
+    assert bench.backend("zen:x")[0].client.headers["authorization"] == "Bearer mine"
