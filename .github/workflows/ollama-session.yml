@@ -15,6 +15,9 @@ on:
       idle:
         description: "End after this many minutes without a request"
         default: "30"
+      context:
+        description: "Context window in tokens (coding agents such as opencode need 16k or more)"
+        default: "16384"
 
 permissions:
   contents: read
@@ -39,7 +42,7 @@ jobs:
         run: |
           ip=$(tailscale ip -4)
           echo "OLLAMA_HOST=$ip:11434" >> "$GITHUB_ENV"
-          OLLAMA_HOST="$ip:11434" OLLAMA_KEEP_ALIVE=30m nohup ollama serve > ollama.log 2>&1 &
+          OLLAMA_HOST="$ip:11434" OLLAMA_KEEP_ALIVE=30m OLLAMA_CONTEXT_LENGTH="${{ inputs.context }}" nohup ollama serve > ollama.log 2>&1 &
           for i in $(seq 30); do curl -sf "http://$ip:11434/api/version" && break; sleep 2; done
       - name: Pull models
         env:
