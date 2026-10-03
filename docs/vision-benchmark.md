@@ -9,7 +9,10 @@ in `work/bench/results/` and in the `classification` table with their origin.
 
 **Decision (2026-10-02):** Qwen3-VL 4B on Ollama labels the long tail on free
 GitHub runners; Claude Opus (reasoning high) answers what Qwen leaves
-unresolved.
+unresolved. **Addition (2026-10-03):** LongCat 2.5 Preview (free on Nous
+Portal and OpenCode Zen, 60 %, 3.4 s per image) is a fast first pass from the
+host, for what the runners have not reached yet and for composite parts,
+which only the host's catalog has (see *Hosted models*).
 
 ## Results
 
@@ -42,6 +45,46 @@ confident about), SigLIP zero-shot (34–51 %), DINOv2 nearest neighbour
 (39–52 %), Laya on pictogram names (28 %, name rules 30 %). GitHub Models
 (GPT-4.1 mini, Llama 4 Scout) was retired on 2026-07-30 before it could be
 measured.
+
+## Hosted models (2026-10-03)
+
+The same 244 pictograms through hosted APIs: Vercel's AI Gateway (paid per
+token, free monthly credit), and the free tiers of Nous Portal (through Hermes
+Agent's subscription proxy on the host) and OpenCode Zen. Hosted models see
+the rendered pictograms. Cross agreement was not computed for these.
+
+| Model | Via | vs Claude labels | Exact only | s / image | Tokens per image (in / out) | $ per 1,000 |
+|---|---|---|---|---|---|---|
+| *Qwen3-VL 4B (Ollama), for comparison* | *runner CPU* | *63 %* | *57 %* | *55–85* | *1,083 / 3* | *free* |
+| Qwen 3.7 Flash (135 of 244 answered) | Vercel | 64 % | 55 % | 38 | 125 / 3,143 (reasoning) | ≈0.41 |
+| **LongCat 2.5 Preview** | Nous free | **60 %** | 55 % | **3.4** | – | free |
+| Gemma 4 26B A4B | Vercel | 58 % | 52 % | 7.4 | 320 / 3 | ≈0.05 |
+| Gemini 2.5 Flash-Lite | Vercel | 57 % | 51 % | 11.5 | 306 / 2 | ≈0.03 |
+| Ling 3.0 Flash VL | Vercel | 55 % | 49 % | 24 | 136 / 252 | ≈0.07 |
+| *Claude Haiku, reasoning off, for comparison* | *Claude quota* | *55 %* | *49 %* | *2.4* | | |
+| Nova Lite | Vercel | 54 % | 50 % | 27 | 583 / 3 | ≈0.04 |
+| Llama 4 Scout | Vercel | 53 % | 46 % | 12 | 296 / 3 | ≈0.05 |
+| space-bunny-alpha (reasoning on / off) | Nous free | 46 % / 45 % | 43 % / 42 % | 6.1 | – | free |
+| Ministral 3B | Vercel | 43 % | 38 % | 24 | 164 / 3 | ≈0.02 |
+| MiMo 2.6 Flash | Vercel | 43 % | 38 % | 8.5 | 122 / 328 | ≈0.42 |
+| GPT-5 nano | Vercel | 40 % | 36 % | 9.7 | 151 / 728 | ≈0.30 |
+| StepFun 3.7 Flash (≈50 answered) | Nous free | ≈32 % | ≈28 % | 170 | – | free |
+| GPT-6 Luna | Vercel | refused (403) | | | | |
+
+- Seconds are one request at a time, including the providers' rate limits;
+  Vercel's free plan throttles (the cheapest models took 1–3 hours for 500
+  images). $ per 1,000 from the listed token prices.
+- **LongCat is the fast free pass:** 3 points below Qwen3-VL at a twentieth of
+  the time, from the host (Nous through the Hermes proxy, or OpenCode Zen;
+  the container reaches neither). On Zen it is not among the models whose
+  data may be used for training.
+- Among paid models, Gemma 4 and Gemini Flash-Lite give 57–58 % for about
+  $0.03–0.05 per 1,000 images, so a $5 credit labels ≈100,000–160,000
+  pictograms a month, if the rate limits allow it.
+- Reasoning models spend the answer budget thinking: Qwen 3.7 Flash, MiMo and
+  GPT-5 nano produce 10–1,000× more output tokens for the same names, and
+  StepFun and space-bunny often return nothing; asking for no reasoning
+  (`think=off`) did not change their scores.
 
 ## How the columns are computed
 
