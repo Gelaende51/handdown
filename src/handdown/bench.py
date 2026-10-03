@@ -193,7 +193,27 @@ class Ollama:
 
 GATEWAY = "https://ai-gateway.vercel.sh/v1"
 # OpenAI-compatible hosted APIs: spec prefix -> (base URL, environment variable with the key)
-HOSTED = {"gateway": (GATEWAY, "AI_GATEWAY_API_KEY"), "nous": ("https://inference-api.nousresearch.com/v1", "NOUS_API_KEY")}
+# hermes: Hermes Agent's subscription proxy (`hermes proxy start`) on the host, which attaches the
+# Nous Portal login itself (free plan included), so no key here
+HOSTED: dict[str, tuple[str, str | None]] = {
+    "gateway": (GATEWAY, "AI_GATEWAY_API_KEY"),
+    "nous": ("https://inference-api.nousresearch.com/v1", "NOUS_API_KEY"),
+    "hermes": ("http://host.containers.internal:8645/v1", None),
+}
+
+
+def hosted_client(provider: str, timeout: float = 120) -> Any:
+    """HTTP client for a ``HOSTED`` provider; HERMES_PROXY_URL moves the proxy."""
+    import os
+
+    import httpx
+
+    base, key = HOSTED[provider]
+    if provider == "hermes":
+        base = os.environ.get("HERMES_PROXY_URL", base)
+        # a proxy on the host (or localhost) is not reached through the container's HTTP proxy
+        return httpx.Client(base_url=base, timeout=timeout, trust_env=False)
+    return httpx.Client(base_url=base, timeout=timeout, headers={"Authorization": f"Bearer {os.environ.get(key or '', '')}"})
 
 
 class CreditExhausted(RuntimeError):
@@ -208,11 +228,11 @@ class Gateway:
     def __init__(self, model: str, answer_tokens: int = 64, client: Any = None, wait: Callable[[float], None] = time.sleep, provider: str = "gateway"):
         import os
 
-        import httpx
-
         self.model, self.answer_tokens, self.wait = model, answer_tokens, wait
-        base, key = HOSTED[provider]
-        self.client = client or httpx.Client(base_url=base, timeout=120, headers={"Authorization": f"Bearer {os.environ[key]}"})
+        key = HOSTED[provider][1]
+        if key and not client and not os.environ.get(key):
+            raise KeyError(f"{key} is not set")
+        self.client = client or hosted_client(provider)
 
     def _post(self, body: dict[str, Any]) -> dict[str, Any]:
         for attempt in range(6):
@@ -240,28 +260,29 @@ class Gateway:
         return out
 
 
-def gateway_models(client: Any = None) -> list[dict[str, Any]]:
-    """The gateway's models with type, tags and price per token; free ones have
-    a price of 0 for input and output."""
-    import os
-
-    import httpx
-
-    client = client or httpx.Client(base_url=GATEWAY, timeout=60, headers={"Authorization": f"Bearer {os.environ.get('AI_GATEWAY_API_KEY', '')}"})
+def hosted_models(client: Any = None, provider: str = "gateway") -> list[dict[str, Any]]:
+    """A hosted provider's models with type, tags and price per token. Free ones
+    cost 0 for input and output or carry the ``:free`` tag (Nous Portal);
+    vision ones are tagged so or take images as input."""
+    client = client or hosted_client(provider, timeout=60)
     r = client.get("/models")
     r.raise_for_status()
     rows = []
     for m in r.json().get("data", []):
         price = m.get("pricing") or {}
+        tags = list(m.get("tags") or [])
+        if "image" in ((m.get("architecture") or {}).get("input_modalities") or []) and "vision" not in tags:
+            tags.append("vision")
+        cost_in, cost_out = price.get("input", price.get("prompt")), price.get("output", price.get("completion"))
         rows.append(
             {
                 "id": m["id"],
                 "type": m.get("type"),
-                "tags": m.get("tags") or [],
-                "input": price.get("input"),
-                "output": price.get("output"),
+                "tags": tags,
+                "input": cost_in,
+                "output": cost_out,
                 "image": price.get("image") or price.get("input_image"),
-                "free": all(float(price.get(k) or 0) == 0 for k in ("input", "output")) and bool(price),
+                "free": m["id"].endswith(":free") or (bool(price) and all(float(v or 0) == 0 for v in (cost_in, cost_out))),
                 "context": m.get("context_window"),
             }
         )
@@ -354,8 +375,9 @@ class OmniParserCaption:
 
 def backend(spec: str) -> tuple[Ask, int, int]:
     """(ask, batch, render size) for 'ollama:<tag>', 'llamacpp:<hf repo>[:quant]',
-    'gateway:<provider>/<model>' (Vercel AI Gateway), 'nous:<model>' (Nous Portal)
-    or 'florence:omniparser';
+    'gateway:<provider>/<model>' (Vercel AI Gateway), 'nous:<model>' (Nous Portal
+    API key), 'hermes:<model>' (Nous Portal through Hermes Agent's proxy) or
+    'florence:omniparser';
     options after '@': size (render px), threads, tokens (llama.cpp image
     tokens), answer (gateway answer tokens), e.g. '@size=128,threads=4,tokens=64'."""
     kind, _, rest = spec.partition(":")

@@ -43,7 +43,7 @@ def test_gateway_waits_on_rate_limits_and_stops_without_credit():
         ask([Image.new("RGB", (8, 8))])
 
 
-def test_gateway_models_flags_free_and_vision_models():
+def test_hosted_models_flags_free_and_vision_models():
     data = {
         "data": [
             {"id": "a/free-vision", "type": "language", "tags": ["vision"], "pricing": {"input": "0", "output": "0"}},
@@ -51,7 +51,7 @@ def test_gateway_models_flags_free_and_vision_models():
             {"id": "c/unpriced", "type": "embedding"},
         ]
     }
-    rows = bench.gateway_models(_client(lambda request: httpx.Response(200, json=data)))
+    rows = bench.hosted_models(_client(lambda request: httpx.Response(200, json=data)))
     assert [(r["id"], r["free"], r["tags"]) for r in rows] == [("a/free-vision", True, ["vision"]), ("b/paid", False, []), ("c/unpriced", False, [])]
 
 
@@ -65,3 +65,22 @@ def test_backend_spec_for_nous(monkeypatch):
     monkeypatch.setenv("NOUS_API_KEY", "k")
     ask, _, _ = bench.backend("nous:Hermes-4-70B")
     assert ask.model == "Hermes-4-70B" and str(ask.client.base_url).startswith("https://inference-api.nousresearch.com/v1")
+
+
+def test_nous_portal_listing_marks_free_tags_and_image_input():
+    data = {
+        "data": [
+            {"id": "nvidia/nemotron:free", "architecture": {"input_modalities": ["text", "image"]}, "pricing": {"prompt": "0.000001", "completion": "0.000002"}}
+        ]
+    }
+    [row] = bench.hosted_models(_client(lambda request: httpx.Response(200, json=data)))
+    assert row["free"] and row["tags"] == ["vision"] and row["input"] == "0.000001"
+
+
+def test_hermes_proxy_needs_no_key_and_bypasses_the_http_proxy(monkeypatch):
+    monkeypatch.setenv("HERMES_PROXY_URL", "http://127.0.0.1:9999/v1")
+    monkeypatch.delenv("AI_GATEWAY_API_KEY", raising=False)
+    ask, _, _ = bench.backend("hermes:Hermes-4-70B")
+    assert str(ask.client.base_url) == "http://127.0.0.1:9999/v1/" and "authorization" not in ask.client.headers
+    with pytest.raises(KeyError):
+        bench.backend("gateway:x/y")

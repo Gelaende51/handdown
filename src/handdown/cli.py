@@ -503,19 +503,26 @@ def bench_run(
         raise typer.Exit(75) from e
 
 
-@app.command("gateway-models")
-def gateway_models(out: str = typer.Argument("work/bench/gateway-models.jsonl")) -> None:
-    """List the Vercel AI Gateway's models with prices (needs AI_GATEWAY_API_KEY; runs on Actions)."""
+@app.command("hosted-models")
+def hosted_models(
+    out: str = typer.Argument("work/bench/gateway-models.jsonl"),
+    provider: str = typer.Option("gateway", help="gateway (Vercel, on Actions) | hermes (Hermes Agent proxy on the host) | nous"),
+) -> None:
+    """List a hosted provider's models with prices, marking free and vision models."""
     import json
     from pathlib import Path
 
     from . import bench
 
-    rows = bench.gateway_models()
+    rows = bench.hosted_models(provider=provider)
     Path(out).parent.mkdir(parents=True, exist_ok=True)
     Path(out).write_text("".join(json.dumps(r) + "\n" for r in rows))
     vision = [r for r in rows if "vision" in r["tags"]]
-    typer.echo(f"{len(rows)} models, {len(vision)} with vision, free: {[r['id'] for r in rows if r['free']]}")
+    typer.echo(f"{len(rows)} models, {len(vision)} with vision; free: {[r['id'] for r in rows if r['free']]}")
+    typer.echo(f"free with vision: {[r['id'] for r in vision if r['free']]}")
+
+
+app.command("gateway-models", hidden=True)(hosted_models)  # the name the gateway-models workflow calls
 
 
 @app.command("bench-score")
