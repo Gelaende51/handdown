@@ -246,7 +246,11 @@
 {"key": 1218453, "source_id": "npm:@coreui/icons-pro", "original_id": "svg/brand/cib-gg.svg"}
 {"key": 1218455, "source_id": "npm:@coreui/icons-pro", "original_id": "svg/brand/cib-gimp.svg"}
 {"key": 1218457, "source_id": "npm:@coreui/icons-pro", "original_id": "svg/brand/cib-gitea.svg"}
+{"key": 1486986, "source_id": "npm:@devigner-ui/icons-svg", "original_id": "svg/bulk/Check.svg"}
+{"key": 1502317, "source_id": "npm:@devigner-ui/icons-svg", "original_id": "svg/bulk/ForwardSquare.svg"}
 {"key": 1526627, "source_id": "npm:@devigner-ui/icons-svg", "original_id": "svg/twotone/NotificationCircle.svg"}
+{"key": 1547614, "source_id": "npm:@devigner-ui/icons-svg", "original_id": "svg/bulk/TaskSquare.svg"}
+{"key": 1508241, "source_id": "npm:@esri/calcite-ui-icons", "original_id": "icons/images-16.svg"}
 {"key": 1542673, "source_id": "npm:@hpe-design/icons-svg", "original_id": "dist/sync.svg"}
 {"key": 1493218, "source_id": "npm:@igniteui/material-icons-extended", "original_id": "assets/svgs/delivery.svg"}
 {"key": 1507831, "source_id": "npm:@jetbrains/icons", "original_id": "muted.svg"}
