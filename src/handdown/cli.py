@@ -823,6 +823,17 @@ def reprocess_source(source: str) -> None:
     typer.echo(pipeline.reprocess_source(_conn(Config()), source))
 
 
+@app.command("reprocess-blank")
+def reprocess_blank(dry_run: bool = typer.Option(False, "--dry-run", help="only count")) -> None:
+    """Send pictograms whose normalized image came out empty through the pipeline again (process, dedupe, hierarchy after)."""
+    cfg = Config()
+    conn = _conn(cfg)
+    ids = pipeline.blank_pictograms(conn, cfg, progress=lambda n, b: typer.echo(f"  checked {n}, blank {b}"))
+    typer.echo(f"{len(ids)} blank pictograms (with their duplicates)")
+    if not dry_run:
+        typer.echo(pipeline.reprocess(conn, ids))
+
+
 @app.command("vlm-apply")
 def vlm_apply(
     answers: list[str],

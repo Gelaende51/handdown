@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import re
 import xml.etree.ElementTree as ET
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -453,8 +454,23 @@ def classify(facts: dict[str, Any]) -> tuple[str, int]:
     return ("threshold", n)
 
 
-def _to_mono(root: ET.Element) -> None:
+def _ink_scale(colors: set[tuple[int, int, int]]) -> Callable[[float], float]:
+    """Brightness as the black-and-white cut sees it. Usually absolute; but when
+    even the darkest colour is light (an icon drawn in light green, or white for
+    dark backgrounds), every colour would turn white and the pictogram vanish,
+    so brightness counts from the darkest colour: it becomes the ink and white
+    details stay knockouts."""
+    darkest = min((luminance(c) for c in colors), default=0.0)
+    if darkest < 0.5:
+        return lambda lum: lum
+    if darkest >= 0.999:  # white only: all of it is the drawing
+        return lambda lum: 0.0
+    return lambda lum: max(0.0, (lum - darkest) / (1 - darkest))
+
+
+def _to_mono(root: ET.Element, colors: set[tuple[int, int, int]] | None = None) -> None:
     """Map every paint to pure black or white by effective luminance."""
+    scale = _ink_scale(colors or set())
     grad_lum: dict[str, float] = {}
     for el in root.iter():
         if local(el.tag) in ("linearGradient", "radialGradient") and el.get("id"):
@@ -465,7 +481,7 @@ def _to_mono(root: ET.Element) -> None:
         p = parse_paint(value)
         if p is None:
             return None
-        lum = grad_lum.get(p[5:-1], 0.0) if isinstance(p, str) else luminance(p)
+        lum = scale(grad_lum.get(p[5:-1], 0.0) if isinstance(p, str) else luminance(p))
         eff = 1 - (1 - lum) * opacity
         return "#000" if eff < 0.5 else "#fff"
 
@@ -506,7 +522,7 @@ def normalize(text: str) -> NormResult:
     vb = _square(_viewbox(root))
     facts = _collect(root)
     color_class, color_count = classify(facts)
-    _to_mono(root)
+    _to_mono(root, facts["colors"])
 
     for attr in ("width", "height", "x", "y", "style", "preserveAspectRatio"):
         root.attrib.pop(attr, None)

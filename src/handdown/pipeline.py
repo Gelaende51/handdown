@@ -288,7 +288,33 @@ def reprocess_source(conn: sqlite3.Connection, source_id: str) -> dict[str, int]
     normalization fix): measurements reset, their places in style groups and
     depictions removed (the hierarchy is incremental and would keep them),
     empty groups and depictions dropped, rule compositions removed."""
-    ids = [r[0] for r in conn.execute("SELECT id FROM pictogram WHERE source_id = ?", (source_id,))]
+    return reprocess(conn, [r[0] for r in conn.execute("SELECT id FROM pictogram WHERE source_id = ?", (source_id,))])
+
+
+def blank_pictograms(conn: sqlite3.Connection, cfg: Config, progress: Any = None) -> list[int]:
+    """Pictograms whose normalized image is empty (no ink), among those without
+    an embedding: the embedding step skips blank images, so the set is small.
+    Their duplicates are included (same image)."""
+    from .metrics import render
+
+    embedded = {r[0] for r in conn.execute("SELECT pictogram_id FROM embedding WHERE model = 'siglip'")}
+    rows = conn.execute("SELECT id, norm_path FROM pictogram WHERE duplicate_of IS NULL AND norm_path IS NOT NULL AND derived_from IS NULL").fetchall()
+    blank = set()
+    for n, (pid, path) in enumerate(r for r in rows if r[0] not in embedded):
+        p = cfg.resolve(path)
+        try:
+            if p is not None and p.exists() and render(p.read_text(), 64).max() < 0.05:
+                blank.add(pid)
+        except Exception:  # unrenderable is not blank: left to the error report
+            pass
+        if progress and n % 5000 == 0:
+            progress(n, len(blank))
+    dups = [r[0] for r in conn.execute("SELECT id, duplicate_of FROM pictogram WHERE duplicate_of IS NOT NULL") if r[1] in blank]
+    return sorted(blank) + dups
+
+
+def reprocess(conn: sqlite3.Connection, ids: list[int]) -> dict[str, int]:
+    """``reprocess_source`` for any set of pictograms."""
     conn.execute("CREATE TEMP TABLE IF NOT EXISTS reprocess_ids (id INTEGER PRIMARY KEY)")
     conn.execute("DELETE FROM reprocess_ids")
     conn.executemany("INSERT INTO reprocess_ids VALUES (?)", [(i,) for i in ids])

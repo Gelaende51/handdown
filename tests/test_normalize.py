@@ -126,3 +126,31 @@ def test_illustrator_entities_resolved_but_dangerous_ones_refused():
     ):
         with pytest.raises(ValueError):
             normalize(bad)
+
+
+def _ink(svg):
+    from handdown.metrics import render
+
+    return float(render(svg, 64).mean())
+
+
+LIGHT_GREEN = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#00b453" d="M2 2h20v20H2z"/></svg>'
+WHITE_ICON = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#fff" d="M2 2h20v20H2z"/></svg>'
+LIGHT_WITH_KNOCKOUT = (
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#7fd4ff" d="M2 2h20v20H2z"/><path fill="#fff" d="M8 8h8v8H8z"/></svg>'
+)
+
+
+def test_an_icon_drawn_only_in_light_colours_keeps_its_drawing():
+    # brightness counts relative to the darkest colour: a light green or white icon is ink, not white on white
+    assert _ink(normalize(LIGHT_GREEN).svg) > 0.6
+    assert _ink(normalize(WHITE_ICON).svg) > 0.6
+    # white detail on a light colour stays a knockout
+    out = normalize(LIGHT_WITH_KNOCKOUT).svg
+    assert 0.3 < _ink(out) < 0.7
+
+
+def test_dark_icons_are_mapped_as_before():
+    dark = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#333" d="M2 2h20v20H2z"/><path fill="#eee" d="M8 8h8v8H8z"/></svg>'
+    out = normalize(dark).svg
+    assert 'fill="#000"' in out and 'fill="#fff"' in out
