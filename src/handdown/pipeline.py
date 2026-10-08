@@ -21,6 +21,24 @@ from .normalize import normalize
 BATCH = 500
 
 
+def _blank(svg: str) -> bool:
+    from .metrics import render
+
+    return float(render(svg, 64).max()) < 0.05
+
+
+def normalize_any(raw: str) -> Any:
+    """``normalize``, with a contrast fallback when the black-and-white version
+    is empty although the colour original is not (raster.contrast_fallback)."""
+    r = normalize(raw)
+    colour = r.extra.pop("colour_svg", None)
+    if colour and _blank(r.svg):
+        alt = raster.contrast_fallback(colour)
+        if not _blank(alt.svg):
+            return alt
+    return r
+
+
 def upsert_source(conn: sqlite3.Connection, s: SourceInfo, adapter: str) -> None:
     conn.execute(
         "INSERT OR IGNORE INTO platform (id, name, found_via, first_seen) VALUES (?, ?, ?, ?)",
@@ -134,7 +152,7 @@ def _work(args: tuple[int, str, str, str | None]) -> tuple[int, dict[str, Any] |
     pid, raw, norm_root, old_sha = args
     try:
         # pixel pictograms: the 1-bit version of the wrapped original (raster.py)
-        r = raster.monochrome(raw) if raster.is_raster(raw) else normalize(raw)
+        r = raster.monochrome(raw) if raster.is_raster(raw) else normalize_any(raw)
         sha = hashlib.sha256(r.svg.encode()).hexdigest()
         if sha == old_sha:
             return pid, {"unchanged": True}, None  # same drawing: keep measurements

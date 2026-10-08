@@ -109,3 +109,49 @@ def render_rgb(svg: str, size: int) -> Image.Image:
     png = resvg_py.svg_to_bytes(svg_string=svg, width=size, height=size, background="#ffffff", skip_system_fonts=True)
     img = Image.open(io.BytesIO(bytes(png))).convert("RGB")
     return img if img.size == (size, size) else img.resize((size, size))
+
+
+def render_rgba(svg: str, size: int) -> Image.Image:
+    """A colour render with its transparency (for the contrast fallback of vector pictograms)."""
+    import resvg_py
+
+    png = resvg_py.svg_to_bytes(svg_string=svg, width=size, height=size, skip_system_fonts=True)
+    img = Image.open(io.BytesIO(bytes(png))).convert("RGBA")
+    return img if img.size == (size, size) else img.resize((size, size))
+
+
+def contrast_fallback(colour_svg: str, size: int = 256) -> NormResult:
+    """A vector pictogram whose black-and-white version came out empty (a light
+    drawing at low opacity for dark panels, a symbol on a tile of similar
+    brightness), rendered in colour and separated by contrast.
+
+    First within the drawn area (Otsu over the drawn pixels only): the larger
+    part is the body and becomes ink, the smaller part stays a white cutout.
+    That split is kept only when the cutout lies inside the body, like a symbol
+    on a tile; a split along the outline (the two halves of a gradient) is not
+    a symbol, and the whole render is thresholded against white instead."""
+    from scipy import ndimage
+
+    img = render_rgba(colour_svg, size)
+    rgba = np.asarray(img, dtype=np.float32)
+    shape = rgba[..., 3] > 25  # also faint drawings (30 % opacity)
+    ink = None
+    if shape.mean() > 0.002:
+        lum = rgba[..., :3] @ np.array([0.299, 0.587, 0.114], dtype=np.float32)
+        inside = lum[shape]
+        if inside.max() - inside.min() <= 24:
+            ink = shape  # no contrast inside: a silhouette
+        else:
+            dark = lum < _otsu(inside)
+            body = shape & (dark if (dark & shape).sum() >= (~dark & shape).sum() else ~dark)
+            detail = shape & ~body
+            outline = shape & ~ndimage.binary_erosion(shape, iterations=2)
+            share = detail.sum() / shape.sum()
+            if 0.01 < share < 0.45 and (detail & outline).sum() < 0.15 * outline.sum():
+                ink = body
+    if ink is None:  # faint, gradient or empty: the render on white, as for raster originals
+        r = monochrome(_wrap(img))
+    else:
+        r = monochrome(_wrap(Image.fromarray(np.where(ink, 0, 255).astype(np.uint8)).convert("RGBA")))
+    r.extra["fallback"] = "contrast"
+    return r

@@ -31,3 +31,27 @@ def test_blank_pictograms_are_found_and_sent_through_the_pipeline_again(tmp_path
     out = pipeline.reprocess(c, ids)
     assert out["pictograms"] == 2 and out["memberships"] == 2 and out["depictions_removed"] == 1
     assert [r[0] for r in c.execute("SELECT id FROM pictogram WHERE measured_at IS NULL ORDER BY id")] == [2, 3]
+
+
+FADED = (  # a desktop icon theme: light grey at 30 % for dark panels
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="#dfdfdf" fill-opacity=".3" d="M2 2h12v12H2z"/></svg>'
+)
+TILE = (  # an app icon: white symbol on an orange tile
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect width="24" height="24" rx="4" fill="#ff9800"/><path fill="#fff" d="M8 6h8v12H8z"/></svg>'
+)
+EMPTY = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20"/></svg>'
+
+
+def test_empty_black_and_white_falls_back_to_contrast():
+    from handdown.metrics import render
+
+    r = pipeline.normalize_any(FADED)
+    assert r.extra.get("fallback") == "contrast" and render(r.svg, 64).max() > 0.5
+    # a light tile needs no fallback (the darkest colour is the ink); its symbol stays apart: tile ink, symbol paper
+    r = pipeline.normalize_any(TILE)
+    tile = render(r.svg, 64)
+    assert "fallback" not in r.extra and tile[32, 32] < 0.5 < tile[4, 32]
+    # nothing drawn in the original either: stays empty, no fallback
+    assert "fallback" not in pipeline.normalize_any(EMPTY).extra
+    # a normal icon never takes the fallback, and its colour copy is not kept
+    assert pipeline.normalize_any(INK).extra == {"duotone": False}

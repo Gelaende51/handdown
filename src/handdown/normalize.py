@@ -6,6 +6,7 @@ Every downloaded SVG passes through here before it is rendered or exported.
 
 from __future__ import annotations
 
+import copy
 import re
 import xml.etree.ElementTree as ET
 from collections.abc import Callable
@@ -522,21 +523,24 @@ def normalize(text: str) -> NormResult:
     vb = _square(_viewbox(root))
     facts = _collect(root)
     color_class, color_count = classify(facts)
+    colour = copy.deepcopy(root)  # sanitized, still in colour: the fallback when black and white comes out empty
     _to_mono(root, facts["colors"])
 
-    for attr in ("width", "height", "x", "y", "style", "preserveAspectRatio"):
-        root.attrib.pop(attr, None)
-    root.set("viewBox", " ".join(_fmt(v) for v in vb))
-    out = ET.tostring(root, encoding="unicode")
-    if "xmlns=" not in out.split(">", 1)[0]:
-        out = out.replace("<svg", f'<svg xmlns="{SVG_NS}"', 1)
+    def serialize(el: ET.Element) -> str:
+        for attr in ("width", "height", "x", "y", "style", "preserveAspectRatio"):
+            el.attrib.pop(attr, None)
+        el.set("viewBox", " ".join(_fmt(v) for v in vb))
+        text = ET.tostring(el, encoding="unicode")
+        return text if "xmlns=" in text.split(">", 1)[0] else text.replace("<svg", f'<svg xmlns="{SVG_NS}"', 1)
+
+    out = serialize(root)
 
     widths = facts["stroke_widths"]
     caps = facts["caps"]
     rules = facts["fill_rules"]
     duotone = color_count <= 1 and facts["partial_opacity"] and not facts["gradient"]
     return NormResult(
-        extra={"duotone": duotone},
+        extra={"duotone": duotone, "colour_svg": serialize(colour)},
         svg=out,
         viewbox=vb,
         color_class=color_class,
