@@ -25,8 +25,6 @@ from .config import Config
 LEVELS = ("style_group", "depiction", "symbol", "idea", "composite")
 LEGACY = {"object": "symbol", "meaning": "idea"}  # rungs before symbols and ideas (2026-10-02)
 KINDS = ("image", "style_group", "depiction", "symbol", "idea", "object", "meaning")
-# sibling relations read from the other side
-INVERSE = {"composed of": "part of", "variant of": "has variant", "derived from": "source of", "broader": "narrower"}
 CSS = """
 body{font:14px system-ui,sans-serif;margin:0;background:#fafaf8;color:#222}main{max-width:1100px;margin:auto;padding:12px 16px}
 a{color:#2457c5;text-decoration:none}a:hover{text-decoration:underline}.crumbs{color:#666;margin:6px 0 12px}
@@ -142,10 +140,9 @@ class Catalog:
 
     def siblings(self, table: str, ident: str) -> list[tuple[str, str]]:
         """(relation as read from ``ident``, other end) within one rung."""
-        a, b = ("symbol_a", "symbol_b") if table == "symbol_relation" else ("concept_a", "concept_b")
-        out = [(r[0], r[1]) for r in self.conn.execute(f"SELECT relation, {b} FROM {table} WHERE {a} = ?", (ident,))]
-        out += [(INVERSE.get(r[0], r[0]), r[1]) for r in self.conn.execute(f"SELECT relation, {a} FROM {table} WHERE {b} = ?", (ident,))]
-        return sorted(set(out))
+        from . import rungs
+
+        return rungs.siblings(self.conn, table, ident)
 
     def snapshot(self, kind: str, ident: str) -> dict[str, Any]:
         """The classification as it is now, stored with a mark."""

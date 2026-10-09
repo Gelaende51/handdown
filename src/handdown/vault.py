@@ -60,6 +60,7 @@ class Exporter:
         self.vault = cfg.vault
         self.min_sources = min_sources
         self.names: dict[str, str] = {}  # concept id -> note path (relative, no .md)
+        self.symbol_names: dict[str, str] = {}  # symbol id -> note path
 
     # ---- helpers -------------------------------------------------------
     def media(self, norm_path: str | None) -> str | None:
@@ -145,6 +146,7 @@ class Exporter:
             lines += [f"> {k['definition']}", ""]
         if k["parent_id"] and k["parent_id"] in self.names:
             lines += [f"Broader: [[{self.names[k['parent_id']]}|{k['parent_id']}]]", ""]
+        lines += self.siblings_callout("idea_relation", k["id"])
         members = defaultdict(list)
         all_pids: list[int] = []
         for c in clusters:
@@ -188,9 +190,91 @@ class Exporter:
             if len(rows) > MAX_VARIANTS:
                 lines.append(f"\n…and {len(rows) - MAX_VARIANTS} more variants (see HTML export).")
             lines.append("")
+        lines += self.symbols_section(k["id"])
         lines += self.hierarchy_section(k["id"])
         lines += self.combinations_section(k["id"])
         write_note(path, front, "\n".join(lines))
+
+    # ---- symbols and ideas (the two top rungs) -------------------------
+    def link(self, kind: str, ident: str, label: str) -> str:
+        names = self.symbol_names if kind == "symbol" else self.names
+        return f"[[{names[ident]}\\|{label}]]" if ident in names else label
+
+    def siblings_callout(self, table: str, ident: str) -> list[str]:
+        """Relations within the rung, in a callout apart from the hierarchy, each naming its relation."""
+        from .rungs import siblings
+
+        rows = siblings(self.conn, table, ident)
+        if not rows:
+            return []
+        kind = "symbol" if table == "symbol_relation" else "idea"
+        if kind == "symbol":
+            marks = ",".join("?" * len(rows))
+            labels = dict(self.conn.execute(f"SELECT id, label FROM symbol WHERE id IN ({marks})", [o for _, o in rows]).fetchall())
+        else:
+            marks = ",".join("?" * len(rows))
+            labels = dict(self.conn.execute(f"SELECT id, label FROM concept WHERE id IN ({marks})", [o for _, o in rows]).fetchall())
+        out = [f"> [!siblings] Related {kind}s (same rung)"]
+        out += [f"> - {rel}: {self.link(kind, o, labels.get(o, o))}" for rel, o in rows[:40]]
+        return [*out, ""]
+
+    def symbols_section(self, concept_id: str) -> list[str]:
+        """The symbols standing for this idea (the rung below an idea)."""
+        from .rungs import symbol_images, symbols_for_idea
+
+        rows = symbols_for_idea(self.conn, concept_id)
+        if not rows:
+            return []
+        out = ["## Symbols standing for it", ""]
+        for r in rows:
+            wiki = f" · Wikipedia: {r['wikipedia']}" if r["wikipedia"] else ""
+            out.append(f"- {self.link('symbol', r['id'], r['label'])} ({r['kind']}, {r['size']} depictions, {r['source_count']} sources{wiki})")
+            sheet = " ".join(f"![[{m}\\|24]]" for img in symbol_images(self.conn, r["id"], 8) if (m := self.media(img["norm_path"])))
+            if sheet:
+                out.append(f"  {sheet}")
+        return [*out, ""]
+
+    def symbol_note(self, s: sqlite3.Row) -> None:
+        from .rungs import depictions_of, ideas_of, images
+
+        path = self.vault / f"{self.symbol_names[s['id']]}.md"
+        old = read_frontmatter(path)
+        ideas = ideas_of(self.conn, s["id"])
+        front: dict[str, Any] = {
+            "symbol": s["id"],
+            "label": s["label"],
+            "wikipedia": s["wikipedia"],
+            "wikidata": s["wikidata_qid"],
+            "ideas": [i["concept_id"] for i in ideas],
+            "depictions": s["size"],
+            "sources": s["source_count"],
+            "formed_by": s["method"],
+            "overrides": old.get("overrides") or {},
+            "notes": old.get("notes") or "",
+        }
+        stands = ", ".join(f"{self.link('idea', i['concept_id'], i['label'])} ({i['kind']})" for i in ideas)
+        lines = [f"# {s['label']}", "", f"Stands for: {stands or '–'}", ""]
+        if s["wikipedia"]:
+            lines += [f"Wikipedia: [{s['wikipedia']}](https://en.wikipedia.org/wiki/{s['wikipedia'].replace(' ', '_')})", ""]
+        if s["description"]:
+            lines += [f"> {s['description']}", ""]
+        lines += self.siblings_callout("symbol_relation", s["id"])
+        lines += ["## Depictions", ""]
+        for d in depictions_of(self.conn, s["id"]):
+            variety = ", ".join(json.loads(d["varieties"] or "[]")) or "plain"
+            lines.append(f"### {d['form']}: view {d['view']}, {variety} ({d['size']} images, {d['source_count']} sources)")
+            sheet = " ".join(f"![[{m}\\|24]]" for img in images(self.conn, d["id"], 12) if (m := self.media(img["norm_path"])))
+            lines += [sheet, ""] if sheet else [""]
+        write_note(path, front, "\n".join(lines))
+
+    def plan_symbol_names(self, symbols: list[sqlite3.Row]) -> None:
+        used: set[str] = set()
+        for s in symbols:
+            name = f"symbols/{slug(s['label'])}"
+            if name in used:
+                name = f"symbols/{slug(s['label'])} ({slug(s['id'])})"
+            used.add(name)
+            self.symbol_names[s["id"]] = name
 
     def hierarchy_section(self, concept_id: str) -> list[str]:
         """Meaning view (Drawn as) and object view (Used to mean)."""
@@ -306,6 +390,7 @@ class Exporter:
             f"- unique (after dedupe): {q('SELECT COUNT(*) FROM pictogram WHERE duplicate_of IS NULL AND sha256 IS NOT NULL')[0][0]}",
             f"- concepts: {q('SELECT COUNT(*) FROM concept')[0][0]} (in vault: {len(concepts)}, ≥{self.min_sources} sources)",
             f"- depiction clusters: {q('SELECT COUNT(*) FROM depiction_cluster')[0][0]}",
+            f"- symbols: {q('SELECT COUNT(*) FROM symbol')[0][0]} (in vault: {len(self.symbol_names)}, ≥{self.min_sources} sources)",
             "",
             "## Colour classes",
             "",
@@ -374,14 +459,22 @@ class Exporter:
             target.mkdir(parents=True, exist_ok=True)
             if not link.exists():
                 link.symlink_to(os.path.relpath(target, media))
+        from .rungs import symbols as symbol_rows
+
         concepts = self.concepts()
         self.plan_names(concepts)
-        expected = {f"{n}.md" for n in self.names.values()}
-        existing = {str(p.relative_to(self.vault)) for p in (self.vault / "concepts").rglob("*.md")} if (self.vault / "concepts").exists() else set()
+        symbols = symbol_rows(self.conn, self.min_sources)
+        self.plan_symbol_names(symbols)
+        expected = {f"{n}.md" for n in [*self.names.values(), *self.symbol_names.values()]}
+        existing = {str(p.relative_to(self.vault)) for d in ("concepts", "symbols") if (self.vault / d).exists() for p in (self.vault / d).rglob("*.md")}
         for i, k in enumerate(concepts):
             self.concept_note(k)
             if i % 1000 == 0:
                 log(f"  concept notes: {i}/{len(concepts)}")
+        for i, sym in enumerate(symbols):
+            self.symbol_note(sym)
+            if i % 5000 == 0:
+                log(f"  symbol notes: {i}/{len(symbols)}")
         # Stale notes: report those holding hand-written content, remove the rest.
         kept = []
         for rel in sorted(existing - expected):

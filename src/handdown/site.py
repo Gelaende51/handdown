@@ -48,6 +48,12 @@ UI = {
         "definition": "Definition",
         "labels": "Labels",
         "broader": "Broader",
+        "symbols": "Symbols standing for it",
+        "stands_for": "Stands for",
+        "depictions": "Depictions",
+        "related_symbols": "Related symbols",
+        "related_ideas": "Related ideas",
+        "same_rung": "same rung, not the hierarchy",
     },
     "de": {
         "title": "Piktogramm-Katalog",
@@ -77,6 +83,12 @@ UI = {
         "definition": "Definition",
         "labels": "Bezeichnungen",
         "broader": "Oberbegriff",
+        "symbols": "Symbole dafür",
+        "stands_for": "Steht für",
+        "depictions": "Darstellungen",
+        "related_symbols": "Verwandte Symbole",
+        "related_ideas": "Verwandte Ideen",
+        "same_rung": "gleiche Ebene, nicht die Hierarchie",
     },
 }
 
@@ -103,6 +115,12 @@ table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px
 td.n{text-align:right;font-variant-numeric:tabular-nums}
 .cluster{border-top:1px solid var(--line);margin-top:20px;padding-top:8px}
 .muted{color:var(--muted)}.scroll{overflow-x:auto}
+.split{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:16px;align-items:start}
+@media (max-width:760px){.split{grid-template-columns:minmax(0,1fr)}}
+aside.siblings{background:var(--card);border:1px dashed var(--line);border-radius:8px;padding:8px 12px;font-size:13px}
+aside.siblings h2{font-size:15px;margin:4px 0}aside.siblings ul{padding-left:0;list-style:none;margin:6px 0}
+aside.siblings li{margin:3px 0}.rel{color:var(--muted);font-size:12px;margin-right:4px}
+.form{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:0 4px;margin-right:6px}
 """
 
 INDEX_JS = """
@@ -171,10 +189,16 @@ def export(conn: sqlite3.Connection, cfg: Config, min_sources: int = 2, log: Any
     )
     notes = dict(conn.execute("SELECT substr(target, 9), value FROM override WHERE field='notes' AND target LIKE 'concept:%'").fetchall())
     files = {k["id"]: f"{i}" for i, k in enumerate(concepts)}
+    from . import rungs
+
+    symbols = rungs.symbols(conn, min_sources)
+    sym_files = {sym["id"]: f"{i}" for i, sym in enumerate(symbols)}
+    (out / "s").mkdir(exist_ok=True)
     index = []
     for i, k in enumerate(concepts):
         clusters = conn.execute("SELECT * FROM depiction_cluster WHERE concept_id=? ORDER BY source_count DESC, size DESC", (k["id"],)).fetchall()
         body, best, best_sha = _concept_body(conn, cfg, k, clusters, files, t, notes.get(k["id"]))
+        body = f'<div class="split"><div>{body}{_symbols_html(conn, cfg, k["id"], sym_files, t)}</div>{_siblings_html(conn, "idea_relation", k["id"], files, t)}</div>'
         (out / "c" / f"{files[k['id']]}.html").write_text(_page(esc(k["label"]), body, CONCEPT_JS, "../"))
         index.append(
             {
@@ -191,6 +215,10 @@ def export(conn: sqlite3.Connection, cfg: Config, min_sources: int = 2, log: Any
         )
         if i % 2000 == 0:
             log(f"  html pages: {i}/{len(concepts)}")
+    for i, sym in enumerate(symbols):
+        (out / "s" / f"{sym_files[sym['id']]}.html").write_text(_page(esc(sym["label"]), _symbol_body(conn, cfg, sym, files, sym_files, t), "", "../"))
+        if i % 5000 == 0:
+            log(f"  symbol pages: {i}/{len(symbols)}")
     (out / "data" / "concepts.json").write_text(json.dumps(index, ensure_ascii=False, separators=(",", ":")))
     doms = sorted({c["d"] for c in index})
     controls = (
@@ -340,6 +368,85 @@ def _combinations_html(conn: sqlite3.Connection, cfg: Config, concept_id: str) -
             tiles.append(f'<span class="tile" title="{esc(title)}"><img src="../svg/{src.stem}.svg" width="24" height="24" alt="" loading="lazy"></span>')
         out.append(f'<h3>{esc(key)} ({len(groups[key])})</h3><div class="sheet">{"".join(tiles)}</div>')
     return out
+
+
+def _tiles(cfg: Config, rows: list[sqlite3.Row], size: int = 24) -> str:
+    out = []
+    for r in rows:
+        src = cfg.resolve(r["norm_path"])
+        if src is None or not r["sha256"]:
+            continue
+        _link(str(src), cfg.site / "svg" / f"{r['sha256']}.svg")
+        out.append(
+            f'<span class="tile" title="{esc(r["original_name"])}"><img src="../svg/{r["sha256"]}.svg" width="{size}" height="{size}" alt="" loading="lazy"></span>'
+        )
+    return f'<div class="sheet">{"".join(out)}</div>'
+
+
+def _siblings_html(conn: sqlite3.Connection, table: str, ident: str, files: dict[str, str], t: dict[str, str]) -> str:
+    """Relations within one rung, in a side panel apart from the hierarchy, each naming its relation."""
+    from .rungs import siblings
+
+    rows = siblings(conn, table, ident)
+    kind = "symbol" if table == "symbol_relation" else "idea"
+    marks = ",".join("?" * len(rows))
+    names = (
+        dict(conn.execute(f"SELECT id, label FROM {'symbol' if kind == 'symbol' else 'concept'} WHERE id IN ({marks})", [o for _, o in rows]).fetchall())
+        if rows
+        else {}
+    )
+    base = "" if kind == "symbol" else "../c/"
+    items = "".join(
+        f'<li><span class="rel">{esc(rel)}</span>'
+        + (f'<a href="{base}{files[o]}.html">{esc(names.get(o, o))}</a>' if o in files else esc(names.get(o, o)))
+        + "</li>"
+        for rel, o in rows[:40]
+    )
+    title = t["related_symbols"] if kind == "symbol" else t["related_ideas"]
+    return f'<aside class="siblings"><h2>{title}</h2><p class="muted">{t["same_rung"]}</p><ul>{items or "<li class=muted>–</li>"}</ul></aside>'
+
+
+def _symbols_html(conn: sqlite3.Connection, cfg: Config, concept_id: str, sym_files: dict[str, str], t: dict[str, str]) -> str:
+    """The symbols standing for an idea (the rung below it)."""
+    from .rungs import symbol_images, symbols_for_idea
+
+    rows = symbols_for_idea(conn, concept_id)
+    if not rows:
+        return ""
+    cards = []
+    for r in rows:
+        name = f'<a href="../s/{sym_files[r["id"]]}.html">{esc(r["label"])}</a>' if r["id"] in sym_files else esc(r["label"])
+        wiki = f" · Wikipedia: {esc(r['wikipedia'])}" if r["wikipedia"] else ""
+        cards.append(
+            f'<section class="cluster"><h3>{name} <small class="muted">{esc(r["kind"])} · {r["size"]} {t["depictions"].lower()} · '
+            f"{r['source_count']} {t['sources']}{wiki}</small></h3>{_tiles(cfg, symbol_images(conn, r['id'], 8))}</section>"
+        )
+    return f"<h2>{t['symbols']}</h2>" + "".join(cards)
+
+
+def _symbol_body(conn: sqlite3.Connection, cfg: Config, sym: sqlite3.Row, files: dict[str, str], sym_files: dict[str, str], t: dict[str, str]) -> str:
+    """A symbol: the ideas above it as a breadcrumb, its depictions below with their form, related symbols beside."""
+    from .rungs import depictions_of, ideas_of, images
+
+    ideas = ideas_of(conn, sym["id"])
+    crumbs = ", ".join(
+        (f'<a href="../c/{files[i["concept_id"]]}.html">{esc(i["label"])}</a>' if i["concept_id"] in files else esc(i["label"]))
+        + f' <span class="muted">({esc(i["kind"])})</span>'
+        for i in ideas
+    )
+    parts = [f'<p><a href="../index.html">{t["back"]}</a></p><h1>{esc(sym["label"])}</h1><p>{t["stands_for"]}: {crumbs or "–"}</p>']
+    if sym["wikipedia"]:
+        url = "https://en.wikipedia.org/wiki/" + sym["wikipedia"].replace(" ", "_")
+        parts.append(f'<p class="muted">Wikipedia: <a href="{esc(url)}" rel="noreferrer">{esc(sym["wikipedia"])}</a></p>')
+    parts.append(f"<h2>{t['depictions']}</h2>")
+    for d in depictions_of(conn, sym["id"]):
+        variety = ", ".join(json.loads(d["varieties"] or "[]")) or "plain"
+        parts.append(
+            f'<section class="cluster"><h3><span class="form">{esc(d["form"])}</span>view {esc(d["view"])}, {esc(variety)} '
+            f'<small class="muted">{d["size"]} {t["pictograms"]}, {d["source_count"]} {t["sources"]}</small></h3>{_tiles(cfg, images(conn, d["id"], 12))}</section>'
+        )
+    # related symbols live in the same folder
+    return f'<div class="split"><div>{"".join(parts)}</div>{_siblings_html(conn, "symbol_relation", sym["id"], sym_files, t)}</div>'
 
 
 def _page(title: str, body: str, js: str, root: str) -> str:

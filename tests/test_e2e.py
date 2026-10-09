@@ -210,3 +210,54 @@ def test_distinctiveness_chunked_equals_unchunked(env):
     whole = scores()
     score.distinctiveness(conn, prep_chunk=2, chunk=1)
     assert scores() == whole and whole
+
+
+def _rungs(conn):
+    """One idea (ash can) with two symbols; one sibling relation per rung."""
+    can, x = (conn.execute("SELECT id FROM pictogram WHERE original_id=? ORDER BY id LIMIT 1", (n,)).fetchone()[0] for n in ("ashcan", "close"))
+    conn.execute(
+        "INSERT INTO depiction (id, view, varieties, method, size, source_count) VALUES (901, 'front', '[]', 'rules', 2, 2), (902, 'front', ?, 'rules', 1, 1)",
+        ('["crossed"]',),
+    )
+    conn.execute("INSERT INTO style_group (depiction_id, representative_id, size) VALUES (901, ?, 2), (902, ?, 1)", (can, x))
+    conn.execute(
+        "INSERT INTO symbol (id, label, wikipedia, method, size, source_count) VALUES "
+        "('sym:ashcan', 'ash can (trash)', 'Waste container', 'rules', 1, 3), ('sym:x', 'x mark', NULL, 'rules', 1, 2)"
+    )
+    conn.execute("INSERT INTO symbol_depiction (symbol_id, depiction_id, form) VALUES ('sym:ashcan', 901, 'canonical'), ('sym:x', 902, 'variant')")
+    conn.execute(
+        "INSERT INTO symbol_idea (symbol_id, concept_id, kind) VALUES"
+        " ('sym:ashcan', 'wn:ashcan.n.01', 'resemblance'), ('sym:x', 'wn:ashcan.n.01', 'convention')"
+    )
+    conn.execute("INSERT INTO symbol_relation (symbol_a, symbol_b, relation) VALUES ('sym:x', 'sym:ashcan', 'same idea')")
+    conn.execute("INSERT INTO idea_relation (concept_a, concept_b, relation, source) VALUES ('wn:ashcan.n.01', 'wn:container.n.01', 'broader', 'wordnet')")
+    conn.commit()
+
+
+def test_exports_show_symbols_and_ideas_with_siblings_apart(env):
+    from handdown import site
+
+    cfg, conn = env
+    pipeline.harvest(conn, Fixture())
+    pipeline.process(conn, cfg, workers=1)
+    concepts.run(conn)
+    cluster.run(conn)
+    score.run(conn, log=lambda *_: None)
+    _rungs(conn)
+
+    vault.Exporter(conn, cfg, min_sources=1).run(log=lambda *_: None)
+    idea = next(p for p in cfg.vault.rglob("concepts/**/*.md") if vault.read_frontmatter(p).get("concept") == "wn:ashcan.n.01").read_text()
+    assert "## Symbols standing for it" in idea and "[[symbols/ash can (trash)" in idea and "(resemblance," in idea
+    assert "> [!siblings] Related ideas" in idea and "> - broader:" in idea  # the sibling rung sits in its own callout
+    sym = (cfg.vault / "symbols" / "x mark.md").read_text()
+    assert vault.read_frontmatter(cfg.vault / "symbols" / "x mark.md")["ideas"] == ["wn:ashcan.n.01"]
+    assert "Stands for: [[concepts/" in sym and "### variant: view front, crossed" in sym
+    assert "> - same idea: [[symbols/ash can (trash)" in sym
+
+    site.export(conn, cfg, min_sources=1, log=lambda *_: None)
+    pages = {p.read_text().split("<h1>")[1].split("</h1>")[0]: p.read_text() for p in (cfg.site / "s").glob("*.html")}
+    assert set(pages) == {"ash can (trash)", "x mark"}
+    x = pages["x mark"]
+    assert 'class="siblings"' in x and '<span class="rel">same idea</span><a href="' in x and "(convention)" in x
+    assert '<span class="form">variant</span>' in x and 'href="../c/' in x  # up to the idea
+    assert "Waste_container" in pages["ash can (trash)"]
