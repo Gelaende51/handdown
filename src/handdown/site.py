@@ -279,6 +279,8 @@ def _concept_body(
                 part,
             ):
                 scores[pid][metric] = value
+        if not rows:  # all members off-topic: nothing to show
+            continue
         rep = next((r for r in rows if r["id"] == c["representative_id"]), rows[0])
         for r in rows:
             if r["norm_path"] and r["sha256"]:

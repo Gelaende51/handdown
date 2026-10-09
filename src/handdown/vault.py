@@ -159,6 +159,7 @@ class Exporter:
             members[c["id"]] = rows
             all_pids += [r["id"] for r in rows]
         sc = self.scores(all_pids)
+        clusters = [c for c in clusters if members[c["id"]]]  # all members off-topic: nothing to show
         for n, c in enumerate(clusters, 1):
             rows = sorted(members[c["id"]], key=lambda r: -sc[r["id"]].get("combined", 0))
             rep = next((r for r in rows if r["id"] == c["representative_id"]), rows[0])

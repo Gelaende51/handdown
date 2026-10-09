@@ -261,3 +261,17 @@ def test_exports_show_symbols_and_ideas_with_siblings_apart(env):
     assert 'class="siblings"' in x and '<span class="rel">same idea</span><a href="' in x and "(convention)" in x
     assert '<span class="form">variant</span>' in x and 'href="../c/' in x  # up to the idea
     assert "Waste_container" in pages["ash can (trash)"]
+
+
+def test_exports_skip_depictions_whose_pictograms_are_all_off_topic(env):
+    from handdown import site, topic
+
+    cfg, conn = env
+    pipeline.harvest(conn, Fixture())
+    pipeline.process(conn, cfg, workers=1)
+    concepts.run(conn)
+    cluster.run(conn)
+    score.run(conn, log=lambda *_: None)
+    topic.mark(conn, "fx:c", ["trash-can"], "test")  # the X drawn for "trash can" was its depiction's only member
+    vault.Exporter(conn, cfg, min_sources=1).run(log=lambda *_: None)
+    assert site.export(conn, cfg, min_sources=1, log=lambda *_: None) >= 2
