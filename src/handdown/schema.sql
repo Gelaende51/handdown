@@ -401,6 +401,7 @@ CREATE TABLE IF NOT EXISTS symbol_relation (    -- siblings: within the symbol r
     method TEXT NOT NULL DEFAULT 'rules',
     PRIMARY KEY (symbol_a, symbol_b, relation)
 );
+CREATE INDEX IF NOT EXISTS symbol_relation_b ON symbol_relation(symbol_b);  -- siblings read from the other end
 CREATE TABLE IF NOT EXISTS idea_relation (      -- siblings: within the idea rung
     concept_a TEXT NOT NULL,
     concept_b TEXT NOT NULL,        -- for 'broader': concept_b is broader than concept_a
@@ -408,6 +409,7 @@ CREATE TABLE IF NOT EXISTS idea_relation (      -- siblings: within the idea run
     source TEXT NOT NULL,           -- wordnet | wikidata | ai | manual
     PRIMARY KEY (concept_a, concept_b, relation)
 );
+CREATE INDEX IF NOT EXISTS idea_relation_b ON idea_relation(concept_b);  -- siblings read from the other end
 CREATE INDEX IF NOT EXISTS style_member_pictogram ON style_member(pictogram_id);
 -- Per-source progress through the hierarchy for the review app's sourcing map (handdown source-stats)
 CREATE TABLE IF NOT EXISTS source_progress (
