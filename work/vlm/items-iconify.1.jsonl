@@ -12516,8 +12516,6 @@
 {"key": 1958380, "source_id": "iconify:catppuccin", "original_id": "bicep"}
 {"key": 1960225, "source_id": "iconify:catppuccin", "original_id": "bitbucket"}
 {"key": 1966279, "source_id": "iconify:catppuccin", "original_id": "browserslist"}
-{"key": 1984317, "source_id": "iconify:catppuccin", "original_id": "clojure"}
-{"key": 1985668, "source_id": "iconify:catppuccin", "original_id": "cmake"}
 {"key": 1986421, "source_id": "iconify:catppuccin", "original_id": "codeowners"}
 {"key": 1986602, "source_id": "iconify:catppuccin", "original_id": "coffeescript"}
 {"key": 1988830, "source_id": "iconify:catppuccin", "original_id": "config"}
@@ -12529,7 +12527,6 @@
 {"key": 1996390, "source_id": "iconify:catppuccin", "original_id": "deno"}
 {"key": 1996470, "source_id": "iconify:catppuccin", "original_id": "dependabot"}
 {"key": 1997135, "source_id": "iconify:catppuccin", "original_id": "devcontainer"}
-{"key": 1998707, "source_id": "iconify:catppuccin", "original_id": "diff"}
 {"key": 2002618, "source_id": "iconify:catppuccin", "original_id": "docusaurus"}
 {"key": 2005083, "source_id": "iconify:catppuccin", "original_id": "drizzle-orm"}
 {"key": 2005573, "source_id": "iconify:catppuccin", "original_id": "dub-selections"}
@@ -12550,12 +12547,9 @@
 {"key": 2039007, "source_id": "iconify:catppuccin", "original_id": "gitpod"}
 {"key": 2039334, "source_id": "iconify:catppuccin", "original_id": "gleam-config"}
 {"key": 2041132, "source_id": "iconify:catppuccin", "original_id": "go-template"}
-{"key": 2042539, "source_id": "iconify:catppuccin", "original_id": "gradle"}
 {"key": 2042796, "source_id": "iconify:catppuccin", "original_id": "graphql"}
 {"key": 2045441, "source_id": "iconify:catppuccin", "original_id": "haml"}
 {"key": 2046358, "source_id": "iconify:catppuccin", "original_id": "hardhat"}
-{"key": 2046512, "source_id": "iconify:catppuccin", "original_id": "haskell"}
-{"key": 2046639, "source_id": "iconify:catppuccin", "original_id": "haxe"}
 {"key": 2048270, "source_id": "iconify:catppuccin", "original_id": "heroku"}
 {"key": 2048939, "source_id": "iconify:catppuccin", "original_id": "histoire"}
 {"key": 2068909, "source_id": "iconify:catppuccin", "original_id": "javascript"}
@@ -12567,7 +12561,6 @@
 {"key": 2070061, "source_id": "iconify:catppuccin", "original_id": "jupyter"}
 {"key": 2071061, "source_id": "iconify:catppuccin", "original_id": "kdl"}
 {"key": 2074191, "source_id": "iconify:catppuccin", "original_id": "knip"}
-{"key": 2074546, "source_id": "iconify:catppuccin", "original_id": "kotlin"}
 {"key": 2076301, "source_id": "iconify:catppuccin", "original_id": "laravel"}
 {"key": 2078722, "source_id": "iconify:catppuccin", "original_id": "lerna"}
 {"key": 2079236, "source_id": "iconify:catppuccin", "original_id": "lib"}
@@ -12580,7 +12573,6 @@
 {"key": 2087543, "source_id": "iconify:catppuccin", "original_id": "makefile"}
 {"key": 2090655, "source_id": "iconify:catppuccin", "original_id": "markdown"}
 {"key": 2090730, "source_id": "iconify:catppuccin", "original_id": "marko"}
-{"key": 2091198, "source_id": "iconify:catppuccin", "original_id": "matlab"}
 {"key": 2091846, "source_id": "iconify:catppuccin", "original_id": "mdbook"}
 {"key": 2097438, "source_id": "iconify:catppuccin", "original_id": "modernizr"}
 {"key": 2098550, "source_id": "iconify:catppuccin", "original_id": "moonrepo"}
@@ -12588,7 +12580,6 @@
 {"key": 2100126, "source_id": "iconify:catppuccin", "original_id": "ms-excel"}
 {"key": 2100159, "source_id": "iconify:catppuccin", "original_id": "ms-powerpoint"}
 {"key": 2100171, "source_id": "iconify:catppuccin", "original_id": "ms-word"}
-{"key": 2100183, "source_id": "iconify:catppuccin", "original_id": "msbuild"}
 {"key": 2101979, "source_id": "iconify:catppuccin", "original_id": "nativescript"}
 {"key": 2104537, "source_id": "iconify:catppuccin", "original_id": "nextflow"}
 {"key": 2105930, "source_id": "iconify:catppuccin", "original_id": "nodemon"}
@@ -12638,7 +12629,6 @@
 {"key": 2192790, "source_id": "iconify:catppuccin", "original_id": "vento"}
 {"key": 2196100, "source_id": "iconify:catppuccin", "original_id": "vite"}
 {"key": 2196950, "source_id": "iconify:catppuccin", "original_id": "vs-codium"}
-{"key": 2197032, "source_id": "iconify:catppuccin", "original_id": "vue"}
 {"key": 2197040, "source_id": "iconify:catppuccin", "original_id": "vue-config"}
 {"key": 2200174, "source_id": "iconify:catppuccin", "original_id": "webpack"}
 {"key": 2202066, "source_id": "iconify:catppuccin", "original_id": "windi"}
@@ -14966,7 +14956,6 @@
 {"key": 2074126, "source_id": "iconify:cryptocurrency-color", "original_id": "knc"}
 {"key": 2074650, "source_id": "iconify:cryptocurrency-color", "original_id": "krb"}
 {"key": 2085540, "source_id": "iconify:cryptocurrency-color", "original_id": "lrc"}
-{"key": 2085594, "source_id": "iconify:cryptocurrency-color", "original_id": "ltc"}
 {"key": 2096534, "source_id": "iconify:cryptocurrency-color", "original_id": "mkr"}
 {"key": 2096633, "source_id": "iconify:cryptocurrency-color", "original_id": "mnx"}
 {"key": 2100268, "source_id": "iconify:cryptocurrency-color", "original_id": "msr"}
@@ -15034,7 +15023,6 @@
 {"key": 2268866, "source_id": "iconify:cryptocurrency-color", "original_id": "smart"}
 {"key": 2268906, "source_id": "iconify:cryptocurrency-color", "original_id": "grin"}
 {"key": 2277807, "source_id": "iconify:cryptocurrency-color", "original_id": "theta"}
-{"key": 2284504, "source_id": "iconify:cryptocurrency-color", "original_id": "zen"}
 {"key": 1204333, "source_id": "iconify:cuida", "original_id": "bullseye-outline"}
 {"key": 1215601, "source_id": "iconify:cuida", "original_id": "chatbubbles-outline"}
 {"key": 1247662, "source_id": "iconify:cuida", "original_id": "dropdown-outline"}
@@ -15426,7 +15414,6 @@
 {"key": 1940437, "source_id": "iconify:devicon", "original_id": "apl"}
 {"key": 1951516, "source_id": "iconify:devicon", "original_id": "azuredevops"}
 {"key": 1968319, "source_id": "iconify:devicon", "original_id": "burpsuite"}
-{"key": 1972170, "source_id": "iconify:devicon", "original_id": "canva"}
 {"key": 1975864, "source_id": "iconify:devicon", "original_id": "chakraui"}
 {"key": 1975865, "source_id": "iconify:devicon", "original_id": "chakraui-wordmark"}
 {"key": 1977377, "source_id": "iconify:devicon", "original_id": "chartjs"}
@@ -15748,7 +15735,6 @@
 {"key": 2250005, "source_id": "iconify:devicon", "original_id": "lovable"}
 {"key": 2251961, "source_id": "iconify:devicon", "original_id": "mercurial"}
 {"key": 2252306, "source_id": "iconify:devicon", "original_id": "flyway"}
-{"key": 2254385, "source_id": "iconify:devicon", "original_id": "nim"}
 {"key": 2257261, "source_id": "iconify:devicon", "original_id": "passport"}
 {"key": 2261299, "source_id": "iconify:devicon", "original_id": "processing"}
 {"key": 2262611, "source_id": "iconify:devicon", "original_id": "reach"}
@@ -18427,7 +18413,6 @@
 {"key": 1534823, "source_id": "iconify:flagpack", "original_id": "vi"}
 {"key": 1536225, "source_id": "iconify:flagpack", "original_id": "sd"}
 {"key": 1549105, "source_id": "iconify:flagpack", "original_id": "va"}
-{"key": 1943813, "source_id": "iconify:flagpack", "original_id": "aq"}
 {"key": 1975136, "source_id": "iconify:flagpack", "original_id": "ch"}
 {"key": 2075236, "source_id": "iconify:flagpack", "original_id": "kz"}
 {"key": 2136512, "source_id": "iconify:flagpack", "original_id": "pw"}
@@ -19543,7 +19528,6 @@
 {"key": 2209962, "source_id": "iconify:fluent-color", "original_id": "alert-16"}
 {"key": 2213036, "source_id": "iconify:fluent-color", "original_id": "add-circle-16"}
 {"key": 2228654, "source_id": "iconify:fluent-color", "original_id": "database-16"}
-{"key": 2232186, "source_id": "iconify:fluent-color", "original_id": "edit-16"}
 {"key": 2237541, "source_id": "iconify:fluent-color", "original_id": "form-20"}
 {"key": 2243261, "source_id": "iconify:fluent-color", "original_id": "image-16"}
 {"key": 2257858, "source_id": "iconify:fluent-color", "original_id": "people-16"}
@@ -32157,7 +32141,6 @@
 {"key": 2072367, "source_id": "iconify:logos", "original_id": "kiro"}
 {"key": 2072445, "source_id": "iconify:logos", "original_id": "kissmetrics"}
 {"key": 2072446, "source_id": "iconify:logos", "original_id": "kissmetrics-monochromatic"}
-{"key": 2073898, "source_id": "iconify:logos", "original_id": "kitematic"}
 {"key": 2074028, "source_id": "iconify:logos", "original_id": "kloudless"}
 {"key": 2074155, "source_id": "iconify:logos", "original_id": "knex"}
 {"key": 2074366, "source_id": "iconify:logos", "original_id": "kong"}
@@ -32470,7 +32453,6 @@
 {"key": 2163579, "source_id": "iconify:logos", "original_id": "sparkpost"}
 {"key": 2164038, "source_id": "iconify:logos", "original_id": "speedcurve"}
 {"key": 2164189, "source_id": "iconify:logos", "original_id": "spidermonkey"}
-{"key": 2164772, "source_id": "iconify:logos", "original_id": "spotify"}
 {"key": 2164774, "source_id": "iconify:logos", "original_id": "spotify-icon"}
 {"key": 2165006, "source_id": "iconify:logos", "original_id": "sqldep"}
 {"key": 2165012, "source_id": "iconify:logos", "original_id": "sqlite"}
@@ -32695,7 +32677,6 @@
 {"key": 2228414, "source_id": "iconify:logos", "original_id": "daily"}
 {"key": 2228415, "source_id": "iconify:logos", "original_id": "daily-icon"}
 {"key": 2228895, "source_id": "iconify:logos", "original_id": "infer"}
-{"key": 2228996, "source_id": "iconify:logos", "original_id": "c"}
 {"key": 2229133, "source_id": "iconify:logos", "original_id": "delighted-icon"}
 {"key": 2229134, "source_id": "iconify:logos", "original_id": "delighted"}
 {"key": 2229309, "source_id": "iconify:logos", "original_id": "deploy"}
@@ -33698,7 +33679,6 @@
 {"key": 2000460, "source_id": "iconify:material-icon-theme", "original_id": "django"}
 {"key": 2001456, "source_id": "iconify:material-icon-theme", "original_id": "doctex-installer"}
 {"key": 2003456, "source_id": "iconify:material-icon-theme", "original_id": "dotjs"}
-{"key": 2004591, "source_id": "iconify:material-icon-theme", "original_id": "drawio"}
 {"key": 2005587, "source_id": "iconify:material-icon-theme", "original_id": "duc"}
 {"key": 2007754, "source_id": "iconify:material-icon-theme", "original_id": "editorconfig"}
 {"key": 2009302, "source_id": "iconify:material-icon-theme", "original_id": "ejs"}
@@ -33889,7 +33869,6 @@
 {"key": 2192926, "source_id": "iconify:material-icon-theme", "original_id": "verilog"}
 {"key": 2193229, "source_id": "iconify:material-icon-theme", "original_id": "vfl"}
 {"key": 2196189, "source_id": "iconify:material-icon-theme", "original_id": "vlang"}
-{"key": 2196961, "source_id": "iconify:material-icon-theme", "original_id": "vscode"}
 {"key": 2197039, "source_id": "iconify:material-icon-theme", "original_id": "vue-config"}
 {"key": 2197249, "source_id": "iconify:material-icon-theme", "original_id": "wakatime"}
 {"key": 2200074, "source_id": "iconify:material-icon-theme", "original_id": "webhint"}
@@ -33922,10 +33901,8 @@
 {"key": 2234058, "source_id": "iconify:material-icon-theme", "original_id": "erlang"}
 {"key": 2234384, "source_id": "iconify:material-icon-theme", "original_id": "expo"}
 {"key": 2237002, "source_id": "iconify:material-icon-theme", "original_id": "flow"}
-{"key": 2237261, "source_id": "iconify:material-icon-theme", "original_id": "next"}
 {"key": 2237603, "source_id": "iconify:material-icon-theme", "original_id": "fortran"}
 {"key": 2239465, "source_id": "iconify:material-icon-theme", "original_id": "gleam"}
-{"key": 2239650, "source_id": "iconify:material-icon-theme", "original_id": "go"}
 {"key": 2239849, "source_id": "iconify:material-icon-theme", "original_id": "google"}
 {"key": 2241843, "source_id": "iconify:material-icon-theme", "original_id": "hex"}
 {"key": 2242806, "source_id": "iconify:material-icon-theme", "original_id": "huff"}
@@ -33967,7 +33944,6 @@
 {"key": 2264811, "source_id": "iconify:material-icon-theme", "original_id": "abc"}
 {"key": 2265093, "source_id": "iconify:material-icon-theme", "original_id": "blitz"}
 {"key": 2265401, "source_id": "iconify:material-icon-theme", "original_id": "sass"}
-{"key": 2266379, "source_id": "iconify:material-icon-theme", "original_id": "search"}
 {"key": 2268544, "source_id": "iconify:material-icon-theme", "original_id": "skill"}
 {"key": 2269417, "source_id": "iconify:material-icon-theme", "original_id": "solidity"}
 {"key": 2269882, "source_id": "iconify:material-icon-theme", "original_id": "sas"}
@@ -44598,7 +44574,6 @@
 {"key": 1932054, "source_id": "iconify:selfhst", "original_id": "9router-dark"}
 {"key": 1933280, "source_id": "iconify:selfhst", "original_id": "ackify-light"}
 {"key": 1933301, "source_id": "iconify:selfhst", "original_id": "acquiremock-light"}
-{"key": 1933747, "source_id": "iconify:selfhst", "original_id": "activitypub-light"}
 {"key": 1933756, "source_id": "iconify:selfhst", "original_id": "actual-budget-light"}
 {"key": 1934298, "source_id": "iconify:selfhst", "original_id": "adguardhome-sync"}
 {"key": 1934401, "source_id": "iconify:selfhst", "original_id": "adminer-light"}
@@ -44621,7 +44596,6 @@
 {"key": 1938526, "source_id": "iconify:selfhst", "original_id": "amnezia-light"}
 {"key": 1938940, "source_id": "iconify:selfhst", "original_id": "anchr-light"}
 {"key": 1939504, "source_id": "iconify:selfhst", "original_id": "anibridge"}
-{"key": 1939608, "source_id": "iconify:selfhst", "original_id": "anki"}
 {"key": 1939678, "source_id": "iconify:selfhst", "original_id": "anonaddy-light"}
 {"key": 1939746, "source_id": "iconify:selfhst", "original_id": "anonymousoverflow"}
 {"key": 1939747, "source_id": "iconify:selfhst", "original_id": "anonymousoverflow-light"}
@@ -44845,7 +44819,6 @@
 {"key": 2005953, "source_id": "iconify:selfhst", "original_id": "e-trade-light"}
 {"key": 2006793, "source_id": "iconify:selfhst", "original_id": "easy-redmine-light"}
 {"key": 2006815, "source_id": "iconify:selfhst", "original_id": "easypanel"}
-{"key": 2006854, "source_id": "iconify:selfhst", "original_id": "ebay-light"}
 {"key": 2007027, "source_id": "iconify:selfhst", "original_id": "ecowitt"}
 {"key": 2007776, "source_id": "iconify:selfhst", "original_id": "edubuntu-light"}
 {"key": 2007803, "source_id": "iconify:selfhst", "original_id": "eenvo-light"}
@@ -45058,7 +45031,6 @@
 {"key": 2040112, "source_id": "iconify:selfhst", "original_id": "glowstone"}
 {"key": 2040113, "source_id": "iconify:selfhst", "original_id": "glpi"}
 {"key": 2040127, "source_id": "iconify:selfhst", "original_id": "gluetun-light"}
-{"key": 2040152, "source_id": "iconify:selfhst", "original_id": "gmail-light"}
 {"key": 2040605, "source_id": "iconify:selfhst", "original_id": "gns3-light"}
 {"key": 2041158, "source_id": "iconify:selfhst", "original_id": "go2rtc-light"}
 {"key": 2041195, "source_id": "iconify:selfhst", "original_id": "goaccess-light"}
@@ -45139,7 +45111,6 @@
 {"key": 2061369, "source_id": "iconify:selfhst", "original_id": "initiative-project-management"}
 {"key": 2061413, "source_id": "iconify:selfhst", "original_id": "inkscape-light"}
 {"key": 2062081, "source_id": "iconify:selfhst", "original_id": "inspircd-light"}
-{"key": 2062091, "source_id": "iconify:selfhst", "original_id": "instagram-light"}
 {"key": 2062136, "source_id": "iconify:selfhst", "original_id": "installatron-light"}
 {"key": 2062156, "source_id": "iconify:selfhst", "original_id": "instapods"}
 {"key": 2062165, "source_id": "iconify:selfhst", "original_id": "instradaogm-light"}
@@ -45478,7 +45449,6 @@
 {"key": 2095327, "source_id": "iconify:selfhst", "original_id": "microsoft-teams-2018-dark"}
 {"key": 2095329, "source_id": "iconify:selfhst", "original_id": "microsoft-teams-dark"}
 {"key": 2095332, "source_id": "iconify:selfhst", "original_id": "microsoft-to-do"}
-{"key": 2095333, "source_id": "iconify:selfhst", "original_id": "microsoft-to-do-light"}
 {"key": 2095334, "source_id": "iconify:selfhst", "original_id": "microsoft-to-do-dark"}
 {"key": 2095366, "source_id": "iconify:selfhst", "original_id": "microsoft-word-2000"}
 {"key": 2095367, "source_id": "iconify:selfhst", "original_id": "microsoft-word-2000-light"}
@@ -45558,7 +45528,6 @@
 {"key": 2101210, "source_id": "iconify:selfhst", "original_id": "musicbrainz-picard-dark"}
 {"key": 2101223, "source_id": "iconify:selfhst", "original_id": "musivault"}
 {"key": 2101224, "source_id": "iconify:selfhst", "original_id": "musivault-dark"}
-{"key": 2101410, "source_id": "iconify:selfhst", "original_id": "mxroute-light"}
 {"key": 2101529, "source_id": "iconify:selfhst", "original_id": "mydrive"}
 {"key": 2101531, "source_id": "iconify:selfhst", "original_id": "myheats-light"}
 {"key": 2101532, "source_id": "iconify:selfhst", "original_id": "myheats-dark"}
@@ -45718,7 +45687,6 @@
 {"key": 2108812, "source_id": "iconify:selfhst", "original_id": "nutalert"}
 {"key": 2108813, "source_id": "iconify:selfhst", "original_id": "nutalert-dark"}
 {"key": 2108859, "source_id": "iconify:selfhst", "original_id": "nuxt-dark"}
-{"key": 2108884, "source_id": "iconify:selfhst", "original_id": "nvidia"}
 {"key": 2109032, "source_id": "iconify:selfhst", "original_id": "nyt-connections"}
 {"key": 2109033, "source_id": "iconify:selfhst", "original_id": "nyt-connections-light"}
 {"key": 2109034, "source_id": "iconify:selfhst", "original_id": "nyt-connections-dark"}
@@ -46864,7 +46832,6 @@
 {"key": 2246823, "source_id": "iconify:selfhst", "original_id": "jump-light"}
 {"key": 2246831, "source_id": "iconify:selfhst", "original_id": "jump"}
 {"key": 2247722, "source_id": "iconify:selfhst", "original_id": "gimp"}
-{"key": 2247726, "source_id": "iconify:selfhst", "original_id": "gimp-light"}
 {"key": 2249265, "source_id": "iconify:selfhst", "original_id": "linux-light"}
 {"key": 2250116, "source_id": "iconify:selfhst", "original_id": "lunar"}
 {"key": 2250756, "source_id": "iconify:selfhst", "original_id": "manifest-light"}
@@ -49998,3 +49965,36 @@
 {"key": 1493209, "source_id": "iconify:solar", "original_id": "delivery-bold"}
 {"key": 1493212, "source_id": "iconify:solar", "original_id": "delivery-broken"}
 {"key": 1493213, "source_id": "iconify:solar", "original_id": "delivery-bold-duotone"}
+{"key": 1494268, "source_id": "iconify:solar", "original_id": "diploma-broken"}
+{"key": 1494271, "source_id": "iconify:solar", "original_id": "diploma-bold-duotone"}
+{"key": 1494665, "source_id": "iconify:solar", "original_id": "display-broken"}
+{"key": 1495058, "source_id": "iconify:solar", "original_id": "dollar-broken"}
+{"key": 1495427, "source_id": "iconify:solar", "original_id": "download-square-broken"}
+{"key": 1495430, "source_id": "iconify:solar", "original_id": "download-broken"}
+{"key": 1498556, "source_id": "iconify:solar", "original_id": "infinity-bold-duotone"}
+{"key": 1498785, "source_id": "iconify:solar", "original_id": "exclamation-mark-bold-duotone"}
+{"key": 1498946, "source_id": "iconify:solar", "original_id": "explicit-broken"}
+{"key": 1498947, "source_id": "iconify:solar", "original_id": "explicit-bold-duotone"}
+{"key": 1500450, "source_id": "iconify:solar", "original_id": "file-broken"}
+{"key": 1500803, "source_id": "iconify:solar", "original_id": "fire-square-broken"}
+{"key": 1500815, "source_id": "iconify:solar", "original_id": "fire-broken"}
+{"key": 1500821, "source_id": "iconify:solar", "original_id": "fire-square-bold"}
+{"key": 1500853, "source_id": "iconify:solar", "original_id": "flame-broken"}
+{"key": 1501722, "source_id": "iconify:solar", "original_id": "fog-broken"}
+{"key": 1501736, "source_id": "iconify:solar", "original_id": "fog-bold-duotone"}
+{"key": 1502042, "source_id": "iconify:solar", "original_id": "forbidden-bold-duotone"}
+{"key": 1502043, "source_id": "iconify:solar", "original_id": "forbidden-circle-broken"}
+{"key": 1502326, "source_id": "iconify:solar", "original_id": "square-forward-broken"}
+{"key": 1503979, "source_id": "iconify:solar", "original_id": "gift-bold-duotone"}
+{"key": 1503996, "source_id": "iconify:solar", "original_id": "gift-broken"}
+{"key": 1504173, "source_id": "iconify:solar", "original_id": "global-bold-duotone"}
+{"key": 1504471, "source_id": "iconify:solar", "original_id": "golf-bold-duotone"}
+{"key": 1504853, "source_id": "iconify:solar", "original_id": "round-graph-bold-duotone"}
+{"key": 1504861, "source_id": "iconify:solar", "original_id": "graph-bold-duotone"}
+{"key": 1505764, "source_id": "iconify:solar", "original_id": "accessibility-broken"}
+{"key": 1506159, "source_id": "iconify:solar", "original_id": "health-broken"}
+{"key": 1506389, "source_id": "iconify:solar", "original_id": "hearts-broken"}
+{"key": 1506810, "source_id": "iconify:solar", "original_id": "hiking-bold-duotone"}
+{"key": 1507829, "source_id": "iconify:solar", "original_id": "muted-broken"}
+{"key": 1507830, "source_id": "iconify:solar", "original_id": "muted-linear"}
+{"key": 1507833, "source_id": "iconify:solar", "original_id": "muted-bold"}

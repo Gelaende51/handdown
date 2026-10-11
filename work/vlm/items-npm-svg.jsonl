@@ -331,7 +331,6 @@
 {"key": 2208373, "source_id": "npm:@bitgo-forks/cryptocurrency-icons", "original_id": "svg/color/zsmb.svg"}
 {"key": 2212186, "source_id": "npm:@bitgo-forks/cryptocurrency-icons", "original_id": "svg/color/prn.svg"}
 {"key": 2218889, "source_id": "npm:@bitgo-forks/cryptocurrency-icons", "original_id": "svg/white/rap.svg"}
-{"key": 2223033, "source_id": "npm:@bitgo-forks/cryptocurrency-icons", "original_id": "svg/white/cs.svg"}
 {"key": 2228558, "source_id": "npm:@bitgo-forks/cryptocurrency-icons", "original_id": "svg/white/dash.svg"}
 {"key": 2228596, "source_id": "npm:@bitgo-forks/cryptocurrency-icons", "original_id": "svg/white/data.svg"}
 {"key": 2234542, "source_id": "npm:@bitgo-forks/cryptocurrency-icons", "original_id": "svg/white/burst.svg"}
@@ -1536,7 +1535,6 @@
 {"key": 2261724, "source_id": "npm:@wyg-plus/icons-svg", "original_id": "manage.svg"}
 {"key": 2263035, "source_id": "npm:@wyg-plus/icons-svg", "original_id": "recommendation.svg"}
 {"key": 2263446, "source_id": "npm:@wyg-plus/icons-svg", "original_id": "remind.svg"}
-{"key": 2263603, "source_id": "npm:@wyg-plus/icons-svg", "original_id": "report.svg"}
 {"key": 2267949, "source_id": "npm:@wyg-plus/icons-svg", "original_id": "sign.svg"}
 {"key": 2268042, "source_id": "npm:@wyg-plus/icons-svg", "original_id": "signature.svg"}
 {"key": 2269239, "source_id": "npm:@wyg-plus/icons-svg", "original_id": "social-security.svg"}
@@ -1653,7 +1651,6 @@
 {"key": 2243294, "source_id": "npm:defeat-icons-svg", "original_id": "svg/Images.svg"}
 {"key": 2262169, "source_id": "npm:defeat-icons-svg", "original_id": "svg/Queue.svg"}
 {"key": 2267071, "source_id": "npm:defeat-icons-svg", "original_id": "svg/ShapeRectangle.svg"}
-{"key": 2279214, "source_id": "npm:defeat-icons-svg", "original_id": "svg/Transform.svg"}
 {"key": 2280327, "source_id": "npm:defeat-icons-svg", "original_id": "svg/Tasks.svg"}
 {"key": 2280343, "source_id": "npm:defeat-icons-svg", "original_id": "svg/Task.svg"}
 {"key": 2284168, "source_id": "npm:defeat-icons-svg", "original_id": "svg/Wrench.svg"}
