@@ -219,12 +219,15 @@ def test_llamacpp_backend_caps_image_tokens_and_reads_timings():
 
 def test_referee_options_leave_out_claude_and_rank_by_frequency(tmp_path):
     (tmp_path / "1.jsonl").write_text(
-        "\n".join(json.dumps(r) for r in [
-            {"key": 7, "model": "ollama:x", "answer": "A Cup."},
-            {"key": 7, "model": "gateway:y", "answer": "cup"},
-            {"key": 7, "model": "gateway:z", "answer": "mug"},
-            {"key": 7, "model": "claude:opus", "answer": "teacup"},  # the reference, never an option
-        ])
+        "\n".join(
+            json.dumps(r)
+            for r in [
+                {"key": 7, "model": "ollama:x", "answer": "A Cup."},
+                {"key": 7, "model": "gateway:y", "answer": "cup"},
+                {"key": 7, "model": "gateway:z", "answer": "mug"},
+                {"key": 7, "model": "claude:opus", "answer": "teacup"},  # the reference, never an option
+            ]
+        )
     )
     (tmp_path / "text-1.jsonl").write_text(json.dumps({"key": 7, "model": "laya", "answer": "wn:cup.n.01"}))
     assert bench.referee_options(tmp_path) == {7: ["cup", "mug"]}
@@ -260,10 +263,13 @@ def test_clef_tree_asks_the_group_then_the_object_among_the_beamed_groups(tmp_pa
     import httpx
     from PIL import Image
 
-    tree = {"label": "root", "children": {
-        "g0": {"label": "tool: e.g. hammer", "children": {"wn:hammer.n.02": {"label": "hammer: a hand tool"}}},
-        "g1": {"label": "animal: e.g. cat", "children": {"wn:cat.n.01": {"label": "cat: a feline"}, "wn:dog.n.01": {"label": "dog: a canine"}}},
-    }}
+    tree = {
+        "label": "root",
+        "children": {
+            "g0": {"label": "tool: e.g. hammer", "children": {"wn:hammer.n.02": {"label": "hammer: a hand tool"}}},
+            "g1": {"label": "animal: e.g. cat", "children": {"wn:cat.n.01": {"label": "cat: a feline"}, "wn:dog.n.01": {"label": "dog: a canine"}}},
+        },
+    }
     (tmp_path / "tree.json").write_text(json.dumps(tree))
     monkeypatch.setattr(bench, "referee_options", lambda *a, **k: {})
     ask = bench.ClefTree("ggml-org/Clef-Flash-GGUF", tree=tmp_path / "tree.json", beam=2)
