@@ -109,6 +109,7 @@ option matches the Claude label, so that is the ceiling.
 | Clef Flash | 56 % | 50 % | ≈0.5 | 340 / 0 | ≈0.013 |
 | Clef, same options without the image | 47 % | 40 % | – | 280 / 0 | – |
 | Clef, with an extra "other" option | 58 % | – | ≈0.6 | 370 / 0 | ≈0.09 |
+| Clef Flash on a runner (llama.cpp, Q4_K_M, 4 CPUs), first 40 pictograms | 17 of 40 | – | 22 | 360 / 0 | free |
 
 - As a referee, Clef is below a plain majority vote over the answers it chooses
   from, and below Qwen3-VL alone. It does use the image: without it, it
@@ -120,7 +121,21 @@ option matches the Claude label, so that is the ceiling.
 - With "other" added, Clef never picked it here. Even when no option fits,
   it chooses one of the names. The score barely moves (58 %; 95 % at
   p ≥ 0.8 on 22 pictograms).
-- Seconds are per request, run 8 at a time (242 images in 16 s). Workers AI
+- Seconds are per request, run 8 at a time (242 images in 16 s).
+- **Clef Flash runs on a free runner** (`clefcpp:ggml-org/Clef-Flash-GGUF:Q4_K_M`,
+  run 38614598277). The 4-bit model and its image projector take ~7 GB, so they fit
+  the runner's 16 GB. It needs llama.cpp b11617 or later, for `/v1/systemone` with
+  images.
+- Speed: 22 s per pictogram (median 21 s, max 35 s), about 6 s per 100 prompt
+  tokens. That's 2.5–4× faster than Qwen3-VL 4B on the same runner, because there
+  is nothing to generate. The full Clef (27B) doesn't fit a runner.
+- It gave the same answer as Workers AI's Clef Flash for 31 of the 40 pictograms,
+  matching the Claude label 17 times against 18 hosted; the gap is from 4-bit
+  quantization and the added "other". So the runners reproduce the hosted model,
+  without the 10,000-neuron daily cap.
+- At 22 s, 20 parallel jobs check ≈3,300 pictograms an hour. A referee pass over the
+  130,000 open depictions takes ≈40 hours of runner time, after a naming model has
+  given it options. Workers AI
   bills input only, and images come in as embedded data URIs (no remote URLs,
   at most 4 per request).
 
