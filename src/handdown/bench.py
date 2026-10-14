@@ -154,7 +154,7 @@ def run(
                     part = pairs[start : start + batch]
                     keys, images = [k for k, _ in part], [img for _, img in part]
                     t = time.monotonic()
-                    answers = ask(images)
+                    answers = ask(images, keys=keys) if getattr(ask, "wants_keys", False) else ask(images)
                     seconds = round((time.monotonic() - t) / len(part), 2)
                     for k, a in zip(keys, (list(answers) + [""] * len(keys))[: len(keys)], strict=True):
                         text, extra = a if isinstance(a, tuple) else (a, {})
@@ -389,6 +389,77 @@ class LlamaServer:
         return out
 
 
+REFEREE_QUESTION = "Which object or concept does this pictogram depict?"
+REFEREE_OTHER = "None of these: something else, or it cannot be told"
+
+
+def referee_options(results: Path = Path("work/bench/results"), most: int = 30) -> dict[int, list[str]]:
+    """Per sample key, the distinct names the non-Claude models gave (most frequent
+    first, cleaned), for a decision model to choose from. Claude's own answers are
+    left out: the benchmark scores against Claude's labels."""
+    names: dict[int, Counter[str]] = {}
+    for f in sorted(Path(results).glob("*.jsonl")):
+        if f.name.startswith(("text-", "clef-")):
+            continue
+        for line in f.read_text().splitlines():
+            r = json.loads(line)
+            if str(r.get("model", "")).startswith("claude:") or not r.get("answer"):
+                continue
+            a = clean(r["answer"])
+            if a and len(a) < 60:
+                names.setdefault(r["key"], Counter())[a] += 1
+    return {k: [a for a, _ in c.most_common(most)] for k, c in names.items()}
+
+
+class ClefServer:
+    """Cloudflare's Clef decision models (open weights) on llama.cpp's
+    ``llama-server``, through its TypeSafe-compatible ``/v1/systemone``. A
+    decision model cannot name what it sees: as a referee it picks one of the
+    names the other models gave (``referee_options``), or "other". The whole
+    prompt (image, question, options) must fit in one batch, hence -b/-ub."""
+
+    wants_keys = True
+
+    def __init__(self, repo: str, threads: int | None = None, port: int = 8082, ctx: int = 8192, binary: str = "llama-server"):
+        import httpx
+
+        self.repo, self.threads, self.port, self.ctx, self.binary = repo, threads, port, ctx, binary
+        self.client = httpx.Client(base_url=f"http://127.0.0.1:{port}", timeout=900)
+        self.options = referee_options()
+        self.started = False
+
+    def command(self) -> list[str]:
+        args = [self.binary, "-hf", self.repo, "--port", str(self.port), "-c", str(self.ctx), "-b", str(self.ctx), "-ub", str(self.ctx)]
+        return args + (["-t", str(self.threads)] if self.threads else [])
+
+    _start = LlamaServer._start
+
+    def body(self, image: Any, options: list[str]) -> dict[str, Any]:
+        criteria = {f"o{i}": name for i, name in enumerate(options)} | {"other": REFEREE_OTHER}
+        return {
+            "state": "A pictogram from an icon set.",
+            "images": [f"data:image/png;base64,{_png(image)}"],
+            "questions": {"object": {"type": "choice", "instructions": REFEREE_QUESTION, "criteria": criteria}},
+        }
+
+    def __call__(self, images: list[Any], keys: list[int] | None = None) -> list[tuple[str, dict[str, Any]]]:
+        if not self.started:
+            self._start()
+        out = []
+        for image, key in zip(images, keys or [None] * len(images), strict=True):
+            options = self.options.get(key, [])
+            if not options:
+                out.append(("", {"error": "no options"}))
+                continue
+            r = self.client.post("/v1/systemone", json=self.body(image, options))
+            r.raise_for_status()
+            a = r.json()["answers"]["object"]
+            answer = "other" if a["choice"] == "other" else options[int(a["choice"][1:])]
+            usage = r.json().get("usage", {})
+            out.append((answer, {"p": round(a["probabilities"][a["choice"]], 4), "options": len(options) + 1, "prompt_tokens": usage.get("input_tokens")}))
+        return out
+
+
 class OmniParserCaption:
     """OmniParser v2's icon caption model (Florence-2 fine-tuned on UI icons),
     loaded the way OmniParser loads it."""
@@ -421,7 +492,8 @@ def backend(spec: str) -> tuple[Ask, int, int]:
     """(ask, batch, render size) for 'ollama:<tag>', 'llamacpp:<hf repo>[:quant]',
     'gateway:<provider>/<model>' (Vercel AI Gateway), 'nous:<model>' (Nous Portal
     API key), 'hermes:<model>' (Nous Portal through Hermes Agent's proxy),
-    'zen:<model>' (OpenCode Zen) or
+    'zen:<model>' (OpenCode Zen), 'clefcpp:<hf repo>[:quant]' (a Clef decision
+    model on llama.cpp, as a referee over the other models' answers) or
     'florence:omniparser';
     options after '@': size (render px), threads, tokens (llama.cpp image
     tokens), answer (hosted answer tokens), think=off (hosted, no reasoning),
@@ -436,6 +508,9 @@ def backend(spec: str) -> tuple[Ask, int, int]:
         tokens = int(options["tokens"]) if "tokens" in options else None
         threads = int(options["threads"]) if "threads" in options else None
         return LlamaServer(name, tokens=tokens, threads=threads), 1, int(options.get("size", 256))
+    if kind == "clefcpp":
+        threads = int(options["threads"]) if "threads" in options else None
+        return ClefServer(name, threads=threads), 1, int(options.get("size", 256))
     if kind in HOSTED:
         think = options.get("think", "on") != "off"
         return Gateway(name, answer_tokens=int(options.get("answer", 64)), provider=kind, think=think), 1, int(options.get("size", 256))

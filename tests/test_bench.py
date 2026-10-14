@@ -217,6 +217,45 @@ def test_llamacpp_backend_caps_image_tokens_and_reads_timings():
     assert seen[0]["temperature"] == 0 and seen[0]["messages"][0]["content"][1]["image_url"]["url"].startswith("data:image/png;base64,")
 
 
+def test_referee_options_leave_out_claude_and_rank_by_frequency(tmp_path):
+    (tmp_path / "1.jsonl").write_text(
+        "\n".join(json.dumps(r) for r in [
+            {"key": 7, "model": "ollama:x", "answer": "A Cup."},
+            {"key": 7, "model": "gateway:y", "answer": "cup"},
+            {"key": 7, "model": "gateway:z", "answer": "mug"},
+            {"key": 7, "model": "claude:opus", "answer": "teacup"},  # the reference, never an option
+        ])
+    )
+    (tmp_path / "text-1.jsonl").write_text(json.dumps({"key": 7, "model": "laya", "answer": "wn:cup.n.01"}))
+    assert bench.referee_options(tmp_path) == {7: ["cup", "mug"]}
+
+
+def test_clef_backend_asks_systemone_with_the_image_and_a_way_out(monkeypatch):
+    import httpx
+    from PIL import Image
+
+    monkeypatch.setattr(bench, "referee_options", lambda *a, **k: {7: ["cup", "mug"]})
+    ask, batch, size = bench.backend("clefcpp:ggml-org/Clef-Flash-GGUF:Q4_K_M@threads=4")
+    assert (batch, size) == (1, 256) and ask.wants_keys
+    args = ask.command()
+    assert args[args.index("-hf") + 1] == "ggml-org/Clef-Flash-GGUF:Q4_K_M" and args[args.index("-ub") + 1] == "8192"
+
+    seen = []
+
+    def handler(request):
+        seen.append(json.loads(request.content))
+        body = {"answers": {"object": {"choice": "o1", "probabilities": {"o0": 0.2, "o1": 0.7, "other": 0.1}}}, "usage": {"input_tokens": 300}}
+        return httpx.Response(200, json=body)
+
+    ask.client = httpx.Client(base_url="http://test", transport=httpx.MockTransport(handler))
+    ask.started = True  # no server in tests
+    image = Image.new("RGB", (8, 8), "white")
+    assert ask([image, image], keys=[7, 8]) == [("mug", {"p": 0.7, "options": 3, "prompt_tokens": 300}), ("", {"error": "no options"})]
+    q = seen[0]["questions"]["object"]
+    assert q["type"] == "choice" and q["criteria"] == {"o0": "cup", "o1": "mug", "other": bench.REFEREE_OTHER}
+    assert seen[0]["images"][0].startswith("data:image/png;base64,") and len(seen) == 1
+
+
 def test_vlm_jobs_cover_depictions_without_object_per_adapter(tmp_path, monkeypatch):
     monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
     c = db.connect(Config().db_path)
