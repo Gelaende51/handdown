@@ -460,6 +460,61 @@ class ClefServer:
         return out
 
 
+class ClefTree(ClefServer):
+    """Clef classifying into the catalog's objects (more than the 255 options
+    one choice takes) through a decision tree, ``work/bench/clef-tree.json``
+    (scripts/clef-tree.py): a group first, then the object inside it, one call
+    per stage. With ``beam`` > 1 the likeliest groups stay in play and the next
+    stage chooses among all their members, so a near miss in the first stage
+    can be put right. The answer is the object's name; "other" at any stage
+    stops there."""
+
+    wants_keys = False
+
+    def __init__(self, repo: str, tree: Path = Path("work/bench/clef-tree.json"), beam: int = 2, **kwargs: Any):
+        super().__init__(repo, **kwargs)
+        self.tree, self.beam = json.loads(Path(tree).read_text()), beam
+
+    def _ask(self, image: Any, options: list[tuple[str, dict[str, Any]]]) -> tuple[dict[str, Any], int]:
+        criteria = {f"o{i}": node["label"] for i, (_, node) in enumerate(options)} | {"other": REFEREE_OTHER}
+        body = {
+            "state": "A pictogram from an icon set.",
+            "images": [f"data:image/png;base64,{_png(image)}"],
+            "questions": {"object": {"type": "choice", "instructions": REFEREE_QUESTION, "criteria": criteria}},
+        }
+        r = self.client.post("/v1/systemone", json=body)
+        r.raise_for_status()
+        return r.json()["answers"]["object"], r.json().get("usage", {}).get("input_tokens") or 0
+
+    def classify(self, image: Any) -> tuple[str, dict[str, Any]]:
+        frontier: list[tuple[str, dict[str, Any], float]] = [("", self.tree, 1.0)]
+        path, tokens = [], 0
+        while frontier and "children" in frontier[0][1]:
+            options: list[tuple[str, dict[str, Any]]] = []
+            parent_p: list[float] = []
+            for _, node, p in frontier:
+                kids = list(node.get("children", {}).items())
+                if options and len(options) + len(kids) > 254:
+                    break
+                options += kids
+                parent_p += [p] * len(kids)
+            a, used = self._ask(image, options)
+            tokens += used
+            if a["choice"] == "other":
+                path.append(("other", round(a["probabilities"]["other"], 4)))
+                return "other", {"path": path, "options": len(options) + 1, "prompt_tokens": tokens}
+            ranked = sorted(((k, v) for k, v in a["probabilities"].items() if k != "other"), key=lambda kv: -kv[1])[: self.beam]
+            frontier = [(options[int(k[1:])][0], options[int(k[1:])][1], v * parent_p[int(k[1:])]) for k, v in ranked]
+            path.append((frontier[0][0], round(a["probabilities"][a["choice"]], 4)))
+        object_id, node, p = frontier[0]
+        return node["label"].split(":")[0], {"object_id": object_id, "p": round(p, 4), "path": path, "prompt_tokens": tokens}
+
+    def __call__(self, images: list[Any], keys: list[int] | None = None) -> list[tuple[str, dict[str, Any]]]:
+        if not self.started:
+            self._start()
+        return [self.classify(image) for image in images]
+
+
 class OmniParserCaption:
     """OmniParser v2's icon caption model (Florence-2 fine-tuned on UI icons),
     loaded the way OmniParser loads it."""
@@ -493,7 +548,9 @@ def backend(spec: str) -> tuple[Ask, int, int]:
     'gateway:<provider>/<model>' (Vercel AI Gateway), 'nous:<model>' (Nous Portal
     API key), 'hermes:<model>' (Nous Portal through Hermes Agent's proxy),
     'zen:<model>' (OpenCode Zen), 'clefcpp:<hf repo>[:quant]' (a Clef decision
-    model on llama.cpp, as a referee over the other models' answers) or
+    model on llama.cpp, as a referee over the other models' answers),
+    'cleftree:<hf repo>[:quant]' (the same, choosing among the catalog's objects
+    through work/bench/clef-tree.json; option beam) or
     'florence:omniparser';
     options after '@': size (render px), threads, tokens (llama.cpp image
     tokens), answer (hosted answer tokens), think=off (hosted, no reasoning),
@@ -508,6 +565,9 @@ def backend(spec: str) -> tuple[Ask, int, int]:
         tokens = int(options["tokens"]) if "tokens" in options else None
         threads = int(options["threads"]) if "threads" in options else None
         return LlamaServer(name, tokens=tokens, threads=threads), 1, int(options.get("size", 256))
+    if kind == "cleftree":
+        threads = int(options["threads"]) if "threads" in options else None
+        return ClefTree(name, beam=int(options.get("beam", 2)), threads=threads), 1, int(options.get("size", 256))
     if kind == "clefcpp":
         threads = int(options["threads"]) if "threads" in options else None
         return ClefServer(name, threads=threads), 1, int(options.get("size", 256))

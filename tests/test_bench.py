@@ -256,6 +256,37 @@ def test_clef_backend_asks_systemone_with_the_image_and_a_way_out(monkeypatch):
     assert seen[0]["images"][0].startswith("data:image/png;base64,") and len(seen) == 1
 
 
+def test_clef_tree_asks_the_group_then_the_object_among_the_beamed_groups(tmp_path, monkeypatch):
+    import httpx
+    from PIL import Image
+
+    tree = {"label": "root", "children": {
+        "g0": {"label": "tool: e.g. hammer", "children": {"wn:hammer.n.02": {"label": "hammer: a hand tool"}}},
+        "g1": {"label": "animal: e.g. cat", "children": {"wn:cat.n.01": {"label": "cat: a feline"}, "wn:dog.n.01": {"label": "dog: a canine"}}},
+    }}
+    (tmp_path / "tree.json").write_text(json.dumps(tree))
+    monkeypatch.setattr(bench, "referee_options", lambda *a, **k: {})
+    ask = bench.ClefTree("ggml-org/Clef-Flash-GGUF", tree=tmp_path / "tree.json", beam=2)
+    seen = []
+
+    def handler(request):
+        body = json.loads(request.content)
+        seen.append(body["questions"]["object"]["criteria"])
+        if len(seen) == 1:  # the groups: animals likeliest, tools second
+            probs = {"o0": 0.3, "o1": 0.6, "other": 0.1}
+        else:  # both groups' members: hammer, cat, dog
+            probs = {"o0": 0.1, "o1": 0.2, "o2": 0.6, "other": 0.1}
+        choice = max(probs, key=probs.get)
+        return httpx.Response(200, json={"answers": {"object": {"choice": choice, "probabilities": probs}}, "usage": {"input_tokens": 100}})
+
+    ask.client = httpx.Client(base_url="http://test", transport=httpx.MockTransport(handler))
+    ask.started = True
+    [(answer, extra)] = ask([Image.new("RGB", (8, 8), "white")])
+    assert answer == "dog" and extra["object_id"] == "wn:dog.n.01" and extra["prompt_tokens"] == 200
+    assert list(seen[1].values()) == ["hammer: a hand tool", "cat: a feline", "dog: a canine", bench.REFEREE_OTHER]
+    assert extra["p"] == round(0.6 * 0.6, 4)
+
+
 def test_vlm_jobs_cover_depictions_without_object_per_adapter(tmp_path, monkeypatch):
     monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
     c = db.connect(Config().db_path)
