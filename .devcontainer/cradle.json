@@ -5,7 +5,9 @@
     ".personal"
   ],
   "memory": "3g",
-  "allowedDomains": [],
+  "allowedDomains": [
+    "api.cloudflare.com"
+  ],
   "testJobs": [
     {
       "workflow": "ci.yml",

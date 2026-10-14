@@ -163,3 +163,42 @@ candidates for bug reports, feature requests or pull requests.
 - **Black and white by absolute brightness loses whole icon themes.** About 55,000 pictograms came out white on white: icons drawn only in light colours (fixed by measuring brightness from the darkest colour), desktop themes drawing light grey at 30 % opacity for dark panels, and app tiles whose symbol is barely darker than the tile. For those the colour render is now separated by contrast, within the drawn area when the cutout lies inside it (a symbol on a tile), against white otherwise (gradients split along their outline). Blank renders were invisible because the embedding step skips them silently; `reprocess-blank` finds them.
 
 - **One-off harvest arguments persist.** A job list that added rasters to Commons categories (`formats: [png, gif]`) was imported into the source table, so every later runner (labelling, embeddings, composite parts) harvested those 27 sources without their SVGs: a third of the Commons labelling items came back "missing" and most Commons parts never appeared on the runners. One-off arguments belong in the job list only, never in `source.adapter_args`.
+
+## Decision models
+Cloudflare's Clef and Clef Flash (open weights, on Workers AI or llama.cpp) return
+probabilities for typed questions instead of text. Tool: `handdown decide`; rule
+`.claude/rules/decision-models.md`; benchmark: docs/vision-benchmark.md, *Decision
+models*.
+- **Request format:** Workers AI and llama.cpp's `/v1/systemone` take the same body:
+  `state`, `questions`, and `images` as data URLs. Workers AI refuses raw base64 or an
+  object, and remote URLs are not accepted. Workers AI wraps the answer in
+  `{result, success, errors}`; `usage` is `{input_tokens, output_tokens: 0}`.
+- **Option limits:** a `choice` needs at least 2 options (422 otherwise) and takes at
+  most 255 ("Dictionary should have at most 255 items"). An automatic "other" fixes the
+  lower bound and gives a way out. On text, Clef chose "other" for 109 of 2,000 items,
+  and the right candidate really was missing for 94 of them. On images, as referee, it
+  never chose it.
+- **Cost per option:** each option costs ~22 input tokens per request, sent again every
+  time. Accuracy on pictograms fell from 62% (64 options) to 48% (128) to 40% (254).
+  For the catalog's 1,369 objects, use a two-stage tree: `scripts/clef-tree.py`, 64–65
+  WordNet hypernym groups of at most 58.
+- **Free plan:** Workers AI's free plan allows 10,000 neurons a day (00:00 UTC). On
+  2026-10-14 it let 40,436 (404%) through before the first 429 "you have used up your
+  daily free allocation". The usage count the limit checks was ~20–25 minutes behind,
+  and 8 parallel requests spend an allocation in minutes. Without a payment method the
+  overage wasn't billed, but don't plan on it. `handdown decide` keeps its own count from
+  each answer's tokens and stops at 100%.
+- **Neurons per input token:** clef 0.0218, clef-flash 0.00345 (price ÷ $0.011 per
+  1,000 neurons, which matches the GraphQL usage API `aiInferenceAdaptiveGroups`).
+- **Self-hosted on a runner:** Clef Flash Q4_K_M plus its projector (~7 GB) runs on a
+  free 4-CPU runner with llama.cpp b11617+ (`/v1/systemone` with images since PR
+  #29969). The whole prompt must fit in one batch (`-b`/`-ub` 8192). It takes 22 s per
+  pictogram, against 55–85 s for Qwen3-VL 4B, since nothing is generated. It gave the
+  same answer as Workers AI for 31 of 40, with no daily cap. Full Clef (27B) doesn't
+  fit.
+- **Confidence:** the useful part. As a referee, p ≥ 0.8 covered 10% of pictograms at
+  96% agreement with Claude's label. With "other" offered, a confident "other" counts as
+  a miss, so check `choice` before trusting p.
+- **Docs vs. server:** llama.cpp's server README says Clef decides all questions of a
+  request jointly, while Workers AI's docs call them independent. Ask one question per
+  request when independence matters.

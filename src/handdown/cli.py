@@ -565,6 +565,88 @@ def bench_text(items: str, out: str = "text.jsonl", batch: int = 32) -> None:
     typer.echo(f"{bench.run_text(_jsonl(items), bench.LayaChoice(), 'laya', Path(out), batch=batch)} answered")
 
 
+@app.command("decide")
+def decide_cmd(
+    items: str = typer.Argument(..., help="JSONL: {id, state, images?: [paths], questions?} per line"),
+    spec: str = typer.Option(None, help='JSON: {"questions": {id: {type, instructions, criteria}}} for items without their own'),
+    model: str = typer.Option("clef", help="clef | clef-flash"),
+    endpoint: str = typer.Option(None, help="a self-hosted llama.cpp /v1/systemone URL instead of Workers AI"),
+    tree: str = typer.Option(None, help='a decision tree {"label", "children": {id: node}}: one choice per stage'),
+    beam: int = typer.Option(1, help="tree: the likeliest nodes kept in play per stage"),
+    instructions: str = typer.Option("Which of these does the item show or describe?", help="tree: the question asked at every stage"),
+    parallel: int = typer.Option(8, "--parallel", "-P"),
+    over_limit: bool = typer.Option(False, help="run past Workers AI's free daily allocation"),
+    job: str = typer.Option(None, help="a name for the usage log (work/decide-usage.jsonl)"),
+) -> None:
+    """Ask Cloudflare's Clef typed questions (choice, noul, score) about many items;
+    one JSON line per item on stdout. Exit 75 once the daily allocation is used up."""
+    import json
+    import sys
+    import time
+    from concurrent.futures import ThreadPoolExecutor
+    from pathlib import Path
+
+    from . import decide
+
+    rows = _jsonl(items)
+    questions = json.loads(Path(spec).read_text())["questions"] if spec else None
+
+    def log(text: str) -> None:
+        print(text, file=sys.stderr)
+
+    try:
+        decider = decide.Decider(model, endpoint=endpoint, over_limit=over_limit, log=log)
+    except decide.AllocationUsedUp as e:
+        log(f"decide: {e}")
+        raise typer.Exit(decide.EXHAUSTED) from e
+    if decider.hosted and not over_limit:
+        need = decider.estimate(rows, questions) * (2 if tree else 1)
+        if decider.neurons + need > decide.FREE_NEURONS:
+            log(f"decide: this run needs ~{need:.0f} neurons and {decide.FREE_NEURONS - decider.neurons:.0f} are left today; it stops at 100 %")
+    started, failed, used_up = time.monotonic(), 0, False
+    try:
+        if tree:
+            nodes = json.loads(Path(tree).read_text())
+            with ThreadPoolExecutor(max_workers=max(1, parallel)) as pool:
+                for r in pool.map(lambda i: _decide_tree_one(decide, decider, nodes, i, instructions, beam), rows):
+                    failed += "error" in r
+                    used_up |= r.pop("used_up", False)
+                    typer.echo(json.dumps(r))
+        else:
+            for r in decide.decide(decider, rows, questions, parallel):
+                failed += "error" in r
+                typer.echo(json.dumps(r))
+    except decide.AllocationUsedUp:
+        used_up = True
+    seconds = round(time.monotonic() - started, 1)
+    log(f"decide ({model}): {len(rows)} items ({failed} failed), {decider.input_tokens} input tokens, ${decider.cost:.6f}, {seconds}s")
+    decide.log_run(
+        Path("work/decide-usage.jsonl"),
+        job=job,
+        model=model,
+        hosted=decider.hosted,
+        items=len(rows),
+        failed=failed,
+        input_tokens=decider.input_tokens,
+        cost=round(decider.cost, 6),
+        seconds=seconds,
+        tree=bool(tree),
+    )
+    if used_up:
+        log("decide: Workers AI's daily free allocation is used up; the rest was skipped (resets 00:00 UTC)")
+        raise typer.Exit(decide.EXHAUSTED)
+
+
+def _decide_tree_one(decide, decider, nodes, item, instructions, beam):  # type: ignore[no-untyped-def]
+    """One item through the tree; a used-up allocation is reported, not raised, so the pool finishes."""
+    try:
+        return decide.decide_tree(decider, nodes, item, instructions, beam)
+    except decide.AllocationUsedUp as e:
+        return {"id": item.get("id"), "error": str(e), "used_up": True}
+    except Exception as e:  # one failed item must not end the run
+        return {"id": item.get("id"), "error": str(e)}
+
+
 @app.command("bench-text-score")
 def bench_text_score(items: str, results: list[str] = typer.Argument(None)) -> None:
     """Compare text answers (and the name rules) with Claude's objects."""
