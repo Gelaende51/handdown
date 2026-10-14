@@ -35,6 +35,14 @@ Translations: [Deutsch](docs/i18n/README.de.md)
 - **Group**: meanings come from names and aliases via WordNet (with labels in
   about 30 languages). Depictions are clustered by shape, independent of
   outline or filled style.
+- **Name**: depictions without a name for their object are labelled by vision
+  models. Qwen3-VL 4B runs on free GitHub runners, and Claude takes what it
+  leaves unresolved. Cloudflare's open-weight decision model Clef Flash runs
+  on the same runners at 22 s per pictogram. It can't name what it sees, only
+  choose between candidates, so it serves as a check on other models' names.
+  Its answers matched the hosted version's for 31 of 40 pictograms, without
+  the hosted service's daily cap. Details in the
+  [vision benchmark](docs/vision-benchmark.md).
 - **Rate**: convention strength (how many independent sources draw a meaning
   this way), distinctiveness from other meanings, and a weighted combined
   score. You can adjust the weights, and hand-set overrides always win.
@@ -87,4 +95,5 @@ recording it doesn't make a graphic redistributable.
 - Design: [docs/superpowers/specs](docs/superpowers/specs/2026-09-28-pictogram-catalog-design.md)
 - Notes on libraries and quirks: [dev/takeaways.md](dev/takeaways.md)
 - Parallel harvests on GitHub Actions: [docs/actions.md](docs/actions.md)
+- Which model names pictograms how well: [docs/vision-benchmark.md](docs/vision-benchmark.md)
 - Issues: the project's GitHub issue tracker (once the repository is published)

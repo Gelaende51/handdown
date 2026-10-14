@@ -30,6 +30,13 @@ Schrift).
   16 px, Einfachheit, optische Balance, Rastertreue, Symmetrie, Stil.
 - **Gruppieren**: Bedeutungen über WordNet (Bezeichnungen in ~30 Sprachen),
   Darstellungen per Formähnlichkeit unabhängig von Kontur- oder Flächenstil.
+- **Benennen**: Darstellungen ohne benanntes Objekt beschriften
+  Bildmodelle – Qwen3-VL 4B auf kostenlosen GitHub-Runnern, Claude für den
+  Rest. Cloudflares quelloffenes Entscheidungsmodell Clef Flash läuft auf
+  denselben Runnern mit 22 s je Piktogramm; es wählt nur zwischen
+  Kandidaten und prüft so die Namen anderer Modelle (31 von 40 Antworten
+  wie beim gehosteten Dienst, ohne dessen Tageslimit). Details im
+  [Vision-Benchmark](../vision-benchmark.md) (englisch).
 - **Bewerten**: Konventionsstärke, Unterscheidbarkeit, gewichteter
   Gesamtwert; manuelle Overrides haben Vorrang.
 - **Durchsuchen**: Obsidian-Vault (eine Notiz je Bedeutung; `overrides:` und
@@ -47,3 +54,4 @@ ihre eigenen Lizenzen.
 - Lizenz: [AGPL-3.0-or-later](../../LICENSE) (nur Code)
 - Design: [Spezifikation](../superpowers/specs/2026-09-28-pictogram-catalog-design.md)
 - Erkenntnisse: [dev/takeaways.md](../../dev/takeaways.md)
+- Welches Modell Piktogramme wie gut benennt: [docs/vision-benchmark.md](../vision-benchmark.md) (englisch)
