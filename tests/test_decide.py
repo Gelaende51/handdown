@@ -115,3 +115,40 @@ def test_the_tree_asks_a_group_then_its_members_and_keeps_the_beam(monkeypatch):
     r = decide.decide_tree(decide.Decider("clef", client=client), tree, {"id": 7, "state": "s"}, "Which?", beam=2)
     assert r["class"] == "dog" and r["p"] == round(0.6 * 0.7, 4) and calls["run"] == 2
     assert [p["choice"] for p in r["path"]] == ["animals", "dog"]
+
+
+def test_render_writes_decide_items_for_the_pictograms_this_runner_has(tmp_path, monkeypatch):
+    from typer.testing import CliRunner
+
+    from handdown import db
+    from handdown.cli import app
+    from handdown.config import Config
+
+    monkeypatch.setenv("HANDDOWN_ROOT", str(tmp_path))
+    monkeypatch.chdir(tmp_path)
+    c = db.connect(Config().db_path)
+    c.execute("INSERT INTO platform (id, name) VALUES ('p','p')")
+    c.execute("INSERT INTO source (id, platform_id, name) VALUES ('s','p','s')")
+    norm = tmp_path / "data" / "norm" / "sq.svg"
+    norm.parent.mkdir(parents=True)
+    norm.write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16"/></svg>')
+    for i in (1, 2):
+        c.execute("INSERT INTO pictogram (id, source_id, original_id, norm_path, svg_valid) VALUES (?,?,?,?,1)", (i, "s", f"i{i}", "data/norm/sq.svg"))
+    c.commit()
+    rows = [{"key": 10 + i, "source_id": "s", "original_id": f"i{i}"} for i in (1, 2, 3)]  # i3 is not here
+    rows[1]["questions"] = Q
+    (tmp_path / "slice.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
+
+    result = CliRunner().invoke(app, ["decide-render", "slice.jsonl", "--out-items", "out.jsonl", "--images", "imgs"])
+    assert result.exit_code == 0, result.output
+    items = [json.loads(line) for line in (tmp_path / "out.jsonl").read_text().splitlines()]
+    assert [i["id"] for i in items] == [11, 12]
+    assert items[0]["meta"] == {"source_id": "s", "original_id": "i1"} and items[0]["state"] == "A pictogram from an icon set."
+    assert (tmp_path / items[0]["images"][0]).exists() and items[1]["questions"] == Q and "questions" not in items[0]
+
+
+def test_meta_comes_back_with_the_answer(monkeypatch):
+    client, _ = _cloudflare(lambda body: {"kind": {"choice": "a", "probabilities": {"a": 1.0}}})
+    d = decide.Decider("clef-flash", endpoint="http://runner:8082/v1/systemone", client=client)
+    [row] = list(decide.decide(d, [{"id": 11, "meta": {"source_id": "s", "original_id": "i1"}, "state": "x"}], Q))
+    assert row["meta"] == {"source_id": "s", "original_id": "i1"} and row["answers"]["kind"]["choice"] == "a"

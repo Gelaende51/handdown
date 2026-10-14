@@ -1,0 +1,5 @@
+{"questions": {
+  "kind": {"type": "choice", "instructions": "What kind of pictogram source is this?",
+           "criteria": {"icons": "An icon set for user interfaces", "font": "A font with symbols or emoji", "aac": "A symbol system for augmentative and alternative communication", "signs": "A standard for signage or safety signs"}},
+  "redistribute": {"type": "noul", "instructions": "Does its license allow redistributing the pictograms, including commercially?"}
+}}

@@ -1,0 +1,164 @@
+# Decision model on runners: Cloudflare's Clef Flash (open weights, llama.cpp,
+# no daily cap, free) answers typed questions about many items with
+# `handdown decide` (choice, noul, score; a decision tree for more classes).
+# Two kinds of items:
+# - pictograms: a job list with key, source_id, original_id (as from
+#   `handdown vlm-jobs`) and its sources list. Each runner takes a contiguous
+#   slice, re-harvests just its sources, renders the pictograms and asks the
+#   model on its own llama-server; pictograms never leave the runner.
+# - text: items with an id and a state (no sources list); sliced the same way.
+# Only the answers (text) are committed to work/decide/answers/<name>-<run id>.jsonl.
+# At ~22 s per pictogram per stage, ~900 fit the 6-hour job limit with one
+# question, ~450 through a two-stage tree.
+name: decide
+on:
+  workflow_dispatch:
+    inputs:
+      items:
+        description: "Items in the repository: work/vlm/items-<list>.jsonl (pictograms) or any JSONL with id and state (text)"
+        required: true
+      sources:
+        description: "Pictograms only: the job list's sources, e.g. work/vlm/sources-<list>.jsonl; empty for text items"
+        default: ""
+      adapter:
+        description: "Pictograms only: the sources' adapter (iconify | git-svg | npm-svg | font | commons)"
+        default: ""
+      spec:
+        description: "Questions for every item: a JSON file in the repository ({questions: {...}}); empty with a tree"
+        default: ""
+      tree:
+        description: "A decision tree instead of a spec, e.g. work/bench/clef-tree.json"
+        default: ""
+      beam:
+        description: "Tree: the likeliest nodes kept in play per stage"
+        default: "2"
+      instructions:
+        description: "Tree: the question asked at every stage"
+        default: "Which object or concept does this pictogram depict?"
+      model:
+        description: "GGUF of a Clef decision model with its projector"
+        default: "ggml-org/Clef-Flash-GGUF:Q4_K_M"
+      per_shard:
+        description: "Items per runner"
+        default: "400"
+      name:
+        description: "Name for the answers file"
+        default: "decide"
+
+permissions:
+  contents: read
+
+env:
+  HF_HUB_DISABLE_TELEMETRY: "1"
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.m.outputs.matrix }}
+      shards: ${{ steps.m.outputs.shards }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: m
+        env:
+          ITEMS: ${{ inputs.items }}
+          PER_SHARD: ${{ inputs.per_shard }}
+        run: |
+          [ -f "$ITEMS" ] || { echo "::error::no items file $ITEMS"; exit 1; }
+          n=$(python3 -c 'import math,sys; print(max(1, math.ceil(sum(1 for l in open(sys.argv[1]) if l.strip()) / int(sys.argv[2]))))' "$ITEMS" "$PER_SHARD")
+          if [ "$n" -gt 256 ]; then echo "::error::$n shards exceed the 256-job matrix limit: raise per_shard"; exit 1; fi
+          echo "shards=$n" >> "$GITHUB_OUTPUT"
+          echo "matrix=$(python3 -c 'import json,sys; print(json.dumps(list(range(int(sys.argv[1])))))' "$n")" >> "$GITHUB_OUTPUT"
+
+  run:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    env:
+      ITEMS: ${{ inputs.items }}
+      SOURCES: ${{ inputs.sources }}
+      ADAPTER: ${{ inputs.adapter }}
+      SPEC: ${{ inputs.spec }}
+      TREE: ${{ inputs.tree }}
+      BEAM: ${{ inputs.beam }}
+      INSTRUCTIONS: ${{ inputs.instructions }}
+      MODEL: ${{ inputs.model }}
+      SHARD: ${{ matrix.shard }}/${{ needs.plan.outputs.shards }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --frozen
+      # Clef decision models (/v1/systemone, with images) need a build from after 2026-10-05
+      - name: llama.cpp
+        run: |
+          curl -fsSL -o llama.tar.gz https://github.com/ggml-org/llama.cpp/releases/download/b11617/llama-b11617-bin-ubuntu-x64.tar.gz
+          tar xzf llama.tar.gz && echo "$PWD/llama-b11617" >> "$GITHUB_PATH"
+      # model weights only (no pictograms): spares Hugging Face a download per runner
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/llama.cpp
+          key: llamacpp-${{ inputs.model }}
+      - name: Model server
+        run: |
+          # the whole prompt (image, question, options) is evaluated in one batch
+          nohup llama-server -hf "$MODEL" --port 8082 -c 8192 -b 8192 -ub 8192 -t 4 > llama.log 2>&1 &
+          for i in $(seq 120); do curl -sf http://127.0.0.1:8082/health && exit 0; sleep 5; done
+          tail -20 llama.log; echo "::error::llama-server did not come up"; exit 1
+      - name: Pictograms of this slice
+        if: inputs.sources != ''
+        run: |
+          uv run handdown vlm-slice "$ITEMS" "$SOURCES" --shard "$SHARD" --out-items slice-items.jsonl --out-sources slice-sources.jsonl
+          uv run handdown import-sources slice-sources.jsonl
+          uv run handdown harvest "$ADAPTER" --status accepted --no-registry
+          uv run handdown bench-prepare slice-items.jsonl
+          uv run handdown process --workers 4
+          uv run handdown decide-render slice-items.jsonl --out-items decide-items.jsonl
+      - name: Text items of this slice
+        if: inputs.sources == ''
+        run: python3 -c 'import sys; rows=[l for l in open(sys.argv[1]) if l.strip()]; i,n=map(int,sys.argv[2].split("/")); s=-(-len(rows)//n); open("decide-items.jsonl","w").writelines(rows[i*s:(i+1)*s])' "$ITEMS" "$SHARD"
+      - name: Decide
+        run: |
+          args=(decide-items.jsonl --endpoint http://127.0.0.1:8082/v1/systemone --model clef-flash -P 1 --job "decide:$SHARD")
+          if [ -n "$TREE" ]; then args+=(--tree "$TREE" --beam "$BEAM" --instructions "$INSTRUCTIONS"); fi
+          if [ -n "$SPEC" ]; then args+=(--spec "$SPEC"); fi
+          uv run handdown decide "${args[@]}" > answers.jsonl
+          echo "$(wc -l < answers.jsonl) answers, $(grep -c '"error"' answers.jsonl || true) with an error"
+      - if: always()
+        run: uv run handdown errors --annotate
+      # Only the answers leave the runner, never the pictograms
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: decide-${{ matrix.shard }}
+          path: answers.jsonl
+          if-no-files-found: warn
+          retention-days: 7
+
+  collect:
+    needs: run
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: decide-*
+          path: answers
+      - name: Commit the answers
+        env:
+          NAME: ${{ inputs.name }}
+        run: |
+          mkdir -p work/decide/answers
+          cat answers/*/answers.jsonl > "work/decide/answers/${NAME}-${{ github.run_id }}.jsonl" || true
+          git config user.name "Vault51"
+          git config user.email "Gelaende51@users.noreply.github.com"
+          git add work/decide/answers
+          if git diff --cached --quiet; then echo "no answers"; exit 0; fi
+          git commit -m "Decide: answers for ${NAME} (run ${{ github.run_id }})"
+          git pull --rebase && git push

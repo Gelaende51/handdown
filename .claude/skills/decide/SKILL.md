@@ -48,6 +48,15 @@ uv run handdown decide items.jsonl --spec q.json --endpoint http://<server>:8082
   undecided.
 - Put the full meaning in `instructions`, because question ids are not sent.
 
+## Many items for free: on GitHub runners
+
+`decide.yml` runs Clef Flash on runners (llama.cpp, no daily cap, no token), sliced across
+up to 256 jobs. It handles pictogram job lists (`work/vlm/items-*.jsonl` + sources, rendered
+on the runner) or text items, with a spec or a tree. The answers are committed to
+`work/decide/answers/`. Start it with `gh workflow run decide.yml -f items=… -f spec=…|tree=…`;
+`docs/actions.md` has the examples. Prefer it over Workers AI for more than a few hundred
+pictograms.
+
 ## Limits that matter
 
 - At most **255 options** per choice. Accuracy falls well before that: on pictograms,

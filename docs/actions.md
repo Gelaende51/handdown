@@ -45,3 +45,23 @@ Each runner:
 `export-shard` refuses to write an unencrypted shard when `GITHUB_ACTIONS`
 is set. Importing a shard is idempotent: pictograms are matched by source and
 original id. The decrypted copy exists only during the import.
+
+## Decision model on runners (`decide.yml`)
+
+Cloudflare's Clef Flash runs on each runner with llama.cpp: free, and without the hosted
+service's daily cap. It answers `handdown decide` questions (see
+`.claude/skills/decide/SKILL.md`), with only the answers committed, to
+`work/decide/answers/<name>-<run id>.jsonl`.
+
+```sh
+# pictograms: a job list from `handdown vlm-jobs`, through the object tree
+gh workflow run decide.yml -f items=work/vlm/items-iconify.jsonl -f sources=work/vlm/sources-iconify.jsonl \
+  -f adapter=iconify -f tree=work/bench/clef-tree.json -f per_shard=400 -f name=iconify-objects
+# text: any JSONL with id and state, with a spec of questions
+gh workflow run decide.yml -f items=work/decide/example-items.jsonl -f spec=work/decide/example-spec.json -f name=example
+```
+
+Each answer carries its item's `meta` (for pictograms: `source_id`, `original_id`), so it
+can still be applied after a hierarchy rebuild. It takes ~22 s per pictogram and stage, so
+`per_shard` 400 with a two-stage tree fits the 6-hour job limit. The dev container may
+start it (`gh workflow run`) but not change it.

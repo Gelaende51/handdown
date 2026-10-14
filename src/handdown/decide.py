@@ -170,15 +170,16 @@ def decide(decider: Decider, items: list[dict[str, Any]], questions: dict[str, A
     stop = {"used_up": False}
 
     def one(item: dict[str, Any]) -> dict[str, Any]:
+        head = {"id": item.get("id"), **({"meta": item["meta"]} if "meta" in item else {})}
         if stop["used_up"]:
-            return {"id": item.get("id"), "error": "skipped: daily free allocation used up"}
+            return {**head, "error": "skipped: daily free allocation used up"}
         try:
-            return {"id": item.get("id"), "answers": decider.ask(item.get("state"), item.get("questions") or questions or {}, item.get("images"))}
+            return {**head, "answers": decider.ask(item.get("state"), item.get("questions") or questions or {}, item.get("images"))}
         except AllocationUsedUp as e:
             stop["used_up"] = True
-            return {"id": item.get("id"), "error": str(e)}
+            return {**head, "error": str(e)}
         except Exception as e:  # one failed item must not end the run
-            return {"id": item.get("id"), "error": str(e)}
+            return {**head, "error": str(e)}
 
     with ThreadPoolExecutor(max_workers=max(1, parallel)) as pool:
         yield from pool.map(one, items)
@@ -190,7 +191,9 @@ def decide_tree(decider: Decider, tree: dict[str, Any], item: dict[str, Any], in
     """Walk ``tree`` ({"label", "children": {id: node}}; no children = a class)
     for one item: at each stage one choice among the children of the nodes in
     play; with ``beam`` > 1 the likeliest nodes stay in play and the next stage
-    chooses among all their children. "other" stops where it is."""
+    chooses among all their children. "other" stops where it is. An item's
+    ``meta`` (e.g. the pictogram's source_id and original_id) is passed on."""
+    head = {"id": item.get("id"), **({"meta": item["meta"]} if "meta" in item else {})}
     frontier: list[tuple[str, dict[str, Any], float]] = [("", tree, 1.0)]
     path: list[dict[str, Any]] = []
     while "children" in frontier[0][1]:
@@ -206,12 +209,12 @@ def decide_tree(decider: Decider, tree: dict[str, Any], item: dict[str, Any], in
         a = decider.ask(item.get("state"), {"node": {"type": "choice", "instructions": instructions, "criteria": criteria}}, item.get("images"))["node"]
         if a["choice"] == "other":
             path.append({"options": len(options), "choice": "other", "p": a["probabilities"]["other"]})
-            return {"id": item.get("id"), "class": None, "other": True, "reached": frontier[0][0], "path": path}
+            return {**head, "class": None, "other": True, "reached": frontier[0][0], "path": path}
         ranked = sorted(((k, v) for k, v in a["probabilities"].items() if k != "other"), key=lambda kv: -kv[1])[:beam]
         frontier = [(options[int(k[1:])][0], options[int(k[1:])][1], v * options[int(k[1:])][2]) for k, v in ranked]
         path.append({"options": len(options), "choice": frontier[0][0], "p": a["probabilities"][a["choice"]]})
     key, node, p = frontier[0]
-    return {"id": item.get("id"), "class": key, "label": node.get("label"), "p": round(p, 4), "path": path}
+    return {**head, "class": key, "label": node.get("label"), "p": round(p, 4), "path": path}
 
 
 def log_run(path: Path, **fields: Any) -> None:

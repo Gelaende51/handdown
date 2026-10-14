@@ -577,6 +577,7 @@ def decide_cmd(
     parallel: int = typer.Option(8, "--parallel", "-P"),
     over_limit: bool = typer.Option(False, help="run past Workers AI's free daily allocation"),
     job: str = typer.Option(None, help="a name for the usage log (work/decide-usage.jsonl)"),
+    shard: str = typer.Option(None, help="i/N: only this contiguous share of the items (runners side by side)"),
 ) -> None:
     """Ask Cloudflare's Clef typed questions (choice, noul, score) about many items;
     one JSON line per item on stdout. Exit 75 once the daily allocation is used up."""
@@ -589,6 +590,10 @@ def decide_cmd(
     from . import decide
 
     rows = _jsonl(items)
+    if shard:
+        i, n = (int(x) for x in shard.split("/"))
+        size = -(-len(rows) // n)
+        rows = rows[i * size : (i + 1) * size]
     questions = json.loads(Path(spec).read_text())["questions"] if spec else None
 
     def log(text: str) -> None:
@@ -635,6 +640,54 @@ def decide_cmd(
     if used_up:
         log("decide: Workers AI's daily free allocation is used up; the rest was skipped (resets 00:00 UTC)")
         raise typer.Exit(decide.EXHAUSTED)
+
+
+@app.command("decide-render")
+def decide_render(
+    items: str = typer.Argument(..., help="JSONL with key, source_id, original_id (a vlm or decide job list slice)"),
+    out_items: str = "decide-items.jsonl",
+    images: str = typer.Option("decide-images", help="directory for the rendered pictograms (stays on the runner)"),
+    state: str = "A pictogram from an icon set.",
+    size: int = 256,
+) -> None:
+    """Runner: render the processed pictograms of a job list and write decide items
+    ({id: key, state, images: [png]}); an item's own "state" or "questions" are kept.
+    Pictograms this runner lacks are left out."""
+    import json
+    from pathlib import Path
+
+    from . import bench
+    from .vision import _images
+
+    cfg = Config()
+    conn = _conn(cfg)
+    rows = _jsonl(items)
+    bench._sample_table(conn, rows)
+    found = conn.execute(
+        """SELECT b.key, p.id, p.norm_path, p.format FROM bench_sample b
+           JOIN pictogram p ON p.source_id = b.source_id AND p.original_id = b.original_id ORDER BY b.key"""
+    ).fetchall()
+    Path(images).mkdir(parents=True, exist_ok=True)
+    by_key = {r["key"]: r for r in rows}
+    written = 0
+    with open(out_items, "w") as f:
+        for start in range(0, len(found), bench.RENDER_CHUNK):  # a chunk at a time: long lists do not fit in memory
+            chunk = found[start : start + bench.RENDER_CHUNK]
+            rendered, ids = _images(cfg, chunk, size)
+            key_of = {r["id"]: r["key"] for r in chunk}
+            for pid, img in zip(ids, rendered, strict=True):
+                key = key_of[pid]
+                path = Path(images) / f"{key}.png"
+                img.save(path)
+                item = by_key[key]
+                # answers outlive hierarchy rebuilds only keyed by the pictogram (dev/takeaways.md)
+                meta = {"source_id": item["source_id"], "original_id": item["original_id"]}
+                out = {"id": key, "meta": meta, "state": item.get("state", state), "images": [str(path)]}
+                if item.get("questions"):
+                    out["questions"] = item["questions"]
+                f.write(json.dumps(out, ensure_ascii=False) + "\n")
+                written += 1
+    typer.echo(f"{written} of {len(rows)} pictograms rendered -> {out_items}")
 
 
 def _decide_tree_one(decide, decider, nodes, item, instructions, beam):  # type: ignore[no-untyped-def]
