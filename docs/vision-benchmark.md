@@ -108,6 +108,7 @@ option matches the Claude label, so that is the ceiling.
 | Clef | 57 % | 50 % | ≈0.55 | 340 / 0 | ≈0.08 |
 | Clef Flash | 56 % | 50 % | ≈0.5 | 340 / 0 | ≈0.013 |
 | Clef, same options without the image | 47 % | 40 % | – | 280 / 0 | – |
+| Clef, with an extra "other" option | 58 % | – | ≈0.6 | 370 / 0 | ≈0.09 |
 
 - As a referee, Clef is below a plain majority vote over the answers it chooses
   from, and below Qwen3-VL alone. It does use the image: without it, it
@@ -116,6 +117,9 @@ option matches the Claude label, so that is the ceiling.
   Claude label 96 % of the time; at p ≥ 0.5, 101 pictograms match 75 % of the
   time. That makes it a cheap way to confirm the long tail's labels, not a
   labeller.
+- With "other" added, Clef never picked it here. Even when no option fits,
+  it chooses one of the names. The score barely moves (58 %; 95 % at
+  p ≥ 0.8 on 22 pictograms).
 - Seconds are per request, run 8 at a time (242 images in 16 s). Workers AI
   bills input only, and images come in as embedded data URIs (no remote URLs,
   at most 4 per request).
@@ -128,12 +132,45 @@ option matches the Claude label, so that is the ceiling.
 | Name rules | 30 % | 72.9 % | – | free |
 | Clef | 29 % | 71.7 % | 60 %, 86 % | ≈0.04 |
 | Clef Flash | 29 % | 71.2 % | 56 %, 81 % | ≈0.006 |
+| Clef with "other" | 29 % | 70.8 % | 46 %, 43 % | ≈0.05 |
 | Laya | 28 % | 69.1 % | 3 %, 90 % | free (CPU) |
 
 - 38 % is the most any model can reach, because only that share of items has
   the Claude label among the candidates. Clef refuses a choice with only one
-  option; those 324 items count as their single candidate.
+  option. In the first two rows, those 324 items count as their single
+  candidate. In the "other" row every item gets an extra option, "None of
+  these", and Clef really answers all of them.
+- On text, "other" works as a way out. Clef chose it for 109 items, and for 94
+  of them the Claude label really wasn't among the candidates. Of the 324
+  single-candidate items, it got 126 right and passed on 22. Its p ≥ 0.9
+  answers are no longer reliable with "other" (43 % right), because a sure
+  "other" counts as a miss.
 - Clef matches the name rules and Laya on this task, so it adds nothing here.
+
+**Many classes at once.** Classifying a pictogram against every known object
+would mean one choice over 1,369 options. Clef accepts **at most 255 options
+per choice question** (HTTP 422 above that). A request can carry up to 64
+questions, but each is judged on its own. Each option costs about 22 input
+tokens per request, re-sent every time. A test on 40 benchmark pictograms
+used a fixed list of objects that always contained the Claude label:
+
+| Options | Clef | Clef Flash | Tokens per image |
+|---|---|---|---|
+| 64 | 62 % | 42 % | 1,400 |
+| 128 | 48 % | 40 % | 2,900 |
+| 254 | 40 % | 28 % | 5,700 |
+
+- Accuracy falls with the number of options. Against all 1,369 objects, Clef
+  would need at least 6 questions and ~30k tokens per image (≈$940 for the
+  130,000 open depictions), and would land below 40 %.
+- What scales is a shortlist first: the embeddings' nearest objects, the name
+  rules or the open models' answers. Clef then picks among ≤ ~32 plus
+  "other", at ~700 tokens per image (≈$22 on Clef, ≈$3.5 on Flash for
+  130,000).
+- Workers AI's free plan allows 10,000 neurons a day, which is about 450k Clef
+  or 2.9M Clef Flash tokens. After that, calls are refused until 00:00 UTC.
+  Metering lags, so the usage figure passed 400 % before the first refusal.
+  A full run over 130,000 depictions needs Workers Paid or many days.
 
 ## How the columns are computed
 
