@@ -280,8 +280,8 @@ def test_clef_tree_asks_the_group_then_the_object_among_the_beamed_groups(tmp_pa
         seen.append(body["questions"]["object"]["criteria"])
         if len(seen) == 1:  # the groups: animals likeliest, tools second
             probs = {"o0": 0.3, "o1": 0.6, "other": 0.1}
-        else:  # both groups' members: hammer, cat, dog
-            probs = {"o0": 0.1, "o1": 0.2, "o2": 0.6, "other": 0.1}
+        else:  # both groups' members, the likeliest group's first: cat, dog, hammer
+            probs = {"o0": 0.2, "o1": 0.6, "o2": 0.1, "other": 0.1}
         choice = max(probs, key=probs.get)
         return httpx.Response(200, json={"answers": {"object": {"choice": choice, "probabilities": probs}}, "usage": {"input_tokens": 100}})
 
@@ -289,7 +289,7 @@ def test_clef_tree_asks_the_group_then_the_object_among_the_beamed_groups(tmp_pa
     ask.started = True
     [(answer, extra)] = ask([Image.new("RGB", (8, 8), "white")])
     assert answer == "dog" and extra["object_id"] == "wn:dog.n.01" and extra["prompt_tokens"] == 200
-    assert list(seen[1].values()) == ["hammer: a hand tool", "cat: a feline", "dog: a canine", bench.REFEREE_OTHER]
+    assert list(seen[1].values()) == ["cat: a feline", "dog: a canine", "hammer: a hand tool", bench.REFEREE_OTHER]
     assert extra["p"] == round(0.6 * 0.6, 4)
 
 
