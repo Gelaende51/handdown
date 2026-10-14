@@ -1,0 +1,726 @@
+{"key": 251778, "model": "clef:clef@image,referee", "answer": "letter y", "p": 0.5889, "options": 17}
+{"key": 303183, "model": "clef:clef@image,referee", "answer": "rectangle", "p": 0.524, "options": 7}
+{"key": 331096, "model": "clef:clef@image,referee", "answer": "checkmark", "p": 0.5375, "options": 5}
+{"key": 302608, "model": "clef:clef@image,referee", "answer": "arrow left", "p": 0.6137, "options": 5}
+{"key": 314260, "model": "clef:clef@image,referee", "answer": "shopping bag", "p": 0.1492, "options": 18}
+{"key": 280986, "model": "clef:clef@image,referee", "answer": "document", "p": 0.4545, "options": 12}
+{"key": 316203, "model": "clef:clef@image,referee", "answer": "open book", "p": 0.8677, "options": 3}
+{"key": 280982, "model": "clef:clef@image,referee", "answer": "file folder", "p": 0.5701, "options": 4}
+{"key": 338484, "model": "clef:clef@image,referee", "answer": "closed captions", "p": 0.4495, "options": 12}
+{"key": 388650, "model": "clef:clef@image,referee", "answer": "d20 die", "p": 0.3757, "options": 18}
+{"key": 365318, "model": "clef:clef@image,referee", "answer": "elephant head", "p": 0.3529, "options": 7}
+{"key": 339411, "model": "clef:clef@image,referee", "answer": "cloud upload", "p": 0.5104, "options": 5}
+{"key": 358214, "model": "clef:clef@image,referee", "answer": "flame", "p": 0.2805, "options": 21}
+{"key": 370249, "model": "clef:clef@image,referee", "answer": "mobile phone", "p": 0.7702, "options": 18}
+{"key": 394341, "model": "clef:clef@image,referee", "answer": "house", "p": 0.482, "options": 6}
+{"key": 395810, "model": "clef:clef@image,referee", "answer": "html 5 logo", "p": 0.4713, "options": 15}
+{"key": 428891, "model": "clef:clef@image,referee", "answer": "greek letter psi", "p": 0.3342, "options": 15}
+{"key": 453952, "model": "clef:clef@image,referee", "answer": "return call", "p": 0.5325, "options": 9}
+{"key": 403949, "model": "clef:clef@image,referee", "answer": "instagram logo", "p": 0.6574, "options": 5}
+{"key": 405977, "model": "clef:clef@image,referee", "answer": "cat", "p": 0.3527, "options": 13}
+{"key": 466611, "model": "clef:clef@image,referee", "answer": "double left arrow", "p": 0.4634, "options": 10}
+{"key": 454056, "model": "clef:clef@image,referee", "answer": "call blocked", "p": 0.3787, "options": 17}
+{"key": 515992, "model": "clef:clef@image,referee", "answer": "vk logo", "p": 0.3877, "options": 9}
+{"key": 487308, "model": "clef:clef@image,referee", "answer": "star with slash", "p": 0.4188, "options": 12}
+{"key": 526373, "model": "clef:clef@image,referee", "answer": "question mark document", "p": 0.6483, "options": 8}
+{"key": 503345, "model": "clef:clef@image,referee", "answer": "zigzag arrow", "p": 0.4087, "options": 7}
+{"key": 526554, "model": "clef:clef@image,referee", "answer": "exclamation speech bubble", "p": 0.4952, "options": 10}
+{"key": 528177, "model": "clef:clef@image,referee", "answer": "skip backward", "p": 0.25, "options": 18}
+{"key": 526803, "model": "clef:clef@image,referee", "answer": "android logo", "p": 0.4133, "options": 11}
+{"key": 530430, "model": "clef:clef@image,referee", "answer": "megaphone", "p": 0.7302, "options": 4}
+{"key": 530825, "model": "clef:clef@image,referee", "answer": "wall calendar", "p": 0.5754, "options": 9}
+{"key": 521482, "model": "clef:clef@image,referee", "answer": "wine glass", "p": 0.7338, "options": 5}
+{"key": 530126, "model": "clef:clef@image,referee", "answer": "briefcase", "p": 0.6618, "options": 8}
+{"key": 530658, "model": "clef:clef@image,referee", "answer": "power or energy feature", "p": 0.5234, "options": 5}
+{"key": 535291, "model": "clef:clef@image,referee", "answer": "computer monitor", "p": 0.69, "options": 2}
+{"key": 533386, "model": "clef:clef@image,referee", "answer": "swirl", "p": 0.1565, "options": 16}
+{"key": 536468, "model": "clef:clef@image,referee", "answer": "water drop", "p": 0.4526, "options": 6}
+{"key": 534801, "model": "clef:clef@image,referee", "answer": "dashed circle", "p": 0.3843, "options": 12}
+{"key": 536729, "model": "clef:clef@image,referee", "answer": "pencil", "p": 0.953, "options": 3}
+{"key": 528939, "model": "clef:clef@image,referee", "answer": "bed", "p": 0.8769, "options": 3}
+{"key": 538538, "model": "clef:clef@image,referee", "answer": "droplet", "p": 0.3815, "options": 10}
+{"key": 536114, "model": "clef:clef@image,referee", "answer": "open door", "p": 0.3345, "options": 10}
+{"key": 541206, "model": "clef:clef@image,referee", "answer": "heart", "p": 0.6459, "options": 3}
+{"key": 537468, "model": "clef:clef@image,referee", "answer": "ufo", "p": 0.419, "options": 9}
+{"key": 541510, "model": "clef:clef@image,referee", "answer": "backward clock", "p": 0.6374, "options": 11}
+{"key": 545729, "model": "clef:clef@image,referee", "answer": "hamburger menu", "p": 0.2994, "options": 8}
+{"key": 544326, "model": "clef:clef@image,referee", "answer": "thumbs up", "p": 0.8302, "options": 4}
+{"key": 542261, "model": "clef:clef@image,referee", "answer": "landscape photo", "p": 0.2803, "options": 13}
+{"key": 546262, "model": "clef:clef@image,referee", "answer": "smartphone", "p": 0.9674, "options": 7}
+{"key": 545903, "model": "clef:clef@image,referee", "answer": "train symbol", "p": 0.4013, "options": 9}
+{"key": 546541, "model": "clef:clef@image,referee", "answer": "motor scooter", "p": 0.6405, "options": 9}
+{"key": 550321, "model": "clef:clef@image,referee", "answer": "half circle", "p": 0.7448, "options": 8}
+{"key": 549525, "model": "clef:clef@image,referee", "answer": "speech bubble", "p": 0.7723, "options": 4}
+{"key": 551140, "model": "clef:clef@image,referee", "answer": "quotation marks", "p": 0.4583, "options": 10}
+{"key": 547297, "model": "clef:clef@image,referee", "answer": "page corner", "p": 0.2968, "options": 13}
+{"key": 551334, "model": "clef:clef@image,referee", "answer": "rainbow symbol", "p": 0.3131, "options": 7}
+{"key": 553961, "model": "clef:clef@image,referee", "answer": "curved arrow", "p": 0.6952, "options": 8}
+{"key": 552300, "model": "clef:clef@image,referee", "answer": "award star", "p": 0.2833, "options": 14}
+{"key": 552749, "model": "clef:clef@image,referee", "answer": "ladder", "p": 0.201, "options": 15}
+{"key": 550114, "model": "clef:clef@image,referee", "answer": "popcorn bucket", "p": 0.3621, "options": 16}
+{"key": 554220, "model": "clef:clef@image,referee", "answer": "shopping cart", "p": 0.9836, "options": 3}
+{"key": 554109, "model": "clef:clef@image,referee", "answer": "ship waves", "p": 0.6903, "options": 8}
+{"key": 561468, "model": "clef:clef@image,referee", "answer": "microsoft windows logo", "p": 0.7145, "options": 6}
+{"key": 556321, "model": "clef:clef@image,referee", "answer": "concentric squares", "p": 0.3423, "options": 12}
+{"key": 553955, "model": "clef:clef@image,referee", "answer": "share", "p": 0.4094, "options": 8}
+{"key": 559885, "model": "clef:clef@image,referee", "answer": "open padlock", "p": 0.5816, "options": 8}
+{"key": 562014, "model": "clef:clef@image,referee", "answer": "laptop computer", "p": 0.4446, "options": 6}
+{"key": 560965, "model": "clef:clef@image,referee", "answer": "drinking glass", "p": 0.334, "options": 7}
+{"key": 562039, "model": "clef:clef@image,referee", "answer": "trash bin/can function", "p": 0.418, "options": 6}
+{"key": 562073, "model": "clef:clef@image,referee", "answer": "sun", "p": 0.6989, "options": 3}
+{"key": 562122, "model": "clef:clef@image,referee", "answer": "folder", "p": 0.5726, "options": 3}
+{"key": 553743, "model": "clef:clef@image,referee", "answer": "paper airplane", "p": 0.5878, "options": 5}
+{"key": 562123, "model": "clef:clef@image,referee", "answer": "gear", "p": 0.4685, "options": 4}
+{"key": 562124, "model": "clef:clef@image,referee", "answer": "bug", "p": 0.5302, "options": 12}
+{"key": 562128, "model": "clef:clef@image,referee", "answer": "beetle", "p": 0.2508, "options": 13}
+{"key": 562095, "model": "clef:clef@image,referee", "answer": "book icon", "p": 0.2989, "options": 9}
+{"key": 562126, "model": "clef:clef@image,referee", "answer": "butterfly", "p": 0.4693, "options": 10}
+{"key": 562150, "model": "clef:clef@image,referee", "answer": "wifi symbol", "p": 0.4084, "options": 6}
+{"key": 562276, "model": "clef:clef@image,referee", "answer": "code tag", "p": 0.2758, "options": 9}
+{"key": 562221, "model": "clef:clef@image,referee", "answer": "flame", "p": 0.2438, "options": 11}
+{"key": 562153, "model": "clef:clef@image,referee", "answer": "wi-fi symbol", "p": 0.3513, "options": 13}
+{"key": 562194, "model": "clef:clef@image,referee", "answer": "anchor", "p": 0.9925, "options": 3}
+{"key": 562301, "model": "clef:clef@image,referee", "answer": "envelope", "p": 0.3382, "options": 5}
+{"key": 562316, "model": "clef:clef@image,referee", "answer": "thumbs up", "p": 0.8345, "options": 2}
+{"key": 562390, "model": "clef:clef@image,referee", "answer": "mic", "p": 0.5734, "options": 2}
+{"key": 562435, "model": "clef:clef@image,referee", "answer": "printer icon", "p": 0.4188, "options": 5}
+{"key": 562329, "model": "clef:clef@image,referee", "answer": "chat bubbles", "p": 0.5464, "options": 8}
+{"key": 562455, "model": "clef:clef@image,referee", "answer": "octocat", "p": 0.3434, "options": 8}
+{"key": 562456, "model": "clef:clef@image,referee", "answer": "document stack", "p": 0.5512, "options": 12}
+{"key": 562457, "model": "clef:clef@image,referee", "answer": "text document", "p": 0.5345, "options": 6}
+{"key": 562717, "model": "clef:clef@image,referee", "answer": "television", "p": 0.3655, "options": 4}
+{"key": 562671, "model": "clef:clef@image,referee", "answer": "spinner", "p": 0.4091, "options": 5}
+{"key": 562726, "model": "clef:clef@image,referee", "answer": "graduation cap", "p": 0.8874, "options": 2}
+{"key": 562805, "model": "clef:clef@image,referee", "answer": "right arrow", "p": 0.9075, "options": 5}
+{"key": 562852, "model": "clef:clef@image,referee", "answer": "rewind", "p": 0.3741, "options": 15}
+{"key": 562832, "model": "clef:clef@image,referee", "answer": "letter x", "p": 0.4484, "options": 10}
+{"key": 562883, "model": "clef:clef@image,referee", "answer": "file icon", "p": 0.4363, "options": 4}
+{"key": 562884, "model": "clef:clef@image,referee", "answer": "steaming cup", "p": 0.7695, "options": 3}
+{"key": 562942, "model": "clef:clef@image,referee", "answer": "key", "p": 0.9939, "options": 2}
+{"key": 562917, "model": "clef:clef@image,referee", "answer": "volume off", "p": 0.2788, "options": 12}
+{"key": 562911, "model": "clef:clef@image,referee", "answer": "thumbs up", "p": 0.9077, "options": 8}
+{"key": 562947, "model": "clef:clef@image,referee", "answer": "newspaper", "p": 0.9491, "options": 6}
+{"key": 563149, "model": "clef:clef@image,referee", "answer": "chat bubble", "p": 0.3969, "options": 6}
+{"key": 563057, "model": "clef:clef@image,referee", "answer": "arrow", "p": 0.4245, "options": 7}
+{"key": 562954, "model": "clef:clef@image,referee", "answer": "letter f", "p": 0.4624, "options": 11}
+{"key": 563184, "model": "clef:clef@image,referee", "answer": "bicycle", "p": 0.5545, "options": 7}
+{"key": 563268, "model": "clef:clef@image,referee", "answer": "shield", "p": 0.3674, "options": 13}
+{"key": 563230, "model": "clef:clef@image,referee", "answer": "eye off", "p": 0.4601, "options": 16}
+{"key": 563305, "model": "clef:clef@image,referee", "answer": "checkmark", "p": 0.6241, "options": 2}
+{"key": 563307, "model": "clef:clef@image,referee", "answer": "armchair", "p": 0.6642, "options": 5}
+{"key": 563515, "model": "clef:clef@image,referee", "answer": "undo arrow", "p": 0.3874, "options": 12}
+{"key": 563491, "model": "clef:clef@image,referee", "answer": "bar graph", "p": 0.5904, "options": 9}
+{"key": 563520, "model": "clef:clef@image,referee", "answer": "store", "p": 0.2361, "options": 11}
+{"key": 563346, "model": "clef:clef@image,referee", "answer": "sailboat", "p": 0.4575, "options": 5}
+{"key": 563393, "model": "clef:clef@image,referee", "answer": "sudoku puzzle", "p": 0.2297, "options": 17}
+{"key": 563512, "model": "clef:clef@image,referee", "answer": "phone call", "p": 0.3736, "options": 8}
+{"key": 563689, "model": "clef:clef@image,referee", "answer": "stethoscope", "p": 0.9909, "options": 3}
+{"key": 563523, "model": "clef:clef@image,referee", "answer": "thumbs down", "p": 0.6738, "options": 8}
+{"key": 563844, "model": "clef:clef@image,referee", "answer": "right exit", "p": 0.2454, "options": 15}
+{"key": 563850, "model": "clef:clef@image,referee", "answer": "hamburger menu", "p": 0.3088, "options": 14}
+{"key": 564003, "model": "clef:clef@image,referee", "answer": "square with dot", "p": 0.6563, "options": 17}
+{"key": 563887, "model": "clef:clef@image,referee", "answer": "letter e", "p": 0.4698, "options": 8}
+{"key": 563985, "model": "clef:clef@image,referee", "answer": "horseshoe magnet", "p": 0.4609, "options": 6}
+{"key": 564174, "model": "clef:clef@image,referee", "answer": "binoculars", "p": 0.9622, "options": 7}
+{"key": 564016, "model": "clef:clef@image,referee", "answer": "two people", "p": 0.4206, "options": 9}
+{"key": 564119, "model": "clef:clef@image,referee", "answer": "m c e", "p": 0.3484, "options": 12}
+{"key": 564156, "model": "clef:clef@image,referee", "answer": "upload cloud", "p": 0.7137, "options": 5}
+{"key": 564011, "model": "clef:clef@image,referee", "answer": "address book", "p": 0.5014, "options": 19}
+{"key": 564126, "model": "clef:clef@image,referee", "answer": "3d cube", "p": 0.2981, "options": 6}
+{"key": 564191, "model": "clef:clef@image,referee", "answer": "three people", "p": 0.4604, "options": 7}
+{"key": 564198, "model": "clef:clef@image,referee", "answer": "muted microphone", "p": 0.5655, "options": 11}
+{"key": 564302, "model": "clef:clef@image,referee", "answer": "neural network", "p": 0.376, "options": 11}
+{"key": 564261, "model": "clef:clef@image,referee", "answer": "home wallet", "p": 0.3636, "options": 11}
+{"key": 564295, "model": "clef:clef@image,referee", "answer": "train front", "p": 0.6758, "options": 9}
+{"key": 564193, "model": "clef:clef@image,referee", "answer": "microphone off", "p": 0.4803, "options": 9}
+{"key": 577404, "model": "clef:clef@image,referee", "answer": "letters ab", "p": 0.5584, "options": 10}
+{"key": 577450, "model": "clef:clef@image,referee", "answer": "text alignment", "p": 0.3925, "options": 10}
+{"key": 577322, "model": "clef:clef@image,referee", "answer": "align center", "p": 0.5081, "options": 14}
+{"key": 589324, "model": "clef:clef@image,referee", "answer": "headphones", "p": 0.738, "options": 5}
+{"key": 584208, "model": "clef:clef@image,referee", "answer": "line chart", "p": 0.2568, "options": 13}
+{"key": 587416, "model": "clef:clef@image,referee", "answer": "up and down arrows", "p": 0.3622, "options": 11}
+{"key": 599607, "model": "clef:clef@image,referee", "answer": "bookmark plus", "p": 0.4869, "options": 9}
+{"key": 580859, "model": "clef:clef@image,referee", "answer": "word api", "p": 0.4147, "options": 8}
+{"key": 588188, "model": "clef:clef@image,referee", "answer": "arrows up", "p": 0.4338, "options": 9}
+{"key": 606730, "model": "clef:clef@image,referee", "answer": "coffee mug", "p": 0.7479, "options": 4}
+{"key": 620988, "model": "clef:clef@image,referee", "answer": "back", "p": 0.3123, "options": 13}
+{"key": 608848, "model": "clef:clef@image,referee", "answer": "two circles", "p": 0.7922, "options": 5}
+{"key": 621898, "model": "clef:clef@image,referee", "answer": "cloud check mark", "p": 0.5947, "options": 12}
+{"key": 622242, "model": "clef:clef@image,referee", "answer": "cloud with lightning", "p": 0.4742, "options": 7}
+{"key": 613113, "model": "clef:clef@image,referee", "answer": "scatter plot", "p": 0.5931, "options": 11}
+{"key": 622262, "model": "clef:clef@image,referee", "answer": "locked cloud", "p": 0.4228, "options": 8}
+{"key": 608469, "model": "clef:clef@image,referee", "answer": "video camera", "p": 0.6262, "options": 6}
+{"key": 602660, "model": "clef:clef@image,referee", "answer": "windows", "p": 0.239, "options": 14}
+{"key": 625102, "model": "clef:clef@image,referee", "answer": "comment add", "p": 0.4475, "options": 14}
+{"key": 633627, "model": "clef:clef@image,referee", "answer": "lamp", "p": 0.5989, "options": 5}
+{"key": 626598, "model": "clef:clef@image,referee", "answer": "scissors", "p": 0.9739, "options": 4}
+{"key": 628407, "model": "clef:clef@image,referee", "answer": "credit card", "p": 0.9384, "options": 3}
+{"key": 645733, "model": "clef:clef@image,referee", "answer": "checkmark", "p": 0.5516, "options": 2}
+{"key": 634899, "model": "clef:clef@image,referee", "answer": "seven dots", "p": 0.4567, "options": 12}
+{"key": 622366, "model": "clef:clef@image,referee", "answer": "cloud with slash", "p": 0.6181, "options": 11}
+{"key": 634883, "model": "clef:clef@image,referee", "answer": "exclamation mark", "p": 0.9133, "options": 7}
+{"key": 639987, "model": "clef:clef@image,referee", "answer": "downward arrow", "p": 0.3703, "options": 7}
+{"key": 646985, "model": "clef:clef@image,referee", "answer": "keyhole", "p": 0.4853, "options": 6}
+{"key": 651936, "model": "clef:clef@image,referee", "answer": "wi-fi symbol", "p": 0.3837, "options": 16}
+{"key": 648006, "model": "clef:clef@image,referee", "answer": "ethereum coin", "p": 0.4623, "options": 7}
+{"key": 650282, "model": "clef:clef@image,referee", "answer": "frowning face", "p": 0.2787, "options": 10}
+{"key": 648321, "model": "clef:clef@image,referee", "answer": "battery charging", "p": 0.617, "options": 15}
+{"key": 653305, "model": "clef:clef@image,referee", "answer": "jpg", "p": 0.4832, "options": 11}
+{"key": 648704, "model": "clef:clef@image,referee", "answer": "exchange", "p": 0.4203, "options": 10}
+{"key": 651311, "model": "clef:clef@image,referee", "answer": "word field", "p": 0.3284, "options": 10}
+{"key": 653318, "model": "clef:clef@image,referee", "answer": "json file icon", "p": 0.7985, "options": 5}
+{"key": 661098, "model": "clef:clef@image,referee", "answer": "folder lock", "p": 0.4542, "options": 7}
+{"key": 653573, "model": "clef:clef@image,referee", "answer": "pdf document", "p": 0.4696, "options": 9}
+{"key": 661745, "model": "clef:clef@image,referee", "answer": "folder add", "p": 0.4105, "options": 8}
+{"key": 658317, "model": "clef:clef@image,referee", "answer": "letter n", "p": 0.2916, "options": 15}
+{"key": 662099, "model": "clef:clef@image,referee", "answer": "search folder", "p": 0.4908, "options": 13}
+{"key": 663693, "model": "clef:clef@image,referee", "answer": "left alignment", "p": 0.2732, "options": 12}
+{"key": 663695, "model": "clef:clef@image,referee", "answer": "text alignment", "p": 0.3309, "options": 13}
+{"key": 665445, "model": "clef:clef@image,referee", "answer": "viewfinder", "p": 0.4612, "options": 10}
+{"key": 672736, "model": "clef:clef@image,referee", "answer": "circle with wave", "p": 0.5128, "options": 13}
+{"key": 675214, "model": "clef:clef@image,referee", "answer": "printer", "p": 0.244, "options": 12}
+{"key": 670597, "model": "clef:clef@image,referee", "answer": "letter g", "p": 0.8451, "options": 11}
+{"key": 677054, "model": "clef:clef@image,referee", "answer": "organization chart", "p": 0.3831, "options": 16}
+{"key": 677478, "model": "clef:clef@image,referee", "answer": "houses", "p": 0.6782, "options": 5}
+{"key": 682098, "model": "clef:clef@image,referee", "answer": "download icon", "p": 0.4821, "options": 7}
+{"key": 691448, "model": "clef:clef@image,referee", "answer": "text alignment icon", "p": 0.213, "options": 13}
+{"key": 680506, "model": "clef:clef@image,referee", "answer": "daisy", "p": 0.4067, "options": 7}
+{"key": 697519, "model": "clef:clef@image,referee", "answer": "arrow left", "p": 0.6122, "options": 4}
+{"key": 691444, "model": "clef:clef@image,referee", "answer": "lines horizontal", "p": 0.2568, "options": 14}
+{"key": 678302, "model": "clef:clef@image,referee", "answer": "potted plant", "p": 0.5119, "options": 14}
+{"key": 692934, "model": "clef:clef@image,referee", "answer": "microphone", "p": 0.5062, "options": 2}
+{"key": 703931, "model": "clef:clef@image,referee", "answer": "login icon", "p": 0.2144, "options": 11}
+{"key": 702331, "model": "clef:clef@image,referee", "answer": "list", "p": 0.3133, "options": 10}
+{"key": 701812, "model": "clef:clef@image,referee", "answer": "linkedin logo", "p": 0.7292, "options": 4}
+{"key": 703943, "model": "clef:clef@image,referee", "answer": "login icon", "p": 0.3222, "options": 14}
+{"key": 704388, "model": "clef:clef@image,referee", "answer": "exit icon", "p": 0.3018, "options": 16}
+{"key": 710102, "model": "clef:clef@image,referee", "answer": "plus sign", "p": 0.3002, "options": 5}
+{"key": 705189, "model": "clef:clef@image,referee", "answer": "brightness", "p": 0.3329, "options": 10}
+{"key": 710141, "model": "clef:clef@image,referee", "answer": "first aid kit", "p": 0.981, "options": 3}
+{"key": 709393, "model": "clef:clef@image,referee", "answer": "star award", "p": 0.4222, "options": 11}
+{"key": 719783, "model": "clef:clef@image,referee", "answer": "ethereum coin", "p": 0.3259, "options": 12}
+{"key": 719670, "model": "clef:clef@image,referee", "answer": "griffin head", "p": 0.2901, "options": 17}
+{"key": 711402, "model": "clef:clef@image,referee", "answer": "black circle", "p": 0.5255, "options": 4}
+{"key": 720734, "model": "clef:clef@image,referee", "answer": "face with neutral expression", "p": 0.3943, "options": 11}
+{"key": 720001, "model": "clef:clef@image,referee", "answer": "bar chart", "p": 0.4169, "options": 6}
+{"key": 720386, "model": "clef:clef@image,referee", "answer": "face recognition", "p": 0.6142, "options": 17}
+{"key": 726614, "model": "clef:clef@image,referee", "answer": "llama head", "p": 0.7438, "options": 13}
+{"key": 717685, "model": "clef:clef@image,referee", "answer": "musical notes", "p": 0.4171, "options": 7}
+{"key": 738601, "model": "clef:clef@image,referee", "answer": "paragraph mark", "p": 0.4144, "options": 10}
+{"key": 737143, "model": "clef:clef@image,referee", "answer": "phone with x", "p": 0.1906, "options": 16}
+{"key": 737459, "model": "clef:clef@image,referee", "answer": "laptop and smartphone", "p": 0.5056, "options": 11}
+{"key": 738996, "model": "clef:clef@image,referee", "answer": "pie chart", "p": 0.5157, "options": 14}
+{"key": 741011, "model": "clef:clef@image,referee", "answer": "vinyl record", "p": 0.2809, "options": 8}
+{"key": 739144, "model": "clef:clef@image,referee", "answer": "letter p", "p": 0.567, "options": 6}
+{"key": 739011, "model": "clef:clef@image,referee", "answer": "pinterest p", "p": 0.38, "options": 8}
+{"key": 745597, "model": "clef:clef@image,referee", "answer": "qr code layout", "p": 0.7053, "options": 7}
+{"key": 741935, "model": "clef:clef@image,referee", "answer": "power symbol", "p": 0.5443, "options": 4}
+{"key": 750423, "model": "clef:clef@image,referee", "answer": "repeat symbol", "p": 0.1987, "options": 17}
+{"key": 745538, "model": "clef:clef@image,referee", "answer": "0", "p": 0.3145, "options": 9}
+{"key": 745600, "model": "clef:clef@image,referee", "answer": "qr code", "p": 0.8758, "options": 5}
+{"key": 752276, "model": "clef:clef@image,referee", "answer": "circular arrow", "p": 0.404, "options": 8}
+{"key": 761181, "model": "clef:clef@image,referee", "answer": "split screen", "p": 0.3759, "options": 12}
+{"key": 752254, "model": "clef:clef@image,referee", "answer": "undo", "p": 0.2758, "options": 13}
+{"key": 767727, "model": "clef:clef@image,referee", "answer": "stylized arrow", "p": 0.3949, "options": 11}
+{"key": 769593, "model": "clef:clef@image,referee", "answer": "signal bars", "p": 0.3885, "options": 14}
+{"key": 772441, "model": "clef:clef@image,referee", "answer": "tuxedo", "p": 0.4072, "options": 8}
+{"key": 769675, "model": "clef:clef@image,referee", "answer": "staircase arrow", "p": 0.3369, "options": 10}
+{"key": 761431, "model": "clef:clef@image,referee", "answer": "log out", "p": 0.291, "options": 13}
+{"key": 780230, "model": "clef:clef@image,referee", "answer": "t", "p": 0.4451, "options": 12}
+{"key": 773560, "model": "clef:clef@image,referee", "answer": "snowflake", "p": 0.7024, "options": 8}
+{"key": 783012, "model": "clef:clef@image,referee", "answer": "three chevrons", "p": 0.3644, "options": 16}
+{"key": 798959, "model": "clef:clef@image,referee", "answer": "visual studio code", "p": 0.4135, "options": 10}
+{"key": 797118, "model": "clef:clef@image,referee", "answer": "video camera", "p": 0.8043, "options": 5}
+{"key": 801508, "model": "clef:clef@image,referee", "answer": "cloud with moon", "p": 0.5046, "options": 8}
+{"key": 792947, "model": "clef:clef@image,referee", "answer": "broken link", "p": 0.6782, "options": 12}
+{"key": 809379, "model": "clef:clef@image,referee", "answer": "calendar", "p": 0.8954, "options": 3}
+{"key": 809094, "model": "clef:clef@image,referee", "answer": "accordion", "p": 0.6098, "options": 7}
+{"key": 787085, "model": "clef:clef@image,referee", "answer": "paper airplane", "p": 0.5451, "options": 15}
+{"key": 804645, "model": "clef:clef@image,referee", "answer": "smiley face", "p": 0.5181, "options": 4}
+{"key": 813116, "model": "clef:clef@image,referee", "answer": "pound sign", "p": 0.8037, "options": 4}
+{"key": 810748, "model": "clef:clef@image,referee", "answer": "paperclip", "p": 0.4818, "options": 5}
+{"key": 811891, "model": "clef:clef@image,referee", "answer": "user icon", "p": 0.3648, "options": 10}
+{"key": 280982, "model": "clef:clef-flash@image,referee", "answer": "file folder", "p": 0.5315, "options": 4}
+{"key": 251778, "model": "clef:clef-flash@image,referee", "answer": "y symbol", "p": 0.3189, "options": 17}
+{"key": 331096, "model": "clef:clef-flash@image,referee", "answer": "checkmark", "p": 0.6094, "options": 5}
+{"key": 316203, "model": "clef:clef-flash@image,referee", "answer": "open book", "p": 0.8734, "options": 3}
+{"key": 303183, "model": "clef:clef-flash@image,referee", "answer": "rectangle", "p": 0.4956, "options": 7}
+{"key": 302608, "model": "clef:clef-flash@image,referee", "answer": "arrow left", "p": 0.6901, "options": 5}
+{"key": 314260, "model": "clef:clef-flash@image,referee", "answer": "document scanner", "p": 0.1819, "options": 18}
+{"key": 339411, "model": "clef:clef-flash@image,referee", "answer": "upload", "p": 0.5364, "options": 5}
+{"key": 338484, "model": "clef:clef-flash@image,referee", "answer": "cc symbol", "p": 0.2657, "options": 12}
+{"key": 370249, "model": "clef:clef-flash@image,referee", "answer": "book", "p": 0.2003, "options": 18}
+{"key": 358214, "model": "clef:clef-flash@image,referee", "answer": "fire symbol", "p": 0.3089, "options": 21}
+{"key": 365318, "model": "clef:clef-flash@image,referee", "answer": "evernote logo", "p": 0.3474, "options": 7}
+{"key": 388650, "model": "clef:clef-flash@image,referee", "answer": "hexagon triangle", "p": 0.3685, "options": 18}
+{"key": 394341, "model": "clef:clef-flash@image,referee", "answer": "house icon", "p": 0.3528, "options": 6}
+{"key": 395810, "model": "clef:clef-flash@image,referee", "answer": "html 5 logo", "p": 0.1667, "options": 15}
+{"key": 405977, "model": "clef:clef-flash@image,referee", "answer": "cell phone", "p": 0.5639, "options": 13}
+{"key": 428891, "model": "clef:clef-flash@image,referee", "answer": "handprint", "p": 0.148, "options": 15}
+{"key": 280986, "model": "clef:clef-flash@image,referee", "answer": "file folder", "p": 0.1298, "options": 12}
+{"key": 453952, "model": "clef:clef-flash@image,referee", "answer": "telephone receiver", "p": 0.1888, "options": 9}
+{"key": 403949, "model": "clef:clef-flash@image,referee", "answer": "instagram logo", "p": 0.5458, "options": 5}
+{"key": 454056, "model": "clef:clef-flash@image,referee", "answer": "prohibited symbol", "p": 0.2251, "options": 17}
+{"key": 466611, "model": "clef:clef-flash@image,referee", "answer": "double left arrow", "p": 0.5258, "options": 10}
+{"key": 503345, "model": "clef:clef-flash@image,referee", "answer": "arrow", "p": 0.3509, "options": 7}
+{"key": 487308, "model": "clef:clef-flash@image,referee", "answer": "star", "p": 0.3555, "options": 12}
+{"key": 515992, "model": "clef:clef-flash@image,referee", "answer": "letter k", "p": 0.4502, "options": 9}
+{"key": 526554, "model": "clef:clef-flash@image,referee", "answer": "exclamation speech bubble", "p": 0.5149, "options": 10}
+{"key": 521482, "model": "clef:clef-flash@image,referee", "answer": "goblet", "p": 0.43, "options": 5}
+{"key": 526373, "model": "clef:clef-flash@image,referee", "answer": "question mark", "p": 0.564, "options": 8}
+{"key": 528177, "model": "clef:clef-flash@image,referee", "answer": "skip backward", "p": 0.301, "options": 18}
+{"key": 526803, "model": "clef:clef-flash@image,referee", "answer": "android logo", "p": 0.3556, "options": 11}
+{"key": 530126, "model": "clef:clef-flash@image,referee", "answer": "suitcase", "p": 0.4168, "options": 8}
+{"key": 528939, "model": "clef:clef-flash@image,referee", "answer": "bed", "p": 0.7975, "options": 3}
+{"key": 530825, "model": "clef:clef-flash@image,referee", "answer": "wall calendar", "p": 0.306, "options": 9}
+{"key": 533386, "model": "clef:clef-flash@image,referee", "answer": "refresh symbol", "p": 0.2214, "options": 16}
+{"key": 530658, "model": "clef:clef-flash@image,referee", "answer": "lightning bolt", "p": 0.7079, "options": 5}
+{"key": 534801, "model": "clef:clef-flash@image,referee", "answer": "dashed circle", "p": 0.1518, "options": 12}
+{"key": 535291, "model": "clef:clef-flash@image,referee", "answer": "computer monitor", "p": 0.7311, "options": 2}
+{"key": 536468, "model": "clef:clef-flash@image,referee", "answer": "water drop", "p": 0.4248, "options": 6}
+{"key": 530430, "model": "clef:clef-flash@image,referee", "answer": "megaphone", "p": 0.7128, "options": 4}
+{"key": 541206, "model": "clef:clef-flash@image,referee", "answer": "heart", "p": 0.4104, "options": 3}
+{"key": 536114, "model": "clef:clef-flash@image,referee", "answer": "door", "p": 0.1898, "options": 10}
+{"key": 537468, "model": "clef:clef-flash@image,referee", "answer": "ufo", "p": 0.4776, "options": 9}
+{"key": 538538, "model": "clef:clef-flash@image,referee", "answer": "water drop", "p": 0.3296, "options": 10}
+{"key": 542261, "model": "clef:clef-flash@image,referee", "answer": "image icon", "p": 0.223, "options": 13}
+{"key": 541510, "model": "clef:clef-flash@image,referee", "answer": "refresh symbol", "p": 0.2604, "options": 11}
+{"key": 544326, "model": "clef:clef-flash@image,referee", "answer": "like button", "p": 0.4199, "options": 4}
+{"key": 545729, "model": "clef:clef-flash@image,referee", "answer": "three horizontal lines", "p": 0.4648, "options": 8}
+{"key": 546541, "model": "clef:clef-flash@image,referee", "answer": "motor scooter", "p": 0.482, "options": 9}
+{"key": 546262, "model": "clef:clef-flash@image,referee", "answer": "exclamation point", "p": 0.5932, "options": 7}
+{"key": 545903, "model": "clef:clef-flash@image,referee", "answer": "subway train", "p": 0.1757, "options": 9}
+{"key": 536729, "model": "clef:clef-flash@image,referee", "answer": "pencil", "p": 0.5479, "options": 3}
+{"key": 549525, "model": "clef:clef-flash@image,referee", "answer": "speech bubble", "p": 0.53, "options": 4}
+{"key": 550114, "model": "clef:clef-flash@image,referee", "answer": "cupcake", "p": 0.2616, "options": 16}
+{"key": 550321, "model": "clef:clef-flash@image,referee", "answer": "half circle", "p": 0.3505, "options": 8}
+{"key": 547297, "model": "clef:clef-flash@image,referee", "answer": "page corner", "p": 0.3893, "options": 13}
+{"key": 551140, "model": "clef:clef-flash@image,referee", "answer": "double quotation marks", "p": 0.6605, "options": 10}
+{"key": 551334, "model": "clef:clef-flash@image,referee", "answer": "archway", "p": 0.3748, "options": 7}
+{"key": 552749, "model": "clef:clef-flash@image,referee", "answer": "arrows", "p": 0.3097, "options": 15}
+{"key": 553961, "model": "clef:clef-flash@image,referee", "answer": "arrow", "p": 0.2739, "options": 8}
+{"key": 552300, "model": "clef:clef-flash@image,referee", "answer": "starburst", "p": 0.2362, "options": 14}
+{"key": 553743, "model": "clef:clef-flash@image,referee", "answer": "paper airplane", "p": 0.3779, "options": 5}
+{"key": 553955, "model": "clef:clef-flash@image,referee", "answer": "share symbol", "p": 0.3243, "options": 8}
+{"key": 554109, "model": "clef:clef-flash@image,referee", "answer": "ship", "p": 0.2345, "options": 8}
+{"key": 554220, "model": "clef:clef-flash@image,referee", "answer": "shopping cart", "p": 0.9126, "options": 3}
+{"key": 559885, "model": "clef:clef-flash@image,referee", "answer": "unlocked padlock", "p": 0.3318, "options": 8}
+{"key": 556321, "model": "clef:clef-flash@image,referee", "answer": "square within square", "p": 0.5794, "options": 12}
+{"key": 560965, "model": "clef:clef-flash@image,referee", "answer": "cup", "p": 0.2663, "options": 7}
+{"key": 562073, "model": "clef:clef-flash@image,referee", "answer": "sun", "p": 0.6366, "options": 3}
+{"key": 561468, "model": "clef:clef-flash@image,referee", "answer": "four squares", "p": 0.2759, "options": 6}
+{"key": 562014, "model": "clef:clef-flash@image,referee", "answer": "briefcase", "p": 0.3092, "options": 6}
+{"key": 562039, "model": "clef:clef-flash@image,referee", "answer": "trash bin", "p": 0.4189, "options": 6}
+{"key": 562095, "model": "clef:clef-flash@image,referee", "answer": "folder", "p": 0.3184, "options": 9}
+{"key": 562122, "model": "clef:clef-flash@image,referee", "answer": "file folder", "p": 0.6845, "options": 3}
+{"key": 562126, "model": "clef:clef-flash@image,referee", "answer": "beetle vector", "p": 0.1724, "options": 10}
+{"key": 562124, "model": "clef:clef-flash@image,referee", "answer": "robot", "p": 0.5514, "options": 12}
+{"key": 562123, "model": "clef:clef-flash@image,referee", "answer": "gear", "p": 0.4051, "options": 4}
+{"key": 562153, "model": "clef:clef-flash@image,referee", "answer": "wi-fi symbol", "p": 0.2172, "options": 13}
+{"key": 562128, "model": "clef:clef-flash@image,referee", "answer": "android robot", "p": 0.3469, "options": 13}
+{"key": 562194, "model": "clef:clef-flash@image,referee", "answer": "anchor", "p": 0.933, "options": 3}
+{"key": 562150, "model": "clef:clef-flash@image,referee", "answer": "wi-fi symbol", "p": 0.3527, "options": 6}
+{"key": 562301, "model": "clef:clef-flash@image,referee", "answer": "envelope", "p": 0.4509, "options": 5}
+{"key": 562221, "model": "clef:clef-flash@image,referee", "answer": "flame or fire", "p": 0.2462, "options": 11}
+{"key": 562329, "model": "clef:clef-flash@image,referee", "answer": "three dots", "p": 0.263, "options": 8}
+{"key": 562316, "model": "clef:clef-flash@image,referee", "answer": "thumbs up", "p": 0.5881, "options": 2}
+{"key": 562390, "model": "clef:clef-flash@image,referee", "answer": "microphone", "p": 0.7053, "options": 2}
+{"key": 562276, "model": "clef:clef-flash@image,referee", "answer": "angle brackets", "p": 0.6196, "options": 9}
+{"key": 562455, "model": "clef:clef-flash@image,referee", "answer": "octocat", "p": 0.3685, "options": 8}
+{"key": 562435, "model": "clef:clef-flash@image,referee", "answer": "printer icon", "p": 0.4369, "options": 5}
+{"key": 562456, "model": "clef:clef-flash@image,referee", "answer": "notebook", "p": 0.3872, "options": 12}
+{"key": 562457, "model": "clef:clef-flash@image,referee", "answer": "document", "p": 0.3274, "options": 6}
+{"key": 562717, "model": "clef:clef-flash@image,referee", "answer": "television set", "p": 0.4365, "options": 4}
+{"key": 562671, "model": "clef:clef-flash@image,referee", "answer": "spinner", "p": 0.427, "options": 5}
+{"key": 562805, "model": "clef:clef-flash@image,referee", "answer": "right arrow", "p": 0.7447, "options": 5}
+{"key": 562726, "model": "clef:clef-flash@image,referee", "answer": "graduation cap", "p": 0.5904, "options": 2}
+{"key": 562852, "model": "clef:clef-flash@image,referee", "answer": "back arrow", "p": 0.262, "options": 15}
+{"key": 562883, "model": "clef:clef-flash@image,referee", "answer": "document file", "p": 0.4044, "options": 4}
+{"key": 562832, "model": "clef:clef-flash@image,referee", "answer": "letter x", "p": 0.2089, "options": 10}
+{"key": 562954, "model": "clef:clef-flash@image,referee", "answer": "letter f", "p": 0.2605, "options": 11}
+{"key": 562911, "model": "clef:clef-flash@image,referee", "answer": "thumbs up", "p": 0.4754, "options": 8}
+{"key": 562884, "model": "clef:clef-flash@image,referee", "answer": "steaming cup", "p": 0.7348, "options": 3}
+{"key": 562947, "model": "clef:clef-flash@image,referee", "answer": "book", "p": 0.2851, "options": 6}
+{"key": 562917, "model": "clef:clef-flash@image,referee", "answer": "no sound", "p": 0.2157, "options": 12}
+{"key": 562942, "model": "clef:clef-flash@image,referee", "answer": "key", "p": 0.9819, "options": 2}
+{"key": 563057, "model": "clef:clef-flash@image,referee", "answer": "arrow", "p": 0.5985, "options": 7}
+{"key": 563149, "model": "clef:clef-flash@image,referee", "answer": "speech bubble", "p": 0.3983, "options": 6}
+{"key": 563230, "model": "clef:clef-flash@image,referee", "answer": "no", "p": 0.1204, "options": 16}
+{"key": 563268, "model": "clef:clef-flash@image,referee", "answer": "shield", "p": 0.2922, "options": 13}
+{"key": 563184, "model": "clef:clef-flash@image,referee", "answer": "bicycle", "p": 0.6049, "options": 7}
+{"key": 563307, "model": "clef:clef-flash@image,referee", "answer": "armchair", "p": 0.3823, "options": 5}
+{"key": 563305, "model": "clef:clef-flash@image,referee", "answer": "checkmark", "p": 0.5177, "options": 2}
+{"key": 563393, "model": "clef:clef-flash@image,referee", "answer": "four circles", "p": 0.3954, "options": 17}
+{"key": 563491, "model": "clef:clef-flash@image,referee", "answer": "bar graph", "p": 0.4632, "options": 9}
+{"key": 563515, "model": "clef:clef-flash@image,referee", "answer": "return arrow", "p": 0.4608, "options": 12}
+{"key": 563520, "model": "clef:clef-flash@image,referee", "answer": "store icon", "p": 0.1718, "options": 11}
+{"key": 563523, "model": "clef:clef-flash@image,referee", "answer": "speech bubble", "p": 0.7652, "options": 8}
+{"key": 563346, "model": "clef:clef-flash@image,referee", "answer": "sailboat", "p": 0.2589, "options": 5}
+{"key": 563850, "model": "clef:clef-flash@image,referee", "answer": "three dashes", "p": 0.279, "options": 14}
+{"key": 563512, "model": "clef:clef-flash@image,referee", "answer": "phone call icon", "p": 0.3036, "options": 8}
+{"key": 563844, "model": "clef:clef-flash@image,referee", "answer": "arrow right", "p": 0.3746, "options": 15}
+{"key": 563689, "model": "clef:clef-flash@image,referee", "answer": "power plug", "p": 0.643, "options": 3}
+{"key": 563887, "model": "clef:clef-flash@image,referee", "answer": "internet explorer logo", "p": 0.2922, "options": 8}
+{"key": 564011, "model": "clef:clef-flash@image,referee", "answer": "drawer", "p": 0.1859, "options": 19}
+{"key": 563985, "model": "clef:clef-flash@image,referee", "answer": "horseshoe magnet", "p": 0.3828, "options": 6}
+{"key": 564003, "model": "clef:clef-flash@image,referee", "answer": "square icon", "p": 0.2637, "options": 17}
+{"key": 564126, "model": "clef:clef-flash@image,referee", "answer": "shield", "p": 0.672, "options": 6}
+{"key": 564016, "model": "clef:clef-flash@image,referee", "answer": "people", "p": 0.2599, "options": 9}
+{"key": 564156, "model": "clef:clef-flash@image,referee", "answer": "cloud upload", "p": 0.3664, "options": 5}
+{"key": 564119, "model": "clef:clef-flash@image,referee", "answer": "letter m", "p": 0.698, "options": 12}
+{"key": 564198, "model": "clef:clef-flash@image,referee", "answer": "muted microphone", "p": 0.3786, "options": 11}
+{"key": 564191, "model": "clef:clef-flash@image,referee", "answer": "group of people", "p": 0.3108, "options": 7}
+{"key": 564174, "model": "clef:clef-flash@image,referee", "answer": "binoculars", "p": 0.4674, "options": 7}
+{"key": 564261, "model": "clef:clef-flash@image,referee", "answer": "house with wallet", "p": 0.271, "options": 11}
+{"key": 564295, "model": "clef:clef-flash@image,referee", "answer": "train front", "p": 0.3443, "options": 9}
+{"key": 577404, "model": "clef:clef-flash@image,referee", "answer": "letters ab", "p": 0.2394, "options": 10}
+{"key": 564193, "model": "clef:clef-flash@image,referee", "answer": "microphone", "p": 0.5165, "options": 9}
+{"key": 577322, "model": "clef:clef-flash@image,referee", "answer": "centered square", "p": 0.5651, "options": 14}
+{"key": 580859, "model": "clef:clef-flash@image,referee", "answer": "letters api", "p": 0.293, "options": 8}
+{"key": 584208, "model": "clef:clef-flash@image,referee", "answer": "line graph", "p": 0.2874, "options": 13}
+{"key": 577450, "model": "clef:clef-flash@image,referee", "answer": "list", "p": 0.4005, "options": 10}
+{"key": 587416, "model": "clef:clef-flash@image,referee", "answer": "up and down arrows", "p": 0.293, "options": 11}
+{"key": 599607, "model": "clef:clef-flash@image,referee", "answer": "bookmark plus", "p": 0.4167, "options": 9}
+{"key": 602660, "model": "clef:clef-flash@image,referee", "answer": "window frames", "p": 0.2753, "options": 14}
+{"key": 588188, "model": "clef:clef-flash@image,referee", "answer": "arrows up", "p": 0.2598, "options": 9}
+{"key": 589324, "model": "clef:clef-flash@image,referee", "answer": "headphones", "p": 0.4142, "options": 5}
+{"key": 564302, "model": "clef:clef-flash@image,referee", "answer": "molecular structure", "p": 0.3834, "options": 11}
+{"key": 606730, "model": "clef:clef-flash@image,referee", "answer": "coffee mug", "p": 0.4947, "options": 4}
+{"key": 608469, "model": "clef:clef-flash@image,referee", "answer": "camera", "p": 0.4851, "options": 6}
+{"key": 620988, "model": "clef:clef-flash@image,referee", "answer": "clipboard with arrow", "p": 0.6784, "options": 13}
+{"key": 613113, "model": "clef:clef-flash@image,referee", "answer": "dots", "p": 0.3553, "options": 11}
+{"key": 622242, "model": "clef:clef-flash@image,referee", "answer": "cloud with lightning", "p": 0.5124, "options": 7}
+{"key": 625102, "model": "clef:clef-flash@image,referee", "answer": "comment add", "p": 0.1744, "options": 14}
+{"key": 622262, "model": "clef:clef-flash@image,referee", "answer": "locked cloud", "p": 0.2328, "options": 8}
+{"key": 622366, "model": "clef:clef-flash@image,referee", "answer": "cloud with slash", "p": 0.5952, "options": 11}
+{"key": 628407, "model": "clef:clef-flash@image,referee", "answer": "credit card", "p": 0.4562, "options": 3}
+{"key": 608848, "model": "clef:clef-flash@image,referee", "answer": "two circles", "p": 0.6301, "options": 5}
+{"key": 626598, "model": "clef:clef-flash@image,referee", "answer": "scissors", "p": 0.7661, "options": 4}
+{"key": 633627, "model": "clef:clef-flash@image,referee", "answer": "table lamp", "p": 0.4895, "options": 5}
+{"key": 634883, "model": "clef:clef-flash@image,referee", "answer": "exclamation mark", "p": 0.8376, "options": 7}
+{"key": 634899, "model": "clef:clef-flash@image,referee", "answer": "seven dots", "p": 0.3227, "options": 12}
+{"key": 645733, "model": "clef:clef-flash@image,referee", "answer": "checkmark", "p": 0.5234, "options": 2}
+{"key": 646985, "model": "clef:clef-flash@image,referee", "answer": "keyhole", "p": 0.5394, "options": 6}
+{"key": 648006, "model": "clef:clef-flash@image,referee", "answer": "ethereum logo", "p": 0.672, "options": 7}
+{"key": 639987, "model": "clef:clef-flash@image,referee", "answer": "downward arrow", "p": 0.3895, "options": 7}
+{"key": 621898, "model": "clef:clef-flash@image,referee", "answer": "cloud check icon", "p": 0.4016, "options": 12}
+{"key": 648321, "model": "clef:clef-flash@image,referee", "answer": "battery", "p": 0.1416, "options": 15}
+{"key": 650282, "model": "clef:clef-flash@image,referee", "answer": "neutral face", "p": 0.3382, "options": 10}
+{"key": 651311, "model": "clef:clef-flash@image,referee", "answer": "letter n", "p": 0.4167, "options": 10}
+{"key": 648704, "model": "clef:clef-flash@image,referee", "answer": "data transfer", "p": 0.1698, "options": 10}
+{"key": 653573, "model": "clef:clef-flash@image,referee", "answer": "pdf file icon", "p": 0.2293, "options": 9}
+{"key": 658317, "model": "clef:clef-flash@image,referee", "answer": "arrow", "p": 0.1712, "options": 15}
+{"key": 661098, "model": "clef:clef-flash@image,referee", "answer": "folder lock", "p": 0.6317, "options": 7}
+{"key": 653305, "model": "clef:clef-flash@image,referee", "answer": "document icon", "p": 0.228, "options": 11}
+{"key": 653318, "model": "clef:clef-flash@image,referee", "answer": "document scanner", "p": 0.4185, "options": 5}
+{"key": 662099, "model": "clef:clef-flash@image,referee", "answer": "search icon", "p": 0.202, "options": 13}
+{"key": 661745, "model": "clef:clef-flash@image,referee", "answer": "folder add", "p": 0.617, "options": 8}
+{"key": 663693, "model": "clef:clef-flash@image,referee", "answer": "list", "p": 0.3491, "options": 12}
+{"key": 670597, "model": "clef:clef-flash@image,referee", "answer": "letter g", "p": 0.7156, "options": 11}
+{"key": 665445, "model": "clef:clef-flash@image,referee", "answer": "four corners", "p": 0.2783, "options": 10}
+{"key": 677054, "model": "clef:clef-flash@image,referee", "answer": "four squares", "p": 0.2458, "options": 16}
+{"key": 663695, "model": "clef:clef-flash@image,referee", "answer": "horizontal lines", "p": 0.2883, "options": 13}
+{"key": 672736, "model": "clef:clef-flash@image,referee", "answer": "circle with wave", "p": 0.5644, "options": 13}
+{"key": 675214, "model": "clef:clef-flash@image,referee", "answer": "printer", "p": 0.2538, "options": 12}
+{"key": 678302, "model": "clef:clef-flash@image,referee", "answer": "potted plant", "p": 0.203, "options": 14}
+{"key": 680506, "model": "clef:clef-flash@image,referee", "answer": "flower or flower design", "p": 0.2971, "options": 7}
+{"key": 691444, "model": "clef:clef-flash@image,referee", "answer": "lines horizontal", "p": 0.2841, "options": 14}
+{"key": 677478, "model": "clef:clef-flash@image,referee", "answer": "house", "p": 0.7901, "options": 5}
+{"key": 692934, "model": "clef:clef-flash@image,referee", "answer": "microphone", "p": 0.7062, "options": 2}
+{"key": 701812, "model": "clef:clef-flash@image,referee", "answer": "instagram", "p": 0.4579, "options": 4}
+{"key": 702331, "model": "clef:clef-flash@image,referee", "answer": "number 1", "p": 0.6566, "options": 10}
+{"key": 697519, "model": "clef:clef-flash@image,referee", "answer": "arrow left", "p": 0.6843, "options": 4}
+{"key": 682098, "model": "clef:clef-flash@image,referee", "answer": "urn", "p": 0.3159, "options": 7}
+{"key": 703943, "model": "clef:clef-flash@image,referee", "answer": "exchange", "p": 0.3809, "options": 14}
+{"key": 651936, "model": "clef:clef-flash@image,referee", "answer": "rising arrows", "p": 0.1998, "options": 16}
+{"key": 703931, "model": "clef:clef-flash@image,referee", "answer": "refresh symbol", "p": 0.2263, "options": 11}
+{"key": 709393, "model": "clef:clef-flash@image,referee", "answer": "award badge", "p": 0.3253, "options": 11}
+{"key": 705189, "model": "clef:clef-flash@image,referee", "answer": "planet saturn", "p": 0.3108, "options": 10}
+{"key": 704388, "model": "clef:clef-flash@image,referee", "answer": "arrow out", "p": 0.1902, "options": 16}
+{"key": 711402, "model": "clef:clef-flash@image,referee", "answer": "solid circle", "p": 0.5604, "options": 4}
+{"key": 691448, "model": "clef:clef-flash@image,referee", "answer": "horizontal lines", "p": 0.5223, "options": 13}
+{"key": 710102, "model": "clef:clef-flash@image,referee", "answer": "medical cross", "p": 0.7917, "options": 5}
+{"key": 717685, "model": "clef:clef-flash@image,referee", "answer": "musical note", "p": 0.3357, "options": 7}
+{"key": 719783, "model": "clef:clef-flash@image,referee", "answer": "compass", "p": 0.192, "options": 12}
+{"key": 710141, "model": "clef:clef-flash@image,referee", "answer": "briefcase", "p": 0.7853, "options": 3}
+{"key": 720386, "model": "clef:clef-flash@image,referee", "answer": "arrowheads", "p": 0.2529, "options": 17}
+{"key": 719670, "model": "clef:clef-flash@image,referee", "answer": "wolf head", "p": 0.2903, "options": 17}
+{"key": 720734, "model": "clef:clef-flash@image,referee", "answer": "face neutral", "p": 0.3218, "options": 11}
+{"key": 720001, "model": "clef:clef-flash@image,referee", "answer": "signal bars", "p": 0.4813, "options": 6}
+{"key": 737459, "model": "clef:clef-flash@image,referee", "answer": "laptop and smartphone", "p": 0.5582, "options": 11}
+{"key": 737143, "model": "clef:clef-flash@image,referee", "answer": "phone with x", "p": 0.1307, "options": 16}
+{"key": 739011, "model": "clef:clef-flash@image,referee", "answer": "letter p", "p": 0.2938, "options": 8}
+{"key": 726614, "model": "clef:clef-flash@image,referee", "answer": "rabbit", "p": 0.2026, "options": 13}
+{"key": 738996, "model": "clef:clef-flash@image,referee", "answer": "pie chart", "p": 0.2658, "options": 14}
+{"key": 738601, "model": "clef:clef-flash@image,referee", "answer": "letter p", "p": 0.6534, "options": 10}
+{"key": 741011, "model": "clef:clef-flash@image,referee", "answer": "pokemon ball", "p": 0.4203, "options": 8}
+{"key": 741935, "model": "clef:clef-flash@image,referee", "answer": "power symbol", "p": 0.6842, "options": 4}
+{"key": 745597, "model": "clef:clef-flash@image,referee", "answer": "letter n", "p": 0.2985, "options": 7}
+{"key": 739144, "model": "clef:clef-flash@image,referee", "answer": "letter p", "p": 0.8339, "options": 6}
+{"key": 750423, "model": "clef:clef-flash@image,referee", "answer": "refresh icon", "p": 0.1613, "options": 17}
+{"key": 745600, "model": "clef:clef-flash@image,referee", "answer": "qr code", "p": 0.9422, "options": 5}
+{"key": 752276, "model": "clef:clef-flash@image,referee", "answer": "refresh symbol", "p": 0.2768, "options": 8}
+{"key": 761181, "model": "clef:clef-flash@image,referee", "answer": "split screen", "p": 0.2896, "options": 12}
+{"key": 752254, "model": "clef:clef-flash@image,referee", "answer": "refresh arrow", "p": 0.2038, "options": 13}
+{"key": 761431, "model": "clef:clef-flash@image,referee", "answer": "forward", "p": 0.2504, "options": 13}
+{"key": 767727, "model": "clef:clef-flash@image,referee", "answer": "stylized arrow", "p": 0.3872, "options": 11}
+{"key": 769593, "model": "clef:clef-flash@image,referee", "answer": "signal bars", "p": 0.2072, "options": 14}
+{"key": 772441, "model": "clef:clef-flash@image,referee", "answer": "tuxedo shirt", "p": 0.2511, "options": 8}
+{"key": 769675, "model": "clef:clef-flash@image,referee", "answer": "staircase arrow", "p": 0.4806, "options": 10}
+{"key": 773560, "model": "clef:clef-flash@image,referee", "answer": "flower or flower-shaped feature", "p": 0.3401, "options": 8}
+{"key": 783012, "model": "clef:clef-flash@image,referee", "answer": "three chevrons", "p": 0.576, "options": 16}
+{"key": 780230, "model": "clef:clef-flash@image,referee", "answer": "letter t", "p": 0.3229, "options": 12}
+{"key": 745538, "model": "clef:clef-flash@image,referee", "answer": "alphabet letters", "p": 0.4037, "options": 9}
+{"key": 792947, "model": "clef:clef-flash@image,referee", "answer": "medication crossed out", "p": 0.392, "options": 12}
+{"key": 787085, "model": "clef:clef-flash@image,referee", "answer": "paper airplane", "p": 0.3937, "options": 15}
+{"key": 801508, "model": "clef:clef-flash@image,referee", "answer": "moon and cloud", "p": 0.4567, "options": 8}
+{"key": 804645, "model": "clef:clef-flash@image,referee", "answer": "smiley", "p": 0.4699, "options": 4}
+{"key": 797118, "model": "clef:clef-flash@image,referee", "answer": "video camera", "p": 0.9614, "options": 5}
+{"key": 811891, "model": "clef:clef-flash@image,referee", "answer": "person icon", "p": 0.3367, "options": 10}
+{"key": 809094, "model": "clef:clef-flash@image,referee", "answer": "remote control", "p": 0.3146, "options": 7}
+{"key": 798959, "model": "clef:clef-flash@image,referee", "answer": "speaker", "p": 0.4938, "options": 10}
+{"key": 813116, "model": "clef:clef-flash@image,referee", "answer": "pound sign", "p": 0.8595, "options": 4}
+{"key": 809379, "model": "clef:clef-flash@image,referee", "answer": "calendar page", "p": 0.4392, "options": 3}
+{"key": 810748, "model": "clef:clef-flash@image,referee", "answer": "horseshoe magnet", "p": 0.7757, "options": 5}
+{"key": 303183, "model": "clef:clef@noimage,referee", "answer": "square", "p": 0.3101, "options": 7}
+{"key": 280986, "model": "clef:clef@noimage,referee", "answer": "folder icon", "p": 0.4059, "options": 12}
+{"key": 251778, "model": "clef:clef@noimage,referee", "answer": "y symbol", "p": 0.3203, "options": 17}
+{"key": 302608, "model": "clef:clef@noimage,referee", "answer": "back", "p": 0.2856, "options": 5}
+{"key": 331096, "model": "clef:clef@noimage,referee", "answer": "downward arrow", "p": 0.2893, "options": 5}
+{"key": 314260, "model": "clef:clef@noimage,referee", "answer": "trash can", "p": 0.2787, "options": 18}
+{"key": 280982, "model": "clef:clef@noimage,referee", "answer": "folder icon", "p": 0.3608, "options": 4}
+{"key": 316203, "model": "clef:clef@noimage,referee", "answer": "open book", "p": 0.6312, "options": 3}
+{"key": 339411, "model": "clef:clef@noimage,referee", "answer": "cloud upload", "p": 0.3745, "options": 5}
+{"key": 358214, "model": "clef:clef@noimage,referee", "answer": "drupal logo", "p": 0.1747, "options": 21}
+{"key": 365318, "model": "clef:clef@noimage,referee", "answer": "evernote logo", "p": 0.4859, "options": 7}
+{"key": 370249, "model": "clef:clef@noimage,referee", "answer": "minus sign", "p": 0.1711, "options": 18}
+{"key": 388650, "model": "clef:clef@noimage,referee", "answer": "d20 die", "p": 0.1458, "options": 18}
+{"key": 394341, "model": "clef:clef@noimage,referee", "answer": "house icon", "p": 0.592, "options": 6}
+{"key": 338484, "model": "clef:clef@noimage,referee", "answer": "closed captioning", "p": 0.3739, "options": 12}
+{"key": 395810, "model": "clef:clef@noimage,referee", "answer": "html 5 logo", "p": 0.3383, "options": 15}
+{"key": 428891, "model": "clef:clef@noimage,referee", "answer": "greek letter psi", "p": 0.4841, "options": 15}
+{"key": 405977, "model": "clef:clef@noimage,referee", "answer": "baby bib", "p": 0.1874, "options": 13}
+{"key": 454056, "model": "clef:clef@noimage,referee", "answer": "silent mode", "p": 0.4951, "options": 17}
+{"key": 403949, "model": "clef:clef@noimage,referee", "answer": "camera", "p": 0.4857, "options": 5}
+{"key": 487308, "model": "clef:clef@noimage,referee", "answer": "crossed out star", "p": 0.2765, "options": 12}
+{"key": 515992, "model": "clef:clef@noimage,referee", "answer": "vk logo", "p": 0.4385, "options": 9}
+{"key": 503345, "model": "clef:clef@noimage,referee", "answer": "downward arrow", "p": 0.3813, "options": 7}
+{"key": 521482, "model": "clef:clef@noimage,referee", "answer": "wine glass", "p": 0.4168, "options": 5}
+{"key": 453952, "model": "clef:clef@noimage,referee", "answer": "telephone receiver", "p": 0.4804, "options": 9}
+{"key": 526373, "model": "clef:clef@noimage,referee", "answer": "help or support", "p": 0.7062, "options": 8}
+{"key": 526554, "model": "clef:clef@noimage,referee", "answer": "alert", "p": 0.1756, "options": 10}
+{"key": 526803, "model": "clef:clef@noimage,referee", "answer": "android logo", "p": 0.6067, "options": 11}
+{"key": 530658, "model": "clef:clef@noimage,referee", "answer": "power button", "p": 0.6128, "options": 5}
+{"key": 466611, "model": "clef:clef@noimage,referee", "answer": "double left arrow", "p": 0.3072, "options": 10}
+{"key": 530430, "model": "clef:clef@noimage,referee", "answer": "megaphone", "p": 0.5487, "options": 4}
+{"key": 528177, "model": "clef:clef@noimage,referee", "answer": "double left arrow", "p": 0.3633, "options": 18}
+{"key": 528939, "model": "clef:clef@noimage,referee", "answer": "plus sign", "p": 0.5214, "options": 3}
+{"key": 530825, "model": "clef:clef@noimage,referee", "answer": "calendar", "p": 0.237, "options": 9}
+{"key": 535291, "model": "clef:clef@noimage,referee", "answer": "computer monitor", "p": 0.8859, "options": 2}
+{"key": 533386, "model": "clef:clef@noimage,referee", "answer": "refresh icon", "p": 0.1862, "options": 16}
+{"key": 536729, "model": "clef:clef@noimage,referee", "answer": "pen tip", "p": 0.4345, "options": 3}
+{"key": 530126, "model": "clef:clef@noimage,referee", "answer": "briefcase", "p": 0.2542, "options": 8}
+{"key": 534801, "model": "clef:clef@noimage,referee", "answer": "loading icon", "p": 0.1869, "options": 12}
+{"key": 536114, "model": "clef:clef@noimage,referee", "answer": "folder", "p": 0.3339, "options": 10}
+{"key": 536468, "model": "clef:clef@noimage,referee", "answer": "lightbulb", "p": 0.3598, "options": 6}
+{"key": 537468, "model": "clef:clef@noimage,referee", "answer": "flying saucer", "p": 0.4076, "options": 9}
+{"key": 542261, "model": "clef:clef@noimage,referee", "answer": "image icon", "p": 0.3831, "options": 13}
+{"key": 541206, "model": "clef:clef@noimage,referee", "answer": "heart symbol", "p": 0.6965, "options": 3}
+{"key": 545729, "model": "clef:clef@noimage,referee", "answer": "three horizontal lines", "p": 0.4689, "options": 8}
+{"key": 538538, "model": "clef:clef@noimage,referee", "answer": "lightbulb", "p": 0.1972, "options": 10}
+{"key": 541510, "model": "clef:clef@noimage,referee", "answer": "refresh symbol", "p": 0.255, "options": 11}
+{"key": 545903, "model": "clef:clef@noimage,referee", "answer": "train symbol", "p": 0.5977, "options": 9}
+{"key": 544326, "model": "clef:clef@noimage,referee", "answer": "thumbs up", "p": 0.6372, "options": 4}
+{"key": 547297, "model": "clef:clef@noimage,referee", "answer": "file", "p": 0.3623, "options": 13}
+{"key": 546262, "model": "clef:clef@noimage,referee", "answer": "light bulb", "p": 0.3094, "options": 7}
+{"key": 546541, "model": "clef:clef@noimage,referee", "answer": "kick scooter", "p": 0.4599, "options": 9}
+{"key": 549525, "model": "clef:clef@noimage,referee", "answer": "chat or comment feature", "p": 0.3989, "options": 4}
+{"key": 551334, "model": "clef:clef@noimage,referee", "answer": "rainbow symbol", "p": 0.5817, "options": 7}
+{"key": 550321, "model": "clef:clef@noimage,referee", "answer": "shield", "p": 0.2642, "options": 8}
+{"key": 550114, "model": "clef:clef@noimage,referee", "answer": "cupcake", "p": 0.1955, "options": 16}
+{"key": 552749, "model": "clef:clef@noimage,referee", "answer": "bar chart", "p": 0.269, "options": 15}
+{"key": 552300, "model": "clef:clef@noimage,referee", "answer": "medal", "p": 0.2208, "options": 14}
+{"key": 553955, "model": "clef:clef@noimage,referee", "answer": "share icon", "p": 0.3325, "options": 8}
+{"key": 551140, "model": "clef:clef@noimage,referee", "answer": "facebook", "p": 0.1569, "options": 10}
+{"key": 553961, "model": "clef:clef@noimage,referee", "answer": "share icon", "p": 0.381, "options": 8}
+{"key": 553743, "model": "clef:clef@noimage,referee", "answer": "sending a message or email", "p": 0.3986, "options": 5}
+{"key": 556321, "model": "clef:clef@noimage,referee", "answer": "stop button", "p": 0.1459, "options": 12}
+{"key": 560965, "model": "clef:clef@noimage,referee", "answer": "cup", "p": 0.3485, "options": 7}
+{"key": 559885, "model": "clef:clef@noimage,referee", "answer": "padlock", "p": 0.224, "options": 8}
+{"key": 561468, "model": "clef:clef@noimage,referee", "answer": "microsoft windows logo", "p": 0.5487, "options": 6}
+{"key": 562039, "model": "clef:clef@noimage,referee", "answer": "trash can", "p": 0.4135, "options": 6}
+{"key": 562073, "model": "clef:clef@noimage,referee", "answer": "sun", "p": 0.4822, "options": 3}
+{"key": 562014, "model": "clef:clef@noimage,referee", "answer": "briefcase", "p": 0.4466, "options": 6}
+{"key": 554109, "model": "clef:clef@noimage,referee", "answer": "boat on water", "p": 0.2682, "options": 8}
+{"key": 562123, "model": "clef:clef@noimage,referee", "answer": "settings", "p": 0.7095, "options": 4}
+{"key": 562126, "model": "clef:clef@noimage,referee", "answer": "beetle", "p": 0.203, "options": 10}
+{"key": 562095, "model": "clef:clef@noimage,referee", "answer": "book icon", "p": 0.3512, "options": 9}
+{"key": 554220, "model": "clef:clef@noimage,referee", "answer": "shopping cart", "p": 0.8022, "options": 3}
+{"key": 562122, "model": "clef:clef@noimage,referee", "answer": "file folder", "p": 0.5116, "options": 3}
+{"key": 562124, "model": "clef:clef@noimage,referee", "answer": "radioactive sign", "p": 0.2492, "options": 12}
+{"key": 562128, "model": "clef:clef@noimage,referee", "answer": "android robot", "p": 0.27, "options": 13}
+{"key": 562150, "model": "clef:clef@noimage,referee", "answer": "wi-fi symbol", "p": 0.4603, "options": 6}
+{"key": 562276, "model": "clef:clef@noimage,referee", "answer": "code brackets", "p": 0.2117, "options": 9}
+{"key": 562153, "model": "clef:clef@noimage,referee", "answer": "wifi symbol", "p": 0.2187, "options": 13}
+{"key": 562194, "model": "clef:clef@noimage,referee", "answer": "coffee cup", "p": 0.5703, "options": 3}
+{"key": 562316, "model": "clef:clef@noimage,referee", "answer": "thumbs up", "p": 0.8379, "options": 2}
+{"key": 562329, "model": "clef:clef@noimage,referee", "answer": "chat bubbles", "p": 0.3735, "options": 8}
+{"key": 562390, "model": "clef:clef@noimage,referee", "answer": "microphone", "p": 0.7803, "options": 2}
+{"key": 562301, "model": "clef:clef@noimage,referee", "answer": "envelope icon", "p": 0.5741, "options": 5}
+{"key": 562221, "model": "clef:clef@noimage,referee", "answer": "flame icon", "p": 0.5375, "options": 11}
+{"key": 562457, "model": "clef:clef@noimage,referee", "answer": "document icon", "p": 0.3222, "options": 6}
+{"key": 562456, "model": "clef:clef@noimage,referee", "answer": "document stack", "p": 0.1885, "options": 12}
+{"key": 562435, "model": "clef:clef@noimage,referee", "answer": "printer icon", "p": 0.6438, "options": 5}
+{"key": 562671, "model": "clef:clef@noimage,referee", "answer": "compass", "p": 0.4246, "options": 5}
+{"key": 562717, "model": "clef:clef@noimage,referee", "answer": "television", "p": 0.3324, "options": 4}
+{"key": 562805, "model": "clef:clef@noimage,referee", "answer": "play button", "p": 0.7287, "options": 5}
+{"key": 562726, "model": "clef:clef@noimage,referee", "answer": "graduation cap", "p": 0.8305, "options": 2}
+{"key": 562852, "model": "clef:clef@noimage,referee", "answer": "hand pointer", "p": 0.355, "options": 15}
+{"key": 562455, "model": "clef:clef@noimage,referee", "answer": "octocat", "p": 0.452, "options": 8}
+{"key": 562917, "model": "clef:clef@noimage,referee", "answer": "volume off", "p": 0.5402, "options": 12}
+{"key": 562884, "model": "clef:clef@noimage,referee", "answer": "coffee cup", "p": 0.4956, "options": 3}
+{"key": 562883, "model": "clef:clef@noimage,referee", "answer": "sheet of paper", "p": 0.3893, "options": 4}
+{"key": 562832, "model": "clef:clef@noimage,referee", "answer": "image depicts a crossroads (or intersection)", "p": 0.221, "options": 10}
+{"key": 562911, "model": "clef:clef@noimage,referee", "answer": "thumbs up", "p": 0.4304, "options": 8}
+{"key": 562947, "model": "clef:clef@noimage,referee", "answer": "open book", "p": 0.4906, "options": 6}
+{"key": 563184, "model": "clef:clef@noimage,referee", "answer": "balance bike", "p": 0.3427, "options": 7}
+{"key": 562942, "model": "clef:clef@noimage,referee", "answer": "ticket", "p": 0.6172, "options": 2}
+{"key": 563230, "model": "clef:clef@noimage,referee", "answer": "eye off", "p": 0.452, "options": 16}
+{"key": 562954, "model": "clef:clef@noimage,referee", "answer": "lightbulb", "p": 0.145, "options": 11}
+{"key": 563057, "model": "clef:clef@noimage,referee", "answer": "lightning bolt", "p": 0.5549, "options": 7}
+{"key": 563149, "model": "clef:clef@noimage,referee", "answer": "speech bubble icon", "p": 0.2821, "options": 6}
+{"key": 563305, "model": "clef:clef@noimage,referee", "answer": "check mark", "p": 0.5446, "options": 2}
+{"key": 563491, "model": "clef:clef@noimage,referee", "answer": "bar chart", "p": 0.2743, "options": 9}
+{"key": 563268, "model": "clef:clef@noimage,referee", "answer": "flower bud or blossom", "p": 0.2114, "options": 13}
+{"key": 563307, "model": "clef:clef@noimage,referee", "answer": "chair", "p": 0.3264, "options": 5}
+{"key": 563346, "model": "clef:clef@noimage,referee", "answer": "boat", "p": 0.3222, "options": 5}
+{"key": 563512, "model": "clef:clef@noimage,referee", "answer": "phone receiver", "p": 0.289, "options": 8}
+{"key": 563515, "model": "clef:clef@noimage,referee", "answer": "undo icon", "p": 0.3444, "options": 12}
+{"key": 563844, "model": "clef:clef@noimage,referee", "answer": "play button", "p": 0.1227, "options": 15}
+{"key": 563393, "model": "clef:clef@noimage,referee", "answer": "grid icon", "p": 0.2866, "options": 17}
+{"key": 563520, "model": "clef:clef@noimage,referee", "answer": "shop icon", "p": 0.3851, "options": 11}
+{"key": 563689, "model": "clef:clef@noimage,referee", "answer": "light bulb", "p": 0.548, "options": 3}
+{"key": 563985, "model": "clef:clef@noimage,referee", "answer": "sagittarius symbol", "p": 0.3189, "options": 6}
+{"key": 563850, "model": "clef:clef@noimage,referee", "answer": "menu icon", "p": 0.2782, "options": 14}
+{"key": 563523, "model": "clef:clef@noimage,referee", "answer": "thumbs down", "p": 0.2842, "options": 8}
+{"key": 564016, "model": "clef:clef@noimage,referee", "answer": "users", "p": 0.2225, "options": 9}
+{"key": 564011, "model": "clef:clef@noimage,referee", "answer": "file folder", "p": 0.2906, "options": 19}
+{"key": 564003, "model": "clef:clef@noimage,referee", "answer": "information icon", "p": 0.2212, "options": 17}
+{"key": 563887, "model": "clef:clef@noimage,referee", "answer": "letter e", "p": 0.3812, "options": 8}
+{"key": 564119, "model": "clef:clef@noimage,referee", "answer": "mcdonalds", "p": 0.3485, "options": 12}
+{"key": 564174, "model": "clef:clef@noimage,referee", "answer": "scissors", "p": 0.4012, "options": 7}
+{"key": 564156, "model": "clef:clef@noimage,referee", "answer": "upload cloud", "p": 0.5637, "options": 5}
+{"key": 564126, "model": "clef:clef@noimage,referee", "answer": "3d cube", "p": 0.6357, "options": 6}
+{"key": 564191, "model": "clef:clef@noimage,referee", "answer": "three people", "p": 0.3608, "options": 7}
+{"key": 564261, "model": "clef:clef@noimage,referee", "answer": "crypto wallet", "p": 0.3885, "options": 11}
+{"key": 564198, "model": "clef:clef@noimage,referee", "answer": "muted microphone", "p": 0.3646, "options": 11}
+{"key": 564193, "model": "clef:clef@noimage,referee", "answer": "microphone mute", "p": 0.2979, "options": 9}
+{"key": 564295, "model": "clef:clef@noimage,referee", "answer": "train symbol", "p": 0.4144, "options": 9}
+{"key": 577322, "model": "clef:clef@noimage,referee", "answer": "align center", "p": 0.4209, "options": 14}
+{"key": 564302, "model": "clef:clef@noimage,referee", "answer": "neural network", "p": 0.3699, "options": 11}
+{"key": 584208, "model": "clef:clef@noimage,referee", "answer": "line chart", "p": 0.2346, "options": 13}
+{"key": 577404, "model": "clef:clef@noimage,referee", "answer": "letters ab", "p": 0.1824, "options": 10}
+{"key": 577450, "model": "clef:clef@noimage,referee", "answer": "menu", "p": 0.4235, "options": 10}
+{"key": 587416, "model": "clef:clef@noimage,referee", "answer": "up and down arrows", "p": 0.4699, "options": 11}
+{"key": 580859, "model": "clef:clef@noimage,referee", "answer": "word api", "p": 0.3448, "options": 8}
+{"key": 588188, "model": "clef:clef@noimage,referee", "answer": "arrows up", "p": 0.4278, "options": 9}
+{"key": 608848, "model": "clef:clef@noimage,referee", "answer": "eyes", "p": 0.3701, "options": 5}
+{"key": 613113, "model": "clef:clef@noimage,referee", "answer": "braille pattern", "p": 0.5027, "options": 11}
+{"key": 599607, "model": "clef:clef@noimage,referee", "answer": "first aid kit", "p": 0.3203, "options": 9}
+{"key": 606730, "model": "clef:clef@noimage,referee", "answer": "coffee cup", "p": 0.4371, "options": 4}
+{"key": 602660, "model": "clef:clef@noimage,referee", "answer": "four squares", "p": 0.4203, "options": 14}
+{"key": 620988, "model": "clef:clef@noimage,referee", "answer": "left arrow", "p": 0.1434, "options": 13}
+{"key": 608469, "model": "clef:clef@noimage,referee", "answer": "record button", "p": 0.5589, "options": 6}
+{"key": 589324, "model": "clef:clef@noimage,referee", "answer": "padlock", "p": 0.4115, "options": 5}
+{"key": 621898, "model": "clef:clef@noimage,referee", "answer": "cloud check icon", "p": 0.2982, "options": 12}
+{"key": 622366, "model": "clef:clef@noimage,referee", "answer": "cloud with slash", "p": 0.4321, "options": 11}
+{"key": 625102, "model": "clef:clef@noimage,referee", "answer": "comment add", "p": 0.4511, "options": 14}
+{"key": 622262, "model": "clef:clef@noimage,referee", "answer": "cloud security", "p": 0.7289, "options": 8}
+{"key": 626598, "model": "clef:clef@noimage,referee", "answer": "user profile or account", "p": 0.7102, "options": 4}
+{"key": 622242, "model": "clef:clef@noimage,referee", "answer": "cloud with lightning", "p": 0.5176, "options": 7}
+{"key": 639987, "model": "clef:clef@noimage,referee", "answer": "arrow down", "p": 0.3216, "options": 7}
+{"key": 628407, "model": "clef:clef@noimage,referee", "answer": "credit card", "p": 0.4889, "options": 3}
+{"key": 633627, "model": "clef:clef@noimage,referee", "answer": "lamp", "p": 0.3699, "options": 5}
+{"key": 645733, "model": "clef:clef@noimage,referee", "answer": "check mark", "p": 0.5446, "options": 2}
+{"key": 634883, "model": "clef:clef@noimage,referee", "answer": "warning", "p": 0.2484, "options": 7}
+{"key": 634899, "model": "clef:clef@noimage,referee", "answer": "braille dot", "p": 0.2105, "options": 12}
+{"key": 648321, "model": "clef:clef@noimage,referee", "answer": "lightning bolt", "p": 0.2382, "options": 15}
+{"key": 650282, "model": "clef:clef@noimage,referee", "answer": "neutral face", "p": 0.3177, "options": 10}
+{"key": 648006, "model": "clef:clef@noimage,referee", "answer": "ethereum logo", "p": 0.6926, "options": 7}
+{"key": 646985, "model": "clef:clef@noimage,referee", "answer": "lock", "p": 0.4604, "options": 6}
+{"key": 651311, "model": "clef:clef@noimage,referee", "answer": "file folder", "p": 0.3428, "options": 10}
+{"key": 648704, "model": "clef:clef@noimage,referee", "answer": "exchange", "p": 0.2162, "options": 10}
+{"key": 651936, "model": "clef:clef@noimage,referee", "answer": "wi-fi symbol", "p": 0.5907, "options": 16}
+{"key": 653305, "model": "clef:clef@noimage,referee", "answer": "image file", "p": 0.2612, "options": 11}
+{"key": 653573, "model": "clef:clef@noimage,referee", "answer": "pdf file icon", "p": 0.5085, "options": 9}
+{"key": 661745, "model": "clef:clef@noimage,referee", "answer": "folder add", "p": 0.5265, "options": 8}
+{"key": 653318, "model": "clef:clef@noimage,referee", "answer": "json file icon", "p": 0.3386, "options": 5}
+{"key": 658317, "model": "clef:clef@noimage,referee", "answer": "not allowed", "p": 0.3924, "options": 15}
+{"key": 661098, "model": "clef:clef@noimage,referee", "answer": "secure folder", "p": 0.3231, "options": 7}
+{"key": 665445, "model": "clef:clef@noimage,referee", "answer": "viewfinder", "p": 0.5575, "options": 10}
+{"key": 662099, "model": "clef:clef@noimage,referee", "answer": "search folder", "p": 0.4093, "options": 13}
+{"key": 663693, "model": "clef:clef@noimage,referee", "answer": "hamburger icon", "p": 0.354, "options": 12}
+{"key": 663695, "model": "clef:clef@noimage,referee", "answer": "menu icon", "p": 0.3203, "options": 13}
+{"key": 675214, "model": "clef:clef@noimage,referee", "answer": "floppy disk", "p": 0.4524, "options": 12}
+{"key": 677478, "model": "clef:clef@noimage,referee", "answer": "house", "p": 0.3352, "options": 5}
+{"key": 678302, "model": "clef:clef@noimage,referee", "answer": "potted plant", "p": 0.363, "options": 14}
+{"key": 670597, "model": "clef:clef@noimage,referee", "answer": "scissors", "p": 0.2415, "options": 11}
+{"key": 677054, "model": "clef:clef@noimage,referee", "answer": "organization chart", "p": 0.2784, "options": 16}
+{"key": 672736, "model": "clef:clef@noimage,referee", "answer": "wave crest", "p": 0.1637, "options": 13}
+{"key": 691444, "model": "clef:clef@noimage,referee", "answer": "hamburger menu", "p": 0.2749, "options": 14}
+{"key": 692934, "model": "clef:clef@noimage,referee", "answer": "microphone", "p": 0.7803, "options": 2}
+{"key": 682098, "model": "clef:clef@noimage,referee", "answer": "download icon", "p": 0.2608, "options": 7}
+{"key": 697519, "model": "clef:clef@noimage,referee", "answer": "back", "p": 0.3302, "options": 4}
+{"key": 701812, "model": "clef:clef@noimage,referee", "answer": "linkedin logo", "p": 0.7905, "options": 4}
+{"key": 680506, "model": "clef:clef@noimage,referee", "answer": "flower symbol", "p": 0.3225, "options": 7}
+{"key": 702331, "model": "clef:clef@noimage,referee", "answer": "list", "p": 0.4136, "options": 10}
+{"key": 691448, "model": "clef:clef@noimage,referee", "answer": "hamburger menu", "p": 0.336, "options": 13}
+{"key": 703943, "model": "clef:clef@noimage,referee", "answer": "back arrow", "p": 0.4511, "options": 14}
+{"key": 705189, "model": "clef:clef@noimage,referee", "answer": "brightness", "p": 0.2174, "options": 10}
+{"key": 704388, "model": "clef:clef@noimage,referee", "answer": "exit icon", "p": 0.3001, "options": 16}
+{"key": 703931, "model": "clef:clef@noimage,referee", "answer": "refresh arrow", "p": 0.3649, "options": 11}
+{"key": 710102, "model": "clef:clef@noimage,referee", "answer": "add", "p": 0.4587, "options": 5}
+{"key": 711402, "model": "clef:clef@noimage,referee", "answer": "solid circle", "p": 0.5509, "options": 4}
+{"key": 710141, "model": "clef:clef@noimage,referee", "answer": "first aid kit", "p": 0.6277, "options": 3}
+{"key": 719783, "model": "clef:clef@noimage,referee", "answer": "ethereum coin", "p": 0.4126, "options": 12}
+{"key": 709393, "model": "clef:clef@noimage,referee", "answer": "star", "p": 0.2561, "options": 11}
+{"key": 717685, "model": "clef:clef@noimage,referee", "answer": "musical notes", "p": 0.3322, "options": 7}
+{"key": 720734, "model": "clef:clef@noimage,referee", "answer": "face with neutral expression", "p": 0.2936, "options": 11}
+{"key": 720001, "model": "clef:clef@noimage,referee", "answer": "signal strength", "p": 0.5008, "options": 6}
+{"key": 719670, "model": "clef:clef@noimage,referee", "answer": "cat face", "p": 0.168, "options": 17}
+{"key": 720386, "model": "clef:clef@noimage,referee", "answer": "code bracket", "p": 0.2241, "options": 17}
+{"key": 738601, "model": "clef:clef@noimage,referee", "answer": "paragraph mark", "p": 0.3912, "options": 10}
+{"key": 726614, "model": "clef:clef@noimage,referee", "answer": "llama head", "p": 0.2001, "options": 13}
+{"key": 737143, "model": "clef:clef@noimage,referee", "answer": "no call", "p": 0.1809, "options": 16}
+{"key": 739011, "model": "clef:clef@noimage,referee", "answer": "letter p", "p": 0.3968, "options": 8}
+{"key": 741011, "model": "clef:clef@noimage,referee", "answer": "pok\u00e9 ball", "p": 0.2927, "options": 8}
+{"key": 737459, "model": "clef:clef@noimage,referee", "answer": "laptop and smartphone", "p": 0.2289, "options": 11}
+{"key": 739144, "model": "clef:clef@noimage,referee", "answer": "parking lot", "p": 0.5404, "options": 6}
+{"key": 738996, "model": "clef:clef@noimage,referee", "answer": "radio button", "p": 0.1708, "options": 14}
+{"key": 745597, "model": "clef:clef@noimage,referee", "answer": "qr code", "p": 0.4044, "options": 7}
+{"key": 745600, "model": "clef:clef@noimage,referee", "answer": "qr code", "p": 0.4856, "options": 5}
+{"key": 745538, "model": "clef:clef@noimage,referee", "answer": "qr code", "p": 0.4153, "options": 9}
+{"key": 741935, "model": "clef:clef@noimage,referee", "answer": "power on/off switch", "p": 0.4033, "options": 4}
+{"key": 761181, "model": "clef:clef@noimage,referee", "answer": "split screen", "p": 0.3715, "options": 12}
+{"key": 750423, "model": "clef:clef@noimage,referee", "answer": "cycle arrows", "p": 0.2273, "options": 17}
+{"key": 752276, "model": "clef:clef@noimage,referee", "answer": "circular arrow", "p": 0.4985, "options": 8}
+{"key": 752254, "model": "clef:clef@noimage,referee", "answer": "refresh arrow", "p": 0.163, "options": 13}
+{"key": 769675, "model": "clef:clef@noimage,referee", "answer": "stairs icon", "p": 0.3763, "options": 10}
+{"key": 767727, "model": "clef:clef@noimage,referee", "answer": "check mark", "p": 0.1883, "options": 11}
+{"key": 769593, "model": "clef:clef@noimage,referee", "answer": "wifi icon", "p": 0.3397, "options": 14}
+{"key": 773560, "model": "clef:clef@noimage,referee", "answer": "asterisk", "p": 0.3176, "options": 8}
+{"key": 761431, "model": "clef:clef@noimage,referee", "answer": "log out", "p": 0.2582, "options": 13}
+{"key": 783012, "model": "clef:clef@noimage,referee", "answer": "layers", "p": 0.2129, "options": 16}
+{"key": 787085, "model": "clef:clef@noimage,referee", "answer": "triangle", "p": 0.2263, "options": 15}
+{"key": 797118, "model": "clef:clef@noimage,referee", "answer": "play button", "p": 0.591, "options": 5}
+{"key": 798959, "model": "clef:clef@noimage,referee", "answer": "visual studio code logo", "p": 0.3707, "options": 10}
+{"key": 792947, "model": "clef:clef@noimage,referee", "answer": "broken link", "p": 0.2019, "options": 12}
+{"key": 804645, "model": "clef:clef@noimage,referee", "answer": "winking face", "p": 0.4472, "options": 4}
+{"key": 780230, "model": "clef:clef@noimage,referee", "answer": "tuning fork", "p": 0.2508, "options": 12}
+{"key": 801508, "model": "clef:clef@noimage,referee", "answer": "cloud with moon", "p": 0.5128, "options": 8}
+{"key": 809094, "model": "clef:clef@noimage,referee", "answer": "keyboard keys", "p": 0.3388, "options": 7}
+{"key": 809379, "model": "clef:clef@noimage,referee", "answer": "calendar", "p": 0.4091, "options": 3}
+{"key": 811891, "model": "clef:clef@noimage,referee", "answer": "user icon", "p": 0.6941, "options": 10}
+{"key": 772441, "model": "clef:clef@noimage,referee", "answer": "tuxedo jacket", "p": 0.2957, "options": 8}
+{"key": 810748, "model": "clef:clef@noimage,referee", "answer": "clip", "p": 0.3182, "options": 5}
+{"key": 813116, "model": "clef:clef@noimage,referee", "answer": "pound sign", "p": 0.748, "options": 4}

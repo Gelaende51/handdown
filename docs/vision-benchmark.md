@@ -42,7 +42,8 @@ which only the host's catalog has (see *Hosted models*).
 Measured on other sets, not directly comparable: the linear probe on our
 SigLIP + DINOv2 embeddings (58 % cross-validated overall, 98 % on the 9 % it is
 confident about), SigLIP zero-shot (34–51 %), DINOv2 nearest neighbour
-(39–52 %), Laya on pictogram names (28 %, name rules 30 %). GitHub Models
+(39–52 %), Laya on pictogram names (28 %, name rules 30 %; Clef 29 %, see
+*Decision models*). GitHub Models
 (GPT-4.1 mini, Llama 4 Scout) was retired on 2026-07-30 before it could be
 measured.
 
@@ -85,6 +86,54 @@ the rendered pictograms. Cross agreement was not computed for these.
   GPT-5 nano produce 10–1,000× more output tokens for the same names, and
   StepFun and space-bunny often return nothing; asking for no reasoning
   (`think=off`) did not change their scores.
+
+## Decision models: Clef (2026-10-14)
+
+Cloudflare's Clef and Clef Flash (open weights, served on Workers AI) never
+write text. They return probabilities for options they are given, so they
+can't name a pictogram, only choose a name. Both benchmarks were run through
+`~/building_stuff/scripts/jev.mjs`. The answers are in
+`work/bench/results/clef-referee.jsonl` and `text-clef*.jsonl`.
+
+**Images, as a referee.** Clef sees the rendered pictogram (256 px) and picks
+one name from the distinct answers of all non-Claude models above. There
+are 9 options on average and at most 21, for 242 of the 244 pictograms; 2
+had fewer than two distinct answers. In 86 % of the cases at least one
+option matches the Claude label, so that is the ceiling.
+
+| Model | vs Claude labels | Exact only | s / image | Tokens per image (in / out) | $ per 1,000 |
+|---|---|---|---|---|---|
+| *Qwen3-VL 4B (Ollama), for comparison* | *63 %* | *57 %* | *55–85* | *1,083 / 3* | *free* |
+| *Majority vote over the same answers* | *61 %* | *53 %* | – | – | – |
+| Clef | 57 % | 50 % | ≈0.55 | 340 / 0 | ≈0.08 |
+| Clef Flash | 56 % | 50 % | ≈0.5 | 340 / 0 | ≈0.013 |
+| Clef, same options without the image | 47 % | 40 % | – | 280 / 0 | – |
+
+- As a referee, Clef is below a plain majority vote over the answers it chooses
+  from, and below Qwen3-VL alone. It does use the image: without it, it
+  scores 10 points lower.
+- Its confidence is what's useful. At p ≥ 0.8, 24 pictograms (10 %) match the
+  Claude label 96 % of the time; at p ≥ 0.5, 101 pictograms match 75 % of the
+  time. That makes it a cheap way to confirm the long tail's labels, not a
+  labeller.
+- Seconds are per request, run 8 at a time (242 images in 16 s). Workers AI
+  bills input only, and images come in as embedded data URIs (no remote URLs,
+  at most 4 per request).
+
+**Text, picking the object from the names** (the 2,000 items of
+`work/bench/text.jsonl`, the same set Laya was measured on):
+
+| Model | Exact | On the 643 items with a real choice | p ≥ 0.9: share of items, correct | $ per 1,000 |
+|---|---|---|---|---|
+| Name rules | 30 % | 72.9 % | – | free |
+| Clef | 29 % | 71.7 % | 60 %, 86 % | ≈0.04 |
+| Clef Flash | 29 % | 71.2 % | 56 %, 81 % | ≈0.006 |
+| Laya | 28 % | 69.1 % | 3 %, 90 % | free (CPU) |
+
+- 38 % is the most any model can reach, because only that share of items has
+  the Claude label among the candidates. Clef refuses a choice with only one
+  option; those 324 items count as their single candidate.
+- Clef matches the name rules and Laya on this task, so it adds nothing here.
 
 ## How the columns are computed
 
